@@ -1,21 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {useFonts} from "expo-font";
+import {Provider} from "react-redux";
+import store from './app/redux/store';
+import Main from './Main';
+import {StatusBar} from 'react-native';
+import AppLoading from 'expo-app-loading';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [fontsLoaded] = useFonts({
+        'Source-Sans-Pro': require('./assets/fonts/SourceSansPro-Regular.ttf'),
+    });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    return (
+        <React.Fragment>
+            <StatusBar barStyle={'light-content'}/>
+            {fontsLoaded ?
+                <Provider store={store}>
+                    <StatusBar barStyle={'light-content'}/>
+                    <Main/>
+                </Provider> :
+                <AppLoading autoHideSplash={true}/>
+            }
+        </React.Fragment>
+    )
+}
