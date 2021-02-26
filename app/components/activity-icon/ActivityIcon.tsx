@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesome5 } from '@expo/vector-icons';
-import {Activity} from '../../types/Activity.enum';
+import {Activity} from '../../types/Activity';
 
 const activityIconNames = {
     [Activity.RUNNING]: 'running',

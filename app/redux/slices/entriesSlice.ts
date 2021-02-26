@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {ASYNC_STATE_STATUS} from "../asyncStateStatus";
 import {Entry} from '../../types/Entry';
 import StorageService from '../../services/StorageService';
-import {SliceState} from '../../types/SliceState';
+import {EntriesSliceState, SliceState} from '../../types/SliceState';
 import UtilityService from '../../services/UtilityService';
 
 export const loadEntries = createAsyncThunk('entries/loadEntries', async () => {
@@ -28,7 +28,7 @@ const entriesSlice = createSlice({
         status: ASYNC_STATE_STATUS.IDLE,
         error: null,
         data: []
-    } as SliceState,
+    } as EntriesSliceState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(loadEntries.pending, (state, action) => {
@@ -53,7 +53,7 @@ const entriesSlice = createSlice({
 });
 
 export const getEntry = (state, id) => state.entries.data.find(entry => entry.id === id);
-export const getEntries = state => state.entries.data;
+export const getEntries = state => state.entries.data.filter(entry => entry.activity === state.entriesFilter || !state.entriesFilter);
 export const getEntriesStatus = state => state.entries.status;
 
 const entriesReducer = entriesSlice.reducer;

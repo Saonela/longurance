@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import appStyles from '../../styles';
 
 interface DropdownOption {
-    name: string,
+    label: string,
     value: any
 }
 
@@ -26,7 +26,7 @@ function Dropdown({value, options, onChange}: DropdownProps) {
                 onValueChange={onChange}
                 testID={'dropdown'}>
                 {options.map((option: DropdownOption) =>
-                    <Select.Item key={option.value} label={option.name} value={option.value} />
+                    <Select.Item key={option.value} label={option.label} value={option.value} />
                 )}
             </Select>
             <FontAwesome style={styles.caret} name="caret-down" size={24} color={theme.COLORS.FONT_PRIMARY} />

@@ -1,5 +1,5 @@
-import entriesReducer, {deleteEntry, saveEntry} from './entriesSlice';
-import {Activity} from '../../types/Activity.enum';
+import entriesReducer, {deleteEntry, getEntries, saveEntry} from './entriesSlice';
+import {Activity} from '../../types/Activity';
 import {Entry} from '../../types/Entry';
 
 describe('EntriesReducer', () => {
@@ -85,5 +85,12 @@ describe('EntriesReducer', () => {
 
     it('should delete entry', () => {
         expect(entriesReducer(state, deleteEntry.fulfilled('1', '', '1'))).toEqual({data: []});
+    });
+
+    it('get entries', () => {
+        expect(getEntries({entries: state, entriesFilter: null})).toEqual(state.data);
+        expect(getEntries({entries: state, entriesFilter: Activity.RUNNING})).toEqual(state.data);
+        expect(getEntries({entries: state, entriesFilter: Activity.SWIMMING})).toEqual([]);
+        expect(getEntries({entries: state, entriesFilter: Activity.CYCLING})).toEqual([]);
     });
 });

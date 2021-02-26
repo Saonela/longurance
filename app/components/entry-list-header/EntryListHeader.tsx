@@ -10,12 +10,16 @@ function EntryListHeader(props) {
 
 const styles = StyleSheet.create({
     header: {
+        zIndex: 1,
+        display: 'flex',
+        justifyContent: 'center',
         minWidth: '100%',
         height: theme.HEADER_HEIGHT,
-        backgroundColor: theme.COLORS.BACKGROUND_PRIMARY,
+        paddingLeft: theme.SPACING.S,
+        paddingRight: theme.SPACING.S,
         borderBottomColor: theme.COLORS.BACKGROUND_BASE,
         borderBottomWidth: 1,
-        zIndex: 1
+        backgroundColor: theme.COLORS.BACKGROUND_PRIMARY,
     },
     createButton: {
         position: 'absolute',

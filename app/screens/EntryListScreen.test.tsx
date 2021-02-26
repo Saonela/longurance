@@ -3,9 +3,10 @@ import {ASYNC_STATE_STATUS} from '../redux/asyncStateStatus';
 import React from 'react';
 import {Provider} from "react-redux";
 import EntryListScreen from './EntryListScreen';
-import {render} from '@testing-library/react-native';
+import {fireEvent, render} from '@testing-library/react-native';
 import entriesReducer from '../redux/slices/entriesSlice';
-import {Activity} from '../types/Activity.enum';
+import entriesFilterReducer from '../redux/slices/entriesFilterSlice';
+import {Activity} from '../types/Activity';
 import {Entry} from '../types/Entry';
 
 const entries: Partial<Entry>[] = [
@@ -39,17 +40,19 @@ const entries: Partial<Entry>[] = [
 ];
 
 describe('EntryListScreen', () => {
-    test('it should execute with a store of 3 elements', () => {
+    test('it should display list', () => {
         const initialState: any = {
             entries: {
                 status: ASYNC_STATE_STATUS.SUCCEEDED,
                 error: null,
                 data: entries
             },
+            entriesFilter: null
         };
         const store = configureStore({
             reducer: {
-                entries: entriesReducer
+                entries: entriesReducer,
+                entriesFilter: entriesFilterReducer
             },
             preloadedState: initialState
         });
@@ -65,5 +68,43 @@ describe('EntryListScreen', () => {
         getByText('2021-01-07');
         getByText('Was really enjoying. Got into flow state.');
         getByText('5 KM');
+    });
+
+    test('it should filter list', async () => {
+        const initialState: any = {
+            entries: {
+                status: ASYNC_STATE_STATUS.SUCCEEDED,
+                error: null,
+                data: entries
+            },
+            entriesFilter: Activity.SWIMMING
+        };
+
+        const store = configureStore({
+            reducer: {
+                entries: entriesReducer,
+                entriesFilter: entriesFilterReducer
+            },
+            preloadedState: initialState
+        });
+
+        const component = (
+            <Provider store={store}>
+                <EntryListScreen navigation={{}}/>
+            </Provider>
+        );
+
+        const {getByText, queryByText} = render(component);
+
+        expect(queryByText('2021-01-01')).toBeFalsy();
+        expect(queryByText('Was really enjoying. Got into flow state.')).toBeFalsy();
+        getByText('Almost drowned!');
+
+        fireEvent.press(getByText('Running'));
+
+        expect(queryByText('2021-01-01')).toBeFalsy();
+        expect(queryByText('Almost drowned!')).toBeFalsy();
+        getByText('Was really enjoying. Got into flow state.');
+
     });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, Alert, ScrollView, StyleSheet, View} from "react-native";
+import {ActivityIndicator, Alert, ScrollView, StyleSheet, TouchableWithoutFeedback, View} from "react-native";
 import appStyles from "../styles";
 import CreateNewButton from "../components/create-new-button/CreateNewButton";
 import theme from "../theme";
@@ -10,11 +10,14 @@ import EntryListEmptyMessage from '../components/entry-list-empty-message/EntryL
 import EntryListHeader from '../components/entry-list-header/EntryListHeader';
 import EntryCard from '../components/entry-card/EntryCard';
 import {ASYNC_STATE_STATUS} from '../redux/asyncStateStatus';
+import {setEntriesFilter, getEntriesFilter} from '../redux/slices/entriesFilterSlice';
+import ActivityFilter from '../components/activity-filter/ActivityFilter';
 
 function EntryListScreen({navigation}) {
 
     const entries = useSelector(getEntries)
     const entriesStatus = useSelector(getEntriesStatus);
+    const entriesFilter = useSelector(getEntriesFilter);
 
     const dispatch = useDispatch();
 
@@ -47,6 +50,7 @@ function EntryListScreen({navigation}) {
         <View style={styles.wrapper}>
             <EntryListHeader/>
             <CreateNewButton style={styles.createButton} onPress={() => navigateToEntryForm()}/>
+            <ActivityFilter style={styles.entriesFilter} value={entriesFilter} onChange={(value) => dispatch(setEntriesFilter(value))}/>
             <ScrollView style={appStyles.container}>
                 <View style={styles.list}>
                     {!entries.length && entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED ? <EntryListEmptyMessage/> : null}
@@ -73,6 +77,13 @@ const styles = StyleSheet.create({
         top: 30,
         right: theme.SPACING.M,
         zIndex: 1
+    },
+    entriesFilter: {
+        position: 'absolute',
+        top: 10,
+        left: theme.SPACING.S,
+        zIndex: 10,
+        height: '100%'
     },
     loader: {
         position: 'absolute',

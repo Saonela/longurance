@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Entry} from '../../types/Entry';
 import appStyles from '../../styles';
-import {Activity} from '../../types/Activity.enum';
+import {Activity} from '../../types/Activity';
 import theme from '../../theme';
 import EntryEnergyIndicator from '../entry-energy-indicator/EntryEnergyIndicator';
 import {Feather} from '@expo/vector-icons';

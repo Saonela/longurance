@@ -1,4 +1,4 @@
-import {Activity} from './Activity.enum';
+import {Activity} from './Activity';
 
 export interface Entry {
     id: string;
