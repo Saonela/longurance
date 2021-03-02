@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {Activity, ActivityOptions} from '../../types/Activity';
+import {ActivityOptions} from '../../types/Activity';
 import ActivityIcon from '../activity-icon/ActivityIcon';
 import theme from '../../theme';
+import {useDispatch, useSelector} from 'react-redux';
+import {setEntriesFilter, getEntriesFilter} from '../../redux/slices/entriesFilterSlice';
 
 const activityOptions = ActivityOptions.map((option) => {
     return {
@@ -22,18 +24,19 @@ const options: any = [
 ];
 
 interface ActivityFilterProps {
-    style: any,
-    value: Activity | any,
-    onChange: any
+    style: any
 }
 
 // TODO: there seems to be no fully and easy customizable dropdown option. Need to create custom solution
-function ActivityFilter({style, value, onChange}: ActivityFilterProps) {
+function ActivityFilter({style}: ActivityFilterProps) {
+    const filter = useSelector(getEntriesFilter);
+    const dispatch = useDispatch();
+
     return (
         <View style={style}>
             <DropDownPicker
                 items={options}
-                defaultValue={value ? value : 'all'}
+                defaultValue={filter ? filter : 'all'}
                 placeholder={''}
                 style={styles.picker}
                 dropDownStyle={styles.dropdown}
@@ -44,7 +47,7 @@ function ActivityFilter({style, value, onChange}: ActivityFilterProps) {
                 activeItemStyle={styles.activeItem}
                 arrowColor={theme.COLORS.FONT_PRIMARY}
                 onChangeItem={({value}) => {
-                    onChange(value === 'all' ? null : value)
+                    dispatch(setEntriesFilter(value === 'all' ? null : value))
                 }}
             />
         </View>

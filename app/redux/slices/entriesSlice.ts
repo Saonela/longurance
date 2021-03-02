@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {ASYNC_STATE_STATUS} from "../asyncStateStatus";
 import {Entry} from '../../types/Entry';
 import StorageService from '../../services/StorageService';
-import {EntriesSliceState, SliceState} from '../../types/SliceState';
+import {EntriesSliceState} from '../../types/SliceState';
 import UtilityService from '../../services/UtilityService';
 
 export const loadEntries = createAsyncThunk('entries/loadEntries', async () => {

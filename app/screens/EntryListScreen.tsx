@@ -1,65 +1,28 @@
 import React from 'react';
-import {ActivityIndicator, Alert, ScrollView, StyleSheet, TouchableWithoutFeedback, View} from "react-native";
+import {StyleSheet, View} from "react-native";
 import appStyles from "../styles";
 import CreateNewButton from "../components/create-new-button/CreateNewButton";
 import theme from "../theme";
-import {deleteEntry, getEntries, getEntriesStatus} from '../redux/slices/entriesSlice';
-import {useSelector, useDispatch} from "react-redux";
-import {Entry} from '../types/Entry';
-import EntryListEmptyMessage from '../components/entry-list-empty-message/EntryListEmptyMessage';
 import EntryListHeader from '../components/entry-list-header/EntryListHeader';
-import EntryCard from '../components/entry-card/EntryCard';
-import {ASYNC_STATE_STATUS} from '../redux/asyncStateStatus';
-import {setEntriesFilter, getEntriesFilter} from '../redux/slices/entriesFilterSlice';
 import ActivityFilter from '../components/activity-filter/ActivityFilter';
+import EntryList from '../components/entry-list/EntryList';
+
 
 function EntryListScreen({navigation}) {
-
-    const entries = useSelector(getEntries)
-    const entriesStatus = useSelector(getEntriesStatus);
-    const entriesFilter = useSelector(getEntriesFilter);
-
-    const dispatch = useDispatch();
 
     const navigateToEntryForm = (id?: string) => {
         const params = id ? {id} : {};
         navigation.navigate('entry-form', params);
     };
 
-    const confirmDelete = (id: string) => {
-        Alert.alert(
-            'Delete entry',
-            'Entry will be removed from history',
-            [
-                {
-                    text: 'Cancel',
-                    onPress: () => {},
-                    style: 'cancel'
-                },
-                {
-                    text: 'OK',
-                    onPress: async () => {
-                        dispatch(deleteEntry(id));
-                    }}
-            ],
-            { cancelable: false }
-        );
-    }
-
     return (
         <View style={styles.wrapper}>
             <EntryListHeader/>
             <CreateNewButton style={styles.createButton} onPress={() => navigateToEntryForm()}/>
-            <ActivityFilter style={styles.entriesFilter} value={entriesFilter} onChange={(value) => dispatch(setEntriesFilter(value))}/>
-            <ScrollView style={appStyles.container}>
-                <View style={styles.list}>
-                    {!entries.length && entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED ? <EntryListEmptyMessage/> : null}
-                    {entries.map((entry: Entry) => {
-                        return <EntryCard key={entry.id} entry={entry} onEdit={navigateToEntryForm} onDelete={confirmDelete}/>
-                    })}
-                </View>
-            </ScrollView>
-            {entriesStatus === ASYNC_STATE_STATUS.LOADING ? <ActivityIndicator style={styles.loader} size={46} color={theme.COLORS.FONT_PRIMARY}/> : null}
+            <ActivityFilter style={styles.entriesFilter}/>
+            <View style={appStyles.container}>
+                <EntryList onEdit={navigateToEntryForm}/>
+            </View>
         </View>
     );
 }
@@ -67,10 +30,6 @@ function EntryListScreen({navigation}) {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-    },
-    list: {
-        paddingTop: theme.SPACING.XL,
-        paddingBottom: theme.SPACING.M
     },
     createButton: {
         position: 'absolute',
@@ -84,16 +43,6 @@ const styles = StyleSheet.create({
         left: theme.SPACING.S,
         zIndex: 10,
         height: '100%'
-    },
-    loader: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: [
-            {translateX: -23},
-            {translateY: -23}
-        ],
-        zIndex: 1,
     }
 });
 
