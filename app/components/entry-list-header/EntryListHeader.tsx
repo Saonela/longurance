@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         borderBottomColor: theme.COLORS.BACKGROUND_BASE,
         borderBottomWidth: 1,
         backgroundColor: theme.COLORS.BACKGROUND_PRIMARY,
+        elevation: 5
     },
     createButton: {
         position: 'absolute',

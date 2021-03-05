@@ -39,6 +39,7 @@ const BORDER = {
 }
 
 const HEADER_HEIGHT = 60;
+const TAB_NAVIGATOR_HEIGHT = 54;
 
 const theme = {
     COLORS,
@@ -46,7 +47,8 @@ const theme = {
     ICON_SIZE,
     SPACING,
     BORDER,
-    HEADER_HEIGHT
+    HEADER_HEIGHT,
+    TAB_NAVIGATOR_HEIGHT
 };
 
 export default theme;

@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         top: 10,
         left: theme.SPACING.S,
         zIndex: 10,
-        height: '100%'
+        height: '100%',
+        elevation: 6
     }
 });
 

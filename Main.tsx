@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import theme from './app/theme';
 import EntryListScreen from './app/screens/EntryListScreen';
 import EntryFormScreen from './app/screens/EntryFormScreen';
@@ -7,11 +8,23 @@ import {NavigationContainer} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {loadEntries} from './app/redux/slices/entriesSlice';
 import HeaderButton from './app/components/header/HeaderButton';
+import TrophyListScreen from './app/screens/TrophyListScreen';
+import TabBar from './app/components/tab-bar/TabBar';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+
+function ListScreens() {
+    return (
+        <Tab.Navigator tabBar={props => <TabBar {...props}/>}>
+            <Tab.Screen name="Entries" component={EntryListScreen} />
+            <Tab.Screen name="Trophies" component={TrophyListScreen} />
+        </Tab.Navigator>
+    );
+}
 
 function Main() {
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,7 +48,7 @@ function Main() {
                                   onPress={navigation.goBack}/>
                 )
             }}}>
-                <Stack.Screen name="entry-list" component={EntryListScreen} options={{ headerShown: false }}/>
+                <Stack.Screen name="entry-list" component={ListScreens} options={{ headerShown: false }}/>
                 <Stack.Screen name="entry-form" component={EntryFormScreen} options={{}}/>
             </Stack.Navigator>
         </NavigationContainer>

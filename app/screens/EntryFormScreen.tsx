@@ -16,12 +16,9 @@ function EntryFormScreen({route, navigation}) {
 
     const formRef = useRef<FormikValues>(null);
 
-    useEffect(() => {
-        navigation.setOptions({title: entry ? 'Edit Entry' : 'New Entry'})
-    }, []);
-
     useLayoutEffect(() => {
         navigation.setOptions({
+            title: entry ? 'Edit Entry' : 'New Entry',
             headerRight: () => (
                 <HeaderButton style={{marginRight: theme.SPACING.S}}
                               iconName="check"

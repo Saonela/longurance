@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
         overflow: 'hidden',
+        elevation: 24,
     }
 });
 
