@@ -1,28 +1,43 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {StyleSheet, View} from "react-native";
 import appStyles from "../styles";
-import CreateNewButton from "../components/create-new-button/CreateNewButton";
 import theme from "../theme";
-import EntryListHeader from '../components/entry-list-header/EntryListHeader';
 import ActivityFilter from '../components/activity-filter/ActivityFilter';
 import EntryList from '../components/entry-list/EntryList';
+import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
+import HeaderButton from '../components/header/HeaderButton';
 
 
 function EntryListScreen({navigation}) {
-
     const navigateToEntryForm = (id?: string) => {
         const params = id ? {id} : {};
         navigation.navigate('entry-form', params);
     };
 
+    const navigateToEntryDetails = (id: string) => {
+        console.log('navigateToEntryDetails', id);
+        navigation.navigate('entry-details', {id});
+    };
+
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerLeft: null,
+            headerRight: () => (
+                <HeaderButton style={{marginRight: theme.SPACING.S}}
+                              iconName="plus"
+                              onPress={() => navigateToEntryForm()}/>
+            )
+        });
+    }, [navigation]);
+    
     return (
         <View style={styles.wrapper}>
-            <EntryListHeader/>
-            <CreateNewButton style={styles.createButton} onPress={() => navigateToEntryForm()}/>
             <ActivityFilter style={styles.entriesFilter}/>
             <View style={appStyles.container}>
-                <EntryList onEdit={navigateToEntryForm}/>
+                <EntryList onPress={navigateToEntryDetails}/>
             </View>
+            <TrophyCongratulations/>
         </View>
     );
 }
@@ -31,15 +46,9 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
     },
-    createButton: {
-        position: 'absolute',
-        top: 30,
-        right: theme.SPACING.M,
-        zIndex: 1
-    },
     entriesFilter: {
         position: 'absolute',
-        top: 10,
+        top: -theme.HEADER_HEIGHT + 10,
         left: theme.SPACING.S,
         zIndex: 10,
         height: '100%',

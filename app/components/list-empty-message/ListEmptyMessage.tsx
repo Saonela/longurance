@@ -4,11 +4,11 @@ import theme from '../../theme';
 import {StyleSheet, Text, View} from 'react-native';
 import appStyles from '../../styles';
 
-function EntryListEmptyMessage(props) {
+function ListEmptyMessage({message, iconName = 'activity', ...props}) {
     return (
         <View style={styles.message} {...props}>
-            <Feather name="activity" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_SECONDARY}/>
-            <Text style={styles.text}>No entries recorded yet !</Text>
+            <Feather name={iconName} size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_SECONDARY}/>
+            <Text style={styles.text}>{message}</Text>
         </View>
     );
 }
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EntryListEmptyMessage;
+export default ListEmptyMessage;

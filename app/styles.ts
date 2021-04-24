@@ -13,12 +13,12 @@ const appStyles = StyleSheet.create({
         backgroundColor: theme.COLORS.BACKGROUND_PRIMARY
     },
     primaryText: {
-        fontFamily: 'Source-Sans-Pro',
+        fontFamily: 'Lato',
         fontSize: theme.FONT_SIZE.PRIMARY,
         color: theme.COLORS.FONT_PRIMARY
     },
     secondaryText: {
-        fontFamily: 'Source-Sans-Pro',
+        fontFamily: 'Lato',
         fontSize: theme.FONT_SIZE.SECONDARY,
         color: theme.COLORS.FONT_PRIMARY
     },

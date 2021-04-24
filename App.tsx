@@ -8,7 +8,7 @@ import AppLoading from 'expo-app-loading';
 
 export default function App() {
     const [fontsLoaded] = useFonts({
-        'Source-Sans-Pro': require('./assets/fonts/SourceSansPro-Regular.ttf'),
+        'Lato': require('./assets/fonts/Lato-Regular.ttf'),
     });
 
     return (

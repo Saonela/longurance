@@ -9,6 +9,7 @@ interface DurationFormFieldProps {
     style: any,
     onChange: any
 }
+// TODO: refactor this object-checking confusion
 
 function DurationFormField({value, style = null, onChange}: DurationFormFieldProps) {
 

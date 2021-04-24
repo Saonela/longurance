@@ -10,7 +10,6 @@ import HeaderButton from '../components/header/HeaderButton';
 import {FormikValues} from 'formik';
 
 function EntryFormScreen({route, navigation}) {
-
     const dispatch = useDispatch();
     const entry = useSelector((state) => getEntry(state, route.params.id));
 
@@ -39,7 +38,7 @@ function EntryFormScreen({route, navigation}) {
     return (
         <View style={appStyles.container}>
             <ScrollView keyboardShouldPersistTaps="handled">
-                <EntryForm entry={entry} innerRef={formRef} onSubmit={handleSubmit}/>
+                <EntryForm entry={entry} innerRef={formRef} onSubmit={(trophy) => handleSubmit(trophy)}/>
             </ScrollView>
         </View>
     );

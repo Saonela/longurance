@@ -3,38 +3,39 @@ import {Keyboard, StyleSheet, View} from 'react-native';
 import {withFormik} from 'formik';
 import {Activity} from '../../types/Activity';
 import theme from '../../theme';
-import ErrorMessage from '../shared/ErrorMessage';
-import ActivityFormField from '../form/ActivityFormField';
 import DistanceFormField from '../form/DistanceFormField';
 import DurationFormField from '../form/DurationFormField';
-import DateFormField from '../form/DateFormField';
-import EnergyFormField from '../form/EnergyFormField';
-import NoteFormField from '../form/NoteFormField';
+import ErrorMessage from '../shared/ErrorMessage';
+import ActivityFormField from '../form/ActivityFormField';
 import TextFormField from '../form/TextFormField';
-import FormSubText from '../form/FormSubText';
+import {Trophy} from '../../types/Trophy';
 
-const defaultEntry: any = {
-    activity: Activity.RUNNING,
-    distance: null,
-    duration: null,
-    date: new Date().toISOString(),
-    energy: 0,
+const defaultTrophy: Partial<Trophy> = {
     title: '',
-    note: ''
+    activity: Activity.RUNNING,
+    distance: null as any,
+    duration: null as any,
+    markedAsRead: false
 }
 
 const options = {
-    mapPropsToValues: ({entry, ...props}) => {
-        return entry ? entry : defaultEntry;
+    mapPropsToValues: ({trophy, ...props}) => {
+        return trophy ? trophy : defaultTrophy;
     },
     validate: (values) => {
-        const errors: any = {};
         if (values.distance && typeof values.distance !== 'number') {
             values.distance = parseFloat(values.distance);
         }
         if (values.duration && typeof values.duration !== 'number') {
             const {hours, minutes} = values.duration as any;
             values.duration = hours * 60 + minutes;
+        }
+
+        console.log('values.duration', values.duration)
+
+        const errors: any = {};
+        if (!values.title) {
+            errors.title = 'Title must be set!';
         }
         if (!values.duration && !values.distance) {
             errors.durationOrDistance = 'Duration or distance must be set!';
@@ -49,24 +50,25 @@ const options = {
     }
 }
 
-function EntryForm({values, errors, touched, handleChange, setFieldValue, setErrors}) {
+function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
     return (
         <View style={styles.form}>
             <TextFormField style={styles.field}
                            value={values.title}
                            label={'Title'}
                            placeholder={'Title'}
-                           onChange={handleChange('title')}/>
-            <FormSubText style={styles.subText}
-                         text="Write a short title to display in the list screen."/>
+                           onChange={(value) => {
+                               setErrors({});
+                               setFieldValue('title', value);
+                           }}/>
+
+            {errors.title
+                ? <ErrorMessage style={styles.errorField} message={errors.title}/>
+                : null}
 
             <ActivityFormField style={styles.field}
                                value={values.activity}
                                onChange={handleChange('activity')}/>
-
-            <DateFormField style={styles.field}
-                           value={values.date}
-                           onChange={value => setFieldValue('date', value.toISOString())}/>
 
             <DistanceFormField style={styles.field}
                                value={values.distance}
@@ -82,17 +84,9 @@ function EntryForm({values, errors, touched, handleChange, setFieldValue, setErr
                                    setFieldValue('duration', value)
                                }}/>
 
-            {errors.durationOrDistance && (touched.duration || touched.distance)
+            {errors.durationOrDistance
                 ? <ErrorMessage style={styles.errorField} message={errors.durationOrDistance}/>
                 : null}
-
-            <EnergyFormField style={{paddingBottom: theme.SPACING.S}}
-                             value={values.energy}
-                             onChange={value => setFieldValue('energy', value)}/>
-
-            <NoteFormField style={styles.field}
-                           value={values.note}
-                           onChange={value => setFieldValue('note', value)}/>
         </View>
     );
 }
@@ -105,12 +99,9 @@ const styles = StyleSheet.create({
         paddingBottom: theme.SPACING.L
     },
     errorField: {
-        paddingBottom: theme.SPACING.M
-    },
-    subText: {
-        marginTop: -20,
-        marginBottom: theme.SPACING.M
+        paddingBottom: theme.SPACING.M,
+        marginTop: -theme.SPACING.M
     }
 });
 
-export default withFormik(options)(EntryForm);
+export default withFormik(options)(TrophyForm);

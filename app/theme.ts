@@ -1,11 +1,13 @@
 
 const COLORS = {
-    BACKGROUND_PRIMARY: '#1b1b1b',
-    BACKGROUND_SECONDARY: '#28282A',
+    BACKGROUND_PRIMARY: '#2a2a2a',
+    BACKGROUND_SECONDARY: '#4b4b4e',
     BACKGROUND_BASE: '#121212',
     FONT_PRIMARY: '#f4f4f6',
     FONT_SECONDARY: '#9a9a9a',
     FONT_DANGER: '#ff2727',
+    THEME_FONT: '#f8bb03',
+    SUCCESS: '#25800b',
     ENERGY_POSITIVE: '#49c110',
     ENERGY_NEUTRAL: '#dcde34',
     ENERGY_NEGATIVE: '#ff3333'
@@ -13,7 +15,7 @@ const COLORS = {
 
 const FONT_SIZE = {
     HEADER: 24,
-    PRIMARY: 16,
+    PRIMARY: 15,
     SECONDARY: 13,
     TERTIARY: 10,
 }
@@ -35,7 +37,7 @@ const SPACING = {
 
 const BORDER = {
     WIDTH: 1,
-    RADIUS: 5
+    RADIUS: 16
 }
 
 const HEADER_HEIGHT = 60;

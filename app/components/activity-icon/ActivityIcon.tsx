@@ -8,9 +8,9 @@ const activityIconNames = {
     [Activity.CYCLING]: 'bicycle',
 }
 
-function ActivityIcon({activity, style}) {
+function ActivityIcon({activity, style, size = 18}) {
     return (
-        <FontAwesome5 name={activityIconNames[activity]} size={18} style={style} color={style.color} />
+        <FontAwesome5 name={activityIconNames[activity]} size={size} style={style} color={style.color} />
     );
 }
 

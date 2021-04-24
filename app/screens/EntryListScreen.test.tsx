@@ -3,11 +3,15 @@ import {ASYNC_STATE_STATUS} from '../redux/asyncStateStatus';
 import React from 'react';
 import {Provider} from "react-redux";
 import EntryListScreen from './EntryListScreen';
-import {fireEvent, render} from '@testing-library/react-native';
+import {act, fireEvent, render} from '@testing-library/react-native';
 import entriesReducer from '../redux/slices/entriesSlice';
 import entriesFilterReducer from '../redux/slices/entriesFilterSlice';
 import {Activity} from '../types/Activity';
 import {Entry} from '../types/Entry';
+import {Trophy} from '../types/Trophy';
+import trophiesReducer from '../redux/slices/trophiesSlice';
+jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
+
 
 const entries: Partial<Entry>[] = [
     {
@@ -17,6 +21,7 @@ const entries: Partial<Entry>[] = [
         duration: 92,
         date: '2021-01-07T09:10:02.207Z',
         energy: 2,
+        title: 'MY RUN',
         note: 'Was really enjoying. Got into flow state.',
     },
     {
@@ -35,47 +40,78 @@ const entries: Partial<Entry>[] = [
         duration: 57,
         date: '2020-12-08T09:10:02.207Z',
         energy: -1,
+        title: 'Learn to Swim',
         note: 'Almost drowned!',
     }
 ];
 
+const trophies: Partial<Trophy>[] = [
+    {
+        id: '1',
+        activity: Activity.RUNNING,
+        distance: 21,
+        completedAt: '2021-01-07T09:10:02.207Z',
+        completed: true,
+        markedAsRead: false,
+        title: 'My first half marathon !',
+    }
+];
+
+const navigation = {
+    setOptions: () => {}
+};
+
+const initialState: any = {
+    entries: {
+        status: ASYNC_STATE_STATUS.SUCCEEDED,
+        error: null,
+        data: entries
+    },
+    trophies: {
+        status: ASYNC_STATE_STATUS.SUCCEEDED,
+        error: null,
+        data: trophies
+    },
+    entriesFilter: Activity.SWIMMING
+};
+
 describe('EntryListScreen', () => {
-    test('it should display list', () => {
-        const initialState: any = {
-            entries: {
-                status: ASYNC_STATE_STATUS.SUCCEEDED,
-                error: null,
-                data: entries
-            },
-            entriesFilter: null
-        };
+    it('should display list', () => {
+        const state = Object.assign({}, initialState, {entriesFilter: null});
+
         const store = configureStore({
             reducer: {
                 entries: entriesReducer,
-                entriesFilter: entriesFilterReducer
+                entriesFilter: entriesFilterReducer,
+                trophies: trophiesReducer
             },
-            preloadedState: initialState
+            preloadedState: state
         });
 
         const component = (
             <Provider store={store}>
-                <EntryListScreen navigation={{}}/>
+                <EntryListScreen navigation={navigation}/>
             </Provider>
         );
 
         const { getByText } = render(component);
 
-        getByText('2021-01-07');
-        getByText('Was really enjoying. Got into flow state.');
+        getByText('Jan 07');
+        getByText('MY RUN');
         getByText('5 KM');
     });
 
-    test('it should filter list', async () => {
+    it('should filter list', async () => {
         const initialState: any = {
             entries: {
                 status: ASYNC_STATE_STATUS.SUCCEEDED,
                 error: null,
                 data: entries
+            },
+            trophies: {
+                status: ASYNC_STATE_STATUS.SUCCEEDED,
+                error: null,
+                data: trophies
             },
             entriesFilter: Activity.SWIMMING
         };
@@ -83,28 +119,57 @@ describe('EntryListScreen', () => {
         const store = configureStore({
             reducer: {
                 entries: entriesReducer,
-                entriesFilter: entriesFilterReducer
+                entriesFilter: entriesFilterReducer,
+                trophies: trophiesReducer
             },
             preloadedState: initialState
         });
 
         const component = (
             <Provider store={store}>
-                <EntryListScreen navigation={{}}/>
+                <EntryListScreen navigation={navigation}/>
             </Provider>
         );
 
         const {getByText, queryByText} = render(component);
 
         expect(queryByText('2021-01-01')).toBeFalsy();
-        expect(queryByText('Was really enjoying. Got into flow state.')).toBeFalsy();
-        getByText('Almost drowned!');
+        expect(queryByText('MY RUN')).toBeFalsy();
+        getByText('Learn to Swim');
 
         fireEvent.press(getByText('Running'));
 
         expect(queryByText('2021-01-01')).toBeFalsy();
-        expect(queryByText('Almost drowned!')).toBeFalsy();
-        getByText('Was really enjoying. Got into flow state.');
+        expect(queryByText('Learn to Swim')).toBeFalsy();
+        getByText('MY RUN');
 
     });
+
+    it('should notify about completed trophy', async () => {
+        const state = Object.assign({}, initialState);
+        delete state.entriesFilter;
+
+        const store = configureStore({
+            reducer: {
+                entries: entriesReducer,
+                trophies: trophiesReducer
+            },
+            preloadedState: state
+        });
+
+        const component = (
+            <Provider store={store}>
+                <EntryListScreen navigation={navigation}/>
+            </Provider>
+        );
+
+        const {getByText, queryByText} = render(component);
+
+        getByText('Trophy achieved!');
+        await act(async () => {
+            fireEvent.press(getByText('Close'));
+        });
+        expect(queryByText('Trophy achieved!')).toBeFalsy();
+    });
+
 });

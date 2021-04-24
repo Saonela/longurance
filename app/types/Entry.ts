@@ -9,5 +9,6 @@ export interface Entry {
     date: string;
     energy: number;
     note: string;
+    title: string;
     goalId?: string;
 }

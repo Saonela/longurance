@@ -1,13 +1,39 @@
 import {Entry} from '../types/Entry';
-import { AsyncStorage } from 'react-native';
+import {Trophy} from '../types/Trophy';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const TROPHIES_KEY = 'trophies';
 const ENTRIES_KEY = 'entries';
 
 class StorageService {
 
+    static async loadTrophies(): Promise<Trophy[]> {
+        return this.loadGenericList(TROPHIES_KEY);
+    }
+
+    static async saveTrophy(trophy: Trophy) {
+        return this.saveGenericListItem(TROPHIES_KEY, trophy);
+    }
+
+    static async deleteTrophy(id: string) {
+        return this.deleteGenericListItem(TROPHIES_KEY, id);
+    }
+
     static async loadEntries(): Promise<Entry[]> {
+        return this.loadGenericList(ENTRIES_KEY);
+    }
+
+    static async saveEntry(entry: Entry) {
+        return this.saveGenericListItem(ENTRIES_KEY, entry);
+    }
+
+    static async deleteEntry(id: string) {
+        return this.deleteGenericListItem(ENTRIES_KEY, id);
+    }
+
+    static async loadGenericList(key: string): Promise<any[]> {
         try {
-            const entries = await AsyncStorage.getItem(ENTRIES_KEY)
+            const entries = await AsyncStorage.getItem(key);
             return entries ? JSON.parse(entries) : [];
         } catch (e) {
             this.handleError(e);
@@ -15,31 +41,31 @@ class StorageService {
         }
     }
 
-    static async saveEntry(entry: Entry) {
-        const entries = await this.loadEntries();
-        const _entry = entries.find(item => item.id === entry.id);
-
-        if (_entry) {
-            Object.assign(_entry, entry);
-        } else {
-            entries.unshift(entry);
-        }
-
-        this.saveEntries(entries);
-    }
-
-    static async deleteEntry(id: string) {
-        let entries = await this.loadEntries();
-        entries = entries.filter(entry => entry.id !== id);
-        this.saveEntries(entries);
-    }
-
-    private static saveEntries(entries: Entry[]) {
+    static async saveGenericList(key: string, list: any[]) {
         try {
-            AsyncStorage.setItem(ENTRIES_KEY, JSON.stringify(entries));
+            AsyncStorage.setItem(key, JSON.stringify(list));
         } catch (e) {
             this.handleError(e);
         }
+    }
+
+    static async saveGenericListItem(key: string, item: any) {
+        const items = await this.loadGenericList(key);
+        const _item = items.find(x => x.id === item.id);
+
+        if (_item) {
+            Object.assign(_item, item);
+        } else {
+            items.unshift(item);
+        }
+
+        this.saveGenericList(key, items);
+    }
+
+    static async deleteGenericListItem(key: string, id: string) {
+        let items = await this.loadGenericList(key);
+        items = items.filter(entry => entry.id !== id);
+        this.saveGenericList(key, items);
     }
 
     private static handleError(error) {

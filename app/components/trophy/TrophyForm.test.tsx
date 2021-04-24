@@ -1,12 +1,12 @@
 import React, {useRef} from 'react';
 import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
-import EntryForm from './EntryForm';
+import TrophyForm from './TrophyForm';
 import {Activity} from '../../types/Activity';
-import {Entry} from '../../types/Entry';
 import {FormikValues} from 'formik';
 import {View, Button} from 'react-native';
+import {Trophy} from '../../types/Trophy';
 
-function FormWithRef({entry, onSubmit}) {
+function FormWithRef({trophy, onSubmit}) {
     const formRef = useRef<FormikValues>(null);
     return (
         <View>
@@ -15,27 +15,28 @@ function FormWithRef({entry, onSubmit}) {
                     formRef.current.handleSubmit();
                 }
             }}/>
-            <EntryForm entry={entry} innerRef={formRef} onSubmit={onSubmit}/>
+            <TrophyForm trophy={trophy} innerRef={formRef} onSubmit={onSubmit}/>
         </View>
     );
 }
 
-describe('EntryForm', () => {
+describe('TrophyForm', () => {
 
     test('should submit default form', async () => {
         const submitSpy = jest.fn();
 
-        const { getByText, getByPlaceholderText, getByA11yLabel, getByTestId } = render(<FormWithRef entry={null} onSubmit={submitSpy}/>)
+        const { getByText, getByPlaceholderText, getByTestId } = render(<FormWithRef trophy={null} onSubmit={submitSpy}/>)
 
         await waitFor(() => {
             fireEvent.press(getByText('Save'));
         });
 
+        getByText('Title must be set!');
         getByText('Duration or distance must be set!');
         submitSpy.mockClear();
 
         await act(async () => {
-            fireEvent.changeText(getByPlaceholderText('Title'), 'My title!');
+            fireEvent.changeText(getByPlaceholderText('Title'), 'Ironman swim');
         });
         await act(async () => {
             fireEvent(getByTestId('dropdown'), 'valueChange', Activity.SWIMMING);
@@ -50,49 +51,36 @@ describe('EntryForm', () => {
             fireEvent.changeText(getByPlaceholderText('Km'), '2.5');
         });
         await act(async () => {
-            fireEvent.press(getByTestId('datepicker-trigger'));
-        });
-        await act(async () => {
-            fireEvent(getByTestId('datepicker'), 'onConfirm', new Date('2020-09-01'));
-        });
-        await act(async () => {
-            fireEvent.changeText(getByA11yLabel('Note field'), 'My interesting note.');
-        });
-
-        await act(async () => {
             fireEvent.press(getByText('Save'));
         });
 
         expect(submitSpy).toHaveBeenCalledWith({
+                title: 'Ironman swim',
                 activity: Activity.SWIMMING,
                 distance: 2.5,
                 duration: 136,
-                date: '2020-09-01T00:00:00.000Z',
-                energy: 0,
-                title: 'My title!',
-                note: 'My interesting note.'
+                markedAsRead: false
             }
         );
     });
 
-    test('should submit edit entry form', async () => {
+    test('should submit edit form', async () => {
         const submitSpy = jest.fn();
 
-        const entry: Partial<Entry> = {
+        const trophy: Partial<Trophy> = {
             id: '1',
+            title: '100km',
             activity: Activity.RUNNING,
             distance: 15,
             duration: 92,
-            date: '2021-01-07T09:10:02.207Z',
-            energy: 2,
-            note: 'Was really enjoying. Got into flow state.',
+            markedAsRead: false
         };
 
-        const { debug, getByText } = render(<FormWithRef entry={entry} onSubmit={submitSpy}/>)
+        const { getByText } = render(<FormWithRef trophy={trophy} onSubmit={submitSpy}/>)
 
-        await waitFor(() => {
+        await act(async () => {
             fireEvent.press(getByText('Save'));
         });
-        expect(submitSpy).toHaveBeenCalledWith(entry);
+        expect(submitSpy).toHaveBeenCalledWith(trophy);
     });
 });

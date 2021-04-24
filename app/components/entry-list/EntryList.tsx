@@ -1,51 +1,30 @@
 import React from 'react';
 import {ASYNC_STATE_STATUS} from '../../redux/asyncStateStatus';
-import EntryListEmptyMessage from '../entry-list-empty-message/EntryListEmptyMessage';
-import {ActivityIndicator, Alert, FlatList, StyleSheet} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {deleteEntry, getEntries, getEntriesStatus} from '../../redux/slices/entriesSlice';
-import theme from '../../theme';
+import ListEmptyMessage from '../list-empty-message/ListEmptyMessage';
+import {FlatList} from 'react-native';
+import {useSelector} from 'react-redux';
+import {getEntries, getEntriesStatus} from '../../redux/slices/entriesSlice';
 import * as Animatable from 'react-native-animatable';
-import EntryCard from '../entry-card/EntryCard';
+import EntryCard from '../entry/EntryCard';
+import ListLoader from '../list-loader/ListLoader';
 
 interface EntryListProps {
-    onEdit: any
+    onPress: any
 }
 
-function EntryList({onEdit}: EntryListProps) {
+function EntryList({onPress}: EntryListProps) {
     const entries = useSelector(getEntries)
     const entriesStatus = useSelector(getEntriesStatus);
-    const dispatch = useDispatch();
-
-    const confirmDelete = (id: string) => {
-        Alert.alert(
-            'Delete entry',
-            'Entry will be removed from history',
-            [
-                {
-                    text: 'Cancel',
-                    onPress: () => {
-                    },
-                    style: 'cancel'
-                },
-                {
-                    text: 'OK',
-                    onPress: async () => {
-                        dispatch(deleteEntry(id));
-                    }
-                }
-            ],
-            {cancelable: false}
-        );
-    }
 
     const getEmptyMessage = () => {
-        return !entries.length && entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED && <EntryListEmptyMessage/>;
+        return !entries.length &&
+            entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED &&
+            <ListEmptyMessage message="No entries recorded yet!"/>;
     }
 
     const getLoader = () => {
         if (entriesStatus === ASYNC_STATE_STATUS.LOADING) {
-            return <ActivityIndicator style={styles.loader} size={46} color={theme.COLORS.FONT_PRIMARY}/>;
+            return <ListLoader/>;
         }
     }
 
@@ -56,7 +35,7 @@ function EntryList({onEdit}: EntryListProps) {
                          duration={300}
                          delay={index ? (index * 300) / 5 : 0}
                          useNativeDriver>
-            <EntryCard entry={item} onEdit={onEdit} onDelete={confirmDelete}/>
+            <EntryCard entry={item} onPress={() => onPress(item.id)}/>
         </Animatable.View>
     );
 
@@ -71,25 +50,5 @@ function EntryList({onEdit}: EntryListProps) {
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-    },
-    list: {
-        paddingTop: theme.SPACING.XL,
-        paddingBottom: theme.SPACING.M
-    },
-    loader: {
-        position: 'absolute',
-        top: '45%',
-        left: '50%',
-        transform: [
-            {translateX: -23},
-            {translateY: -23}
-        ],
-        zIndex: 1,
-    }
-});
 
 export default EntryList;
