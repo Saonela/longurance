@@ -12,7 +12,7 @@ import TrophyListScreen from './app/screens/TrophyListScreen';
 import TabBar from './app/components/tab-bar/TabBar';
 import TrophyFormScreen from './app/screens/TrophyFormScreen';
 import EntryDetailsScreen from './app/screens/EntryDetailsScreen';
-import {View} from 'react-native';
+import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -52,6 +52,7 @@ function TrophyScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions} mode="modal">
             <Stack.Screen name="trophy-list" component={TrophyListScreen} options={{}}/>
+            <Stack.Screen name="trophy-details" component={TrophyDetailsScreen} options={{}}/>
             <Stack.Screen name="trophy-form" component={TrophyFormScreen} options={{}}/>
         </Stack.Navigator>
     )

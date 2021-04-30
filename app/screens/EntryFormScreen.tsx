@@ -1,16 +1,18 @@
-import React, {useEffect, useLayoutEffect, useRef} from 'react';
+import React, {useLayoutEffect, useRef} from 'react';
 import {ScrollView, View} from "react-native";
 import appStyles from "../styles";
 import EntryForm from '../components/entry-form/EntryForm';
 import {Entry} from '../types/Entry';
 import {getEntry, saveEntry} from '../redux/slices/entriesSlice';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import theme from '../theme';
 import HeaderButton from '../components/header/HeaderButton';
 import {FormikValues} from 'formik';
+import {useAppDispatch} from '../redux/store';
+import {saveEntryTrophies} from '../redux/slices/trophiesSlice';
 
 function EntryFormScreen({route, navigation}) {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const entry = useSelector((state) => getEntry(state, route.params.id));
 
     const formRef = useRef<FormikValues>(null);
@@ -31,7 +33,9 @@ function EntryFormScreen({route, navigation}) {
     }, [navigation]);
 
     const handleSubmit = (entry: Entry) => {
-        dispatch(saveEntry(entry));
+        dispatch(saveEntry(entry)).then(() => {
+            dispatch(saveEntryTrophies(entry));
+        });
         navigation.navigate('entry-list');
     };
 

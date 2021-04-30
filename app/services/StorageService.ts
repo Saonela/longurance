@@ -15,6 +15,10 @@ class StorageService {
         return this.saveGenericListItem(TROPHIES_KEY, trophy);
     }
 
+    static async saveTrophies(trophies: Trophy[]) {
+        trophies.forEach(trophy => this.saveTrophy(trophy));
+    }
+
     static async deleteTrophy(id: string) {
         return this.deleteGenericListItem(TROPHIES_KEY, id);
     }
@@ -70,6 +74,12 @@ class StorageService {
 
     private static handleError(error) {
         console.log('Storage error', error);
+    }
+
+    static clearEverything() {
+        AsyncStorage.clear(() => {
+            console.log('Storage cleared');
+        });
     }
 }
 

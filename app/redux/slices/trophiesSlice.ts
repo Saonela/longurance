@@ -4,19 +4,53 @@ import StorageService from '../../services/StorageService';
 import {TrophiesSliceState} from '../../types/SliceState';
 import UtilityService from '../../services/UtilityService';
 import {Trophy} from '../../types/Trophy';
-import {Activity} from '../../types/Activity';
-import {saveEntry} from './entriesSlice';
+import {Entry} from '../../types/Entry';
 
 export const loadTrophies = createAsyncThunk('trophies/loadTrophies', async () => {
     return await StorageService.loadTrophies();
 });
 
-export const saveTrophy = createAsyncThunk('trophies/saveTrophy', async (trophy: Trophy) => {
+export const saveTrophy = createAsyncThunk('trophies/saveTrophy', async (trophy: Trophy, thunkAPI) => {
+    const state: any = thunkAPI.getState();
+
     if (!trophy.id) {
         trophy.id = UtilityService.generateId();
     }
+
+    const trophyEntry = state.entries.data.find(entry => entry.id === trophy.entryId);
+    if (trophyEntry && !isTrophyCompletedByEntry(trophyEntry, trophy)) {
+        trophy = setTrophyToNotCompleted(trophy);
+    }
+
+    const entry = state.entries.data.find((entry) => isTrophyCompletedByEntry(entry, trophy))
+    if (entry) {
+        trophy = setTrophyToCompleted(trophy, entry);
+    }
+
     StorageService.saveTrophy(trophy).then();
+
     return trophy;
+});
+
+export const saveEntryTrophies = createAsyncThunk('trophies/saveEntryTrophies', async (entry: Entry, thunkAPI) => {
+    const state: any = thunkAPI.getState();
+
+    const completedTrophies = state.trophies.data
+        .filter(isTrophyCompletedByEntry.bind(this, entry))
+        .map((trophy) => setTrophyToCompleted(trophy, entry));
+
+    if (completedTrophies.length) {
+        StorageService.saveTrophies(completedTrophies).then();
+    }
+
+    const uncompletedTrophies = state.trophies.data
+        .filter(trophy => trophy.entryId === entry.id)
+        .filter((trophy => !isTrophyCompletedByEntry(entry, trophy)))
+        .map((trophy) => setTrophyToNotCompleted(trophy));
+
+    if (uncompletedTrophies.length) {
+        StorageService.saveTrophies(uncompletedTrophies).then();
+    }
 });
 
 export const markTrophyAsRead = createAsyncThunk('trophies/markTrophyAsRead', async (trophy: Trophy) => {
@@ -34,35 +68,7 @@ const trophiesSlice = createSlice({
     initialState: {
         status: ASYNC_STATE_STATUS.IDLE,
         error: null,
-        data: [{
-                id: '1',
-                activity: Activity.RUNNING,
-                distance: 21,
-                completedAt: '2021-01-07T09:10:02.207Z',
-                completed: true,
-                markedAsRead: false,
-                title: 'My first half marathon !',
-            },
-            {
-                id: '2',
-                activity: Activity.CYCLING,
-                distance: 100,
-                duration: 180,
-                completedAt: null,
-                completed: false,
-                markedAsRead: false,
-                title: 'Sweet 100.',
-            },
-            {
-                id: '3',
-                activity: Activity.SWIMMING,
-                distance: 5000,
-                duration: 57,
-                completedAt: '2020-12-08T09:10:02.207Z',
-                completed: true,
-                markedAsRead: false,
-                title: 'IRONMAN',
-            }]
+        data: []
     } as TrophiesSliceState,
     reducers: {},
     extraReducers: (builder) => {
@@ -88,20 +94,43 @@ const trophiesSlice = createSlice({
         builder.addCase(deleteTrophy.fulfilled, (state, action) => {
             state.data = state.data.filter(item => item.id !== action.payload);
         });
-        builder.addCase(saveEntry.fulfilled, (state, action) => {
-            const entry = action.payload;
-            state.data
-                .filter(trophy => trophy.activity === entry.activity && !trophy.completed)
-                .filter(trophy => trophy.distance && entry.distance && entry.distance >= trophy.distance ||
-                                  trophy.duration && entry.duration && entry.duration >= trophy.duration)
-                .forEach(trophy => {
-                    trophy.entryId = entry.id;
-                    trophy.completedAt = entry.createdAt;
-                    trophy.completed = true;
-                });
-        });
     }
 });
+
+const isMoreDistance = (x, y) => x.distance >= y.distance;
+const isLongerDuration = (x, y) => x.duration >= y.duration;
+
+const isTrophyCompletedByDistance = (entry, trophy) => trophy.distance && !trophy.duration && entry.distance && isMoreDistance(entry, trophy);
+const isTrophyCompletedByDuration = (entry, trophy) => trophy.duration && !trophy.distance && entry.duration && isLongerDuration(entry, trophy);
+const isTrophyCompletedByDistanceAndDuration = (entry, trophy) =>
+    trophy.distance && trophy.duration &&
+    entry.distance && entry.duration &&
+    isMoreDistance(entry, trophy) &&
+    isLongerDuration(trophy, entry);
+
+const isTrophyCompletedByEntry = (entry: Entry, trophy: Trophy) =>
+    !trophy.completed && trophy.activity === entry.activity && (
+        isTrophyCompletedByDistanceAndDuration(entry, trophy) ||
+        isTrophyCompletedByDistance(entry, trophy) ||
+        isTrophyCompletedByDuration(entry, trophy)
+    );
+
+const setTrophyToCompleted = (trophy: Trophy, entry: Entry) => {
+    return Object.assign({}, trophy, {
+        entryId: entry.id,
+        completedAt: new Date().toISOString(),
+        completed: true
+    })
+};
+
+const setTrophyToNotCompleted = (trophy: Trophy) => {
+    return Object.assign({}, trophy, {
+        entryId: null,
+        completedAt: null,
+        completed: false,
+        markedAsRead: false
+    })
+};
 
 export const getTrophy = (state, id) => state.trophies.data.find(trophy => trophy.id === id);
 export const getTrophies = state => state.trophies.data;

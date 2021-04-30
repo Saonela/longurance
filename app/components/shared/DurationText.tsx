@@ -4,6 +4,7 @@ import {Text} from 'react-native';
 
 interface DurationTextProps {
     duration: number;
+    placeholder?: string | null;
     style?: any;
 }
 
@@ -23,10 +24,20 @@ function getDurationTimeText(duration: number) {
     }
 }
 
-function DurationText({duration, style = {}, ...props}: DurationTextProps) {
-    const {hours, minutes} = getDurationTimeText(duration);
+function DurationText({duration, placeholder = null, style = {}, ...props}: DurationTextProps) {
+    if (!duration && !placeholder) {
+        return null;
+    }
+
+    let text = placeholder;
+
+    if (duration) {
+        const {hours, minutes} = getDurationTimeText(duration);
+        text = `${hours}:${minutes}:00`
+    }
+
     return (
-        <Text style={[appStyles.primaryText, style]} {...props}>{hours}:{minutes}:00</Text>
+        <Text style={[appStyles.primaryText, style]} {...props}>{text}</Text>
     );
 }
 

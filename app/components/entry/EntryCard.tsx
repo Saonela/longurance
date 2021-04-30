@@ -8,6 +8,7 @@ import EntryEnergyIndicator from '../entry-energy-indicator/EntryEnergyIndicator
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import ActivityIcon from '../activity-icon/ActivityIcon';
+import EntryService from '../../services/EntryService';
 
 interface EntryProps {
     entry: Entry,
@@ -24,14 +25,15 @@ function EntryCard({entry, onPress}: EntryProps) {
                         <View style={{display: 'flex', flexDirection: 'row'}}>
                             <Text style={{...styles.headerText, fontSize: 22}}>{moment(entry.date).format("MMM DD")}</Text>
                             <Text style={{...styles.headerText, marginTop: 6, fontSize: 15}}>{moment(entry.date).format("HH:mm")}</Text>
+                            <Text style={[appStyles.primaryText, {marginTop: 6, color: theme.COLORS.FONT_SECONDARY}]}>{EntryService.getActivityTypeText(entry.activity)}</Text>
                         </View>
                     </View>
                 </View>
                 <View style={{display: 'flex', flexDirection: 'row', overflow: 'visible', zIndex: 1}}>
                     <View style={styles.detailsContainer}>
                         <EntryEnergyIndicator style={[styles.details, {marginTop: -2}]} value={entry.energy}/>
-                        {entry.distance ? <DistanceText style={styles.details} distance={entry.distance}/> : null}
-                        {entry.duration ? <DurationText style={styles.details} duration={entry.duration}/> : null}
+                        <DistanceText style={styles.details} distance={entry.distance}/>
+                        <DurationText style={styles.details} duration={entry.duration}/>
                     </View>
                 </View>
                 {entry.title ? <Text style={[appStyles.primaryText, styles.title]} numberOfLines={1}>{entry.title}</Text> : null}

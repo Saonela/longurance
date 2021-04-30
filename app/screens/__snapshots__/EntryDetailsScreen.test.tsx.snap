@@ -1,0 +1,692 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EntryDetailsScreen should match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#121212",
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#2a2a2a",
+              "borderRadius": 16,
+              "height": 120,
+              "margin": 8,
+              "overflow": "hidden",
+              "padding": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "display": "flex",
+                  "flexDirection": "column",
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#f4f4f6",
+                    "fontFamily": "Lato",
+                    "fontSize": 13,
+                    "marginRight": 8,
+                  }
+                }
+              >
+                2021
+              </Text>
+              <View
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontFamily": "Lato",
+                      "fontSize": 22,
+                      "marginRight": 8,
+                    }
+                  }
+                >
+                  Jan 07
+                </Text>
+                <Text
+                  style={
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontFamily": "Lato",
+                      "fontSize": 15,
+                      "marginRight": 8,
+                      "marginTop": 6,
+                    }
+                  }
+                >
+                  16:10
+                </Text>
+              </View>
+            </View>
+          </View>
+          <Text
+            style={
+              Object {
+                "bottom": 16,
+                "color": "#f4f4f6",
+                "fontSize": 24,
+                "left": 16,
+                "position": "absolute",
+              }
+            }
+          >
+            RUN
+          </Text>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#4b4b4e",
+                    "fontSize": 200,
+                  },
+                  Object {
+                    "color": "#4b4b4e",
+                    "position": "absolute",
+                    "right": -30,
+                    "top": -90,
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome5Free-Solid",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {
+                    "fontWeight": "700",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#2a2a2a",
+                  "borderRadius": 16,
+                  "flexGrow": 1,
+                  "margin": 8,
+                  "padding": 16,
+                },
+                Object {
+                  "flexBasis": 1,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "position": "absolute",
+                  "right": 16,
+                  "top": "50%",
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontSize": 32,
+                    },
+                    undefined,
+                    Object {
+                      "fontFamily": "material-community",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                󰣰
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#f4f4f6",
+                  "fontFamily": "Lato",
+                  "fontSize": 15,
+                  "marginBottom": 4,
+                }
+              }
+            >
+              Distance
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#f4f4f6",
+                  "fontFamily": "Lato",
+                  "fontSize": 15,
+                  "maxWidth": "90%",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontFamily": "Lato",
+                      "fontSize": 15,
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                15 KM
+              </Text>
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#2a2a2a",
+                  "borderRadius": 16,
+                  "flexGrow": 1,
+                  "margin": 8,
+                  "padding": 16,
+                },
+                Object {
+                  "flexBasis": 1,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "position": "absolute",
+                  "right": 16,
+                  "top": "50%",
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontSize": 32,
+                    },
+                    undefined,
+                    Object {
+                      "fontFamily": "material",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#f4f4f6",
+                  "fontFamily": "Lato",
+                  "fontSize": 15,
+                  "marginBottom": 4,
+                }
+              }
+            >
+              Duration
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#f4f4f6",
+                  "fontFamily": "Lato",
+                  "fontSize": 15,
+                  "maxWidth": "90%",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontFamily": "Lato",
+                      "fontSize": 15,
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                01:32:00
+              </Text>
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#2a2a2a",
+                  "borderRadius": 16,
+                  "flexGrow": 1,
+                  "margin": 8,
+                  "padding": 16,
+                },
+                Object {
+                  "flexBasis": 1,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "position": "absolute",
+                  "right": 16,
+                  "top": "50%",
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontSize": 32,
+                    },
+                    undefined,
+                    Object {
+                      "fontFamily": "material",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#f4f4f6",
+                  "fontFamily": "Lato",
+                  "fontSize": 15,
+                  "marginBottom": 4,
+                }
+              }
+            >
+              Pace
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#f4f4f6",
+                  "fontFamily": "Lato",
+                  "fontSize": 15,
+                  "maxWidth": "90%",
+                }
+              }
+            >
+              <Text>
+                KM / 
+              </Text>
+              <View />
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontFamily": "Lato",
+                      "fontSize": 15,
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                00:06.133333333333334:00
+              </Text>
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#2a2a2a",
+                  "borderRadius": 16,
+                  "flexGrow": 1,
+                  "margin": 8,
+                  "padding": 16,
+                },
+                Object {
+                  "flexBasis": 1,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "position": "absolute",
+                  "right": 16,
+                  "top": "50%",
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#f4f4f6",
+                      "fontSize": 32,
+                    },
+                    undefined,
+                    Object {
+                      "fontFamily": "simple-line-icons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#f4f4f6",
+                  "fontFamily": "Lato",
+                  "fontSize": 15,
+                  "marginBottom": 4,
+                }
+              }
+            >
+              Trophy
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#f4f4f6",
+                  "fontFamily": "Lato",
+                  "fontSize": 15,
+                  "maxWidth": "90%",
+                }
+              }
+            >
+              -
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#2a2a2a",
+              "borderRadius": 16,
+              "flexGrow": 1,
+              "margin": 8,
+              "padding": 16,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#f4f4f6",
+                "fontFamily": "Lato",
+                "fontSize": 15,
+                "marginBottom": 4,
+              }
+            }
+          >
+            Effort
+          </Text>
+          <ViewManagerAdapter_ExpoLinearGradient
+            proxiedProperties={
+              Object {
+                "colors": Array [
+                  4283023632,
+                  4292664884,
+                  4294914867,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  0,
+                ],
+              }
+            }
+            style={
+              Object {
+                "backgroundColor": "#f8bb03",
+                "borderRadius": 16,
+                "height": 10,
+                "marginTop": 8,
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#4b4b4e",
+                    "borderColor": "#f4f4f6",
+                    "borderRadius": 15,
+                    "borderWidth": 5,
+                    "elevation": 4,
+                    "height": 24,
+                    "left": -14,
+                    "position": "absolute",
+                    "top": -7,
+                    "width": 24,
+                  },
+                  Object {
+                    "left": "0%",
+                  },
+                ]
+              }
+            />
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 16,
+                "paddingLeft": 4,
+                "paddingRight": 4,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#9a9a9a",
+                  "fontFamily": "Lato",
+                  "fontSize": 13,
+                }
+              }
+            >
+              Light
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#9a9a9a",
+                    "fontFamily": "Lato",
+                    "fontSize": 13,
+                  },
+                  Object {
+                    "marginLeft": 24,
+                  },
+                ]
+              }
+            >
+              Moderate
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#9a9a9a",
+                  "fontFamily": "Lato",
+                  "fontSize": 13,
+                }
+              }
+            >
+              Vigorous
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#2a2a2a",
+                "borderRadius": 16,
+                "flexGrow": 1,
+                "margin": 8,
+                "padding": 16,
+              },
+              Object {},
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "position": "absolute",
+                "right": 16,
+                "top": "50%",
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#f4f4f6",
+                    "fontSize": 32,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "material-community",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              󰎛
+            </Text>
+          </View>
+          <Text
+            style={
+              Object {
+                "color": "#f4f4f6",
+                "fontFamily": "Lato",
+                "fontSize": 15,
+                "marginBottom": 4,
+              }
+            }
+          >
+            Note
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#f4f4f6",
+                "fontFamily": "Lato",
+                "fontSize": 15,
+                "maxWidth": "90%",
+              }
+            }
+          >
+            Was really enjoying. Got into flow state.
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

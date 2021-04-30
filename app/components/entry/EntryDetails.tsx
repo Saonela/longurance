@@ -55,12 +55,17 @@ function EffortBlock({energy}) {
 }
 
 function PaceText({duration, distance}) {
+    if (duration && distance) {
+        return (
+            <>
+                <Text>KM / </Text>
+                <View/>
+                <DurationText duration={duration && distance ? (duration / distance) : 0}/>
+            </>
+        )
+    }
     return (
-        <>
-            <Text>KM / </Text>
-            <View/>
-            <DurationText duration={duration && distance ? (duration / distance) : 0}/>
-        </>
+        <Text>N/A</Text>
     )
 }
 
@@ -84,11 +89,11 @@ function EntryDetails({entry}: EntryDetailsProps) {
             </View>
             <View style={styles.detailsRow}>
                 <DetailsBlock label="Distance"
-                              value={<DistanceText distance={entry.distance}/>}
+                              value={<DistanceText distance={entry.distance} placeholder="-"/>}
                               icon={<MaterialCommunityIcons name="map-marker-distance" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
                               style={{flexBasis: 1}}/>
                 <DetailsBlock label="Duration"
-                              value={<DurationText duration={entry.duration}/>}
+                              value={<DurationText duration={entry.duration} placeholder="-"/>}
                               icon={<MaterialIcons name="timer" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
                               style={{flexBasis: 1}}/>
             </View>

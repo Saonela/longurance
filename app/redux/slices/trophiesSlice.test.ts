@@ -1,24 +1,63 @@
 import {Activity} from '../../types/Activity';
-import trophiesReducer, {deleteTrophy, getTrophies, saveTrophy} from './trophiesSlice';
+import trophiesReducer, {deleteTrophy, getTrophies, saveEntryTrophies, saveTrophy} from './trophiesSlice';
 import {Trophy} from '../../types/Trophy';
-import {saveEntry} from './entriesSlice';
 import {Entry} from '../../types/Entry';
+import {Dispatch} from '@reduxjs/toolkit';
+import StorageService from '../../services/StorageService';
+
+jest.mock('../../services/StorageService', () => ({
+    saveTrophy: () => Promise.resolve(),
+    saveTrophies: () => Promise.resolve()
+}));
 
 describe('TrophiesReducer', () => {
 
+    const getTrophy = () => {
+        return {
+            id: '1',
+            activity: Activity.RUNNING,
+            distance: 21,
+            duration: 120,
+            completedAt: null,
+            completed: false,
+            markedAsRead: false,
+            title: 'My first half marathon !'
+        }
+    };
+
+    const getEntry = () => {
+        return {
+            id: '2',
+            activity: Activity.RUNNING,
+            distance: 4,
+            duration: 180,
+            createdAt: '2021-01-01T00:00:00.00Z',
+            date: '2021-01-01T00:10:02.207Z',
+            energy: 0,
+            title: '',
+            note: '',
+        }
+    };
+
     const state: any = {
         data: [
-            {
-                id: '1',
-                activity: Activity.RUNNING,
-                distance: 21,
-                completedAt: null,
-                completed: false,
-                markedAsRead: false,
-                title: 'My first half marathon !',
-            }
+            getTrophy()
         ]
     };
+
+    let dispatch: Dispatch;
+    let saveTrophySpy;
+    let saveTrophiesSpy;
+
+    const mockDate: any = new Date('2020-09-01')
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
+    beforeEach(() => {
+        dispatch = jest.fn();
+        saveTrophySpy = spyOn(StorageService, 'saveTrophy');
+        saveTrophiesSpy = spyOn(StorageService, 'saveTrophies');
+    });
+
 
     it('should create trophy', () => {
         expect(trophiesReducer(state, saveTrophy.fulfilled(
@@ -46,12 +85,14 @@ describe('TrophiesReducer', () => {
                     id: '1',
                     activity: Activity.RUNNING,
                     distance: 21,
+                    duration: 120,
                     completedAt: null,
                     completed: false,
                     markedAsRead: false,
                     title: 'My first half marathon !',
                 }
-            ]});
+            ]
+        });
     });
 
     it('should update trophy', () => {
@@ -60,6 +101,7 @@ describe('TrophiesReducer', () => {
                 id: '1',
                 activity: Activity.RUNNING,
                 distance: 42,
+                duration: 240,
                 completedAt: null,
                 completed: false,
                 title: 'Actually its a marathon !',
@@ -70,59 +112,263 @@ describe('TrophiesReducer', () => {
                     id: '1',
                     activity: Activity.RUNNING,
                     distance: 42,
+                    duration: 240,
                     completedAt: null,
                     completed: false,
                     markedAsRead: false,
                     title: 'Actually its a marathon !',
                 }
-            ]});
+            ]
+        });
     });
 
     it('should delete trophy', () => {
         expect(trophiesReducer(state, deleteTrophy.fulfilled('1', '', '1'))).toEqual({data: []});
     });
 
-    it('should check if any of trophies are completed', () => {
-        expect(trophiesReducer(state, saveEntry.fulfilled(
-            {
-                id: '2',
-                activity: Activity.RUNNING,
-                distance: 4,
-                duration: 180,
-                createdAt: '2021-01-01T00:00:00.00Z',
-                date: '2021-01-01T00:10:02.207Z',
-                energy: 0,
-                title: '',
-                note: '',
-            }, '', {} as Entry
-        ))).toEqual(state);
-        expect(trophiesReducer(state, saveEntry.fulfilled(
-            {
-                id: '2',
-                activity: Activity.RUNNING,
-                distance: 22,
-                duration: 180,
-                createdAt: '2021-01-01T00:00:00.00Z',
-                date: '2021-01-01T00:10:02.207Z',
-                energy: 0,
-                title: '',
-                note: '',
-            }, '', {} as Entry
-        ))).toEqual({data: [
-            {
-                id: '1',
-                activity: Activity.RUNNING,
-                distance: 21,
-                completedAt: '2021-01-01T00:00:00.00Z',
-                completed: true,
-                markedAsRead: false,
-                title: 'My first half marathon !',
-                entryId: '2'
-            }
-        ]});
-    });
-
     it('get trophies', () => {
         expect(getTrophies({trophies: state})).toEqual(state.data);
     });
+
+    describe('trophies completion check by entry', () => {
+
+        let thunkFunc;
+        let action;
+
+        afterEach(() => {
+            thunkFunc = null;
+            action = null;
+        });
+
+        it('should check if distance and duration trophy is completed', async () => {
+            const appState = {
+                trophies: {
+                    data: [getTrophy()]
+                }
+            }
+
+            thunkFunc = saveEntryTrophies(getEntry());
+            action = await thunkFunc(dispatch, () => appState, undefined);
+            expect(saveTrophiesSpy).not.toHaveBeenCalled()
+
+            thunkFunc = saveEntryTrophies(Object.assign(getEntry(), {distance: 22}));
+            action = await thunkFunc(dispatch, () => appState, undefined);
+            expect(saveTrophiesSpy).not.toHaveBeenCalled()
+
+            thunkFunc = saveEntryTrophies(Object.assign(getEntry(), {duration: 120}));
+            action = await thunkFunc(dispatch, () => appState, undefined);
+            expect(saveTrophiesSpy).not.toHaveBeenCalled();
+
+            thunkFunc = saveEntryTrophies(Object.assign(getEntry(), {distance: 22, duration: 120}));
+            action = await thunkFunc(dispatch, () => appState, undefined);
+            expect(saveTrophiesSpy).toHaveBeenCalledWith( [
+                {
+                    id: '1',
+                    activity: Activity.RUNNING,
+                    distance: 21,
+                    duration: 120,
+                    completedAt: '2020-09-01T00:00:00.000Z',
+                    completed: true,
+                    markedAsRead: false,
+                    title: 'My first half marathon !',
+                    entryId: '2'
+                }
+            ]);
+        });
+
+        it('should check if distance trophy is completed', async() => {
+            const appState = {
+                trophies: {
+                    data: [Object.assign(getTrophy(), {duration: null})]
+                }
+            }
+
+            thunkFunc = saveEntryTrophies(getEntry());
+            action = await thunkFunc(dispatch, () => appState, undefined);
+            expect(saveTrophiesSpy).not.toHaveBeenCalled();
+
+            thunkFunc = saveEntryTrophies(Object.assign(getEntry(), {distance: 50}));
+            action = await thunkFunc(dispatch, () => appState, undefined);
+            expect(saveTrophiesSpy).toHaveBeenCalledWith([
+                {
+                    id: '1',
+                    activity: Activity.RUNNING,
+                    distance: 21,
+                    duration: null,
+                    completedAt: '2020-09-01T00:00:00.000Z',
+                    completed: true,
+                    markedAsRead: false,
+                    title: 'My first half marathon !',
+                    entryId: '2'
+                }
+            ]);
+        });
+
+        it('should check if duration trophy is completed', async () => {
+            const appState = {
+                trophies: {
+                    data: [Object.assign(getTrophy(), {distance: null})]
+                }
+            }
+
+            thunkFunc = saveEntryTrophies(getEntry());
+            action = await thunkFunc(dispatch, () => appState, undefined);
+            expect(saveTrophiesSpy).toHaveBeenCalledWith([
+                {
+                    id: '1',
+                    activity: Activity.RUNNING,
+                    distance: null,
+                    duration: 120,
+                    completedAt: '2020-09-01T00:00:00.000Z',
+                    completed: true,
+                    markedAsRead: false,
+                    title: 'My first half marathon !',
+                    entryId: '2'
+                }
+            ]);
+        });
+    });
+
+    describe('trophies un-completion check by entry', () => {
+        const entryForCompletedTrophy = Object.assign(getEntry(), {distance: 22, duration: 120});
+        let thunkFunc;
+
+        afterEach(() => {
+            thunkFunc = null;
+        });
+
+        it('should check if entry no longer completes trophies', async () => {
+            const appState = {
+                trophies: {
+                    data: [
+                        Object.assign(
+                            getTrophy(),
+                            {
+                                entryId: entryForCompletedTrophy.id,
+                                completedAt: entryForCompletedTrophy.createdAt,
+                                completed: true,
+                                markedAsRead: true
+                            }
+                        )
+                    ]
+                }
+            }
+
+            thunkFunc = saveEntryTrophies(entryForCompletedTrophy);
+            await thunkFunc(dispatch, () => appState, undefined);
+
+            expect(saveTrophiesSpy).toHaveBeenCalledWith( [
+                {
+                    id: '1',
+                    activity: Activity.RUNNING,
+                    distance: 21,
+                    duration: 120,
+                    completedAt: null,
+                    completed: false,
+                    markedAsRead: false,
+                    title: 'My first half marathon !',
+                    entryId: null
+                }
+            ]);
+        });
+    });
+
+    describe('trophy completion check by trophy', () => {
+
+        const appState = {
+            trophies: {
+                data: []
+            },
+            entries: {
+                data: [{
+                    id: '2',
+                    activity: Activity.RUNNING,
+                    distance: 21,
+                    duration: 119,
+                    createdAt: '2021-01-01T00:00:00.00Z',
+                }] as Entry[]
+            }
+        }
+
+        it('should not set new trophy as completed', async () => {
+            const newTrophy: Trophy = {
+                id: '1', activity: Activity.RUNNING,
+                distance: 21,
+                duration: 100
+            } as Trophy;
+
+            const thunkFunc = saveTrophy(newTrophy);
+            await thunkFunc(dispatch, () => appState, undefined);
+
+            expect(saveTrophySpy).toHaveBeenCalledWith(newTrophy);
+        });
+
+        it('should set new trophy as already completed', async () => {
+            const newTrophy: Trophy = {
+                id: '1', activity: Activity.RUNNING,
+                distance: 21,
+                duration: 120
+            } as Trophy;
+
+            const thunkFunc = saveTrophy(newTrophy);
+            await thunkFunc(dispatch, () => appState, undefined);
+
+            expect(saveTrophySpy).toHaveBeenCalledWith({
+                id: '1', activity: Activity.RUNNING,
+                distance: 21,
+                duration: 120,
+                entryId: '2',
+                completedAt: '2020-09-01T00:00:00.000Z',
+                completed: true
+            });
+        });
+    });
+
+    describe('trophies un-completion check by trophy', () => {
+        const completedTrophy: Trophy = {
+            id: '1',
+            activity: Activity.RUNNING,
+            distance: 21,
+            duration: 90,
+            entryId: '2',
+            completed: true,
+            completedAt: '2020-09-01T00:00:00.000Z',
+            markedAsRead: true
+        } as Trophy;
+
+        let thunkFunc;
+
+        afterEach(() => {
+            thunkFunc = null;
+        });
+
+        it('should check if trophy no longer completed', async () => {
+            const appState = {
+                entries: {
+                    data: [{
+                        id: '2',
+                        activity: Activity.RUNNING,
+                        distance: 21,
+                        duration: 119,
+                        createdAt: '2021-01-01T00:00:00.00Z',
+                    }] as Entry[]
+                }
+            }
+
+            const thunkFunc = saveTrophy(completedTrophy);
+            await thunkFunc(dispatch, () => appState, undefined);
+
+            expect(saveTrophySpy).toHaveBeenCalledWith({
+                id: '1',
+                activity: Activity.RUNNING,
+                distance: 21,
+                duration: 90,
+                entryId: null,
+                completedAt: null,
+                completed: false,
+                markedAsRead: false
+            });
+        });
+    });
+
 });

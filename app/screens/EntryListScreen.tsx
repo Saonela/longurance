@@ -7,7 +7,6 @@ import EntryList from '../components/entry-list/EntryList';
 import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
 import HeaderButton from '../components/header/HeaderButton';
 
-
 function EntryListScreen({navigation}) {
     const navigateToEntryForm = (id?: string) => {
         const params = id ? {id} : {};
@@ -15,10 +14,8 @@ function EntryListScreen({navigation}) {
     };
 
     const navigateToEntryDetails = (id: string) => {
-        console.log('navigateToEntryDetails', id);
         navigation.navigate('entry-details', {id});
     };
-
 
     useLayoutEffect(() => {
         navigation.setOptions({
