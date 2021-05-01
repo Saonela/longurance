@@ -58,7 +58,7 @@ describe('TrophyForm', () => {
                 title: 'Ironman swim',
                 activity: Activity.SWIMMING,
                 distance: 2.5,
-                duration: 136,
+                duration: 8160,
                 markedAsRead: false
             }
         );

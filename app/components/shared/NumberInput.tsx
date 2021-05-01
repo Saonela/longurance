@@ -7,11 +7,10 @@ interface NumberInputProps {
     value: number;
     placeholder?: string;
     onChange?: any;
-    onBlur?: any;
     float?: boolean;
 }
 
-const NumberInput = ({value, placeholder, onChange = null, onBlur = null, float = false}: NumberInputProps) => {
+const NumberInput = ({value, placeholder, onChange = null, float = false}: NumberInputProps) => {
 
     const validate = (value: string) => {
         return float
@@ -43,8 +42,8 @@ const NumberInput = ({value, placeholder, onChange = null, onBlur = null, float 
                     onChange(validated);
                 }
             }}
-            value={value || value === 0 ? value.toString() : ''}
-        />
+            value={value ? value.toString() : ''}
+            />
     );
 };
 

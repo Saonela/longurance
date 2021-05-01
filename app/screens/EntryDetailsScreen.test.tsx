@@ -18,7 +18,7 @@ const entries: Partial<Entry>[] = [
         id: '1',
         activity: Activity.RUNNING,
         distance: 15,
-        duration: 92,
+        duration: 4000,
         date: '2021-01-07T09:10:02.207Z',
         energy: 2,
         title: 'YES',

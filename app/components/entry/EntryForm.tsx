@@ -32,10 +32,6 @@ const options = {
         if (values.distance && typeof values.distance !== 'number') {
             values.distance = parseFloat(values.distance);
         }
-        if (values.duration && typeof values.duration !== 'number') {
-            const {hours, minutes} = values.duration as any;
-            values.duration = hours * 60 + minutes;
-        }
         if (!values.duration && !values.distance) {
             errors.durationOrDistance = 'Duration or distance must be set!';
         }

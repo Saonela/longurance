@@ -1,7 +1,7 @@
 import React, {useLayoutEffect, useRef} from 'react';
 import {ScrollView, View} from "react-native";
 import appStyles from "../styles";
-import EntryForm from '../components/entry-form/EntryForm';
+import EntryForm from '../components/entry/EntryForm';
 import {Entry} from '../types/Entry';
 import {getEntry, saveEntry} from '../redux/slices/entriesSlice';
 import {useSelector} from "react-redux";

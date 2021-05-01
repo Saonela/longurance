@@ -1,30 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import NumberInput from '../shared/NumberInput';
 import FormLabel from './FormLabel';
 import theme from '../../theme';
+import UtilityService from '../../services/UtilityService';
 
 interface DurationFormFieldProps {
-    value: any,
+    value: number,
     style: any,
     onChange: any
 }
-// TODO: refactor this object-checking confusion
 
 function DurationFormField({value, style = null, onChange}: DurationFormFieldProps) {
 
-    const [hours, setHours] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-
-    useEffect(() => {
-        if (typeof value === 'number') {
-            setHours(Math.floor(value / 60));
-            setMinutes(value % 60);
-        } else {
-            setHours(value ? value.hours : null);
-            setMinutes(value ? value.minutes : null);
-        }
-    }, [value]);
+    const {hours, minutes, seconds} = UtilityService.splitSecondsIntoChunks(value);
 
     return (
         <View style={style}>
@@ -34,25 +23,29 @@ function DurationFormField({value, style = null, onChange}: DurationFormFieldPro
                     <NumberInput value={hours}
                                  placeholder="HH"
                                  onChange={(value) => {
-                                     value = parseInt(value, 10);
-                                     setHours(value);
-                                     onChange({
-                                         hours: value,
-                                         minutes: minutes
-                                     })
+                                     value = UtilityService.convertToInt(value);
+                                     value = UtilityService.convertHoursToSeconds(value) + UtilityService.convertMinutesToSeconds(minutes) + seconds;
+                                     onChange(value);
                                  }}/>
                 </View>
-                <View style={{flexGrow: 1}}>
+                <View style={{flexGrow: 1, paddingRight: theme.SPACING.L}}>
                     <FormLabel label="Minutes"/>
                     <NumberInput value={minutes}
                                  placeholder='MM'
                                  onChange={(value) => {
-                                     value = parseInt(value, 10);
-                                     setMinutes(value);
-                                     onChange({
-                                         hours: hours,
-                                         minutes: value
-                                     })
+                                     value = UtilityService.convertToInt(value);
+                                     value = UtilityService.convertHoursToSeconds(hours) + UtilityService.convertMinutesToSeconds(value) + seconds;
+                                     onChange(value);
+                                 }}/>
+                </View>
+                <View style={{flexGrow: 1}}>
+                    <FormLabel label="Seconds"/>
+                    <NumberInput value={seconds}
+                                 placeholder='SS'
+                                 onChange={(value) => {
+                                     value = UtilityService.convertToInt(value);
+                                     value = UtilityService.convertHoursToSeconds(hours) + UtilityService.convertMinutesToSeconds(minutes) + value;
+                                     onChange(value);
                                  }}/>
                 </View>
             </View>

@@ -47,6 +47,9 @@ describe('EntryForm', () => {
             fireEvent.changeText(getByPlaceholderText('MM'), '16');
         });
         await act(async () => {
+            fireEvent.changeText(getByPlaceholderText('SS'), '5');
+        });
+        await act(async () => {
             fireEvent.changeText(getByPlaceholderText('Km'), '2.5');
         });
         await act(async () => {
@@ -66,7 +69,7 @@ describe('EntryForm', () => {
         expect(submitSpy).toHaveBeenCalledWith({
                 activity: Activity.SWIMMING,
                 distance: 2.5,
-                duration: 136,
+                duration: 8165,
                 date: '2020-09-01T00:00:00.000Z',
                 energy: 0,
                 title: 'My title!',
@@ -82,7 +85,7 @@ describe('EntryForm', () => {
             id: '1',
             activity: Activity.RUNNING,
             distance: 15,
-            duration: 92,
+            duration: 9200,
             date: '2021-01-07T09:10:02.207Z',
             energy: 2,
             note: 'Was really enjoying. Got into flow state.',

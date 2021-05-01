@@ -26,12 +26,6 @@ const options = {
         if (values.distance && typeof values.distance !== 'number') {
             values.distance = parseFloat(values.distance);
         }
-        if (values.duration && typeof values.duration !== 'number') {
-            const {hours, minutes} = values.duration as any;
-            values.duration = hours * 60 + minutes;
-        }
-
-        console.log('values.duration', values.duration)
 
         const errors: any = {};
         if (!values.title) {

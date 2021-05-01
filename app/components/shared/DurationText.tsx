@@ -1,6 +1,7 @@
 import React from 'react';
 import appStyles from '../../styles';
 import {Text} from 'react-native';
+import UtilityService from '../../services/UtilityService';
 
 interface DurationTextProps {
     duration: number;
@@ -12,15 +13,16 @@ function getDurationTimeText(duration: number) {
     if (!duration) {
         return {
             hours: '00',
-            minutes: '00'
+            minutes: '00',
+            seconds: '00'
         };
     }
-    const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
 
+    const {hours, minutes, seconds} = UtilityService.splitSecondsIntoChunks(duration);
     return {
         hours: hours < 10 ? `0${hours}` : `${hours}`,
         minutes: minutes < 10 ? `0${minutes}` : `${minutes}`,
+        seconds: seconds < 10 ? `0${seconds}` : `${seconds}`
     }
 }
 
@@ -32,8 +34,8 @@ function DurationText({duration, placeholder = null, style = {}, ...props}: Dura
     let text = placeholder;
 
     if (duration) {
-        const {hours, minutes} = getDurationTimeText(duration);
-        text = `${hours}:${minutes}:00`
+        const {hours, minutes, seconds} = getDurationTimeText(duration);
+        text = `${hours}:${minutes}:${seconds}`
     }
 
     return (
