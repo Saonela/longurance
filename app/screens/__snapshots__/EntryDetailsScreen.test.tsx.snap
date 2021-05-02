@@ -414,7 +414,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                   ]
                 }
               >
-                00:04:26.666666666666686
+                00:04:27
               </Text>
             </Text>
           </View>

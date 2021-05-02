@@ -35,9 +35,6 @@ const stackScreenOptions: any = ({navigation}) => {
     };
 }
 
-// TODO:
-// * Duration should have seconds + improved control;
-
 function EntryScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions} mode="modal">

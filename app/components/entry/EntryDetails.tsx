@@ -60,7 +60,7 @@ function PaceText({duration, distance}) {
             <>
                 <Text>KM / </Text>
                 <View/>
-                <DurationText duration={duration && distance ? (duration / distance) : 0}/>
+                <DurationText duration={duration && distance ? Math.round(duration / distance) : 0}/>
             </>
         )
     }
