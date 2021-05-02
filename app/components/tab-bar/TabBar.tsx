@@ -78,7 +78,13 @@ function TabBar({state, descriptors, navigation}) {
         });
 
         if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
+            if (route.name === 'Entries') {
+                navigation.navigate(route.name, {screen: 'entry-list'});
+            } else if (route.name === 'Trophies') {
+                navigation.navigate(route.name, {screen: 'trophy-list'});
+            } else {
+                navigation.navigate(route.name);
+            }
         }
     };
 
