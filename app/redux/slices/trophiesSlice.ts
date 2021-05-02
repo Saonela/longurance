@@ -51,6 +51,8 @@ export const saveEntryTrophies = createAsyncThunk('trophies/saveEntryTrophies', 
     if (uncompletedTrophies.length) {
         StorageService.saveTrophies(uncompletedTrophies).then();
     }
+
+    return completedTrophies.concat(uncompletedTrophies);
 });
 
 export const markTrophyAsRead = createAsyncThunk('trophies/markTrophyAsRead', async (trophy: Trophy) => {
@@ -93,6 +95,14 @@ const trophiesSlice = createSlice({
         });
         builder.addCase(deleteTrophy.fulfilled, (state, action) => {
             state.data = state.data.filter(item => item.id !== action.payload);
+        });
+        builder.addCase(saveEntryTrophies.fulfilled, (state, action) => {
+            action.payload.forEach((trophy: Trophy) => {
+                const item = state.data.find(item => item.id === trophy.id);
+                if (item) {
+                    Object.assign(item, trophy);
+                }
+            });
         });
     }
 });
