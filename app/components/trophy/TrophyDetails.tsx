@@ -34,9 +34,9 @@ function TrophyDetails({trophy, entry}: TrophyDetailsProps) {
                                  color={trophy.completed ? theme.COLORS.THEME_FONT : theme.COLORS.BACKGROUND_SECONDARY}/>
                 <View style={{marginLeft: theme.SPACING.L}}>
                     <Text style={[styles.text, styles.activityText]}>{EntryService.getActivityTypeText(trophy.activity)}</Text>
-                    <Text style={[styles.text, styles.labelText]}>Distance:</Text>
+                    {trophy.distance && <Text style={[styles.text, styles.labelText]}>Distance:</Text>}
                     <DistanceText distance={trophy.distance} style={[styles.text, styles.statsText]}/>
-                    <Text style={[styles.text, styles.labelText, {marginTop: theme.SPACING.S}]}>Duration:</Text>
+                    {trophy.duration && <Text style={[styles.text, styles.labelText, {marginTop: theme.SPACING.S}]}>Duration:</Text>}
                     <DurationText duration={trophy.duration} style={[styles.text, styles.statsText]}/>
                 </View>
             </View>
