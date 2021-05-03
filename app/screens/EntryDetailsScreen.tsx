@@ -1,16 +1,18 @@
 import React, {useLayoutEffect} from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {deleteEntry, getEntry} from '../redux/slices/entriesSlice';
 import {Entry} from '../types/Entry';
 import HeaderButton from '../components/header/HeaderButton';
 import appStyles from '../styles';
 import EntryDetails from '../components/entry/EntryDetails';
+import {saveEntryTrophies} from '../redux/slices/trophiesSlice';
+import {useAppDispatch} from '../redux/store';
 
 function EntryDetailsScreen({route, navigation}) {
     const entry: Entry = useSelector((state) => getEntry(state, route.params.id));
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -49,7 +51,9 @@ function EntryDetailsScreen({route, navigation}) {
                     text: 'OK',
                     onPress: async () => {
                         navigation.navigate('entry-list');
-                        dispatch(deleteEntry(entry.id));
+                        dispatch(deleteEntry(entry.id)).then(() => {
+                            dispatch(saveEntryTrophies(entry));
+                        });
                     }
                 }
             ],

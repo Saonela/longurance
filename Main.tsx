@@ -55,6 +55,10 @@ function TrophyScreenStack() {
     )
 }
 
+// TODO:
+// * show some trophy indication inside entry details
+// * statistics screen?
+
 function Main() {
     const dispatch = useDispatch();
 
