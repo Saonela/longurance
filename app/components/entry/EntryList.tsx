@@ -5,7 +5,7 @@ import {FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 import {getEntries, getEntriesStatus} from '../../redux/slices/entriesSlice';
 import * as Animatable from 'react-native-animatable';
-import EntryCard from '../entry/EntryCard';
+import EntryCard from './EntryCard';
 import ListLoader from '../list-loader/ListLoader';
 
 interface EntryListProps {

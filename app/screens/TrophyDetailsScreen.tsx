@@ -17,7 +17,7 @@ function TrophyDetailsScreen({route, navigation}) {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: trophy.title,
+            title: 'Trophy Details',
             headerTitleStyle: {
                 maxWidth: 200,
             },

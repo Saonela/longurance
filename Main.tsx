@@ -56,7 +56,7 @@ function TrophyScreenStack() {
 }
 
 // TODO:
-// * show some trophy indication inside entry details
+// * entry editing toggles trophy ??
 // * statistics screen?
 
 function Main() {

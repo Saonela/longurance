@@ -8,13 +8,14 @@ import appStyles from '../../styles';
 import EntryService from '../../services/EntryService';
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
-import {MaterialIcons} from '@expo/vector-icons';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
-import {SimpleLineIcons} from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import {MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';
+import {LinearGradient} from 'expo-linear-gradient';
+import {Trophy} from '../../types/Trophy';
+import TrophyDetailsPanel from '../trophy/TrophyDetailsPanel';
 
 interface EntryDetailsProps {
     entry: Entry
+    trophies: Trophy[]
 }
 
 const energyEffortPosition = {
@@ -69,9 +70,12 @@ function PaceText({duration, distance}) {
     )
 }
 
-function EntryDetails({entry}: EntryDetailsProps) {
+function EntryDetails({entry, trophies}: EntryDetailsProps) {
     return (
         <ScrollView>
+            {trophies.map((trophy) => (
+                <TrophyDetailsPanel key={trophy.id} trophy={trophy}/>
+            ))}
             <View style={{...appStyles.panel, height: 120, overflow: 'hidden'}}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                     <View style={{display: 'flex', flexDirection: 'column'}}>
@@ -82,7 +86,8 @@ function EntryDetails({entry}: EntryDetailsProps) {
                         </View>
                     </View>
                 </View>
-                <Text style={styles.activityText}>{EntryService.getActivityTypeText(entry.activity)}</Text>
+                <Text style={[styles.activityText, {bottom: entry.title ? 30 : 24}]}>{EntryService.getActivityTypeText(entry.activity)}</Text>
+                {!!entry.title && <Text style={styles.activitySubText} numberOfLines={1}>{entry.title}</Text>}
                 <View style={{alignItems: "center"}}>
                     <ActivityIcon activity={entry.activity} size={200} style={styles.activityIcon}/>
                 </View>
@@ -102,15 +107,12 @@ function EntryDetails({entry}: EntryDetailsProps) {
                               value={<PaceText duration={entry.duration} distance={entry.distance}/>}
                               icon={<MaterialIcons name="speed" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
                               style={{flexBasis: 1}}/>
-                <DetailsBlock label="Trophy"
-                              value="-"
-                              icon={<SimpleLineIcons name="trophy" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY} />}
-                              style={{flexBasis: 1}}/>
             </View>
             <EffortBlock energy={entry.energy}/>
             <DetailsBlock label="Note"
                           value={entry.note}
-                          icon={<MaterialCommunityIcons name="note-outline" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}/>
+                          icon={<MaterialCommunityIcons name="note-outline" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
+                          style={{marginBottom: theme.SPACING.M}}/>
         </ScrollView>
     );
 }
@@ -124,10 +126,18 @@ const styles = StyleSheet.create({
     },
     activityText: {
         position: 'absolute',
-        bottom: 16,
+        bottom: 24,
         left: 16,
         color: theme.COLORS.FONT_PRIMARY,
         fontSize: theme.FONT_SIZE.HEADER
+    },
+    activitySubText: {
+        ...appStyles.primaryText,
+        position: 'absolute',
+        bottom: 10,
+        left: 16,
+        zIndex: 1,
+        color: theme.COLORS.FONT_SECONDARY
     },
     headerText: {
         ...appStyles.primaryText,

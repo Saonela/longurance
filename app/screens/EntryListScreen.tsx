@@ -3,7 +3,7 @@ import {StyleSheet, View} from "react-native";
 import appStyles from "../styles";
 import theme from "../theme";
 import ActivityFilter from '../components/activity-filter/ActivityFilter';
-import EntryList from '../components/entry-list/EntryList';
+import EntryList from '../components/entry/EntryList';
 import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
 import HeaderButton from '../components/header/HeaderButton';
 

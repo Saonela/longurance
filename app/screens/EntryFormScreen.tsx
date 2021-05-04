@@ -36,7 +36,7 @@ function EntryFormScreen({route, navigation}) {
         dispatch(saveEntry(entry)).then(() => {
             dispatch(saveEntryTrophies(entry));
         });
-        navigation.navigate('entry-list');
+        navigation.goBack();
     };
 
     return (

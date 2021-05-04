@@ -9,6 +9,7 @@ import {Activity} from '../types/Activity';
 import {Entry} from '../types/Entry';
 import EntryDetailsScreen from './EntryDetailsScreen';
 import renderer from 'react-test-renderer';
+import trophiesReducer from '../redux/slices/trophiesSlice';
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
@@ -27,27 +28,37 @@ const entries: Partial<Entry>[] = [
 ];
 
 describe('EntryDetailsScreen', () => {
-    it('should show entry details', () => {
+
+    let store;
+
+    const navigation = {
+        setOptions: () => {}
+    }
+
+    beforeEach(() => {
         const initialState: any = {
             entries: {
                 status: ASYNC_STATE_STATUS.SUCCEEDED,
                 error: null,
                 data: entries
             },
-            entriesFilter: null
+            entriesFilter: null,
+            trophies: {
+                data: []
+            }
         };
-        const store = configureStore({
+        store = configureStore({
             reducer: {
                 entries: entriesReducer,
-                entriesFilter: entriesFilterReducer
+                entriesFilter: entriesFilterReducer,
+                trophies: trophiesReducer
             },
             preloadedState: initialState
         });
 
-        const navigation = {
-            setOptions: () => {}
-        }
+    });
 
+    it('should show entry details', () => {
         const component = (
             <Provider store={store}>
                 <EntryDetailsScreen navigation={navigation} route={{params: {id: '1'}}}/>
@@ -60,26 +71,6 @@ describe('EntryDetailsScreen', () => {
     });
 
     it('should match snapshot', () => {
-        const initialState: any = {
-            entries: {
-                status: ASYNC_STATE_STATUS.SUCCEEDED,
-                error: null,
-                data: entries
-            },
-            entriesFilter: null
-        };
-        const store = configureStore({
-            reducer: {
-                entries: entriesReducer,
-                entriesFilter: entriesFilterReducer
-            },
-            preloadedState: initialState
-        });
-
-        const navigation = {
-            setOptions: () => {}
-        }
-
         const component = (
             <Provider store={store}>
                 <EntryDetailsScreen navigation={navigation} route={{params: {id: '1'}}}/>

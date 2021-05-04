@@ -36,7 +36,7 @@ function EntryCard({entry, onPress}: EntryProps) {
                         <DurationText style={styles.details} duration={entry.duration}/>
                     </View>
                 </View>
-                {entry.title ? <Text style={[appStyles.primaryText, styles.title]} numberOfLines={1}>{entry.title}</Text> : null}
+                {entry.title ? <Text style={styles.title} numberOfLines={1}>{entry.title}</Text> : null}
                 <ActivityIcon activity={entry.activity} size={150} style={styles.activityIcon}/>
             </View>
         </TouchableNativeFeedback>
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         marginRight: theme.SPACING.S
     },
     title: {
+        ...appStyles.primaryText,
         zIndex: 1,
         marginTop: 8,
         color: theme.COLORS.FONT_SECONDARY

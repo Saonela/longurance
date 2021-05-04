@@ -1,5 +1,11 @@
 import {Activity} from '../../types/Activity';
-import trophiesReducer, {deleteTrophy, getTrophies, saveEntryTrophies, saveTrophy} from './trophiesSlice';
+import trophiesReducer, {
+    deleteTrophy,
+    getTrophies,
+    getTrophiesByEntry,
+    saveEntryTrophies,
+    saveTrophy
+} from './trophiesSlice';
 import {Trophy} from '../../types/Trophy';
 import {Entry} from '../../types/Entry';
 import {Dispatch} from '@reduxjs/toolkit';
@@ -56,6 +62,27 @@ describe('TrophiesReducer', () => {
         dispatch = jest.fn();
         saveTrophySpy = spyOn(StorageService, 'saveTrophy').and.returnValue(Promise.resolve());
         saveTrophiesSpy = spyOn(StorageService, 'saveTrophies').and.returnValue(Promise.resolve());
+    });
+
+    describe('trophy selectors', () => {
+
+        it('should get trophies', () => {
+            expect(getTrophies({trophies: state})).toEqual(state.data);
+        });
+
+        it('should get trophies by entry', () => {
+            const entry = {id: '2'} as Entry;
+            const entryTrophy = Object.assign(getTrophy(), {entryId: '2'});
+            const state: any = {
+                trophies: {
+                    data: [
+                        Object.assign(getTrophy(), {id: '11'}),
+                        entryTrophy
+                    ]
+                }
+            };
+            expect(getTrophiesByEntry(state, entry)).toEqual([entryTrophy]);
+        });
     });
 
     describe('basic trophy actions', () => {
@@ -125,10 +152,6 @@ describe('TrophiesReducer', () => {
 
         it('should delete trophy', () => {
             expect(trophiesReducer(state, deleteTrophy.fulfilled('1', '', '1'))).toEqual({data: []});
-        });
-
-        it('get trophies', () => {
-            expect(getTrophies({trophies: state})).toEqual(state.data);
         });
     });
 

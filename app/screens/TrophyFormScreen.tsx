@@ -32,7 +32,7 @@ function TrophyFormScreen({route, navigation}) {
 
     const handleSubmit = (trophy: Trophy) => {
         dispatch(saveTrophy(trophy));
-        navigation.navigate('trophy-list');
+        navigation.goBack()
     };
 
     return (

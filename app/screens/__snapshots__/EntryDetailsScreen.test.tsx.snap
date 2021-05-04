@@ -24,7 +24,9 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               "backgroundColor": "#2a2a2a",
               "borderRadius": 16,
               "height": 120,
-              "margin": 8,
+              "marginLeft": 8,
+              "marginRight": 8,
+              "marginTop": 16,
               "overflow": "hidden",
               "padding": 16,
             }
@@ -96,16 +98,37 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
           </View>
           <Text
             style={
-              Object {
-                "bottom": 16,
-                "color": "#f4f4f6",
-                "fontSize": 24,
-                "left": 16,
-                "position": "absolute",
-              }
+              Array [
+                Object {
+                  "bottom": 24,
+                  "color": "#f4f4f6",
+                  "fontSize": 24,
+                  "left": 16,
+                  "position": "absolute",
+                },
+                Object {
+                  "bottom": 30,
+                },
+              ]
             }
           >
             RUN
+          </Text>
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "bottom": 10,
+                "color": "#9a9a9a",
+                "fontFamily": "Lato",
+                "fontSize": 15,
+                "left": 16,
+                "position": "absolute",
+                "zIndex": 1,
+              }
+            }
+          >
+            YES
           </Text>
           <View
             style={
@@ -159,7 +182,9 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                   "backgroundColor": "#2a2a2a",
                   "borderRadius": 16,
                   "flexGrow": 1,
-                  "margin": 8,
+                  "marginLeft": 8,
+                  "marginRight": 8,
+                  "marginTop": 16,
                   "padding": 16,
                 },
                 Object {
@@ -243,7 +268,9 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                   "backgroundColor": "#2a2a2a",
                   "borderRadius": 16,
                   "flexGrow": 1,
-                  "margin": 8,
+                  "marginLeft": 8,
+                  "marginRight": 8,
+                  "marginTop": 16,
                   "padding": 16,
                 },
                 Object {
@@ -337,7 +364,9 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                   "backgroundColor": "#2a2a2a",
                   "borderRadius": 16,
                   "flexGrow": 1,
-                  "margin": 8,
+                  "marginLeft": 8,
+                  "marginRight": 8,
+                  "marginTop": 16,
                   "padding": 16,
                 },
                 Object {
@@ -418,77 +447,6 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               </Text>
             </Text>
           </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#2a2a2a",
-                  "borderRadius": 16,
-                  "flexGrow": 1,
-                  "margin": 8,
-                  "padding": 16,
-                },
-                Object {
-                  "flexBasis": 1,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "position": "absolute",
-                  "right": 16,
-                  "top": "50%",
-                }
-              }
-            >
-              <Text
-                allowFontScaling={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#f4f4f6",
-                      "fontSize": 32,
-                    },
-                    undefined,
-                    Object {
-                      "fontFamily": "simple-line-icons",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                    Object {},
-                  ]
-                }
-              >
-                
-              </Text>
-            </View>
-            <Text
-              style={
-                Object {
-                  "color": "#f4f4f6",
-                  "fontFamily": "Lato",
-                  "fontSize": 15,
-                  "marginBottom": 4,
-                }
-              }
-            >
-              Trophy
-            </Text>
-            <Text
-              style={
-                Object {
-                  "color": "#f4f4f6",
-                  "fontFamily": "Lato",
-                  "fontSize": 15,
-                  "maxWidth": "90%",
-                }
-              }
-            >
-              -
-            </Text>
-          </View>
         </View>
         <View
           style={
@@ -496,7 +454,9 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               "backgroundColor": "#2a2a2a",
               "borderRadius": 16,
               "flexGrow": 1,
-              "margin": 8,
+              "marginLeft": 8,
+              "marginRight": 8,
+              "marginTop": 16,
               "padding": 16,
             }
           }
@@ -623,10 +583,14 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 "backgroundColor": "#2a2a2a",
                 "borderRadius": 16,
                 "flexGrow": 1,
-                "margin": 8,
+                "marginLeft": 8,
+                "marginRight": 8,
+                "marginTop": 16,
                 "padding": 16,
               },
-              Object {},
+              Object {
+                "marginBottom": 16,
+              },
             ]
           }
         >

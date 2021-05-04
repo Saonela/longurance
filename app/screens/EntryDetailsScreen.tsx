@@ -6,17 +6,19 @@ import {Entry} from '../types/Entry';
 import HeaderButton from '../components/header/HeaderButton';
 import appStyles from '../styles';
 import EntryDetails from '../components/entry/EntryDetails';
-import {saveEntryTrophies} from '../redux/slices/trophiesSlice';
+import {getTrophiesByEntry, saveEntryTrophies} from '../redux/slices/trophiesSlice';
 import {useAppDispatch} from '../redux/store';
+import {Trophy} from '../types/Trophy';
 
 function EntryDetailsScreen({route, navigation}) {
     const entry: Entry = useSelector((state) => getEntry(state, route.params.id));
+    const trophies: Trophy[] = useSelector((state) => getTrophiesByEntry(state, entry));
 
     const dispatch = useAppDispatch();
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: entry.title,
+            title: 'Entry Details',
             headerTitleStyle: {
                 maxWidth: 200,
             },
@@ -64,7 +66,7 @@ function EntryDetailsScreen({route, navigation}) {
     return (
         <View style={styles.wrapper}>
             <View style={appStyles.container}>
-                {entry && <EntryDetails entry={entry}/>}
+                {entry && <EntryDetails entry={entry} trophies={trophies}/>}
             </View>
         </View>
     );
