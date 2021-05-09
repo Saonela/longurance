@@ -274,7 +274,7 @@ describe('TrophiesReducer', () => {
     });
 
     describe('trophies un-completion check by entry', () => {
-        const entryForCompletedTrophy = Object.assign(getEntry(), {distance: 22, duration: 120});
+        const entryForCompletedTrophy = Object.assign(getEntry(), {distance: 20, duration: 120});
         let thunkFunc;
 
         afterEach(() => {

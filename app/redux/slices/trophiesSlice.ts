@@ -119,7 +119,7 @@ const isTrophyCompletedByDistanceAndDuration = (entry, trophy) =>
     isLongerDuration(trophy, entry);
 
 const isTrophyCompletedByEntry = (entry: Entry, trophy: Trophy) =>
-    !trophy.completed && trophy.activity === entry.activity && (
+    trophy.activity === entry.activity && (
         isTrophyCompletedByDistanceAndDuration(entry, trophy) ||
         isTrophyCompletedByDistance(entry, trophy) ||
         isTrophyCompletedByDuration(entry, trophy)
