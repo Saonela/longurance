@@ -4,13 +4,9 @@ import appStyles from '../styles';
 import theme from '../theme';
 import TrophyList from '../components/trophy/TrophyList';
 import HeaderButton from '../components/header/HeaderButton';
-import {useDispatch} from 'react-redux';
-import {loadTrophies} from '../redux/slices/trophiesSlice';
 import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
 
 function TrophyListScreen({navigation}) {
-
-    const dispatch = useDispatch();
 
     const navigateToTrophyForm = (id?: string) => {
         const params = id ? {id} : {};
@@ -30,7 +26,6 @@ function TrophyListScreen({navigation}) {
                               onPress={() => navigateToTrophyForm()}/>
             )
         });
-        dispatch(loadTrophies());
     }, [navigation]);
 
     return (

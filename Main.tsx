@@ -13,6 +13,7 @@ import TabBar from './app/components/tab-bar/TabBar';
 import TrophyFormScreen from './app/screens/TrophyFormScreen';
 import EntryDetailsScreen from './app/screens/EntryDetailsScreen';
 import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';
+import {loadTrophies} from './app/redux/slices/trophiesSlice';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -55,15 +56,12 @@ function TrophyScreenStack() {
     )
 }
 
-// TODO:
-// * entry editing toggles trophy ??
-// * statistics screen?
-
 function Main() {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadEntries());
+        dispatch(loadTrophies());
     }, []);
 
     return (
