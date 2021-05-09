@@ -14,11 +14,12 @@ import TrophyFormScreen from './app/screens/TrophyFormScreen';
 import EntryDetailsScreen from './app/screens/EntryDetailsScreen';
 import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';
 import {loadTrophies} from './app/redux/slices/trophiesSlice';
+import StatisticsScreen from './app/screens/StatisticsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const stackScreenOptions: any = ({navigation}) => {
+const mainStackScreenOptions: any = () => {
     return {
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         title: '',
@@ -27,13 +28,19 @@ const stackScreenOptions: any = ({navigation}) => {
             backgroundColor: theme.COLORS.BACKGROUND_PRIMARY
         },
         headerTintColor: theme.COLORS.FONT_PRIMARY,
-        headerTitleAlign: 'center',
+        headerTitleAlign: 'center'
+    };
+}
+
+const stackScreenOptions: any = ({navigation}) => {
+    return {
+        ...mainStackScreenOptions(navigation),
         headerLeft: () => (
             <HeaderButton style={{marginLeft: theme.SPACING.S}}
                           iconName="arrow-left"
                           onPress={navigation.goBack}/>
         )
-    };
+    }
 }
 
 function EntryScreenStack() {
@@ -56,6 +63,14 @@ function TrophyScreenStack() {
     )
 }
 
+function StatisticsScreenStack() {
+    return (
+        <Stack.Navigator screenOptions={mainStackScreenOptions} mode="modal">
+            <Stack.Screen name="statistics" component={StatisticsScreen} options={{}}/>
+        </Stack.Navigator>
+    )
+}
+
 function Main() {
     const dispatch = useDispatch();
 
@@ -69,6 +84,7 @@ function Main() {
             <Tab.Navigator tabBar={props => <TabBar {...props}/>}>
                 <Tab.Screen name="Entries" component={EntryScreenStack}/>
                 <Tab.Screen name="Trophies" component={TrophyScreenStack} />
+                <Tab.Screen name="Statistics" component={StatisticsScreenStack} />
             </Tab.Navigator>
         </NavigationContainer>
     );

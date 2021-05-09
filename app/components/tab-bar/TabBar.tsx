@@ -48,6 +48,9 @@ function TabButton({route, options, isFocused, onPress, onLongPress}) {
     if (route.name === 'Trophies') {
         iconName = 'award';
     }
+    if (route.name === 'Statistics') {
+        iconName = 'bar-chart';
+    }
 
     return (
         <TouchableOpacity
