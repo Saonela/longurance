@@ -1,11 +1,20 @@
 import React from 'react';
 import {StyleSheet, View} from "react-native";
 import appStyles from "../styles";
+import TotalStatistics from '../components/statistics/TotalStatistics';
+import {useSelector} from 'react-redux';
+import {getEntries} from '../redux/slices/entriesSlice';
+import {getTrophies} from '../redux/slices/trophiesSlice';
 
 function StatisticsScreen({navigation}) {
+    const entries = useSelector(getEntries)
+    const trophies = useSelector(getTrophies)
+
     return (
         <View style={styles.wrapper}>
-            <View style={appStyles.container}/>
+            <View style={appStyles.container}>
+                <TotalStatistics entries={entries} trophiesCount={trophies.length}/>
+            </View>
         </View>
     );
 }
