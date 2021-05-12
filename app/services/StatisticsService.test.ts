@@ -41,4 +41,12 @@ describe('StatisticsService', () => {
         expect(StatisticsService.getTotalDuration(entries)).toEqual(272);
     });
 
+    it('should get farthest distance', () => {
+        expect(StatisticsService.getFarthestDistance(entries)).toEqual(99);
+    });
+
+    it('should get longest duration', () => {
+        expect(StatisticsService.getLongestDuration(entries)).toEqual(180);
+    });
+
 });
