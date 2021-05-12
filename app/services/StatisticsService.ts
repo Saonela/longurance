@@ -38,6 +38,18 @@ class StatisticsService {
         }, 0);
     }
 
+    static getAverageDistance(entries: Entry[]) {
+        entries = entries.filter(entry => entry.distance);
+        const average = this.getTotalDistance(entries) / entries.length;
+        return parseFloat(average.toFixed(1));
+    }
+
+    static getAverageDuration(entries: Entry[]) {
+        entries = entries.filter(entry => entry.duration);
+        const average = this.getTotalDuration(entries) / entries.length;
+        return parseFloat(average.toFixed(0));
+    }
+
 }
 
 export default StatisticsService;

@@ -6,6 +6,7 @@ import {useSelector} from 'react-redux';
 import {getEntries} from '../redux/slices/entriesSlice';
 import {getTrophies} from '../redux/slices/trophiesSlice';
 import PeakStatistics from '../components/statistics/PeakStatistics';
+import AverageStatistics from '../components/statistics/AverageStatistics';
 
 function StatisticsScreen({navigation}) {
     const entries = useSelector(getEntries)
@@ -16,6 +17,7 @@ function StatisticsScreen({navigation}) {
             <View style={appStyles.container}>
                 <TotalStatistics entries={entries} trophiesCount={trophies.length}/>
                 <PeakStatistics entries={entries}/>
+                <AverageStatistics entries={entries}/>
             </View>
         </View>
     );

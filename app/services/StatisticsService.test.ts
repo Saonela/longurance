@@ -8,7 +8,7 @@ describe('StatisticsService', () => {
         {
             id: '1',
             activity: Activity.RUNNING,
-            distance: 15,
+            distance: 16,
             duration: 92,
             date: '2021-01-07T09:10:02.207Z',
             energy: 2,
@@ -34,7 +34,7 @@ describe('StatisticsService', () => {
     ] as Entry[];
 
     it('should get total distance', () => {
-        expect(StatisticsService.getTotalDistance(entries)).toEqual(114);
+        expect(StatisticsService.getTotalDistance(entries)).toEqual(115);
     });
 
     it('should get total duration', () => {
@@ -47,6 +47,14 @@ describe('StatisticsService', () => {
 
     it('should get longest duration', () => {
         expect(StatisticsService.getLongestDuration(entries)).toEqual(180);
+    });
+
+    it('should get average distance', () => {
+        expect(StatisticsService.getAverageDistance(entries)).toEqual(57.5);
+    });
+
+    it('should get average duration', () => {
+        expect(StatisticsService.getAverageDuration(entries)).toEqual(136);
     });
 
 });
