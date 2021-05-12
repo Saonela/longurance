@@ -1,16 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import appStyles from '../../styles';
 import theme from '../../theme';
 import {Feather, MaterialCommunityIcons, MaterialIcons, SimpleLineIcons} from '@expo/vector-icons';
 import {Entry} from '../../types/Entry';
 import StatisticsService from '../../services/StatisticsService';
 import DurationText from '../shared/DurationText';
 import DistanceText from '../shared/DistanceText';
+import StatisticsPanel from './StatisticsPanel';
 
 interface TotalStatisticsProps {
-    entries: Entry[],
-    trophiesCount: number
+    entries: Entry[];
+    trophiesCount: number;
 }
 
 function TotalStatistics({entries, trophiesCount}: TotalStatisticsProps) {
@@ -18,46 +17,40 @@ function TotalStatistics({entries, trophiesCount}: TotalStatisticsProps) {
     const distance = StatisticsService.getTotalDistance(entries);
 
     return (
-        <View style={{...appStyles.panel}}>
-            <Text style={styles.label}>Total activities</Text>
-            <View style={[styles.row, styles.rowMargin]}>
-                <Feather name="activity" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY} style={styles.icon}/>
-                <Text style={appStyles.primaryText}>{entries.length}</Text>
-            </View>
-            <Text style={styles.label}>Total mileage</Text>
-            <View style={[styles.row, styles.rowMargin]}>
-                <MaterialCommunityIcons name="map-marker-distance" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY} style={styles.icon}/>
+        <StatisticsPanel>
+            <StatisticsPanel.Label>Total activities</StatisticsPanel.Label>
+            <StatisticsPanel.Row>
+                <StatisticsPanel.Icon>
+                    <Feather name="activity" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>
+                </StatisticsPanel.Icon>
+                <StatisticsPanel.Text>{entries.length}</StatisticsPanel.Text>
+            </StatisticsPanel.Row>
+
+            <StatisticsPanel.Label>Total mileage</StatisticsPanel.Label>
+            <StatisticsPanel.Row>
+                <StatisticsPanel.Icon>
+                    <MaterialCommunityIcons name="map-marker-distance" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>
+                </StatisticsPanel.Icon>
                 <DistanceText distance={distance} placeholder={'-'}/>
-            </View>
-            <Text style={styles.label}>Total duration</Text>
-            <View style={[styles.row, styles.rowMargin]}>
-                <MaterialIcons name="timer" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY} style={styles.icon}/>
+            </StatisticsPanel.Row>
+
+            <StatisticsPanel.Label>Total duration</StatisticsPanel.Label>
+            <StatisticsPanel.Row>
+                <StatisticsPanel.Icon>
+                    <MaterialIcons name="timer" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>
+                </StatisticsPanel.Icon>
                 <DurationText duration={duration} placeholder={'-'}/>
-            </View>
-            <Text style={styles.label}>Trophies achieved</Text>
-            <View style={styles.row}>
-                <SimpleLineIcons name="trophy" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY} style={styles.icon}/>
-                <Text style={appStyles.primaryText}>{trophiesCount}</Text>
-            </View>
-        </View>
+            </StatisticsPanel.Row>
+
+            <StatisticsPanel.Label>Trophies achieved</StatisticsPanel.Label>
+            <StatisticsPanel.Row lastRow>
+                <StatisticsPanel.Icon>
+                    <SimpleLineIcons name="trophy" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>
+                </StatisticsPanel.Icon>
+                <StatisticsPanel.Text>{trophiesCount}</StatisticsPanel.Text>
+            </StatisticsPanel.Row>
+        </StatisticsPanel>
     );
 }
-
-const styles = StyleSheet.create({
-    label: {
-        ...appStyles.primaryText,
-        marginBottom: theme.SPACING.XS,
-    },
-    icon: {
-      marginRight: theme.SPACING.S
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    rowMargin: {
-        marginBottom: theme.SPACING.M
-    }
-});
 
 export default TotalStatistics;
