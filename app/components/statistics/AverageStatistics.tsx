@@ -9,14 +9,15 @@ import DurationText from '../shared/DurationText';
 
 interface AverageStatisticsProps {
     entries: Entry[];
+    style?: any;
 }
 
-function AverageStatistics({entries}: AverageStatisticsProps) {
+function AverageStatistics({entries, style}: AverageStatisticsProps) {
     const duration = StatisticsService.getAverageDuration(entries);
     const distance = StatisticsService.getAverageDistance(entries);
 
     return (
-        <StatisticsPanel>
+        <StatisticsPanel style={style}>
             <StatisticsPanel.Label>Average distance</StatisticsPanel.Label>
             <StatisticsPanel.Row>
                 <StatisticsPanel.Icon>

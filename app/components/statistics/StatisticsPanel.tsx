@@ -3,7 +3,7 @@ import {StyleSheet, Text as NativeText, View} from 'react-native';
 import appStyles from '../../styles';
 import theme from '../../theme';
 
-const StatisticsPanel = ({children}) => <View style={appStyles.panel}>{children}</View>;
+const StatisticsPanel = ({children, style = {}}) => <View style={[appStyles.panel, style]}>{children}</View>;
 
 const Row = ({children, lastRow = false}) => <View style={[styles.row, !lastRow && styles.rowMargin]}>{children}</View>;
 
