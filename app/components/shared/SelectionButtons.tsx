@@ -1,5 +1,5 @@
 import React from 'react';
-import {Animated, StyleSheet, View} from 'react-native';
+import {Animated, StyleProp, StyleSheet, View} from 'react-native';
 import Button from './Button';
 import theme from '../../theme';
 
@@ -12,9 +12,10 @@ interface SelectionButtonsProps {
     selected: any;
     items: SelectionButtonItem[];
     onChange: (value: any) => any;
+    style?:  StyleProp<any>
 }
 
-function SelectionButtons({selected, items, onChange}: SelectionButtonsProps) {
+function SelectionButtons({selected, items, onChange, style = {}}: SelectionButtonsProps) {
     const buttons = items.map(({label, value}: SelectionButtonItem) => {
         const isSelected = selected === value;
         const selectedStyle = isSelected ? styles.activeButton : {};
@@ -27,7 +28,7 @@ function SelectionButtons({selected, items, onChange}: SelectionButtonsProps) {
     });
 
     return (
-        <Animated.View style={styles.wrapper}>
+        <Animated.View style={[styles.wrapper, style]}>
             <View style={styles.container}>
                 {buttons}
             </View>

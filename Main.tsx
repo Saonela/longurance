@@ -77,6 +77,7 @@ function Main() {
     useEffect(() => {
         dispatch(loadEntries());
         dispatch(loadTrophies());
+        dispatch(loadTrophies());
     }, []);
 
     return (

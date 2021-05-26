@@ -8,6 +8,7 @@ import {getTrophies} from '../redux/slices/trophiesSlice';
 import PeakStatistics from '../components/statistics/PeakStatistics';
 import AverageStatistics from '../components/statistics/AverageStatistics';
 import theme from '../theme';
+import StatisticsChart from '../components/statistics/StatisticsChart';
 
 function StatisticsScreen({navigation}) {
     const entries = useSelector(getEntries)
@@ -18,6 +19,7 @@ function StatisticsScreen({navigation}) {
             <TotalStatistics entries={entries} trophiesCount={trophies.length}/>
             <PeakStatistics entries={entries}/>
             <AverageStatistics entries={entries} style={{marginBottom: theme.SPACING.M}}/>
+            <StatisticsChart entries={entries}/>
         </ScrollView>
     );
 }

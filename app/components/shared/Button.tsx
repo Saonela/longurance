@@ -1,12 +1,18 @@
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, StyleProp} from 'react-native';
 import theme from '../../theme';
 import appStyles from '../../styles';
 
-function Button(props) {
+interface ButtonProps {
+    label: string;
+    onPress: () => any;
+    style?: StyleProp<any>;
+}
+
+function Button({label, onPress, style = {}}: ButtonProps) {
     return (
-        <TouchableOpacity {...props} style={styles.button}>
-            <Text style={{...appStyles.primaryText}}>{props.title}</Text>
+        <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
+            <Text style={[appStyles.primaryText, style.color ? {color: style.color} : {}]}>{label}</Text>
         </TouchableOpacity>
     );
 }

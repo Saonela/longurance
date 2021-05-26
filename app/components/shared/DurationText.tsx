@@ -9,23 +9,6 @@ interface DurationTextProps {
     style?: any;
 }
 
-function getDurationTimeText(duration: number) {
-    if (!duration) {
-        return {
-            hours: '00',
-            minutes: '00',
-            seconds: '00'
-        };
-    }
-
-    const {hours, minutes, seconds} = UtilityService.splitSecondsIntoChunks(duration);
-    return {
-        hours: hours < 10 ? `0${hours}` : `${hours}`,
-        minutes: minutes < 10 ? `0${minutes}` : `${minutes}`,
-        seconds: seconds < 10 ? `0${seconds}` : `${seconds}`
-    }
-}
-
 function DurationText({duration, placeholder = null, style = {}, ...props}: DurationTextProps) {
     if (!duration && !placeholder) {
         return null;
@@ -34,8 +17,7 @@ function DurationText({duration, placeholder = null, style = {}, ...props}: Dura
     let text = placeholder;
 
     if (duration) {
-        const {hours, minutes, seconds} = getDurationTimeText(duration);
-        text = `${hours}:${minutes}:${seconds}`
+        text = UtilityService.getDurationTimeText(duration);
     }
 
     return (

@@ -34,6 +34,19 @@ class UtilityService {
         }
     }
 
+    static getDurationTimeText(duration: number): string {
+        if (!duration) {
+            return '00:00:00';
+        }
+        const {hours, minutes, seconds} = this.splitSecondsIntoChunks(duration);
+
+        const hh = hours < 10 ? `0${hours}` : `${hours}`;
+        const mm = minutes < 10 ? `0${minutes}` : `${minutes}`;
+        const ss = seconds < 10 ? `0${seconds}` : `${seconds}`;
+
+        return `${hh}:${mm}:${ss}`;
+    }
+
     static hexToRGB(hex: string, alpha: number) {
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);

@@ -6,10 +6,11 @@ import UtilityService from '../../services/UtilityService';
 
 interface LineChartProps {
     labels: string[];
-    data: number[];
+    values: number[];
     highlightedIndexes?: number[];
     width?: number;
     height?: number;
+    formatYLabel?: (label: string) => string;
     style?: StyleProp<any>;
 }
 
@@ -29,17 +30,25 @@ const chartConfig = {
     }
 };
 
-function LineChart({labels, data, highlightedIndexes = [], style = {}, width = Dimensions.get("window").width, height = 220}: LineChartProps) {
+function LineChart({
+                       labels,
+                       values,
+                       highlightedIndexes = [],
+                       width = Dimensions.get("window").width,
+                       height = 220,
+                       formatYLabel = (label) => label,
+                       style = {}
+                   }: LineChartProps) {
     const chartData = {
         labels,
         datasets: [
             {
-                data,
+                data: values,
                 color: (opacity = 1) => UtilityService.hexToRGB(theme.COLORS.FONT_SECONDARY, opacity),
                 strokeWidth: 2
             },
         ]
-    };
+    }
 
     const getDotColor = (point: number, index: number) => {
         if (highlightedIndexes?.includes(index)) {
@@ -55,6 +64,8 @@ function LineChart({labels, data, highlightedIndexes = [], style = {}, width = D
             height={height}
             chartConfig={chartConfig}
             getDotColor={getDotColor}
+            formatYLabel={formatYLabel}
+            withDots={true}
             segments={4}
             style={style}
         />

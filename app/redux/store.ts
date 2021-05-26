@@ -1,14 +1,16 @@
+import {useDispatch} from 'react-redux';
 import {configureStore} from "@reduxjs/toolkit";
 import entriesReducer from './slices/entriesSlice';
 import entriesFilterReducer from './slices/entriesFilterSlice';
 import trophiesReducer from './slices/trophiesSlice';
-import {useDispatch} from 'react-redux';
+import statisticsOptionsReducer from './slices/statisticsOptionsSlice';
 
 const store = configureStore({
     reducer: {
         entriesFilter: entriesFilterReducer,
         entries: entriesReducer,
-        trophies: trophiesReducer
+        trophies: trophiesReducer,
+        statisticsOptions: statisticsOptionsReducer
     }
 });
 

@@ -56,7 +56,7 @@ function CongratulationsCard({trophy, onClose, ...props}: CongratulationsCardPro
                     : null
                 }
             </View>
-            <Button title={'Close'} onPress={onClose}/>
+            <Button label={'Close'} onPress={onClose}/>
         </Animatable.View>
     );
 }

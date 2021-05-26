@@ -1,11 +1,21 @@
 import {Entry} from '../types/Entry';
 import {Trophy} from '../types/Trophy';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {StatisticsOptions} from '../types/StatisticsOptions';
 
 const TROPHIES_KEY = 'trophies';
 const ENTRIES_KEY = 'entries';
+const STATISTICS_OPTIONS_KEY = 'statisticsOptions';
 
 class StorageService {
+
+    static async saveStatisticsOptions(options: StatisticsOptions) {
+        return this.saveGenericListItem(STATISTICS_OPTIONS_KEY, options);
+    }
+
+    static async loadStatisticsOptions(): Promise<StatisticsOptions | null> {
+        return this.loadGenericItem<StatisticsOptions>(STATISTICS_OPTIONS_KEY);
+    }
 
     static async loadTrophies(): Promise<Trophy[]> {
         return this.loadGenericList(TROPHIES_KEY);
@@ -33,6 +43,16 @@ class StorageService {
 
     static async deleteEntry(id: string) {
         return this.deleteGenericListItem(ENTRIES_KEY, id);
+    }
+
+    static async loadGenericItem<T>(key: string): Promise<T | null> {
+        try {
+            const entries = await AsyncStorage.getItem(key);
+            return entries ? JSON.parse(entries) : null;
+        } catch (e) {
+            this.handleError(e);
+            return null;
+        }
     }
 
     static async loadGenericList(key: string): Promise<any[]> {
