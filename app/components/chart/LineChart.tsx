@@ -15,10 +15,10 @@ interface LineChartProps {
 }
 
 const chartConfig = {
-    backgroundGradientFrom: "#1E2923",
+    backgroundGradientFrom: theme.COLORS.BACKGROUND_BASE,
     backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#08130D",
-    backgroundGradientToOpacity: 0.5,
+    backgroundGradientTo: theme.COLORS.BACKGROUND_BASE,
+    backgroundGradientToOpacity: 0,
     color: (opacity = 1) => {
         return UtilityService.hexToRGB(theme.COLORS.FONT_PRIMARY, opacity)
     },

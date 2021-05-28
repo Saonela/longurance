@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import LineChart from '../chart/LineChart';
 import {Entry} from '../../types/Entry';
 import SelectionButtons from '../shared/SelectionButtons';
@@ -45,6 +45,7 @@ function StatisticsChart({entries}: StatisticsChartProps) {
     const dispatch = useAppDispatch();
 
     const statisticsOptions = useSelector(getStatisticsOptions)
+    const chartWidth = Dimensions.get("window").width - theme.SPACING.M * 2;
 
     let {labels, values} = StatisticsService.getEntriesChartData(statisticsOptions, entries);
     let formatYLabel;
@@ -78,7 +79,8 @@ function StatisticsChart({entries}: StatisticsChartProps) {
             <LineChart labels={labels}
                        values={values}
                        formatYLabel={formatYLabel}
-                       style={{justifyContent: 'center', alignItems: 'center'}}/>
+                       width={chartWidth}
+                       style={styles.chart}/>
         </View>
     );
 }
@@ -86,6 +88,10 @@ function StatisticsChart({entries}: StatisticsChartProps) {
 const styles = StyleSheet.create({
     buttonsRow: {
         marginBottom: theme.SPACING.S
+    },
+    chart: {
+        marginTop: theme.SPACING.S,
+        paddingLeft: theme.SPACING.M,
     }
 });
 
