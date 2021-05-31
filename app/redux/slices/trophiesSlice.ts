@@ -145,6 +145,7 @@ const setTrophyToNotCompleted = (trophy: Trophy) => {
 export const getTrophy = (state, id) => state.trophies.data.find(trophy => trophy.id === id);
 export const getTrophies = state => state.trophies.data;
 export const getTrophiesByEntry = (state, entry) => state.trophies.data.filter(trophy => trophy.entryId === entry.id);
+export const getFilteredCompletedTrophies = (state) => state.trophies.data.filter(trophy => trophy.completed && (!state.entriesFilter || state.entriesFilter === trophy.activity));
 export const getUnreadTrophies = state => state.trophies.data.filter(trophy => trophy.completed && !trophy.markedAsRead);
 export const getTrophiesStatus = state => state.trophies.status;
 

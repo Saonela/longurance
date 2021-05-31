@@ -4,7 +4,7 @@ import appStyles from "../styles";
 import TotalStatistics from '../components/statistics/TotalStatistics';
 import {useSelector} from 'react-redux';
 import {getEntries} from '../redux/slices/entriesSlice';
-import {getTrophies} from '../redux/slices/trophiesSlice';
+import {getFilteredCompletedTrophies} from '../redux/slices/trophiesSlice';
 import PeakStatistics from '../components/statistics/PeakStatistics';
 import AverageStatistics from '../components/statistics/AverageStatistics';
 import theme from '../theme';
@@ -15,7 +15,7 @@ import {getEntriesFilter} from '../redux/slices/entriesFilterSlice';
 function StatisticsScreen({navigation}) {
     const filter = useSelector(getEntriesFilter);
     const entries = useSelector(getEntries)
-    const trophies = useSelector(getTrophies)
+    const trophies = useSelector(getFilteredCompletedTrophies)
 
     return (
         <>

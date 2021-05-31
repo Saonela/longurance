@@ -1,6 +1,7 @@
 import {Activity} from '../../types/Activity';
 import trophiesReducer, {
     deleteTrophy,
+    getFilteredCompletedTrophies,
     getTrophies,
     getTrophiesByEntry,
     saveEntryTrophies,
@@ -82,6 +83,38 @@ describe('TrophiesReducer', () => {
                 }
             };
             expect(getTrophiesByEntry(state, entry)).toEqual([entryTrophy]);
+        });
+
+        it('should get completed trophies by filter', () => {
+            const state: any = {
+                trophies: {
+                    data: [
+                        {id: '1', completed: true, activity: Activity.RUNNING},
+                        {id: '2', completed: true, activity: Activity.CYCLING},
+                        {id: '3', completed: false, activity: Activity.CYCLING},
+                        {id: '4', completed: true, activity: Activity.RUNNING},
+                        {id: '5', completed: false, activity: Activity.RUNNING},
+                        {id: '6', completed: true, activity: Activity.SWIMMING}
+                    ]
+                },
+                entriesFilter: null
+            };
+            expect(getFilteredCompletedTrophies(state)).toEqual([
+                {id: '1', completed: true, activity: Activity.RUNNING},
+                {id: '2', completed: true, activity: Activity.CYCLING},
+                {id: '4', completed: true, activity: Activity.RUNNING},
+                {id: '6', completed: true, activity: Activity.SWIMMING}
+            ]);
+            expect(getFilteredCompletedTrophies(Object.assign(state, {entriesFilter: Activity.RUNNING}))).toEqual([
+                {id: '1', completed: true, activity: Activity.RUNNING},
+                {id: '4', completed: true, activity: Activity.RUNNING}
+            ]);
+            expect(getFilteredCompletedTrophies(Object.assign(state, {entriesFilter: Activity.SWIMMING}))).toEqual([
+                {id: '6', completed: true, activity: Activity.SWIMMING}
+            ]);
+            expect(getFilteredCompletedTrophies(Object.assign(state, {entriesFilter: Activity.CYCLING}))).toEqual([
+                {id: '2', completed: true, activity: Activity.CYCLING},
+            ]);
         });
     });
 
