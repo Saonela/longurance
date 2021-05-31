@@ -24,16 +24,16 @@ const options: any = [
 ];
 
 interface ActivityFilterProps {
-    style: any
+    style?: any
 }
 
 // TODO: there seems to be no fully and easy customizable dropdown option. Need to create custom solution
-function ActivityFilter({style}: ActivityFilterProps) {
+function ActivityFilter({style = {}}: ActivityFilterProps) {
     const filter = useSelector(getEntriesFilter);
     const dispatch = useDispatch();
 
     return (
-        <View style={style}>
+        <View style={[styles.activityFilter, style]}>
             <DropDownPicker
                 items={options}
                 defaultValue={filter ? filter : 'all'}
@@ -55,6 +55,14 @@ function ActivityFilter({style}: ActivityFilterProps) {
 }
 
 const styles = StyleSheet.create({
+    activityFilter: {
+        position: 'absolute',
+        top: -theme.HEADER_HEIGHT + 10,
+        left: theme.SPACING.S,
+        zIndex: 10,
+        height: '100%',
+        elevation: 6
+    },
     picker: {
         backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
         borderWidth: 0,

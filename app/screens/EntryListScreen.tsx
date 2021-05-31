@@ -30,7 +30,7 @@ function EntryListScreen({navigation}) {
     
     return (
         <View style={styles.wrapper}>
-            <ActivityFilter style={styles.entriesFilter}/>
+            <ActivityFilter/>
             <View style={appStyles.container}>
                 <EntryList onPress={navigateToEntryDetails}/>
             </View>
@@ -42,14 +42,6 @@ function EntryListScreen({navigation}) {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-    },
-    entriesFilter: {
-        position: 'absolute',
-        top: -theme.HEADER_HEIGHT + 10,
-        left: theme.SPACING.S,
-        zIndex: 10,
-        height: '100%',
-        elevation: 6
     }
 });
 
