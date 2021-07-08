@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         top: -theme.HEADER_HEIGHT + 10,
         left: theme.SPACING.S,
         zIndex: 10,
-        height: '100%',
+        height: '50%',
         elevation: 6
     },
     picker: {
