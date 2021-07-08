@@ -1,7 +1,9 @@
 import {Entry} from '../types/Entry';
 import {ChartDataType, ChartTimeInterval, StatisticsOptions} from '../types/StatisticsOptions';
-import {ChartData} from '../types/ChartData';
-import { format } from 'date-fns';
+import {TimelineChartData} from '../types/TimelineChartData';
+import {format} from 'date-fns';
+import {DistributionChartData} from '../types/DistributionChartData';
+import {ActivityOptions} from '../types/Activity';
 
 class StatisticsService {
 
@@ -59,24 +61,43 @@ class StatisticsService {
         return parseFloat(average.toFixed(0));
     }
 
-    static getEntriesChartData({chartDataType, chartTimeInterval}: StatisticsOptions, entries: Entry[]): ChartData {
+    static getDistributionChartData(statisticsOptions: StatisticsOptions, entries: Entry[]): DistributionChartData {
+        entries = this.filterEntriesByOptions(statisticsOptions, entries);
+        return ActivityOptions.map(({label, value}) => {
+            const activityEntries = entries.filter(entry => entry.activity === value);
+            let total = 0;
+
+            if (statisticsOptions.chartDataType === ChartDataType.DISTANCE) {
+                total = this.getTotalDistance(activityEntries)
+            }
+            if (statisticsOptions.chartDataType === ChartDataType.DURATION) {
+                total = this.getTotalDuration(activityEntries)
+            }
+            return {label, value: total};
+        });
+    }
+
+    static getTimelineChartData(statisticsOptions: StatisticsOptions, entries: Entry[]): TimelineChartData {
+        entries = this.filterEntriesByOptions(statisticsOptions, entries);
+        return {
+            labels: this.getTimelineChartLabels(statisticsOptions.chartTimeInterval, entries),
+            values: this.getTimelineChartValues(statisticsOptions.chartDataType, entries)
+        };
+    }
+
+    private static filterEntriesByOptions({chartDataType, chartTimeInterval}: StatisticsOptions, entries: Entry[]) {
         const date = new Date();
         date.setMonth(date.getMonth() - this.TimeIntervalMonths[chartTimeInterval]);
         const limitTime = date.getTime();
 
-        entries = entries
+        return entries
             .filter(entry => Date.parse(entry.date) > limitTime)
             .filter(({distance}) => chartDataType !== ChartDataType.DISTANCE || chartDataType === ChartDataType.DISTANCE && distance)
             .filter(({duration}) => chartDataType !== ChartDataType.DURATION || chartDataType === ChartDataType.DURATION && duration)
             .reverse();
-
-        return {
-            labels: this.getEntriesChartDataLabels(chartTimeInterval, entries),
-            values: this.getEntriesChartDataValues(chartDataType, entries)
-        };
     }
 
-    private static getEntriesChartDataValues(chartDataType: ChartDataType, entries: Entry[]): number[] {
+    private static getTimelineChartValues(chartDataType: ChartDataType, entries: Entry[]): number[] {
         return entries
             .map((entry) => {
                 if (chartDataType === ChartDataType.DISTANCE) {
@@ -90,7 +111,7 @@ class StatisticsService {
             .filter(x => x)
     }
 
-    private static getEntriesChartDataLabels(chartTimeInterval: ChartTimeInterval, entries: Entry[]): string[] {
+    private static getTimelineChartLabels(chartTimeInterval: ChartTimeInterval, entries: Entry[]): string[] {
         return entries
             .map(entry => new Date(entry.date))
             .map((date) => {
