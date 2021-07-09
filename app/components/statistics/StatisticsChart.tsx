@@ -1,6 +1,5 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import LineChart from '../chart/LineChart';
+import {StyleSheet, View} from 'react-native';
 import {Entry} from '../../types/Entry';
 import SelectionButtons from '../shared/SelectionButtons';
 import {useAppDispatch} from '../../redux/store';
@@ -8,8 +7,9 @@ import {ChartDataType, ChartTimeInterval} from '../../types/StatisticsOptions';
 import {useSelector} from 'react-redux';
 import {getStatisticsOptions, updateStatisticsOptions} from '../../redux/slices/statisticsOptionsSlice';
 import theme from '../../theme';
-import StatisticsService from '../../services/StatisticsService';
-import UtilityService from '../../services/UtilityService';
+import StatisticsTimelineChart from './StatisticsTimelineChart';
+import {getEntriesFilter} from '../../redux/slices/entriesFilterSlice';
+import StatisticsDistributionChart from './StatisticsDistributionChart';
 
 interface StatisticsChartProps {
     entries: Entry[];
@@ -44,19 +44,8 @@ const chartDataTypes = [
 function StatisticsChart({entries}: StatisticsChartProps) {
     const dispatch = useAppDispatch();
 
+    const filter = useSelector(getEntriesFilter);
     const statisticsOptions = useSelector(getStatisticsOptions)
-    const chartWidth = Dimensions.get("window").width - theme.SPACING.M * 2;
-
-    let {labels, values} = StatisticsService.getEntriesChartData(statisticsOptions, entries);
-    let formatYLabel;
-
-    if (statisticsOptions.chartDataType === ChartDataType.DISTANCE) {
-        formatYLabel = label => `${parseFloat(label)} Km`;
-    }
-
-    if (statisticsOptions.chartDataType === ChartDataType.DURATION) {
-        formatYLabel = (label) => UtilityService.getDurationTimeText(label);
-    }
 
     const onChartTimeIntervalChange = (chartTimeInterval: ChartTimeInterval) => {
         dispatch(updateStatisticsOptions({chartTimeInterval}))
@@ -76,11 +65,10 @@ function StatisticsChart({entries}: StatisticsChartProps) {
                               items={chartIntervals}
                               style={styles.buttonsRow}
                               onChange={onChartTimeIntervalChange}/>
-            <LineChart labels={labels}
-                       values={values}
-                       formatYLabel={formatYLabel}
-                       width={chartWidth}
-                       style={styles.chart}/>
+            {filter
+                ? <StatisticsTimelineChart entries={entries} statisticsOptions={statisticsOptions}/>
+                : <StatisticsDistributionChart entries={entries} statisticsOptions={statisticsOptions}/>
+            }
         </View>
     );
 }
@@ -88,10 +76,6 @@ function StatisticsChart({entries}: StatisticsChartProps) {
 const styles = StyleSheet.create({
     buttonsRow: {
         marginBottom: theme.SPACING.S
-    },
-    chart: {
-        marginTop: theme.SPACING.S,
-        paddingLeft: theme.SPACING.M,
     }
 });
 
