@@ -1,12 +1,13 @@
 import React from 'react';
 import {ASYNC_STATE_STATUS} from '../../redux/asyncStateStatus';
 import ListEmptyMessage from '../list-empty-message/ListEmptyMessage';
-import {FlatList} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {getEntries, getEntriesStatus} from '../../redux/slices/entriesSlice';
 import * as Animatable from 'react-native-animatable';
 import EntryCard from './EntryCard';
 import ListLoader from '../list-loader/ListLoader';
+import theme from '../../theme';
 
 interface EntryListProps {
     onPress: any
@@ -36,6 +37,7 @@ function EntryList({onPress}: EntryListProps) {
                          delay={index ? (index * 300) / 5 : 0}
                          useNativeDriver>
             <EntryCard entry={item} onPress={() => onPress(item.id)}/>
+            {index === entries.length - 1 && <View style={{height: theme.SPACING.M}}/>}
         </Animatable.View>
     );
 
