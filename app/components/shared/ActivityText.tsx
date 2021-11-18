@@ -4,7 +4,7 @@ import ActivityIcon from '../activity-icon/ActivityIcon';
 import {Activity} from '../../types/Activity';
 import appStyles from '../../styles';
 import theme from '../../theme';
-import EntryService from '../../services/EntryService';
+import {getActivityTypeText} from '../../services/EntryService';
 
 interface ActivityTextProps {
     activity: Activity;
@@ -15,7 +15,7 @@ function ActivityText({activity, style = {}}: ActivityTextProps) {
     return (
         <View style={[styles.container, style]}>
             <ActivityIcon activity={activity} style={styles.activityIcon}/>
-            <Text style={appStyles.primaryText}>{EntryService.getActivityTypeText(activity)}</Text>
+            <Text style={appStyles.primaryText}>{getActivityTypeText(activity)}</Text>
         </View>
     );
 }

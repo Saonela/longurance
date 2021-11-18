@@ -5,7 +5,7 @@ import ActivityIcon from '../activity-icon/ActivityIcon';
 import theme from '../../theme';
 import moment from 'moment';
 import appStyles from '../../styles';
-import EntryService from '../../services/EntryService';
+import {getActivityTypeText} from '../../services/EntryService';
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import {MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';
@@ -86,7 +86,7 @@ function EntryDetails({entry, trophies}: EntryDetailsProps) {
                         </View>
                     </View>
                 </View>
-                <Text style={[styles.activityText, {bottom: entry.title ? 30 : 24}]}>{EntryService.getActivityTypeText(entry.activity)}</Text>
+                <Text style={[styles.activityText, {bottom: entry.title ? 30 : 24}]}>{getActivityTypeText(entry.activity)}</Text>
                 {!!entry.title && <Text style={styles.activitySubText} numberOfLines={1}>{entry.title}</Text>}
                 <View style={{alignItems: "center"}}>
                     <ActivityIcon activity={entry.activity} size={200} style={styles.activityIcon}/>

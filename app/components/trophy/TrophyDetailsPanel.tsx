@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import appStyles from '../../styles';
 import {SimpleLineIcons} from '@expo/vector-icons';
 import theme from '../../theme';
-import EntryService from '../../services/EntryService';
+import {getActivityTypeText} from '../../services/EntryService';
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import {Trophy} from '../../types/Trophy';
@@ -24,7 +24,7 @@ function TrophyDetailsPanel({trophy}: TrophyDetailsPanelProps) {
                                  size={150}
                                  color={trophy.completed ? theme.COLORS.THEME_FONT : theme.COLORS.BACKGROUND_SECONDARY}/>
                 <View style={{marginLeft: theme.SPACING.XL, flexGrow: 1}}>
-                    <Text style={[styles.text, styles.activityText]}>{EntryService.getActivityTypeText(trophy.activity)}</Text>
+                    <Text style={[styles.text, styles.activityText]}>{getActivityTypeText(trophy.activity)}</Text>
                     {trophy.distance && <Text style={[styles.text, styles.labelText]}>Distance:</Text>}
                     <DistanceText distance={trophy.distance} style={[styles.text, styles.statsText]}/>
                     {trophy.duration && <Text style={[styles.text, styles.labelText, {marginTop: theme.SPACING.S}]}>Duration:</Text>}

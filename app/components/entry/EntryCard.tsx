@@ -8,7 +8,7 @@ import EntryEnergyIndicator from '../entry-energy-indicator/EntryEnergyIndicator
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import ActivityIcon from '../activity-icon/ActivityIcon';
-import EntryService from '../../services/EntryService';
+import {getActivityTypeText} from '../../services/EntryService';
 
 interface EntryProps {
     entry: Entry,
@@ -25,7 +25,7 @@ function EntryCard({entry, onPress}: EntryProps) {
                         <View style={{display: 'flex', flexDirection: 'row'}}>
                             <Text style={{...styles.headerText, fontSize: 22}}>{moment(entry.date).format("MMM DD")}</Text>
                             <Text style={{...styles.headerText, marginTop: 6, fontSize: 15}}>{moment(entry.date).format("HH:mm")}</Text>
-                            <Text style={[appStyles.primaryText, {marginTop: 6, color: theme.COLORS.FONT_SECONDARY}]}>{EntryService.getActivityTypeText(entry.activity)}</Text>
+                            <Text style={[appStyles.primaryText, {marginTop: 6, color: theme.COLORS.FONT_SECONDARY}]}>{getActivityTypeText(entry.activity)}</Text>
                         </View>
                     </View>
                 </View>

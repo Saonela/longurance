@@ -7,7 +7,7 @@ import {Trophy} from '../../types/Trophy';
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import ActivityIcon from '../activity-icon/ActivityIcon';
-import EntryService from '../../services/EntryService';
+import {getActivityTypeText} from '../../services/EntryService';
 
 interface TrophyCardProps {
     trophy: Trophy,
@@ -29,7 +29,7 @@ function TrophyCard({trophy, onPress}: TrophyCardProps) {
                 <View style={[styles.separatorLine, {borderBottomColor: trophyColor}]}/>
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={appStyles.primaryText}>{EntryService.getActivityTypeText(trophy.activity)}</Text>
+                        <Text style={appStyles.primaryText}>{getActivityTypeText(trophy.activity)}</Text>
                         <DistanceText distance={trophy.distance} style={{marginLeft: 8}}/>
                         <DurationText duration={trophy.duration} style={{marginLeft: 8}}/>
                     </View>
