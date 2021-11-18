@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet} from 'react-native';
 import LineChart from '../chart/LineChart';
 import StatisticsService from '../../services/StatisticsService';
 import {ChartDataType, StatisticsOptions} from '../../types/StatisticsOptions';
-import {getDurationTimeText} from '../../services/UtilityService';
+import {getDurationTimeText} from '../../lib/utility';
 import {Entry} from '../../types/Entry';
 import theme from '../../theme';
 import {TimelineChartData} from '../../types/TimelineChartData';

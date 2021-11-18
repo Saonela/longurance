@@ -2,7 +2,7 @@ import React from 'react';
 import {Dimensions, StyleProp} from 'react-native';
 import {LineChart as LineChartKit} from 'react-native-chart-kit';
 import theme from '../../theme';
-import {hexToRGB} from '../../services/UtilityService';
+import {hexToRGB} from '../../lib/utility';
 
 interface LineChartProps {
     labels: string[];

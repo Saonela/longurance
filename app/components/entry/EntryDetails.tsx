@@ -5,7 +5,7 @@ import ActivityIcon from '../activity-icon/ActivityIcon';
 import theme from '../../theme';
 import moment from 'moment';
 import appStyles from '../../styles';
-import {getActivityTypeText} from '../../services/EntryService';
+import {getActivityTypeText} from '../../lib/entry';
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import {MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';

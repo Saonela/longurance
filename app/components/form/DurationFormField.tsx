@@ -7,7 +7,7 @@ import {
     convertHoursToSeconds,
     convertMinutesToSeconds,
     convertToInt, splitSecondsIntoChunks
-} from '../../services/UtilityService';
+} from '../../lib/utility';
 
 interface DurationFormFieldProps {
     value: number,

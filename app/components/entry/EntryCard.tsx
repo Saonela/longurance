@@ -8,7 +8,7 @@ import EntryEnergyIndicator from '../entry-energy-indicator/EntryEnergyIndicator
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import ActivityIcon from '../activity-icon/ActivityIcon';
-import {getActivityTypeText} from '../../services/EntryService';
+import {getActivityTypeText} from '../../lib/entry';
 
 interface EntryProps {
     entry: Entry,

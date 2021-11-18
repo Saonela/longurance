@@ -4,7 +4,7 @@ import ActivityIcon from '../activity-icon/ActivityIcon';
 import {Activity} from '../../types/Activity';
 import appStyles from '../../styles';
 import theme from '../../theme';
-import {getActivityTypeText} from '../../services/EntryService';
+import {getActivityTypeText} from '../../lib/entry';
 
 interface ActivityTextProps {
     activity: Activity;

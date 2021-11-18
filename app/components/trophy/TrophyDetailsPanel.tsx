@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import appStyles from '../../styles';
 import {SimpleLineIcons} from '@expo/vector-icons';
 import theme from '../../theme';
-import {getActivityTypeText} from '../../services/EntryService';
+import {getActivityTypeText} from '../../lib/entry';
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import {Trophy} from '../../types/Trophy';

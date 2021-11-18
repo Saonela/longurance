@@ -3,7 +3,7 @@ import {ASYNC_STATE_STATUS} from "../asyncStateStatus";
 import {Entry} from '../../types/Entry';
 import StorageService from '../../services/StorageService';
 import {EntriesSliceState} from '../../types/SliceState';
-import {generateId} from '../../services/UtilityService';
+import {generateId} from '../../lib/utility';
 
 export const loadEntries = createAsyncThunk('entries/loadEntries', async () => {
     return await StorageService.loadEntries();

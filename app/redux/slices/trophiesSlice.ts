@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {ASYNC_STATE_STATUS} from "../asyncStateStatus";
 import StorageService from '../../services/StorageService';
 import {TrophiesSliceState} from '../../types/SliceState';
-import {generateId} from '../../services/UtilityService';
+import {generateId} from '../../lib/utility';
 import {Trophy} from '../../types/Trophy';
 import {Entry} from '../../types/Entry';
 
