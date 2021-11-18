@@ -3,7 +3,7 @@ import {ASYNC_STATE_STATUS} from "../asyncStateStatus";
 import {Entry} from '../../types/Entry';
 import StorageService from '../../services/StorageService';
 import {EntriesSliceState} from '../../types/SliceState';
-import UtilityService from '../../services/UtilityService';
+import {generateId} from '../../services/UtilityService';
 
 export const loadEntries = createAsyncThunk('entries/loadEntries', async () => {
     return await StorageService.loadEntries();
@@ -11,7 +11,7 @@ export const loadEntries = createAsyncThunk('entries/loadEntries', async () => {
 
 export const saveEntry = createAsyncThunk('entries/saveEntry', async (entry: Entry) => {
     if (!entry.id) {
-        entry.id = UtilityService.generateId();
+        entry.id = generateId();
     }
     StorageService.saveEntry(entry).then();
     return entry;

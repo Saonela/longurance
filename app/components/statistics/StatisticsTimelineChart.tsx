@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet} from 'react-native';
 import LineChart from '../chart/LineChart';
 import StatisticsService from '../../services/StatisticsService';
 import {ChartDataType, StatisticsOptions} from '../../types/StatisticsOptions';
-import UtilityService from '../../services/UtilityService';
+import {getDurationTimeText} from '../../services/UtilityService';
 import {Entry} from '../../types/Entry';
 import theme from '../../theme';
 import {TimelineChartData} from '../../types/TimelineChartData';
@@ -29,7 +29,7 @@ function StatisticsTimelineChart({entries, statisticsOptions}: StatisticsTimelin
         formatYLabel = label => `${parseFloat(label)} Km`;
     }
     if (statisticsOptions.chartDataType === ChartDataType.DURATION) {
-        formatYLabel = (label) => UtilityService.getDurationTimeText(label);
+        formatYLabel = (label) => getDurationTimeText(label);
     }
 
     return (

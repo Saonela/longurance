@@ -3,7 +3,11 @@ import {View} from 'react-native';
 import NumberInput from '../shared/NumberInput';
 import FormLabel from './FormLabel';
 import theme from '../../theme';
-import UtilityService from '../../services/UtilityService';
+import {
+    convertHoursToSeconds,
+    convertMinutesToSeconds,
+    convertToInt, splitSecondsIntoChunks
+} from '../../services/UtilityService';
 
 interface DurationFormFieldProps {
     value: number,
@@ -13,7 +17,7 @@ interface DurationFormFieldProps {
 
 function DurationFormField({value, style = null, onChange}: DurationFormFieldProps) {
 
-    const {hours, minutes, seconds} = UtilityService.splitSecondsIntoChunks(value);
+    const {hours, minutes, seconds} = splitSecondsIntoChunks(value);
 
     return (
         <View style={style}>
@@ -23,8 +27,8 @@ function DurationFormField({value, style = null, onChange}: DurationFormFieldPro
                     <NumberInput value={hours}
                                  placeholder="HH"
                                  onChange={(value) => {
-                                     value = UtilityService.convertToInt(value);
-                                     value = UtilityService.convertHoursToSeconds(value) + UtilityService.convertMinutesToSeconds(minutes) + seconds;
+                                     value = convertToInt(value);
+                                     value = convertHoursToSeconds(value) + convertMinutesToSeconds(minutes) + seconds;
                                      onChange(value);
                                  }}/>
                 </View>
@@ -33,8 +37,8 @@ function DurationFormField({value, style = null, onChange}: DurationFormFieldPro
                     <NumberInput value={minutes}
                                  placeholder='MM'
                                  onChange={(value) => {
-                                     value = UtilityService.convertToInt(value);
-                                     value = UtilityService.convertHoursToSeconds(hours) + UtilityService.convertMinutesToSeconds(value) + seconds;
+                                     value = convertToInt(value);
+                                     value = convertHoursToSeconds(hours) + convertMinutesToSeconds(value) + seconds;
                                      onChange(value);
                                  }}/>
                 </View>
@@ -43,8 +47,8 @@ function DurationFormField({value, style = null, onChange}: DurationFormFieldPro
                     <NumberInput value={seconds}
                                  placeholder='SS'
                                  onChange={(value) => {
-                                     value = UtilityService.convertToInt(value);
-                                     value = UtilityService.convertHoursToSeconds(hours) + UtilityService.convertMinutesToSeconds(minutes) + value;
+                                     value = convertToInt(value);
+                                     value = convertHoursToSeconds(hours) + convertMinutesToSeconds(minutes) + value;
                                      onChange(value);
                                  }}/>
                 </View>

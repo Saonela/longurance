@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {ASYNC_STATE_STATUS} from "../asyncStateStatus";
 import StorageService from '../../services/StorageService';
 import {TrophiesSliceState} from '../../types/SliceState';
-import UtilityService from '../../services/UtilityService';
+import {generateId} from '../../services/UtilityService';
 import {Trophy} from '../../types/Trophy';
 import {Entry} from '../../types/Entry';
 
@@ -14,7 +14,7 @@ export const saveTrophy = createAsyncThunk('trophies/saveTrophy', async (trophy:
     const state: any = thunkAPI.getState();
 
     if (!trophy.id) {
-        trophy.id = UtilityService.generateId();
+        trophy.id = generateId();
     }
 
     const trophyEntry = state.entries.data.find(entry => entry.id === trophy.entryId);

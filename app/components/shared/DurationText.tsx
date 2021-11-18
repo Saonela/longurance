@@ -1,7 +1,7 @@
 import React from 'react';
 import appStyles from '../../styles';
 import {Text} from 'react-native';
-import UtilityService from '../../services/UtilityService';
+import {getDurationTimeText} from '../../services/UtilityService';
 
 interface DurationTextProps {
     duration: number;
@@ -17,7 +17,7 @@ function DurationText({duration, placeholder = null, style = {}, ...props}: Dura
     let text = placeholder;
 
     if (duration) {
-        text = UtilityService.getDurationTimeText(duration);
+        text = getDurationTimeText(duration);
     }
 
     return (

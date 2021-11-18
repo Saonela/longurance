@@ -2,7 +2,7 @@ import React from 'react';
 import {Dimensions, StyleProp} from 'react-native';
 import {LineChart as LineChartKit} from 'react-native-chart-kit';
 import theme from '../../theme';
-import UtilityService from '../../services/UtilityService';
+import {hexToRGB} from '../../services/UtilityService';
 
 interface LineChartProps {
     labels: string[];
@@ -20,7 +20,7 @@ const chartConfig = {
     backgroundGradientTo: theme.COLORS.BACKGROUND_BASE,
     backgroundGradientToOpacity: 0,
     color: (opacity = 1) => {
-        return UtilityService.hexToRGB(theme.COLORS.FONT_PRIMARY, opacity)
+        return hexToRGB(theme.COLORS.FONT_PRIMARY, opacity)
     },
     strokeWidth: 2,
     barPercentage: 0.5,
@@ -44,7 +44,7 @@ function LineChart({
         datasets: [
             {
                 data: values,
-                color: (opacity = 1) => UtilityService.hexToRGB(theme.COLORS.FONT_SECONDARY, opacity),
+                color: (opacity = 1) => hexToRGB(theme.COLORS.FONT_SECONDARY, opacity),
                 strokeWidth: 2
             },
         ]
