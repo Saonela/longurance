@@ -1,10 +1,9 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import theme from '../../theme';
-import {Feather} from '@expo/vector-icons';
-import * as Animatable from 'react-native-animatable';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import appStyles from '../../styles';
-
+import React from 'react';
+import * as Animatable from 'react-native-animatable';
+import {Feather} from '@expo/vector-icons';
 
 const zoomIn = {
     0: {
@@ -21,6 +20,10 @@ const zoomIn = {
     },
 };
 
+const TabIcon = (iconName, textColor) => (
+    <Feather name={iconName} size={24} color={textColor}/>
+);
+
 const AnimatedTabIcon = (iconName, textColor) => (
     <Animatable.View animation={zoomIn}
                      duration={300}
@@ -28,10 +31,6 @@ const AnimatedTabIcon = (iconName, textColor) => (
         {TabIcon(iconName, textColor)}
     </Animatable.View>
 )
-
-const TabIcon = (iconName, textColor) => (
-    <Feather name={iconName} size={24} color={textColor}/>
-);
 
 function TabButton({route, options, isFocused, onPress, onLongPress}) {
     const label = options.tabBarLabel !== undefined
@@ -41,6 +40,7 @@ function TabButton({route, options, isFocused, onPress, onLongPress}) {
             : route.name;
 
     const textColor = isFocused ? theme.COLORS.FONT_PRIMARY : theme.COLORS.FONT_SECONDARY;
+
     let iconName;
     if (route.name === 'Entries') {
         iconName = 'list';
@@ -72,62 +72,13 @@ function TabButton({route, options, isFocused, onPress, onLongPress}) {
     );
 }
 
-function TabBar({state, descriptors, navigation}) {
-
-    const onPress = (route, isFocused) => {
-        const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-        });
-
-        if (!isFocused && !event.defaultPrevented) {
-            if (route.name === 'Entries') {
-                navigation.navigate(route.name, {screen: 'entry-list'});
-            } else if (route.name === 'Trophies') {
-                navigation.navigate(route.name, {screen: 'trophy-list'});
-            } else {
-                navigation.navigate(route.name);
-            }
-        }
-    };
-
-    const onLongPress = (route) => {
-        navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-        });
-    };
-
-    return (
-        <View style={styles.tabBar}>
-            {state.routes.map((route, index) =>
-                <TabButton key={index}
-                           route={route}
-                           options={descriptors[route.key]}
-                           isFocused={state.index === index}
-                           onPress={() => onPress(route, state.index === index)}
-                           onLongPress={() => onLongPress(route)}/>
-            )}
-        </View>
-    );
-}
-
 const styles = StyleSheet.create({
-    tabBar: {
-        flexDirection: 'row',
-        borderTopWidth: 1,
-        borderTopColor: theme.COLORS.BACKGROUND_BASE,
-        backgroundColor: theme.COLORS.BACKGROUND_PRIMARY,
-    },
     tab: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         height: theme.TAB_NAVIGATOR_HEIGHT,
-    },
-    text: {
-
     }
 });
 
-export default TabBar;
+export default TabButton

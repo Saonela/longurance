@@ -9,7 +9,7 @@ import {useDispatch} from 'react-redux';
 import {loadEntries} from './app/redux/slices/entriesSlice';
 import HeaderButton from './app/components/header/HeaderButton';
 import TrophyListScreen from './app/screens/TrophyListScreen';
-import TabBar from './app/components/tab-bar/TabBar';
+import TabBar from './app/components/tab-navigation/TabBar';
 import TrophyFormScreen from './app/screens/TrophyFormScreen';
 import EntryDetailsScreen from './app/screens/EntryDetailsScreen';
 import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';
