@@ -41,7 +41,7 @@ const BORDER = {
 }
 
 const HEADER_HEIGHT = 60;
-const TAB_NAVIGATOR_HEIGHT = 54;
+const TAB_NAVIGATOR_HEIGHT = 64;
 
 const theme = {
     COLORS,

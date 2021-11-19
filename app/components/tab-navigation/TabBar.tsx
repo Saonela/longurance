@@ -45,10 +45,21 @@ function TabBar({state, descriptors, navigation}) {
 
 const styles = StyleSheet.create({
     tabBar: {
+        position: 'absolute',
+        bottom: 0,
+        left: -1,
+        right: -1,
+        alignSelf: 'center',
         flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
         borderTopWidth: 1,
-        borderTopColor: theme.COLORS.BACKGROUND_BASE,
-        backgroundColor: theme.COLORS.BACKGROUND_PRIMARY,
+        borderRightWidth: 1,
+        borderLeftWidth: 1,
+        borderTopLeftRadius: 28,
+        borderTopRightRadius: 28,
+        borderColor: theme.COLORS.BACKGROUND_PRIMARY,
+        backgroundColor: '#1a1a1a',
     }
 });
 

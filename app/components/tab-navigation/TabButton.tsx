@@ -6,51 +6,37 @@ import * as Animatable from 'react-native-animatable';
 import {Feather} from '@expo/vector-icons';
 
 const zoomIn = {
-    0: {
-        opacity: 1,
+    from: {
+        translateY: 0,
         scale: 1,
     },
-    0.5: {
-        opacity: 1.05,
-        scale: 1,
-    },
-    1: {
-        opacity: 1,
-        scale: 1.1
+    to: {
+        translateY: -3,
+        scale: 1.2
     },
 };
 
-const TabIcon = (iconName, textColor) => (
-    <Feather name={iconName} size={24} color={textColor}/>
-);
+const zoomOut = {
+    from: {
+        translateY: -3,
+        scale: 1.2
+    },
+    to: {
+        translateY: 0,
+        scale: 1
+    },
+};
 
-const AnimatedTabIcon = (iconName, textColor) => (
-    <Animatable.View animation={zoomIn}
-                     duration={300}
-                     useNativeDriver>
-        {TabIcon(iconName, textColor)}
-    </Animatable.View>
-)
+const routeIcon = {
+    'Entries': 'list',
+    'Trophies': 'award',
+    'Statistics': 'bar-chart'
+};
 
 function TabButton({route, options, isFocused, onPress, onLongPress}) {
-    const label = options.tabBarLabel !== undefined
-        ? options.tabBarLabel
-        : options.title !== undefined
-            ? options.title
-            : route.name;
-
+    const label = options.tabBarLabel || options.title || route.name;
     const textColor = isFocused ? theme.COLORS.FONT_PRIMARY : theme.COLORS.FONT_SECONDARY;
-
-    let iconName;
-    if (route.name === 'Entries') {
-        iconName = 'list';
-    }
-    if (route.name === 'Trophies') {
-        iconName = 'award';
-    }
-    if (route.name === 'Statistics') {
-        iconName = 'bar-chart';
-    }
+    const iconName = routeIcon[route.name];
 
     return (
         <TouchableOpacity
@@ -60,11 +46,12 @@ function TabButton({route, options, isFocused, onPress, onLongPress}) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={styles.tab}>
-            {isFocused
-                ? AnimatedTabIcon(iconName, textColor)
-                : TabIcon(iconName, textColor)
-            }
+            style={{...styles.tab}}>
+            <Animatable.View animation={isFocused ? zoomIn : zoomOut}
+                             duration={175}
+                             useNativeDriver>
+                <Feather name={iconName} size={24} color={textColor}/>
+            </Animatable.View>
             <Text style={{...appStyles.secondaryText, color: textColor, marginTop: 2}}>
                 {label}
             </Text>
@@ -78,6 +65,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: theme.TAB_NAVIGATOR_HEIGHT,
+        paddingTop: 2,
     }
 });
 
