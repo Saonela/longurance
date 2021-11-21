@@ -1,6 +1,6 @@
 import React from 'react';
 import {ASYNC_STATE_STATUS} from '../../redux/asyncStateStatus';
-import ListEmptyMessage from '../list-empty-message/ListEmptyMessage';
+import NoDataMessage from '../no-data-message/NoDataMessage';
 import {FlatList, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {getEntries, getEntriesStatus} from '../../redux/slices/entriesSlice';
@@ -17,10 +17,8 @@ function EntryList({onPress}: EntryListProps) {
     const entries = useSelector(getEntries)
     const entriesStatus = useSelector(getEntriesStatus);
 
-    const getEmptyMessage = () => {
-        return !entries.length &&
-            entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED &&
-            <ListEmptyMessage message="No entries recorded yet!"/>;
+    if (!entries.length && entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED) {
+        return <NoDataMessage>No activity found</NoDataMessage>;
     }
 
     const getLoader = () => {
@@ -43,7 +41,6 @@ function EntryList({onPress}: EntryListProps) {
 
     return (
         <>
-            {getEmptyMessage()}
             <FlatList data={entries}
                       keyExtractor={keyExtractor}
                       initialNumToRender={6}

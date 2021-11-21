@@ -4,7 +4,7 @@ import {FlatList} from 'react-native';
 import {ASYNC_STATE_STATUS} from '../../redux/asyncStateStatus';
 import * as Animatable from 'react-native-animatable';
 import {getTrophies, getTrophiesStatus} from '../../redux/slices/trophiesSlice';
-import ListEmptyMessage from '../list-empty-message/ListEmptyMessage';
+import NoDataMessage from '../no-data-message/NoDataMessage';
 import ListLoader from '../list-loader/ListLoader';
 import TrophyCard from './TrophyCard';
 
@@ -16,10 +16,8 @@ function TrophyList({onPress}: TrophyListProps) {
     const trophies = useSelector(getTrophies)
     const trophiesStatus = useSelector(getTrophiesStatus);
 
-    const getEmptyMessage = () => {
-        if (!trophies.length && trophiesStatus === ASYNC_STATE_STATUS.SUCCEEDED) {
-            return <ListEmptyMessage message="No trophies found!"/>;
-        }
+    if (!trophies.length && trophiesStatus === ASYNC_STATE_STATUS.SUCCEEDED) {
+        return <NoDataMessage>No trophies found</NoDataMessage>;
     }
 
     const getLoader = () => {
@@ -40,7 +38,6 @@ function TrophyList({onPress}: TrophyListProps) {
 
     return (
         <>
-            {getEmptyMessage()}
             <FlatList data={trophies}
                       keyExtractor={keyExtractor}
                       initialNumToRender={6}
