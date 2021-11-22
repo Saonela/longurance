@@ -40,7 +40,7 @@ function EntryFormScreen({route, navigation}) {
     };
 
     return (
-        <View style={appStyles.container}>
+        <View style={appStyles.screenContainer}>
             <ScrollView keyboardShouldPersistTaps="handled">
                 <EntryForm entry={entry} innerRef={formRef} onSubmit={(trophy) => handleSubmit(trophy)}/>
             </ScrollView>

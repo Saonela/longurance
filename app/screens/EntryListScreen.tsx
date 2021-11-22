@@ -31,10 +31,8 @@ function EntryListScreen({navigation}) {
     return (
         <>
             <HeaderActivityFilter/>
-            <View style={styles.wrapper}>
-                <View style={appStyles.container}>
-                    <EntryList onPress={navigateToEntryDetails}/>
-                </View>
+            <View style={appStyles.screenContainer}>
+                <EntryList onPress={navigateToEntryDetails}/>
                 <TrophyCongratulations/>
             </View>
         </>

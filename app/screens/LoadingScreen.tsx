@@ -5,7 +5,7 @@ import theme from '../theme';
 
 function LoadingScreen() {
     return (
-        <View style={{...appStyles.container, ...{justifyContent: 'center'}}}>
+        <View style={{...appStyles.screenContainer, ...{justifyContent: 'center'}}}>
             <ActivityIndicator size={50} color={theme.COLORS.FONT_PRIMARY} />
         </View>
     );

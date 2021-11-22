@@ -65,7 +65,7 @@ function EntryDetailsScreen({route, navigation}) {
 
     return (
         <View style={styles.wrapper}>
-            <View style={appStyles.container}>
+            <View style={appStyles.screenContainer}>
                 {entry && <EntryDetails entry={entry} trophies={trophies}/>}
             </View>
         </View>

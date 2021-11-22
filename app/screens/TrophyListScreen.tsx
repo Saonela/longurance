@@ -30,7 +30,7 @@ function TrophyListScreen({navigation}) {
 
     return (
         <View style={styles.wrapper}>
-            <View style={appStyles.container}>
+            <View style={appStyles.screenContainer}>
                 <TrophyList onPress={navigateToTrophyDetails}/>
             </View>
             <TrophyCongratulations/>

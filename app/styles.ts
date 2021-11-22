@@ -2,9 +2,10 @@ import {StyleSheet} from "react-native";
 import theme from "./theme";
 
 const appStyles = StyleSheet.create({
-    container: {
+    screenContainer: {
         flex: 1,
-        backgroundColor: theme.COLORS.BACKGROUND_BASE,
+        paddingBottom: theme.TAB_NAVIGATOR_HEIGHT,
+        backgroundColor: theme.COLORS.BACKGROUND_BASE
     },
     panel: {
         padding: theme.SPACING.M,

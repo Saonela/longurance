@@ -36,7 +36,7 @@ function TrophyFormScreen({route, navigation}) {
     };
 
     return (
-        <View style={appStyles.container}>
+        <View style={appStyles.screenContainer}>
             <ScrollView keyboardShouldPersistTaps="handled">
                 <TrophyForm trophy={trophy} innerRef={formRef} onSubmit={handleSubmit}/>
             </ScrollView>
