@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 28,
         borderTopRightRadius: 28,
         borderColor: theme.COLORS.BACKGROUND_PRIMARY,
-        backgroundColor: '#1a1a1a',
+        backgroundColor: theme.COLORS.TERTIARY
     }
 });
 

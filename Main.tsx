@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {StyleSheet} from 'react-native';
 import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import theme from './app/theme';
@@ -25,7 +26,9 @@ const mainStackScreenOptions: any = () => {
         title: '',
         headerStyle: {
             height: theme.HEADER_HEIGHT,
-            backgroundColor: theme.COLORS.BACKGROUND_PRIMARY
+            backgroundColor: theme.COLORS.TERTIARY,
+            borderBottomWidth: StyleSheet.hairlineWidth,
+            borderColor: theme.COLORS.BACKGROUND_PRIMARY,
         },
         headerTintColor: theme.COLORS.FONT_PRIMARY,
         headerTitleAlign: 'center'

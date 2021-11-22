@@ -1,5 +1,6 @@
 
 const COLORS = {
+    TERTIARY: '#1a1a1a',
     BACKGROUND_PRIMARY: '#2a2a2a',
     BACKGROUND_SECONDARY: '#4b4b4e',
     BACKGROUND_BASE: '#121212',
