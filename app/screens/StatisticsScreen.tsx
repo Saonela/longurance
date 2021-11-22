@@ -9,7 +9,7 @@ import PeakStatistics from '../components/statistics/PeakStatistics';
 import AverageStatistics from '../components/statistics/AverageStatistics';
 import theme from '../theme';
 import StatisticsChart from '../components/statistics/StatisticsChart';
-import ActivityFilter from '../components/activity-filter/ActivityFilter';
+import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 
 function StatisticsScreen({navigation}) {
     const entries = useSelector(getEntries)
@@ -17,7 +17,7 @@ function StatisticsScreen({navigation}) {
 
     return (
         <>
-            <ActivityFilter/>
+            <HeaderActivityFilter/>
             <ScrollView style={appStyles.container}>
                 <TotalStatistics entries={entries} trophiesCount={trophies.length}/>
                 <PeakStatistics entries={entries}/>

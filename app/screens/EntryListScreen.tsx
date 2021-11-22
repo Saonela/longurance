@@ -2,7 +2,7 @@ import React, {useLayoutEffect} from 'react';
 import {StyleSheet, View} from "react-native";
 import appStyles from "../styles";
 import theme from "../theme";
-import ActivityFilter from '../components/activity-filter/ActivityFilter';
+import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import EntryList from '../components/entry/EntryList';
 import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
 import HeaderButton from '../components/header/HeaderButton';
@@ -27,15 +27,17 @@ function EntryListScreen({navigation}) {
             )
         });
     }, [navigation]);
-    
+
     return (
-        <View style={styles.wrapper}>
-            <ActivityFilter/>
-            <View style={appStyles.container}>
-                <EntryList onPress={navigateToEntryDetails}/>
+        <>
+            <HeaderActivityFilter/>
+            <View style={styles.wrapper}>
+                <View style={appStyles.container}>
+                    <EntryList onPress={navigateToEntryDetails}/>
+                </View>
+                <TrophyCongratulations/>
             </View>
-            <TrophyCongratulations/>
-        </View>
+        </>
     );
 }
 
