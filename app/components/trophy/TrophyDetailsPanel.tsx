@@ -22,7 +22,7 @@ function TrophyDetailsPanel({trophy}: TrophyDetailsPanelProps) {
             <View style={styles.section}>
                 <SimpleLineIcons name="trophy"
                                  size={150}
-                                 color={trophy.completed ? theme.COLORS.THEME_FONT : theme.COLORS.BACKGROUND_SECONDARY}/>
+                                 color={trophy.completed ? theme.COLORS.THEME_FONT : theme.COLORS.BACKGROUND_TERTIARY}/>
                 <View style={{marginLeft: theme.SPACING.XL, flexGrow: 1}}>
                     <Text style={[styles.text, styles.activityText]}>{getActivityTypeText(trophy.activity)}</Text>
                     {trophy.distance && <Text style={[styles.text, styles.labelText]}>Distance:</Text>}

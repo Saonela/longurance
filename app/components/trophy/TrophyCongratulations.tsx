@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         elevation: 100,
-        backgroundColor: theme.COLORS.BACKGROUND_BASE,
+        backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
         opacity: 0.7,
     },
     container: {

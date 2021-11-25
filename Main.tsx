@@ -26,7 +26,7 @@ const mainStackScreenOptions: any = () => {
         title: '',
         headerStyle: {
             height: theme.HEADER_HEIGHT,
-            backgroundColor: theme.COLORS.TERTIARY,
+            backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
             elevation: 0
         },
         headerTintColor: theme.COLORS.FONT_PRIMARY,

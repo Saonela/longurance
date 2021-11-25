@@ -15,9 +15,9 @@ interface LineChartProps {
 }
 
 const chartConfig = {
-    backgroundGradientFrom: theme.COLORS.BACKGROUND_BASE,
+    backgroundGradientFrom: theme.COLORS.BACKGROUND_SECONDARY,
     backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: theme.COLORS.BACKGROUND_BASE,
+    backgroundGradientTo: theme.COLORS.BACKGROUND_SECONDARY,
     backgroundGradientToOpacity: 0,
     color: (opacity = 1) => {
         return hexToRGB(theme.COLORS.FONT_PRIMARY, opacity)

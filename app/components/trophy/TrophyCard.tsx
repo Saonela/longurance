@@ -15,7 +15,7 @@ interface TrophyCardProps {
 }
 
 function TrophyCard({trophy, onPress}: TrophyCardProps) {
-    const trophyColor = trophy.completed ? theme.COLORS.THEME_FONT : theme.COLORS.BACKGROUND_SECONDARY;
+    const trophyColor = trophy.completed ? theme.COLORS.THEME_FONT : theme.COLORS.BACKGROUND_TERTIARY;
     return (
         <TouchableNativeFeedback onPress={onPress}>
             <View style={[appStyles.panel, {overflow: 'hidden'}]}>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: -20,
         bottom: -40,
-        color: theme.COLORS.BACKGROUND_SECONDARY
+        color: theme.COLORS.BACKGROUND_TERTIARY
     },
     trophyIcon: {
         marginRight: theme.SPACING.M,

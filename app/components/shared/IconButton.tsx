@@ -3,7 +3,7 @@ import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
 import theme from '../../theme';
 
 function IconButton({icon, size = 36, style = {}, onPress, noBackground = false}) {
-    const backgroundColor = noBackground ? '' : theme.COLORS.BACKGROUND_SECONDARY;
+    const backgroundColor = noBackground ? '' : theme.COLORS.BACKGROUND_TERTIARY;
     return (
         <View style={[styles.button, style]}>
             <TouchableNativeFeedback style={{...styles.button}} onPress={onPress}>

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         paddingBottom: theme.SPACING.S,
         paddingLeft: theme.SPACING.L,
         borderRadius: theme.BORDER.RADIUS,
-        backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
+        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY,
         elevation: 4
     }
 });

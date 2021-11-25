@@ -1,11 +1,8 @@
 
-const color = '#0e0e0e'
-
 const COLORS = {
-    TERTIARY: color,//'#111111',
     BACKGROUND_PRIMARY: '#181818',
-    BACKGROUND_SECONDARY: '#4b4b4e',
-    BACKGROUND_BASE: color,
+    BACKGROUND_SECONDARY: '#0e0e0e',
+    BACKGROUND_TERTIARY: '#4b4b4e',
     FONT_PRIMARY: '#f3eded',
     FONT_SECONDARY: '#7e7e7e',
     FONT_DANGER: '#d92525',

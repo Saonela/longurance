@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: -20,
         bottom: -40,
-        color: theme.COLORS.BACKGROUND_SECONDARY
+        color: theme.COLORS.BACKGROUND_TERTIARY
     },
     headerText: {
         ...appStyles.primaryText,

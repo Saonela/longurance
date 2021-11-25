@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -90,
         right: -30,
-        color: theme.COLORS.BACKGROUND_SECONDARY,
+        color: theme.COLORS.BACKGROUND_TERTIARY,
     },
     activityText: {
         position: 'absolute',
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
         borderWidth: 5,
         borderColor: theme.COLORS.FONT_PRIMARY,
         borderRadius: 15,
-        backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
+        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY,
         elevation: 4
     },
     effortBarLabels: {

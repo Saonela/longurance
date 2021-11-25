@@ -53,8 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: theme.COLORS.BACKGROUND_PRIMARY,
-        backgroundColor: theme.COLORS.TERTIARY
+        backgroundColor: theme.COLORS.BACKGROUND_SECONDARY
     }
 });
 

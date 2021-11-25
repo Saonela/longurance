@@ -5,7 +5,7 @@ const appStyles = StyleSheet.create({
     screenContainer: {
         flex: 1,
         paddingBottom: theme.TAB_NAVIGATOR_HEIGHT,
-        backgroundColor: theme.COLORS.BACKGROUND_BASE
+        backgroundColor: theme.COLORS.BACKGROUND_SECONDARY
     },
     panel: {
         padding: theme.SPACING.M,

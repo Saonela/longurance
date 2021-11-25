@@ -45,11 +45,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderWidth: theme.BORDER.WIDTH,
         borderRadius: theme.BORDER.RADIUS + 2,
-        borderColor: theme.COLORS.BACKGROUND_SECONDARY
+        borderColor: theme.COLORS.BACKGROUND_TERTIARY
     },
     activeButton: {
         color: theme.COLORS.FONT_PRIMARY,
-        backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
+        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY,
     },
     button: {
         color: theme.COLORS.FONT_SECONDARY,

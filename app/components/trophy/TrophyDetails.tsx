@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
         height: theme.SPACING.XS,
         marginTop: theme.SPACING.S,
         borderRadius: theme.BORDER.RADIUS,
-        backgroundColor: theme.COLORS.BACKGROUND_SECONDARY
+        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY
     }
 });
