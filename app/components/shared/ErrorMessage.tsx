@@ -12,6 +12,7 @@ function ErrorMessage({message, style = {}}) {
 const styles = StyleSheet.create({
     error: {
         color: theme.COLORS.FONT_DANGER,
+        fontSize: theme.FONT_SIZE.SECONDARY,
     }
 });
 

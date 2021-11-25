@@ -1,12 +1,14 @@
 
+const color = '#0e0e0e'
+
 const COLORS = {
-    TERTIARY: '#1a1a1a',
-    BACKGROUND_PRIMARY: '#2a2a2a',
+    TERTIARY: color,//'#111111',
+    BACKGROUND_PRIMARY: '#181818',
     BACKGROUND_SECONDARY: '#4b4b4e',
-    BACKGROUND_BASE: '#121212',
-    FONT_PRIMARY: '#f4f4f6',
-    FONT_SECONDARY: '#9a9a9a',
-    FONT_DANGER: '#ff2727',
+    BACKGROUND_BASE: color,
+    FONT_PRIMARY: '#f3eded',
+    FONT_SECONDARY: '#7e7e7e',
+    FONT_DANGER: '#d92525',
     THEME_FONT: '#f8bb03',
     SUCCESS: '#25800b',
     ENERGY_POSITIVE: '#49c110',
@@ -38,7 +40,7 @@ const SPACING = {
 
 const BORDER = {
     WIDTH: 1,
-    RADIUS: 16
+    RADIUS: 10
 }
 
 const HEADER_HEIGHT = 60;

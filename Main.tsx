@@ -27,8 +27,7 @@ const mainStackScreenOptions: any = () => {
         headerStyle: {
             height: theme.HEADER_HEIGHT,
             backgroundColor: theme.COLORS.TERTIARY,
-            borderBottomWidth: StyleSheet.hairlineWidth,
-            borderColor: theme.COLORS.BACKGROUND_PRIMARY,
+            elevation: 0
         },
         headerTintColor: theme.COLORS.FONT_PRIMARY,
         headerTitleAlign: 'center'

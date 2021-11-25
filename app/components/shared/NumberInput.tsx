@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     input: {
         ...appStyles.primaryText,
         ...appStyles.inputField,
-        padding: theme.SPACING.XS
+        paddingVertical: theme.SPACING.XS
     }
 });
 

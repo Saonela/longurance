@@ -11,7 +11,8 @@ import DateFormField from '../form/DateFormField';
 import EnergyFormField from '../form/EnergyFormField';
 import NoteFormField from '../form/NoteFormField';
 import TextFormField from '../form/TextFormField';
-import FormSubText from '../form/FormSubText';
+import FormHint from '../form/FormHint';
+import Panel from '../shared/Panel';
 
 const defaultEntry: any = {
     activity: Activity.RUNNING,
@@ -46,67 +47,56 @@ const options = {
 }
 
 function EntryForm({values, errors, touched, handleChange, setFieldValue, setErrors}) {
+    const durationOrDistanceError = errors.durationOrDistance && (touched.duration || touched.distance);
     return (
         <View style={styles.form}>
-            <TextFormField style={styles.field}
-                           value={values.title}
-                           label={'Title'}
-                           placeholder={'Title'}
-                           onChange={handleChange('title')}/>
-            <FormSubText style={styles.subText}
-                         text="Write a short title to display in the list screen."/>
-
-            <ActivityFormField style={styles.field}
-                               value={values.activity}
-                               onChange={handleChange('activity')}/>
-
-            <DateFormField style={styles.field}
-                           value={values.date}
-                           onChange={value => setFieldValue('date', value.toISOString())}/>
-
-            <DistanceFormField style={styles.field}
-                               value={values.distance}
-                               onChange={(value) => {
-                                   setErrors({});
-                                   setFieldValue('distance', value)
-                               }}/>
-
-            <DurationFormField style={styles.field}
-                               value={values.duration}
-                               onChange={(value) => {
-                                   setErrors({});
-                                   setFieldValue('duration', value)
-                               }}/>
-
-            {errors.durationOrDistance && (touched.duration || touched.distance)
-                ? <ErrorMessage style={styles.errorField} message={errors.durationOrDistance}/>
-                : null}
-
-            <EnergyFormField style={{paddingBottom: theme.SPACING.S}}
-                             value={values.energy}
-                             onChange={value => setFieldValue('energy', value)}/>
-
-            <NoteFormField style={styles.field}
-                           value={values.note}
-                           onChange={value => setFieldValue('note', value)}/>
+            <Panel>
+                <TextFormField label={'Title'}
+                               placeholder={'Title'}
+                               value={values.title}
+                               onChange={handleChange('title')}/>
+                <FormHint>Write a short title to display in the list screen.</FormHint>
+            </Panel>
+            <Panel>
+                <ActivityFormField value={values.activity} onChange={handleChange('activity')}/>
+            </Panel>
+            <Panel>
+                <DateFormField value={values.date} onChange={value => setFieldValue('date', value.toISOString())}/>
+            </Panel>
+            <Panel>
+                <DistanceFormField value={values.distance}
+                                   onChange={(value) => {
+                                       setErrors({});
+                                       setFieldValue('distance', value)
+                                   }}/>
+                {durationOrDistanceError && <ErrorMessage style={styles.error} message={errors.durationOrDistance}/>}
+            </Panel>
+            <Panel>
+                <DurationFormField value={values.duration}
+                                   onChange={(value) => {
+                                       setErrors({});
+                                       setFieldValue('duration', value)
+                                   }}/>
+                {durationOrDistanceError && <ErrorMessage style={styles.error} message={errors.durationOrDistance}/>}
+            </Panel>
+            <Panel>
+                <EnergyFormField value={values.energy} onChange={value => setFieldValue('energy', value)}/>
+            </Panel>
+            <Panel>
+                <NoteFormField value={values.note} onChange={value => setFieldValue('note', value)}/>
+            </Panel>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     form: {
-        padding: theme.SPACING.M,
-    },
-    field: {
-        paddingBottom: theme.SPACING.L
-    },
-    errorField: {
+        paddingHorizontal: theme.SPACING.M,
         paddingBottom: theme.SPACING.M
     },
-    subText: {
-        marginTop: -20,
-        marginBottom: theme.SPACING.M
-    }
+    error: {
+        paddingTop: theme.SPACING.S
+    },
 });
 
 export default withFormik(options)(EntryForm);

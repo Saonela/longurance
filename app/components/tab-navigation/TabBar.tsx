@@ -53,11 +53,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderTopWidth: StyleSheet.hairlineWidth,
-        borderRightWidth: StyleSheet.hairlineWidth,
-        borderLeftWidth: StyleSheet.hairlineWidth,
-        borderTopLeftRadius: 28,
-        borderTopRightRadius: 28,
         borderColor: theme.COLORS.BACKGROUND_PRIMARY,
         backgroundColor: theme.COLORS.TERTIARY
     }

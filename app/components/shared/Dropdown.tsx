@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
             { scaleX: 0.90 },
             { scaleY: 0.90 },
         ],
-        marginLeft: -20
+        marginLeft: -24
     },
     caret: {
         position: 'absolute',

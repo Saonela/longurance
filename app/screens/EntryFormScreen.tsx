@@ -13,16 +13,16 @@ import {saveEntryTrophies} from '../redux/slices/trophiesSlice';
 
 function EntryFormScreen({route, navigation}) {
     const dispatch = useAppDispatch();
-    const entry = useSelector((state) => getEntry(state, route.params.id));
 
+    const entry = useSelector(state => getEntry(state, route.params.id));
     const formRef = useRef<FormikValues>(null);
 
     useLayoutEffect(() => {
         navigation.setOptions({
             title: entry ? 'Edit Entry' : 'New Entry',
             headerRight: () => (
-                <HeaderButton style={{marginRight: theme.SPACING.S}}
-                              iconName="check"
+                <HeaderButton iconName="check"
+                              style={{marginRight: theme.SPACING.S}}
                               onPress={() => {
                                   if (formRef.current) {
                                       formRef.current.handleSubmit();
@@ -42,7 +42,9 @@ function EntryFormScreen({route, navigation}) {
     return (
         <View style={appStyles.screenContainer}>
             <ScrollView keyboardShouldPersistTaps="handled">
-                <EntryForm entry={entry} innerRef={formRef} onSubmit={(trophy) => handleSubmit(trophy)}/>
+                <EntryForm entry={entry}
+                           innerRef={formRef}
+                           onSubmit={entry => handleSubmit(entry)}/>
             </ScrollView>
         </View>
     );

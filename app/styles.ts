@@ -23,7 +23,7 @@ const appStyles = StyleSheet.create({
     secondaryText: {
         fontFamily: 'Lato',
         fontSize: theme.FONT_SIZE.SECONDARY,
-        color: theme.COLORS.FONT_PRIMARY
+        color: theme.COLORS.FONT_SECONDARY
     },
     inputField: {
         borderBottomWidth: 1,

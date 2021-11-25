@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
         top: -theme.HEADER_HEIGHT + theme.SPACING.S,
         left: theme.SPACING.S,
         zIndex: 1,
-        borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: theme.COLORS.FONT_PRIMARY,
     },
     picker: {
