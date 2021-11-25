@@ -136,13 +136,6 @@ describe('EntryListScreen', () => {
         expect(queryByText('2021-01-01')).toBeFalsy();
         expect(queryByText('MY RUN')).toBeFalsy();
         getByText('Learn to Swim');
-
-        fireEvent.press(getByText('Running'));
-
-        expect(queryByText('2021-01-01')).toBeFalsy();
-        expect(queryByText('Learn to Swim')).toBeFalsy();
-        getByText('MY RUN');
-
     });
 
     it('should notify about completed trophy', async () => {

@@ -11,8 +11,9 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#121212",
+        "backgroundColor": "#0e0e0e",
         "flex": 1,
+        "paddingBottom": 64,
       }
     }
   >
@@ -21,8 +22,8 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#2a2a2a",
-              "borderRadius": 16,
+              "backgroundColor": "#181818",
+              "borderRadius": 10,
               "height": 120,
               "marginLeft": 8,
               "marginRight": 8,
@@ -51,7 +52,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               <Text
                 style={
                   Object {
-                    "color": "#f4f4f6",
+                    "color": "#f3eded",
                     "fontFamily": "Lato",
                     "fontSize": 13,
                     "marginRight": 8,
@@ -71,7 +72,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#f4f4f6",
+                      "color": "#f3eded",
                       "fontFamily": "Lato",
                       "fontSize": 22,
                       "marginRight": 8,
@@ -83,7 +84,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#f4f4f6",
+                      "color": "#f3eded",
                       "fontFamily": "Lato",
                       "fontSize": 15,
                       "marginRight": 8,
@@ -101,7 +102,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               Array [
                 Object {
                   "bottom": 24,
-                  "color": "#f4f4f6",
+                  "color": "#f3eded",
                   "fontSize": 24,
                   "left": 16,
                   "position": "absolute",
@@ -119,7 +120,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             style={
               Object {
                 "bottom": 10,
-                "color": "#9a9a9a",
+                "color": "#7e7e7e",
                 "fontFamily": "Lato",
                 "fontSize": 15,
                 "left": 16,
@@ -179,8 +180,8 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             style={
               Array [
                 Object {
-                  "backgroundColor": "#2a2a2a",
-                  "borderRadius": 16,
+                  "backgroundColor": "#181818",
+                  "borderRadius": 10,
                   "flexGrow": 1,
                   "marginLeft": 8,
                   "marginRight": 8,
@@ -207,7 +208,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#f4f4f6",
+                      "color": "#f3eded",
                       "fontSize": 32,
                     },
                     undefined,
@@ -226,7 +227,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#f4f4f6",
+                  "color": "#f3eded",
                   "fontFamily": "Lato",
                   "fontSize": 15,
                   "marginBottom": 4,
@@ -238,7 +239,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#f4f4f6",
+                  "color": "#f3eded",
                   "fontFamily": "Lato",
                   "fontSize": 15,
                   "maxWidth": "90%",
@@ -249,7 +250,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#f4f4f6",
+                      "color": "#f3eded",
                       "fontFamily": "Lato",
                       "fontSize": 15,
                     },
@@ -265,8 +266,8 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             style={
               Array [
                 Object {
-                  "backgroundColor": "#2a2a2a",
-                  "borderRadius": 16,
+                  "backgroundColor": "#181818",
+                  "borderRadius": 10,
                   "flexGrow": 1,
                   "marginLeft": 8,
                   "marginRight": 8,
@@ -293,7 +294,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#f4f4f6",
+                      "color": "#f3eded",
                       "fontSize": 32,
                     },
                     undefined,
@@ -312,7 +313,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#f4f4f6",
+                  "color": "#f3eded",
                   "fontFamily": "Lato",
                   "fontSize": 15,
                   "marginBottom": 4,
@@ -324,7 +325,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#f4f4f6",
+                  "color": "#f3eded",
                   "fontFamily": "Lato",
                   "fontSize": 15,
                   "maxWidth": "90%",
@@ -335,7 +336,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#f4f4f6",
+                      "color": "#f3eded",
                       "fontFamily": "Lato",
                       "fontSize": 15,
                     },
@@ -361,8 +362,8 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             style={
               Array [
                 Object {
-                  "backgroundColor": "#2a2a2a",
-                  "borderRadius": 16,
+                  "backgroundColor": "#181818",
+                  "borderRadius": 10,
                   "flexGrow": 1,
                   "marginLeft": 8,
                   "marginRight": 8,
@@ -389,7 +390,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#f4f4f6",
+                      "color": "#f3eded",
                       "fontSize": 32,
                     },
                     undefined,
@@ -408,7 +409,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#f4f4f6",
+                  "color": "#f3eded",
                   "fontFamily": "Lato",
                   "fontSize": 15,
                   "marginBottom": 4,
@@ -420,7 +421,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#f4f4f6",
+                  "color": "#f3eded",
                   "fontFamily": "Lato",
                   "fontSize": 15,
                   "maxWidth": "90%",
@@ -435,7 +436,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#f4f4f6",
+                      "color": "#f3eded",
                       "fontFamily": "Lato",
                       "fontSize": 15,
                     },
@@ -451,8 +452,8 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#2a2a2a",
-              "borderRadius": 16,
+              "backgroundColor": "#181818",
+              "borderRadius": 10,
               "flexGrow": 1,
               "marginLeft": 8,
               "marginRight": 8,
@@ -464,7 +465,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
           <Text
             style={
               Object {
-                "color": "#f4f4f6",
+                "color": "#f3eded",
                 "fontFamily": "Lato",
                 "fontSize": 15,
                 "marginBottom": 4,
@@ -495,7 +496,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             style={
               Object {
                 "backgroundColor": "#f8bb03",
-                "borderRadius": 16,
+                "borderRadius": 10,
                 "height": 10,
                 "marginTop": 8,
                 "width": "100%",
@@ -507,7 +508,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Array [
                   Object {
                     "backgroundColor": "#4b4b4e",
-                    "borderColor": "#f4f4f6",
+                    "borderColor": "#f3eded",
                     "borderRadius": 15,
                     "borderWidth": 5,
                     "elevation": 4,
@@ -539,7 +540,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#9a9a9a",
+                  "color": "#7e7e7e",
                   "fontFamily": "Lato",
                   "fontSize": 13,
                 }
@@ -551,7 +552,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#9a9a9a",
+                    "color": "#7e7e7e",
                     "fontFamily": "Lato",
                     "fontSize": 13,
                   },
@@ -566,7 +567,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#9a9a9a",
+                  "color": "#7e7e7e",
                   "fontFamily": "Lato",
                   "fontSize": 13,
                 }
@@ -580,8 +581,8 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#2a2a2a",
-                "borderRadius": 16,
+                "backgroundColor": "#181818",
+                "borderRadius": 10,
                 "flexGrow": 1,
                 "marginLeft": 8,
                 "marginRight": 8,
@@ -608,7 +609,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#f4f4f6",
+                    "color": "#f3eded",
                     "fontSize": 32,
                   },
                   undefined,
@@ -627,7 +628,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
           <Text
             style={
               Object {
-                "color": "#f4f4f6",
+                "color": "#f3eded",
                 "fontFamily": "Lato",
                 "fontSize": 15,
                 "marginBottom": 4,
@@ -639,7 +640,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
           <Text
             style={
               Object {
-                "color": "#f4f4f6",
+                "color": "#f3eded",
                 "fontFamily": "Lato",
                 "fontSize": 15,
                 "maxWidth": "90%",

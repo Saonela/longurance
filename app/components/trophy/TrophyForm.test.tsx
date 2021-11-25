@@ -25,14 +25,14 @@ describe('TrophyForm', () => {
     test('should submit default form', async () => {
         const submitSpy = jest.fn();
 
-        const { getByText, getByPlaceholderText, getByTestId } = render(<FormWithRef trophy={null} onSubmit={submitSpy}/>)
+        const {getByText, getAllByText, getByPlaceholderText, getByTestId} = render(<FormWithRef trophy={null} onSubmit={submitSpy}/>)
 
         await waitFor(() => {
             fireEvent.press(getByText('Save'));
         });
 
         getByText('Title must be set!');
-        getByText('Duration or distance must be set!');
+        getAllByText('Duration or distance must be set!');
         submitSpy.mockClear();
 
         await act(async () => {

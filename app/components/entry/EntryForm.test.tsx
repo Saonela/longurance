@@ -25,13 +25,13 @@ describe('EntryForm', () => {
     test('should submit default form', async () => {
         const submitSpy = jest.fn();
 
-        const { getByText, getByPlaceholderText, getByA11yLabel, getByTestId } = render(<FormWithRef entry={null} onSubmit={submitSpy}/>)
+        const {getByText, getAllByText, getByPlaceholderText, getByA11yLabel, getByTestId} = render(<FormWithRef entry={null} onSubmit={submitSpy}/>)
 
         await waitFor(() => {
             fireEvent.press(getByText('Save'));
         });
 
-        getByText('Duration or distance must be set!');
+        getAllByText('Duration or distance must be set!');
         submitSpy.mockClear();
 
         await act(async () => {
