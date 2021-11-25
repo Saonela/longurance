@@ -9,6 +9,7 @@ import ErrorMessage from '../shared/ErrorMessage';
 import ActivityFormField from '../form/ActivityFormField';
 import TextFormField from '../form/TextFormField';
 import {Trophy} from '../../types/Trophy';
+import Panel from '../shared/Panel';
 
 const defaultTrophy: Partial<Trophy> = {
     title: '',
@@ -47,54 +48,46 @@ const options = {
 function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
     return (
         <View style={styles.form}>
-            <TextFormField style={styles.field}
-                           value={values.title}
-                           label={'Title'}
-                           placeholder={'Title'}
-                           onChange={(value) => {
-                               setErrors({});
-                               setFieldValue('title', value);
-                           }}/>
-
-            {errors.title
-                ? <ErrorMessage style={styles.errorField} message={errors.title}/>
-                : null}
-
-            <ActivityFormField style={styles.field}
-                               value={values.activity}
-                               onChange={handleChange('activity')}/>
-
-            <DistanceFormField style={styles.field}
-                               value={values.distance}
+            <Panel>
+                <TextFormField label={'Title'}
+                               placeholder={'Title'}
+                               value={values.title}
                                onChange={(value) => {
                                    setErrors({});
-                                   setFieldValue('distance', value)
+                                   setFieldValue('title', value);
                                }}/>
-
-            <DurationFormField style={styles.field}
-                               value={values.duration}
-                               onChange={(value) => {
-                                   setErrors({});
-                                   setFieldValue('duration', value)
-                               }}/>
-
-            {errors.durationOrDistance
-                ? <ErrorMessage style={styles.errorField} message={errors.durationOrDistance}/>
-                : null}
+                {errors.title && <ErrorMessage style={styles.error} message={errors.title}/>}
+            </Panel>
+            <Panel>
+                <ActivityFormField value={values.activity} onChange={handleChange('activity')}/>
+            </Panel>
+            <Panel>
+                <DistanceFormField value={values.distance}
+                                   onChange={(value) => {
+                                       setErrors({});
+                                       setFieldValue('distance', value)
+                                   }}/>
+                {errors.durationOrDistance && <ErrorMessage style={styles.error} message={errors.durationOrDistance}/>}
+            </Panel>
+            <Panel>
+                <DurationFormField value={values.duration}
+                                   onChange={(value) => {
+                                       setErrors({});
+                                       setFieldValue('duration', value)
+                                   }}/>
+                {errors.durationOrDistance && <ErrorMessage style={styles.error} message={errors.durationOrDistance}/>}
+            </Panel>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     form: {
-        padding: theme.SPACING.M,
+        paddingHorizontal: theme.SPACING.M,
+        paddingBottom: theme.SPACING.M
     },
-    field: {
-        paddingBottom: theme.SPACING.L
-    },
-    errorField: {
-        paddingBottom: theme.SPACING.M,
-        marginTop: -theme.SPACING.M
+    error: {
+        paddingTop: theme.SPACING.S
     }
 });
 
