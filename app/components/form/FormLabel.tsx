@@ -1,18 +1,16 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import appStyles from '../../styles';
-import theme from '../../theme';
 
-function FormLabel({label}) {
+function FormLabel({children}) {
     return (
-        <Text style={styles.label}>{label}</Text>
+        <Text style={styles.text}>{children}</Text>
     );
 }
 
 const styles = StyleSheet.create({
-    label: {
+    text: {
         ...appStyles.secondaryText,
-        paddingTop: theme.SPACING.S
     }
 });
 

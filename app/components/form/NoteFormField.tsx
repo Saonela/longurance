@@ -6,14 +6,14 @@ import FormLabel from './FormLabel';
 
 interface NoteFormFieldProps {
     value: string,
-    style: any,
+    style?: any,
     onChange: any
 }
 
 function NoteFormField({value, style = null, onChange}: NoteFormFieldProps) {
     return (
         <View style={style}>
-            <FormLabel label="Note"/>
+            <FormLabel>Note</FormLabel>
             <TextInput value={value}
                        accessibilityLabel="Note field"
                        placeholder={''}

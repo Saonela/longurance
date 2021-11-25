@@ -11,7 +11,7 @@ import {
 
 interface DurationFormFieldProps {
     value: number,
-    style: any,
+    style?: any,
     onChange: any
 }
 
@@ -23,7 +23,7 @@ function DurationFormField({value, style = null, onChange}: DurationFormFieldPro
         <View style={style}>
             <View style={{display: 'flex', flexDirection: 'row', flexGrow: 1}}>
                 <View style={{flexGrow: 1, paddingRight: theme.SPACING.L}}>
-                    <FormLabel label="Hours"/>
+                    <FormLabel>Hours</FormLabel>
                     <NumberInput value={hours}
                                  placeholder="HH"
                                  onChange={(value) => {
@@ -33,7 +33,7 @@ function DurationFormField({value, style = null, onChange}: DurationFormFieldPro
                                  }}/>
                 </View>
                 <View style={{flexGrow: 1, paddingRight: theme.SPACING.L}}>
-                    <FormLabel label="Minutes"/>
+                    <FormLabel>Minutes</FormLabel>
                     <NumberInput value={minutes}
                                  placeholder='MM'
                                  onChange={(value) => {
@@ -43,7 +43,7 @@ function DurationFormField({value, style = null, onChange}: DurationFormFieldPro
                                  }}/>
                 </View>
                 <View style={{flexGrow: 1}}>
-                    <FormLabel label="Seconds"/>
+                    <FormLabel>Seconds</FormLabel>
                     <NumberInput value={seconds}
                                  placeholder='SS'
                                  onChange={(value) => {

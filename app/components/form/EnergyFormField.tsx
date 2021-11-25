@@ -7,26 +7,24 @@ import {EnergyIcons, EnergyOptions} from '../../types/Energy';
 
 interface EnergyFormFieldProps {
     value: any,
-    style: any,
+    style?: any,
     onChange: any
 }
 
 function EnergyFormField({value, style = null, onChange}: EnergyFormFieldProps) {
     return (
         <View style={style}>
-            <FormLabel label="Energy"/>
+            <FormLabel>Energy</FormLabel>
             <View style={styles.list}>
                 {EnergyOptions.map(option =>
                     <View key={option} style={{}}>
                         <TouchableNativeFeedback onPress={() => onChange(option)}>
                             <View style={styles.option}>
-                                <View>
-                                    <EntryEnergyIndicator key={option}
-                                                          value={option}
-                                                          activeValue={value}
-                                                          inactiveColor={theme.COLORS.FONT_SECONDARY}
-                                                          size={theme.ICON_SIZE.M}/>
-                                </View>
+                                <EntryEnergyIndicator key={option}
+                                                      value={option}
+                                                      activeValue={value}
+                                                      inactiveColor={theme.COLORS.FONT_SECONDARY}
+                                                      size={theme.ICON_SIZE.M}/>
                                 {value === option ? <View style={{...styles.indicator, backgroundColor: EnergyIcons[option].color}}/> : null}
                             </View>
                         </TouchableNativeFeedback>

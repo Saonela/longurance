@@ -5,14 +5,14 @@ import FormLabel from './FormLabel';
 
 interface DateFormFieldProps {
     value: any,
-    style: any,
+    style?: any,
     onChange: any
 }
 
 function DateFormField({value, style = null, onChange}: DateFormFieldProps) {
     return (
         <View style={style}>
-            <FormLabel label="Date"/>
+            <FormLabel>Date</FormLabel>
             <DatePicker value={value} onChange={onChange}/>
         </View>
     );

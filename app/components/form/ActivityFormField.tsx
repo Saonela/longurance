@@ -7,7 +7,7 @@ import FormLabel from './FormLabel';
 const ActivityFormField = (props) => {
     return (
         <View style={props.style}>
-            <FormLabel label="Activity"/>
+            <FormLabel>Activity</FormLabel>
             <Dropdown {...props} options={ActivityOptions}/>
         </View>
     );

@@ -13,10 +13,10 @@ interface NoteFormFieldProps {
     onChange: any
 }
 
-function TextFormField({value, label, accessibilityLabel = '', placeholder = '' ,style = null, onChange}: NoteFormFieldProps) {
+function TextFormField({value, label, accessibilityLabel = '', placeholder = '', style = null, onChange}: NoteFormFieldProps) {
     return (
         <View style={style}>
-            <FormLabel label={label}/>
+            <FormLabel>{label}</FormLabel>
             <TextInput value={value}
                        accessibilityLabel={accessibilityLabel}
                        placeholder={placeholder}
