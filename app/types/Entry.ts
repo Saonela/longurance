@@ -4,10 +4,10 @@ export interface Entry {
     id: string;
     createdAt: string;
     activity: Activity;
-    distance: number;
-    duration: number;
+    distance: number | null;
+    duration: number | null;
     date: string;
-    energy: number;
+    effort: number;
     note: string;
     title: string;
 }

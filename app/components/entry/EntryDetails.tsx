@@ -19,11 +19,11 @@ interface EntryDetailsProps {
 }
 
 const energyEffortPosition = {
-    [-2]: '93%',
-    [-1]: '70%',
-    [0]: '47%',
-    [1]: '25%',
-    [2]: '0%'
+    [1]: '0%',
+    [2]: '25%',
+    [3]: '47%',
+    [4]: '70%',
+    [5]: '93%'
 };
 
 function DetailsBlock({label, value, icon, style = {}}) {
@@ -46,10 +46,10 @@ function EffortBlock({energy}) {
                 colors={[theme.COLORS.ENERGY_POSITIVE, theme.COLORS.ENERGY_NEUTRAL, theme.COLORS.ENERGY_NEGATIVE]}>
                 <View style={[styles.effortBarIndicator, {left: energyEffortPosition[energy]}]}/>
             </LinearGradient>
-            <View style={styles.effortBarLabels}>
-                <Text style={styles.effortBarLabel}>Light</Text>
-                <Text style={[styles.effortBarLabel, {marginLeft: 24}]}>Moderate</Text>
-                <Text style={styles.effortBarLabel}>Vigorous</Text>
+            <View style={styles.effortLabels}>
+                <Text style={styles.effortLabel}>Light</Text>
+                <Text style={[styles.effortLabel, {marginLeft: 22}]}>Moderate</Text>
+                <Text style={styles.effortLabel}>Vigorous</Text>
             </View>
         </View>
     );
@@ -108,7 +108,7 @@ function EntryDetails({entry, trophies}: EntryDetailsProps) {
                               icon={<MaterialIcons name="speed" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
                               style={{flexBasis: 1}}/>
             </View>
-            <EffortBlock energy={entry.energy}/>
+            <EffortBlock energy={entry.effort}/>
             <DetailsBlock label="Note"
                           value={entry.note}
                           icon={<MaterialCommunityIcons name="note-outline" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.COLORS.BACKGROUND_TERTIARY,
         elevation: 4
     },
-    effortBarLabels: {
+    effortLabels: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
         paddingLeft: theme.SPACING.XS,
         marginTop: theme.SPACING.M
     },
-    effortBarLabel: {
+    effortLabel: {
         ...appStyles.secondaryText,
         color: theme.COLORS.FONT_SECONDARY
     },

@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
 import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import theme from './app/theme';
 import EntryListScreen from './app/screens/EntryListScreen';
 import EntryFormScreen from './app/screens/EntryFormScreen';

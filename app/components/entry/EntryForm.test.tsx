@@ -67,15 +67,16 @@ describe('EntryForm', () => {
         });
 
         expect(submitSpy).toHaveBeenCalledWith({
-                activity: Activity.SWIMMING,
-                distance: 2.5,
-                duration: 8165,
-                date: '2020-09-01T00:00:00.000Z',
-                energy: 0,
-                title: 'My title!',
-                note: 'My interesting note.'
-            }
-        );
+            id: '',
+            createdAt: '',
+            activity: Activity.SWIMMING,
+            distance: 2.5,
+            duration: 8165,
+            date: '2020-09-01T00:00:00.000Z',
+            effort: 3,
+            title: 'My title!',
+            note: 'My interesting note.'
+        });
     });
 
     test('should submit edit entry form', async () => {
@@ -87,7 +88,7 @@ describe('EntryForm', () => {
             distance: 15,
             duration: 9200,
             date: '2021-01-07T09:10:02.207Z',
-            energy: 2,
+            effort: 2,
             note: 'Was really enjoying. Got into flow state.',
         };
 

@@ -1,12 +1,37 @@
 import React from 'react';
-import {View, TouchableNativeFeedback, StyleSheet} from 'react-native';
-import EntryEnergyIndicator from '../entry-energy-indicator/EntryEnergyIndicator';
+import {View, TouchableNativeFeedback, StyleSheet, Text} from 'react-native';
+import EntryEffortIcon from '../entry/EntryEffortIcon';
 import theme from '../../theme';
 import FormLabel from './FormLabel';
-import {EnergyIcons, EnergyOptions} from '../../types/Energy';
+import {EffortScale} from '../../types/Effort';
+import appStyles from '../../styles';
+import * as Animatable from 'react-native-animatable';
+
+const zoomIn = {
+    from: {
+        translateY: 0,
+        scale: 1,
+    },
+    to: {
+        translateY: -3,
+        scale: 1.1
+    },
+};
+
+const zoomOut = {
+    from: {
+        translateY: -3,
+        scale: 1.1
+    },
+    to: {
+        translateY: 0,
+        scale: 1
+    },
+};
+
 
 interface EnergyFormFieldProps {
-    value: any,
+    value: number,
     style?: any,
     onChange: any
 }
@@ -14,22 +39,25 @@ interface EnergyFormFieldProps {
 function EnergyFormField({value, style = null, onChange}: EnergyFormFieldProps) {
     return (
         <View style={style}>
-            <FormLabel>Energy</FormLabel>
+            <FormLabel>Effort</FormLabel>
             <View style={styles.list}>
-                {EnergyOptions.map(option =>
-                    <View key={option} style={{}}>
+                {EffortScale.map(option =>
+                    <View key={option} style={styles.option}>
                         <TouchableNativeFeedback onPress={() => onChange(option)}>
-                            <View style={styles.option}>
-                                <EntryEnergyIndicator key={option}
-                                                      value={option}
-                                                      activeValue={value}
-                                                      inactiveColor={theme.COLORS.FONT_SECONDARY}
-                                                      size={theme.ICON_SIZE.M}/>
-                                {value === option ? <View style={{...styles.indicator, backgroundColor: EnergyIcons[option].color}}/> : null}
-                            </View>
+                                <Animatable.View animation={value === option ? zoomIn : zoomOut} duration={150}>
+                                    <EntryEffortIcon key={option}
+                                                     value={option}
+                                                     disabled={value !== option}
+                                                     size={theme.ICON_SIZE.M}/>
+                                </Animatable.View>
                         </TouchableNativeFeedback>
                     </View>
                 )}
+            </View>
+            <View style={styles.effortLabels}>
+                <Text style={styles.effortLabel}>Light</Text>
+                <Text style={{...styles.effortLabel, marginLeft: 22}}>Moderate</Text>
+                <Text style={styles.effortLabel}>Vigorous</Text>
             </View>
         </View>
     );
@@ -37,25 +65,26 @@ function EnergyFormField({value, style = null, onChange}: EnergyFormFieldProps) 
 
 const styles = StyleSheet.create({
     list: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: theme.SPACING.M,
-        marginRight: theme.SPACING.S,
-        marginLeft: theme.SPACING.S
+        marginTop: theme.SPACING.S,
     },
     option: {
-        display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 50,
-        height: 50,
+        width: 54,
+        height: 54,
+        borderRadius: 100
     },
-    indicator: {
-        width: 28,
-        height: 2,
+    effortLabels: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: theme.SPACING.S,
         marginTop: theme.SPACING.XS
-    }
+    },
+    effortLabel: {
+        ...appStyles.secondaryText
+    },
 });
 
 export default EnergyFormField;

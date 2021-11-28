@@ -13,7 +13,7 @@ describe('EntriesReducer', () => {
                 duration: 92,
                 createdAt: '2021-01-01T00:00:00.00Z',
                 date: '2021-01-07T09:10:02.207Z',
-                energy: 2,
+                effort: 2,
                 note: 'Was really enjoying. Got into flow state.',
             }
         ]
@@ -23,24 +23,26 @@ describe('EntriesReducer', () => {
         expect(entriesReducer(state, saveEntry.fulfilled(
             {
                 id: '2',
+                title: '',
                 activity: Activity.CYCLING,
                 distance: 99,
                 duration: 180,
                 createdAt: '2021-01-01T00:00:00.00Z',
                 date: '2021-01-01T00:10:02.207Z',
-                energy: 0,
+                effort: 0,
                 note: '',
             }, '', {} as Entry
         ))).toEqual({
             data: [
                 {
                     id: '2',
+                    title: '',
                     activity: Activity.CYCLING,
                     distance: 99,
                     duration: 180,
                     createdAt: '2021-01-01T00:00:00.00Z',
                     date: '2021-01-01T00:10:02.207Z',
-                    energy: 0,
+                    effort: 0,
                     note: '',
                 },
                 {
@@ -50,7 +52,7 @@ describe('EntriesReducer', () => {
                     duration: 92,
                     createdAt: '2021-01-01T00:00:00.00Z',
                     date: '2021-01-07T09:10:02.207Z',
-                    energy: 2,
+                    effort: 2,
                     note: 'Was really enjoying. Got into flow state.',
                 }
             ]});
@@ -60,24 +62,26 @@ describe('EntriesReducer', () => {
         expect(entriesReducer(state, saveEntry.fulfilled(
             {
                 id: '1',
+                title: '',
                 activity: Activity.RUNNING,
                 distance: 20,
                 duration: 100,
                 createdAt: '2021-01-01T00:00:00.00Z',
                 date: '2021-01-07T09:10:02.207Z',
-                energy: 2,
+                effort: 2,
                 note: 'Was really enjoying. Got into flow state. So updated.',
             }, '', {} as Entry
         ))).toEqual({
             data: [
                 {
                     id: '1',
+                    title: '',
                     activity: Activity.RUNNING,
                     distance: 20,
                     duration: 100,
                     createdAt: '2021-01-01T00:00:00.00Z',
                     date: '2021-01-07T09:10:02.207Z',
-                    energy: 2,
+                    effort: 2,
                     note: 'Was really enjoying. Got into flow state. So updated.',
                 }
             ]});

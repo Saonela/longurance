@@ -13,13 +13,16 @@ import NoteFormField from '../form/NoteFormField';
 import TextFormField from '../form/TextFormField';
 import FormHint from '../form/FormHint';
 import Panel from '../shared/Panel';
+import {Entry} from '../../types/Entry';
 
-const defaultEntry: any = {
+const defaultEntry: Entry = {
+    id: '',
+    createdAt: '',
     activity: Activity.RUNNING,
     distance: null,
     duration: null,
     date: new Date().toISOString(),
-    energy: 0,
+    effort: 3,
     title: '',
     note: ''
 }
@@ -80,7 +83,7 @@ function EntryForm({values, errors, touched, handleChange, setFieldValue, setErr
                 {durationOrDistanceError && <ErrorMessage style={styles.error} message={errors.durationOrDistance}/>}
             </Panel>
             <Panel>
-                <EnergyFormField value={values.energy} onChange={value => setFieldValue('energy', value)}/>
+                <EnergyFormField value={values.effort} onChange={value => setFieldValue('effort', value)}/>
             </Panel>
             <Panel>
                 <NoteFormField value={values.note} onChange={value => setFieldValue('note', value)}/>

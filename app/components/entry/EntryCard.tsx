@@ -4,7 +4,7 @@ import {Entry} from '../../types/Entry';
 import appStyles from '../../styles';
 import theme from '../../theme';
 import moment from 'moment';
-import EntryEnergyIndicator from '../entry-energy-indicator/EntryEnergyIndicator';
+import EntryEffortIcon from './EntryEffortIcon';
 import DistanceText from '../shared/DistanceText';
 import DurationText from '../shared/DurationText';
 import ActivityIcon from '../activity-icon/ActivityIcon';
@@ -31,7 +31,7 @@ function EntryCard({entry, onPress}: EntryProps) {
                 </View>
                 <View style={{display: 'flex', flexDirection: 'row', overflow: 'visible', zIndex: 1}}>
                     <View style={styles.detailsContainer}>
-                        <EntryEnergyIndicator style={[styles.details, {marginTop: -2}]} value={entry.energy}/>
+                        <EntryEffortIcon value={entry.effort} size={18} style={{...styles.details, marginTop: -2}}/>
                         <DistanceText style={styles.details} distance={entry.distance}/>
                         <DurationText style={styles.details} duration={entry.duration}/>
                     </View>

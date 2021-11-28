@@ -519,7 +519,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     "width": 24,
                   },
                   Object {
-                    "left": "0%",
+                    "left": "25%",
                   },
                 ]
               }
@@ -557,7 +557,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     "fontSize": 13,
                   },
                   Object {
-                    "marginLeft": 24,
+                    "marginLeft": 22,
                   },
                 ]
               }

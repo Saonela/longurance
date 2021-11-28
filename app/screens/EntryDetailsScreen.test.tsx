@@ -21,7 +21,7 @@ const entries: Partial<Entry>[] = [
         distance: 15,
         duration: 4000,
         date: '2021-01-07T09:10:02.207Z',
-        energy: 2,
+        effort: 2,
         title: 'YES',
         note: 'Was really enjoying. Got into flow state.',
     }

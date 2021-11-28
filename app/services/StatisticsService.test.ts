@@ -12,7 +12,7 @@ describe('StatisticsService', () => {
             distance: 16,
             duration: 92,
             date: '2021-01-07T09:10:02.207Z',
-            energy: 2,
+            effort: 2,
             title: 'MY RUN',
             note: 'Was really enjoying. Got into flow state.',
         },
@@ -21,7 +21,7 @@ describe('StatisticsService', () => {
             activity: Activity.CYCLING,
             duration: 180,
             date: '2020-12-15T00:10:02.207Z',
-            energy: 0,
+            effort: 0,
             note: '',
         },
         {
@@ -30,7 +30,7 @@ describe('StatisticsService', () => {
             distance: 10,
             duration: 10,
             date: '2020-12-02T00:10:02.207Z',
-            energy: -2,
+            effort: -2,
             note: '',
         },
         {
@@ -38,7 +38,7 @@ describe('StatisticsService', () => {
             activity: Activity.SWIMMING,
             distance: 99,
             date: '2020-09-01T00:10:02.207Z',
-            energy: -2,
+            effort: -2,
             note: '',
         }
     ] as Entry[];

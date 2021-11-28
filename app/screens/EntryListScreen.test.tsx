@@ -20,7 +20,7 @@ const entries: Partial<Entry>[] = [
         distance: 15,
         duration: 92,
         date: '2021-01-07T09:10:02.207Z',
-        energy: 2,
+        effort: 5,
         title: 'MY RUN',
         note: 'Was really enjoying. Got into flow state.',
     },
@@ -30,7 +30,7 @@ const entries: Partial<Entry>[] = [
         distance: 99,
         duration: 180,
         date: '2021-01-01T00:10:02.207Z',
-        energy: 0,
+        effort: 3,
         note: '',
     },
     {
@@ -39,7 +39,7 @@ const entries: Partial<Entry>[] = [
         distance: 5,
         duration: 57,
         date: '2020-12-08T09:10:02.207Z',
-        energy: -1,
+        effort: 4,
         title: 'Learn to Swim',
         note: 'Almost drowned!',
     }

@@ -4,7 +4,7 @@ import {Text} from 'react-native';
 import {getDurationTimeText} from '../../lib/utility';
 
 interface DurationTextProps {
-    duration: number;
+    duration: number | null;
     placeholder?: string | null;
     style?: any;
 }
