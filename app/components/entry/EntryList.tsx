@@ -10,43 +10,37 @@ import ListLoader from '../list-loader/ListLoader';
 import theme from '../../theme';
 
 interface EntryListProps {
-    onPress: any
+    onPress: (id: string) => void
 }
+
+const keyExtractor = item => item.id;
 
 function EntryList({onPress}: EntryListProps) {
     const entries = useSelector(getEntries)
     const entriesStatus = useSelector(getEntriesStatus);
 
-    if (!entries.length && entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED) {
+    if (entriesStatus === ASYNC_STATE_STATUS.LOADING) {
+        return <ListLoader/>;
+    }
+
+    if (entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED && !entries.length) {
         return <NoDataMessage>No activity found</NoDataMessage>;
     }
 
-    const getLoader = () => {
-        if (entriesStatus === ASYNC_STATE_STATUS.LOADING) {
-            return <ListLoader/>;
-        }
-    }
-
-    const keyExtractor = item => item.id;
-
     const renderItem = ({item, index}) => (
-        <Animatable.View animation="fadeIn"
+        <Animatable.View animation="fadeInRightBig"
                          duration={300}
                          delay={index ? (index * 300) / 5 : 0}
                          useNativeDriver>
             <EntryCard entry={item} onPress={() => onPress(item.id)}/>
-            {index === entries.length - 1 && <View style={{height: theme.SPACING.M}}/>}
         </Animatable.View>
     );
-
     return (
-        <>
-            <FlatList data={entries}
-                      keyExtractor={keyExtractor}
-                      initialNumToRender={6}
-                      renderItem={renderItem}/>
-            {getLoader()}
-        </>
+        <FlatList data={entries}
+                  keyExtractor={keyExtractor}
+                  renderItem={renderItem}
+                  initialNumToRender={6}
+                  contentContainerStyle={{paddingBottom: theme.SPACING.M}}/>
     );
 }
 
