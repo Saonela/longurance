@@ -1,12 +1,12 @@
 import React from 'react';
 import {ASYNC_STATE_STATUS} from '../../redux/asyncStateStatus';
-import NoDataMessage from '../no-data-message/NoDataMessage';
-import {FlatList, View} from 'react-native';
+import NoDataMessage from '../list/NoDataMessage';
+import {FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 import {getEntries, getEntriesStatus} from '../../redux/slices/entriesSlice';
 import * as Animatable from 'react-native-animatable';
 import EntryCard from './EntryCard';
-import ListLoader from '../list-loader/ListLoader';
+import ListLoader from '../list/ListLoader';
 import theme from '../../theme';
 
 interface EntryListProps {

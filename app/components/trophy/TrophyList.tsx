@@ -4,8 +4,8 @@ import {FlatList} from 'react-native';
 import {ASYNC_STATE_STATUS} from '../../redux/asyncStateStatus';
 import * as Animatable from 'react-native-animatable';
 import {getTrophies, getTrophiesStatus} from '../../redux/slices/trophiesSlice';
-import NoDataMessage from '../no-data-message/NoDataMessage';
-import ListLoader from '../list-loader/ListLoader';
+import NoDataMessage from '../list/NoDataMessage';
+import ListLoader from '../list/ListLoader';
 import TrophyCard from './TrophyCard';
 
 interface TrophyListProps {
