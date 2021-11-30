@@ -41,7 +41,7 @@ function EntryFormScreen({route, navigation}) {
 
     return (
         <View style={appStyles.screenContainer}>
-            <ScrollView keyboardShouldPersistTaps="handled">
+            <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{paddingBottom: theme.SPACING.M}}>
                 <EntryForm entry={entry}
                            innerRef={formRef}
                            onSubmit={entry => handleSubmit(entry)}/>

@@ -95,7 +95,6 @@ function EntryForm({values, errors, touched, handleChange, setFieldValue, setErr
 const styles = StyleSheet.create({
     form: {
         paddingHorizontal: theme.SPACING.M,
-        paddingBottom: theme.SPACING.M
     },
     error: {
         paddingTop: theme.SPACING.S
