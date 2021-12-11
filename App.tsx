@@ -9,8 +9,8 @@ import AppLoading from 'expo-app-loading';
 export default function App() {
     const [fontsLoaded] = useFonts({
         'Lato': require('./assets/fonts/Lato-Regular.ttf'),
+        'LatoBlack': require('./assets/fonts/Lato-Black.ttf'),
     });
-
     return (
         <React.Fragment>
             <StatusBar barStyle={'light-content'}/>
