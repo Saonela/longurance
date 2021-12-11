@@ -9,8 +9,12 @@ const activityIconNames = {
 }
 
 function ActivityIcon({activity, style, size = 18}) {
+    let styles = style;
+    if (activity !== Activity.SWIMMING) {
+        styles = {...style, transform: [{rotateY: '180deg'}]};
+    }
     return (
-        <FontAwesome5 name={activityIconNames[activity]} size={size} style={style} color={style.color} />
+        <FontAwesome5 name={activityIconNames[activity]} size={size} style={styles} color={style.color} />
     );
 }
 
