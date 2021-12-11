@@ -122,7 +122,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 "bottom": 10,
                 "color": "#7e7e7e",
                 "fontFamily": "Lato",
-                "fontSize": 15,
+                "fontSize": 16,
                 "left": 16,
                 "position": "absolute",
                 "zIndex": 1,
@@ -143,14 +143,19 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#4b4b4e",
+                    "color": "#232323",
                     "fontSize": 200,
                   },
                   Object {
-                    "color": "#4b4b4e",
+                    "color": "#232323",
                     "position": "absolute",
                     "right": -30,
                     "top": -90,
+                    "transform": Array [
+                      Object {
+                        "rotateY": "180deg",
+                      },
+                    ],
                   },
                   Object {
                     "fontFamily": "FontAwesome5Free-Solid",
@@ -229,7 +234,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 15,
+                  "fontSize": 16,
                   "marginBottom": 4,
                 }
               }
@@ -241,7 +246,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 15,
+                  "fontSize": 16,
                   "maxWidth": "90%",
                 }
               }
@@ -252,7 +257,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     Object {
                       "color": "#f3eded",
                       "fontFamily": "Lato",
-                      "fontSize": 15,
+                      "fontSize": 16,
                     },
                     Object {},
                   ]
@@ -315,7 +320,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 15,
+                  "fontSize": 16,
                   "marginBottom": 4,
                 }
               }
@@ -327,7 +332,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 15,
+                  "fontSize": 16,
                   "maxWidth": "90%",
                 }
               }
@@ -338,7 +343,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     Object {
                       "color": "#f3eded",
                       "fontFamily": "Lato",
-                      "fontSize": 15,
+                      "fontSize": 16,
                     },
                     Object {},
                   ]
@@ -411,7 +416,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 15,
+                  "fontSize": 16,
                   "marginBottom": 4,
                 }
               }
@@ -423,7 +428,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 15,
+                  "fontSize": 16,
                   "maxWidth": "90%",
                 }
               }
@@ -438,7 +443,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     Object {
                       "color": "#f3eded",
                       "fontFamily": "Lato",
-                      "fontSize": 15,
+                      "fontSize": 16,
                     },
                     Object {},
                   ]
@@ -467,7 +472,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               Object {
                 "color": "#f3eded",
                 "fontFamily": "Lato",
-                "fontSize": 15,
+                "fontSize": 16,
                 "marginBottom": 4,
               }
             }
@@ -478,9 +483,9 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
             proxiedProperties={
               Object {
                 "colors": Array [
-                  4283023632,
-                  4292664884,
-                  4294914867,
+                  4283276070,
+                  4290230574,
+                  4291507766,
                 ],
                 "endPoint": Array [
                   1,
@@ -507,7 +512,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#4b4b4e",
+                    "backgroundColor": "#232323",
                     "borderColor": "#f3eded",
                     "borderRadius": 15,
                     "borderWidth": 5,
@@ -630,7 +635,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               Object {
                 "color": "#f3eded",
                 "fontFamily": "Lato",
-                "fontSize": 15,
+                "fontSize": 16,
                 "marginBottom": 4,
               }
             }
@@ -642,7 +647,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               Object {
                 "color": "#f3eded",
                 "fontFamily": "Lato",
-                "fontSize": 15,
+                "fontSize": 16,
                 "maxWidth": "90%",
               }
             }

@@ -94,7 +94,7 @@ describe('EntryListScreen', () => {
             </Provider>
         );
 
-        const { getByText } = render(component);
+        const {getByText} = render(component);
 
         getByText('Jan 07');
         getByText('MY RUN');

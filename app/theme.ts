@@ -2,26 +2,26 @@
 const COLORS = {
     BACKGROUND_PRIMARY: '#181818',
     BACKGROUND_SECONDARY: '#0e0e0e',
-    BACKGROUND_TERTIARY: '#4b4b4e',
+    BACKGROUND_TERTIARY: '#232323',
     FONT_PRIMARY: '#f3eded',
     FONT_SECONDARY: '#7e7e7e',
     FONT_DANGER: '#d92525',
     THEME_FONT: '#f8bb03',
     SUCCESS: '#25800b',
-    ENERGY_POSITIVE: '#49c110',
-    ENERGY_NEUTRAL: '#dcde34',
-    ENERGY_NEGATIVE: '#ff3333'
+    ENERGY_POSITIVE: '#4d9b26',
+    ENERGY_NEUTRAL: '#b7b92e',
+    ENERGY_NEGATIVE: '#cb3636'
 };
 
 const FONT_SIZE = {
     HEADER: 24,
-    PRIMARY: 15,
+    PRIMARY: 16,
     SECONDARY: 13,
     TERTIARY: 10,
 }
 
 const ICON_SIZE = {
-    S: 16,
+    S: 20,
     SM: 24,
     M: 32
 }
