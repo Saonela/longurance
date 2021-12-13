@@ -96,9 +96,9 @@ describe('EntryListScreen', () => {
 
         const {getByText} = render(component);
 
-        getByText('Jan 07');
+        getByText('Thu, Jan 07');
         getByText('MY RUN');
-        getByText('5 KM');
+        getByText('5km');
     });
 
     it('should filter list', async () => {

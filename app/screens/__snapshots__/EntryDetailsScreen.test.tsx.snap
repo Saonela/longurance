@@ -25,11 +25,11 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               "backgroundColor": "#181818",
               "borderRadius": 10,
               "height": 120,
-              "marginLeft": 8,
-              "marginRight": 8,
+              "marginLeft": 16,
+              "marginRight": 16,
               "marginTop": 16,
               "overflow": "hidden",
-              "padding": 16,
+              "padding": 24,
             }
           }
         >
@@ -103,7 +103,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "bottom": 24,
                   "color": "#f3eded",
-                  "fontSize": 24,
+                  "fontSize": 28,
                   "left": 16,
                   "position": "absolute",
                 },
@@ -122,7 +122,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 "bottom": 10,
                 "color": "#7e7e7e",
                 "fontFamily": "Lato",
-                "fontSize": 16,
+                "fontSize": 17,
                 "left": 16,
                 "position": "absolute",
                 "zIndex": 1,
@@ -143,11 +143,11 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#232323",
+                    "color": "#262626",
                     "fontSize": 200,
                   },
                   Object {
-                    "color": "#232323",
+                    "color": "#262626",
                     "position": "absolute",
                     "right": -30,
                     "top": -90,
@@ -188,10 +188,10 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                   "backgroundColor": "#181818",
                   "borderRadius": 10,
                   "flexGrow": 1,
-                  "marginLeft": 8,
-                  "marginRight": 8,
+                  "marginLeft": 16,
+                  "marginRight": 16,
                   "marginTop": 16,
-                  "padding": 16,
+                  "padding": 24,
                 },
                 Object {
                   "flexBasis": 1,
@@ -234,7 +234,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 16,
+                  "fontSize": 17,
                   "marginBottom": 4,
                 }
               }
@@ -246,7 +246,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 16,
+                  "fontSize": 17,
                   "maxWidth": "90%",
                 }
               }
@@ -257,13 +257,13 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     Object {
                       "color": "#f3eded",
                       "fontFamily": "Lato",
-                      "fontSize": 16,
+                      "fontSize": 17,
                     },
                     Object {},
                   ]
                 }
               >
-                15 KM
+                15km
               </Text>
             </Text>
           </View>
@@ -274,10 +274,10 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                   "backgroundColor": "#181818",
                   "borderRadius": 10,
                   "flexGrow": 1,
-                  "marginLeft": 8,
-                  "marginRight": 8,
+                  "marginLeft": 16,
+                  "marginRight": 16,
                   "marginTop": 16,
-                  "padding": 16,
+                  "padding": 24,
                 },
                 Object {
                   "flexBasis": 1,
@@ -320,7 +320,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 16,
+                  "fontSize": 17,
                   "marginBottom": 4,
                 }
               }
@@ -332,7 +332,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 16,
+                  "fontSize": 17,
                   "maxWidth": "90%",
                 }
               }
@@ -343,13 +343,16 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     Object {
                       "color": "#f3eded",
                       "fontFamily": "Lato",
-                      "fontSize": 16,
+                      "fontSize": 17,
                     },
                     Object {},
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
                   ]
                 }
               >
-                01:06:40
+                1h 06min
               </Text>
             </Text>
           </View>
@@ -370,10 +373,10 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                   "backgroundColor": "#181818",
                   "borderRadius": 10,
                   "flexGrow": 1,
-                  "marginLeft": 8,
-                  "marginRight": 8,
+                  "marginLeft": 16,
+                  "marginRight": 16,
                   "marginTop": 16,
-                  "padding": 16,
+                  "padding": 24,
                 },
                 Object {
                   "flexBasis": 1,
@@ -416,7 +419,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 16,
+                  "fontSize": 17,
                   "marginBottom": 4,
                 }
               }
@@ -428,7 +431,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#f3eded",
                   "fontFamily": "Lato",
-                  "fontSize": 16,
+                  "fontSize": 17,
                   "maxWidth": "90%",
                 }
               }
@@ -443,13 +446,16 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     Object {
                       "color": "#f3eded",
                       "fontFamily": "Lato",
-                      "fontSize": 16,
+                      "fontSize": 17,
                     },
                     Object {},
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
                   ]
                 }
               >
-                00:04:27
+                0h 04min
               </Text>
             </Text>
           </View>
@@ -460,10 +466,10 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               "backgroundColor": "#181818",
               "borderRadius": 10,
               "flexGrow": 1,
-              "marginLeft": 8,
-              "marginRight": 8,
+              "marginLeft": 16,
+              "marginRight": 16,
               "marginTop": 16,
-              "padding": 16,
+              "padding": 24,
             }
           }
         >
@@ -472,7 +478,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               Object {
                 "color": "#f3eded",
                 "fontFamily": "Lato",
-                "fontSize": 16,
+                "fontSize": 17,
                 "marginBottom": 4,
               }
             }
@@ -512,7 +518,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#232323",
+                    "backgroundColor": "#262626",
                     "borderColor": "#f3eded",
                     "borderRadius": 15,
                     "borderWidth": 5,
@@ -547,7 +553,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#7e7e7e",
                   "fontFamily": "Lato",
-                  "fontSize": 13,
+                  "fontSize": 14,
                 }
               }
             >
@@ -559,7 +565,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                   Object {
                     "color": "#7e7e7e",
                     "fontFamily": "Lato",
-                    "fontSize": 13,
+                    "fontSize": 14,
                   },
                   Object {
                     "marginLeft": 22,
@@ -574,7 +580,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 Object {
                   "color": "#7e7e7e",
                   "fontFamily": "Lato",
-                  "fontSize": 13,
+                  "fontSize": 14,
                 }
               }
             >
@@ -589,10 +595,10 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                 "backgroundColor": "#181818",
                 "borderRadius": 10,
                 "flexGrow": 1,
-                "marginLeft": 8,
-                "marginRight": 8,
+                "marginLeft": 16,
+                "marginRight": 16,
                 "marginTop": 16,
-                "padding": 16,
+                "padding": 24,
               },
               Object {
                 "marginBottom": 16,
@@ -635,7 +641,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               Object {
                 "color": "#f3eded",
                 "fontFamily": "Lato",
-                "fontSize": 16,
+                "fontSize": 17,
                 "marginBottom": 4,
               }
             }
@@ -647,7 +653,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
               Object {
                 "color": "#f3eded",
                 "fontFamily": "Lato",
-                "fontSize": 16,
+                "fontSize": 17,
                 "maxWidth": "90%",
               }
             }

@@ -34,16 +34,13 @@ export function splitSecondsIntoChunks(value: number) {
 }
 
 export function getDurationTimeText(duration: number): string {
-    if (!duration) {
-        return '00:00:00';
-    }
     const {hours, minutes, seconds} = splitSecondsIntoChunks(duration);
 
-    const hh = hours < 10 ? `0${hours}` : `${hours}`;
+    const hh = hours < 10 ? `${hours}` : `${hours}`;
     const mm = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const ss = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    const ss = seconds < 10 ? `${seconds}` : `${seconds}`;
 
-    return `${hh}:${mm}:${ss}`;
+    return `${hh}h ${mm}min`;
 }
 
 export function hexToRGB(hex: string, alpha: number) {

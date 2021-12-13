@@ -8,7 +8,7 @@ function DistanceText({distance, placeholder = null as any, style = {}, ...props
         return null;
     }
 
-    const text = distance ? `${distance} KM` : placeholder;
+    const text = distance ? `${distance}km` : placeholder;
     return (
         <Text style={[appStyles.primaryText, style]} {...props}>{text}</Text>
     );
