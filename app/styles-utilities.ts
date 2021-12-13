@@ -2,6 +2,11 @@ import {StyleSheet} from 'react-native';
 import theme from './theme';
 
 const utils = StyleSheet.create({
+    flex1: {flex: 1},
+    flex2: {flex: 2},
+    flex3: {flex: 3},
+    flex4: {flex: 4},
+    flex5: {flex: 5},
     row: {flexDirection: 'row'},
     col: {flexDirection: 'column'},
     wrap: {flexWrap: 'wrap'},
