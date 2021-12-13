@@ -2,7 +2,7 @@
 const COLORS = {
     BACKGROUND_PRIMARY: '#181818',
     BACKGROUND_SECONDARY: '#0e0e0e',
-    BACKGROUND_TERTIARY: '#232323',
+    BACKGROUND_TERTIARY: '#262626',
     FONT_PRIMARY: '#f3eded',
     FONT_SECONDARY: '#7e7e7e',
     FONT_DANGER: '#d92525',
@@ -14,10 +14,10 @@ const COLORS = {
 };
 
 const FONT_SIZE = {
-    HEADER: 24,
-    PRIMARY: 16,
-    SECONDARY: 13,
-    TERTIARY: 10,
+    HEADER: 28,
+    PRIMARY: 17,
+    SECONDARY: 14,
+    TERTIARY: 11,
 }
 
 const ICON_SIZE = {
