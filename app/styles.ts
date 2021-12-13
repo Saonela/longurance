@@ -8,10 +8,10 @@ const appStyles = StyleSheet.create({
         backgroundColor: theme.COLORS.BACKGROUND_SECONDARY
     },
     panel: {
-        padding: theme.SPACING.M,
+        padding: theme.SPACING.L,
         marginTop: theme.SPACING.M,
-        marginRight: theme.SPACING.S,
-        marginLeft: theme.SPACING.S,
+        marginRight: theme.SPACING.M,
+        marginLeft: theme.SPACING.M,
         borderRadius: theme.BORDER.RADIUS,
         backgroundColor: theme.COLORS.BACKGROUND_PRIMARY
     },
