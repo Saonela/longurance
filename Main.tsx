@@ -84,8 +84,8 @@ function Main() {
         <NavigationContainer theme={DarkTheme}>
             <Tab.Navigator tabBar={props => <TabBar {...props}/>}>
                 <Tab.Screen name="Entries" component={EntryScreenStack}/>
-                <Tab.Screen name="Trophies" component={TrophyScreenStack} />
-                <Tab.Screen name="Statistics" component={StatisticsScreenStack} />
+                {/*<Tab.Screen name="Trophies" component={TrophyScreenStack} />*/}
+                {/*<Tab.Screen name="Statistics" component={StatisticsScreenStack} />*/}
             </Tab.Navigator>
         </NavigationContainer>
     );
