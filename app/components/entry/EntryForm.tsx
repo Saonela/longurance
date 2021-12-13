@@ -52,7 +52,7 @@ const options = {
 function EntryForm({values, errors, touched, handleChange, setFieldValue, setErrors}) {
     const durationOrDistanceError = errors.durationOrDistance && (touched.duration || touched.distance);
     return (
-        <View style={styles.form}>
+        <View>
             <Panel>
                 <TextFormField label={'Title'}
                                placeholder={'Title'}
@@ -93,9 +93,6 @@ function EntryForm({values, errors, touched, handleChange, setFieldValue, setErr
 }
 
 const styles = StyleSheet.create({
-    form: {
-        paddingHorizontal: theme.SPACING.M,
-    },
     error: {
         paddingTop: theme.SPACING.S
     },
