@@ -13,23 +13,47 @@ import NoteFormField from '../form/NoteFormField';
 import TextFormField from '../form/TextFormField';
 import FormHint from '../form/FormHint';
 import Panel from '../shared/Panel';
-import {Entry} from '../../types/Entry';
 
-const defaultEntry: Entry = {
-    id: '',
-    createdAt: '',
-    activity: Activity.RUNNING,
-    distance: null,
-    duration: null,
-    date: new Date().toISOString(),
-    effort: 3,
-    title: '',
-    note: ''
+function getTitlePlaceholder(activity: Activity, date: Date) {
+    const hours = date.getHours();
+
+    let activityName = 'Workout';
+    if (activity === Activity.RUNNING) activityName = 'Run';
+    if (activity === Activity.SWIMMING) activityName = 'Swim';
+    if (activity === Activity.CYCLING) activityName = 'Cycle';
+
+    let timeOfTheDay = ''
+    if (hours >= 6 && hours < 12) {
+        timeOfTheDay = 'Morning'
+    } else if (hours >= 12 && hours < 17) {
+        timeOfTheDay = 'Afternoon'
+    } else if (hours >= 17 && hours < 21) {
+        timeOfTheDay = 'Evening'
+    } else if (hours >= 21) {
+        timeOfTheDay = 'Night'
+    }
+    return timeOfTheDay + ' ' + activityName;
+}
+
+const getDefaultEntry = () => {
+    const date = new Date();
+    const defaultActivity = Activity.RUNNING;
+    return {
+        id: '',
+        createdAt: '',
+        activity: defaultActivity,
+        distance: 0,
+        duration: 0,
+        date: date.toISOString(),
+        effort: 3,
+        title: getTitlePlaceholder(defaultActivity, date),
+        note: ''
+    }
 }
 
 const options = {
     mapPropsToValues: ({entry, ...props}) => {
-        return entry ? entry : defaultEntry;
+        return entry ? entry : getDefaultEntry();
     },
     validate: (values) => {
         const errors: any = {};
@@ -61,7 +85,15 @@ function EntryForm({values, errors, touched, handleChange, setFieldValue, setErr
                 <FormHint>Write a short title to display in the list screen.</FormHint>
             </Panel>
             <Panel>
-                <ActivityFormField value={values.activity} onChange={handleChange('activity')}/>
+                <ActivityFormField value={values.activity} onChange={(value) => {
+                    const date = new Date();
+                    const oldPlaceholder = getTitlePlaceholder(values.activity, date);
+                    const newPlaceholder = getTitlePlaceholder(value, date);
+                    if (values.title === oldPlaceholder) {
+                        handleChange('title')(newPlaceholder);
+                    }
+                    handleChange('activity')(value);
+                }}/>
             </Panel>
             <Panel>
                 <DateFormField value={values.date} onChange={value => setFieldValue('date', value.toISOString())}/>

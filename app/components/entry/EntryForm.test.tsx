@@ -22,6 +22,59 @@ function FormWithRef({entry, onSubmit}) {
 
 describe('EntryForm', () => {
 
+    describe('title placeholder', () => {
+        let _date;
+
+        beforeAll(() => {
+            _date = Date;
+            setFakeDate(new Date().toISOString());
+            Date.now = _date.now;
+        });
+
+        afterAll(() => {
+            Date = _date;
+        })
+
+        const setFakeDate = (isoDate: string) => {
+            jest.spyOn(global, 'Date').mockImplementation(() => new _date(isoDate) as any);
+        };
+
+        const createComponent = (isoDate: string) => {
+            setFakeDate(isoDate);
+            return render(<FormWithRef entry={null} onSubmit={jest.fn()}/>);
+        };
+
+        it('should set morning title', () => {
+            const {getByPlaceholderText} = createComponent('2022-01-01T09:00:00.000');
+            expect(getByPlaceholderText('Title').props.value).toEqual('Morning Run');
+        });
+
+        it('should set afternoon title', () => {
+            const {getByPlaceholderText} = createComponent('2022-01-01T14:00:00.000');
+            expect(getByPlaceholderText('Title').props.value).toEqual('Afternoon Run');
+        });
+
+        it('should set evening title', () => {
+            const {getByPlaceholderText} = createComponent('2022-01-01T18:00:00.000');
+            expect(getByPlaceholderText('Title').props.value).toEqual('Evening Run');
+        });
+
+        it('should set night title', () => {
+            const {getByPlaceholderText} = createComponent('2022-01-01T22:00:00.000');
+            expect(getByPlaceholderText('Title').props.value).toEqual('Night Run');
+        });
+
+        it('should change activity in title if not edited yet', () => {
+            const {getByTestId, getByPlaceholderText} = createComponent('2022-01-11T15:00:00.000');
+            fireEvent(getByTestId('dropdown'), 'valueChange', Activity.SWIMMING);
+            expect(getByPlaceholderText('Title').props.value).toEqual('Afternoon Swim');
+
+            fireEvent.changeText(getByPlaceholderText('Title'), 'My title!');
+            fireEvent(getByTestId('dropdown'), 'valueChange', Activity.CYCLING);
+            expect(getByPlaceholderText('Title').props.value).toEqual('My title!');
+        });
+    });
+
     test('should submit default form', async () => {
         const submitSpy = jest.fn();
 

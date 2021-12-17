@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watch --coverage=false --changedSince=master"
+    "test": "TZ=UTC jest --watch --coverage=false --changedSince=master"
   },
   "dependencies": {
     "@expo-google-fonts/source-sans-pro": "^0.1.0",

@@ -92,7 +92,7 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                     }
                   }
                 >
-                  16:10
+                  09:10
                 </Text>
               </View>
             </View>
@@ -346,9 +346,6 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                       "fontSize": 17,
                     },
                     Object {},
-                    Object {
-                      "backgroundColor": "transparent",
-                    },
                   ]
                 }
               >
@@ -449,9 +446,6 @@ exports[`EntryDetailsScreen should match snapshot 1`] = `
                       "fontSize": 17,
                     },
                     Object {},
-                    Object {
-                      "backgroundColor": "transparent",
-                    },
                   ]
                 }
               >
