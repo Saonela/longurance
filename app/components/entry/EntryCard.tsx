@@ -14,10 +14,11 @@ import {
 import {EffortIcons} from '../../types/Effort';
 import utils from '../../styles-utilities';
 import {Activity} from '../../types/Activity';
+import {PrimaryText, SecondaryText} from '../ui/Text';
 
 interface EntryProps {
     entry: Entry;
-    onPress: any;
+    onPress: () => void;
 }
 
 const activityIconNames = {
@@ -37,10 +38,10 @@ function EntryCard({entry, onPress}: EntryProps) {
                 />
                 <View style={utils.row}>
                     <View style={utils.flex1}>
-                        <Text style={styles.date}>
+                        <PrimaryText style={styles.date}>
                             {moment(entry.date).format('ddd, MMM DD')}
-                        </Text>
-                        <Text style={styles.title}>{entry.title}</Text>
+                        </PrimaryText>
+                        <SecondaryText>{entry.title}</SecondaryText>
                     </View>
                     <Text style={styles.activity}>
                         {getActivityTypeText(entry.activity)}
@@ -49,22 +50,22 @@ function EntryCard({entry, onPress}: EntryProps) {
                 <View style={styles.separator} />
                 <View style={utils.row}>
                     <View style={styles.detailsContainer}>
-                        <Text style={styles.detailsText}>
+                        <PrimaryText style={styles.detailsText}>
                             {getDistanceText(entry.distance)}
-                        </Text>
-                        <Text style={styles.detailsLabel}>Distance</Text>
+                        </PrimaryText>
+                        <SecondaryText>Distance</SecondaryText>
                     </View>
                     <View style={styles.detailsContainer}>
-                        <Text style={styles.detailsText}>
+                        <PrimaryText style={styles.detailsText}>
                             {getDurationText(entry.duration)}
-                        </Text>
-                        <Text style={styles.detailsLabel}>Duration</Text>
+                        </PrimaryText>
+                        <SecondaryText>Duration</SecondaryText>
                     </View>
                     <View style={styles.detailsContainer}>
-                        <Text style={styles.detailsText}>
+                        <PrimaryText style={styles.detailsText}>
                             {getPaceText(entry.duration, entry.distance)}
-                        </Text>
-                        <Text style={styles.detailsLabel}>Pace</Text>
+                        </PrimaryText>
+                        <SecondaryText>Pace</SecondaryText>
                     </View>
                 </View>
                 <View
@@ -84,17 +85,13 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     date: {
-        ...appStyles.primaryText,
         fontSize: theme.FONT_SIZE.SECONDARY,
         marginBottom: theme.SPACING.S
     },
-    title: appStyles.secondaryText,
     detailsContainer: {
         marginRight: theme.SPACING.XL
     },
-    detailsLabel: appStyles.secondaryText,
     detailsText: {
-        ...appStyles.primaryText,
         fontFamily: 'LatoBlack',
         paddingBottom: theme.SPACING.XS
     },
