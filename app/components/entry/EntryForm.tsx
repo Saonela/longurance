@@ -12,7 +12,7 @@ import EnergyFormField from '../form/EnergyFormField';
 import NoteFormField from '../form/NoteFormField';
 import TextFormField from '../form/TextFormField';
 import FormHint from '../form/FormHint';
-import Panel from '../shared/Panel';
+import Panel from '../ui/Panel';
 
 function getTitlePlaceholder(activity: Activity, date: Date) {
     const hours = date.getHours();

@@ -9,7 +9,7 @@ import ErrorMessage from '../shared/ErrorMessage';
 import ActivityFormField from '../form/ActivityFormField';
 import TextFormField from '../form/TextFormField';
 import {Trophy} from '../../types/Trophy';
-import Panel from '../shared/Panel';
+import Panel from '../ui/Panel';
 
 const defaultTrophy: Partial<Trophy> = {
     title: '',

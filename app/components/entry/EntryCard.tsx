@@ -1,9 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
+import {FontAwesome5} from '@expo/vector-icons';
+import moment from 'moment';
 import {Entry} from '../../types/Entry';
 import appStyles from '../../styles';
 import theme from '../../theme';
-import moment from 'moment';
 import {
     getActivityTypeText,
     getDistanceText,
@@ -12,7 +13,6 @@ import {
 } from '../../lib/entry';
 import {EffortIcons} from '../../types/Effort';
 import utils from '../../styles-utilities';
-import {FontAwesome5} from '@expo/vector-icons';
 import {Activity} from '../../types/Activity';
 
 interface EntryProps {
