@@ -12,6 +12,10 @@ const COLORS = {
     ENERGY_NEGATIVE: '#cb3636'
 };
 
+const FONT_FAMILY = {
+    PRIMARY: 'Lato'
+};
+
 const FONT_SIZE = {
     HEADER: 28,
     PRIMARY: 17,
@@ -44,6 +48,7 @@ const TAB_NAVIGATOR_HEIGHT = 64;
 
 const theme = {
     COLORS,
+    FONT_FAMILY,
     FONT_SIZE,
     ICON_SIZE,
     SPACING,
