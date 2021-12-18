@@ -4,9 +4,7 @@ import theme from '../../theme';
 import appStyles from '../../styles';
 
 function FormHint({children}) {
-    return (
-        <Text style={styles.text}>{children}</Text>
-    );
+    return <Text style={styles.text}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({

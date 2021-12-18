@@ -18,27 +18,39 @@ function AverageStatistics({entries, style}: AverageStatisticsProps) {
         <StatisticsPanel style={style}>
             <StatisticsPanel.Row>
                 <StatisticsPanel.Column>
-                    <StatisticsPanel.Label>Average distance</StatisticsPanel.Label>
+                    <StatisticsPanel.Label>
+                        Average distance
+                    </StatisticsPanel.Label>
                     <StatisticsPanel.Row>
                         <StatisticsPanel.Icon>
-                            <MaterialCommunityIcons name="map-marker-distance" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>
+                            <MaterialCommunityIcons
+                                name="map-marker-distance"
+                                size={theme.ICON_SIZE.M}
+                                color={theme.COLORS.FONT_PRIMARY}
+                            />
                         </StatisticsPanel.Icon>
-                        <StatisticsPanel.DistanceText value={distance}/>
+                        <StatisticsPanel.DistanceText value={distance} />
                     </StatisticsPanel.Row>
                 </StatisticsPanel.Column>
 
                 <StatisticsPanel.Column lastColumn>
-                    <StatisticsPanel.Label>Average duration</StatisticsPanel.Label>
+                    <StatisticsPanel.Label>
+                        Average duration
+                    </StatisticsPanel.Label>
                     <StatisticsPanel.Row>
                         <StatisticsPanel.Icon>
-                            <MaterialIcons name="timer" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>
+                            <MaterialIcons
+                                name="timer"
+                                size={theme.ICON_SIZE.M}
+                                color={theme.COLORS.FONT_PRIMARY}
+                            />
                         </StatisticsPanel.Icon>
-                        <StatisticsPanel.DurationText value={duration}/>
+                        <StatisticsPanel.DurationText value={duration} />
                     </StatisticsPanel.Row>
                 </StatisticsPanel.Column>
             </StatisticsPanel.Row>
         </StatisticsPanel>
-    )
+    );
 }
 
 export default AverageStatistics;

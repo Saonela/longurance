@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice} from '@reduxjs/toolkit';
 import {Activity} from '../../types/Activity';
 
 const entriesFilterSlice = createSlice({
@@ -7,13 +7,13 @@ const entriesFilterSlice = createSlice({
     reducers: {
         setEntriesFilter(state, action) {
             return action.payload;
-        },
-    },
+        }
+    }
 });
 
-export const getEntriesFilter = state => state.entriesFilter;
+export const getEntriesFilter = (state) => state.entriesFilter;
 
-export const { setEntriesFilter } = entriesFilterSlice.actions
+export const {setEntriesFilter} = entriesFilterSlice.actions;
 
 const entriesFilterReducer = entriesFilterSlice.reducer;
 export default entriesFilterReducer;

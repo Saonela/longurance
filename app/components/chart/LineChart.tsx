@@ -20,42 +20,43 @@ const chartConfig = {
     backgroundGradientTo: theme.COLORS.BACKGROUND_SECONDARY,
     backgroundGradientToOpacity: 0,
     color: (opacity = 1) => {
-        return hexToRGB(theme.COLORS.FONT_PRIMARY, opacity)
+        return hexToRGB(theme.COLORS.FONT_PRIMARY, opacity);
     },
     strokeWidth: 2,
     barPercentage: 0.5,
     useShadowColorFromDataset: false,
     propsForDots: {
-        r: 6,
+        r: 6
     }
 };
 
 function LineChart({
-                       labels,
-                       values,
-                       highlightedIndexes = [],
-                       width = Dimensions.get("window").width,
-                       height = 220,
-                       formatYLabel = (label) => label,
-                       style = {}
-                   }: LineChartProps) {
+    labels,
+    values,
+    highlightedIndexes = [],
+    width = Dimensions.get('window').width,
+    height = 220,
+    formatYLabel = (label) => label,
+    style = {}
+}: LineChartProps) {
     const chartData = {
         labels,
         datasets: [
             {
                 data: values,
-                color: (opacity = 1) => hexToRGB(theme.COLORS.FONT_SECONDARY, opacity),
+                color: (opacity = 1) =>
+                    hexToRGB(theme.COLORS.FONT_SECONDARY, opacity),
                 strokeWidth: 2
-            },
+            }
         ]
-    }
+    };
 
     const getDotColor = (point: number, index: number) => {
         if (highlightedIndexes?.includes(index)) {
             return theme.COLORS.THEME_FONT;
         }
         return theme.COLORS.FONT_SECONDARY;
-    }
+    };
 
     return (
         <LineChartKit

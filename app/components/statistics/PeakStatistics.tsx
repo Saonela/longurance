@@ -17,22 +17,34 @@ function PeakStatistics({entries}: PeakStatisticsProps) {
         <StatisticsPanel>
             <StatisticsPanel.Row>
                 <StatisticsPanel.Column>
-                    <StatisticsPanel.Label>Farthest distance</StatisticsPanel.Label>
+                    <StatisticsPanel.Label>
+                        Farthest distance
+                    </StatisticsPanel.Label>
                     <StatisticsPanel.Row>
                         <StatisticsPanel.Icon>
-                            <MaterialCommunityIcons name="map-marker-distance" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>
+                            <MaterialCommunityIcons
+                                name="map-marker-distance"
+                                size={theme.ICON_SIZE.M}
+                                color={theme.COLORS.FONT_PRIMARY}
+                            />
                         </StatisticsPanel.Icon>
-                        <StatisticsPanel.DistanceText value={distance}/>
+                        <StatisticsPanel.DistanceText value={distance} />
                     </StatisticsPanel.Row>
                 </StatisticsPanel.Column>
 
                 <StatisticsPanel.Column lastColumn>
-                    <StatisticsPanel.Label>Longest duration</StatisticsPanel.Label>
+                    <StatisticsPanel.Label>
+                        Longest duration
+                    </StatisticsPanel.Label>
                     <StatisticsPanel.Row>
                         <StatisticsPanel.Icon>
-                            <MaterialIcons name="timer" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>
+                            <MaterialIcons
+                                name="timer"
+                                size={theme.ICON_SIZE.M}
+                                color={theme.COLORS.FONT_PRIMARY}
+                            />
                         </StatisticsPanel.Icon>
-                        <StatisticsPanel.DurationText value={duration}/>
+                        <StatisticsPanel.DurationText value={duration} />
                     </StatisticsPanel.Row>
                 </StatisticsPanel.Column>
             </StatisticsPanel.Row>

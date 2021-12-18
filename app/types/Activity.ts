@@ -4,7 +4,7 @@ export enum Activity {
     RUNNING = 'RUNNING'
 }
 
-export const ActivityOptions: {label: string, value: Activity}[] = [
+export const ActivityOptions: {label: string; value: Activity}[] = [
     {label: 'Running', value: Activity.RUNNING},
     {label: 'Swimming', value: Activity.SWIMMING},
     {label: 'Cycling', value: Activity.CYCLING}

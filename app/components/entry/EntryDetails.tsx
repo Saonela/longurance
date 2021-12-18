@@ -14,8 +14,8 @@ import {Trophy} from '../../types/Trophy';
 import TrophyDetailsPanel from '../trophy/TrophyDetailsPanel';
 
 interface EntryDetailsProps {
-    entry: Entry
-    trophies: Trophy[]
+    entry: Entry;
+    trophies: Trophy[];
 }
 
 const energyEffortPosition = {
@@ -42,13 +42,26 @@ function EffortBlock({energy}) {
             <Text style={styles.detailsLabel}>Effort</Text>
             <LinearGradient
                 style={styles.effortBar}
-                start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-                colors={[theme.COLORS.ENERGY_POSITIVE, theme.COLORS.ENERGY_NEUTRAL, theme.COLORS.ENERGY_NEGATIVE]}>
-                <View style={[styles.effortBarIndicator, {left: energyEffortPosition[energy]}]}/>
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={[
+                    theme.COLORS.ENERGY_POSITIVE,
+                    theme.COLORS.ENERGY_NEUTRAL,
+                    theme.COLORS.ENERGY_NEGATIVE
+                ]}
+            >
+                <View
+                    style={[
+                        styles.effortBarIndicator,
+                        {left: energyEffortPosition[energy]}
+                    ]}
+                />
             </LinearGradient>
             <View style={styles.effortLabels}>
                 <Text style={styles.effortLabel}>Light</Text>
-                <Text style={[styles.effortLabel, {marginLeft: 22}]}>Moderate</Text>
+                <Text style={[styles.effortLabel, {marginLeft: 22}]}>
+                    Moderate
+                </Text>
                 <Text style={styles.effortLabel}>Vigorous</Text>
             </View>
         </View>
@@ -60,59 +73,142 @@ function PaceText({duration, distance}) {
         return (
             <>
                 <Text>KM / </Text>
-                <View/>
-                <DurationText duration={duration && distance ? Math.round(duration / distance) : 0}/>
+                <View />
+                <DurationText
+                    duration={
+                        duration && distance
+                            ? Math.round(duration / distance)
+                            : 0
+                    }
+                />
             </>
-        )
+        );
     }
-    return (
-        <Text>N/A</Text>
-    )
+    return <Text>N/A</Text>;
 }
 
 function EntryDetails({entry, trophies}: EntryDetailsProps) {
     return (
         <ScrollView>
             {trophies.map((trophy) => (
-                <TrophyDetailsPanel key={trophy.id} trophy={trophy}/>
+                <TrophyDetailsPanel key={trophy.id} trophy={trophy} />
             ))}
             <View style={{...appStyles.panel, height: 120, overflow: 'hidden'}}>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between'
+                    }}
+                >
                     <View style={{display: 'flex', flexDirection: 'column'}}>
-                        <Text style={{...styles.headerText, fontSize: 13}}>{moment(entry.date).format("YYYY")}</Text>
+                        <Text style={{...styles.headerText, fontSize: 13}}>
+                            {moment(entry.date).format('YYYY')}
+                        </Text>
                         <View style={{display: 'flex', flexDirection: 'row'}}>
-                            <Text style={{...styles.headerText, fontSize: 22}}>{moment(entry.date).format("MMM DD")}</Text>
-                            <Text style={{...styles.headerText, marginTop: 6, fontSize: 15}}>{moment(entry.date).format("HH:mm")}</Text>
+                            <Text style={{...styles.headerText, fontSize: 22}}>
+                                {moment(entry.date).format('MMM DD')}
+                            </Text>
+                            <Text
+                                style={{
+                                    ...styles.headerText,
+                                    marginTop: 6,
+                                    fontSize: 15
+                                }}
+                            >
+                                {moment(entry.date).format('HH:mm')}
+                            </Text>
                         </View>
                     </View>
                 </View>
-                <Text style={[styles.activityText, {bottom: entry.title ? 30 : 24}]}>{getActivityTypeText(entry.activity)}</Text>
-                {!!entry.title && <Text style={styles.activitySubText} numberOfLines={1}>{entry.title}</Text>}
-                <View style={{alignItems: "center"}}>
-                    <ActivityIcon activity={entry.activity} size={200} style={styles.activityIcon}/>
+                <Text
+                    style={[
+                        styles.activityText,
+                        {bottom: entry.title ? 30 : 24}
+                    ]}
+                >
+                    {getActivityTypeText(entry.activity)}
+                </Text>
+                {!!entry.title && (
+                    <Text style={styles.activitySubText} numberOfLines={1}>
+                        {entry.title}
+                    </Text>
+                )}
+                <View style={{alignItems: 'center'}}>
+                    <ActivityIcon
+                        activity={entry.activity}
+                        size={200}
+                        style={styles.activityIcon}
+                    />
                 </View>
             </View>
             <View style={styles.detailsRow}>
-                <DetailsBlock label="Distance"
-                              value={<DistanceText distance={entry.distance} placeholder="-"/>}
-                              icon={<MaterialCommunityIcons name="map-marker-distance" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
-                              style={{flexBasis: 1}}/>
-                <DetailsBlock label="Duration"
-                              value={<DurationText duration={entry.duration} placeholder="-"/>}
-                              icon={<MaterialIcons name="timer" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
-                              style={{flexBasis: 1}}/>
+                <DetailsBlock
+                    label="Distance"
+                    value={
+                        <DistanceText
+                            distance={entry.distance}
+                            placeholder="-"
+                        />
+                    }
+                    icon={
+                        <MaterialCommunityIcons
+                            name="map-marker-distance"
+                            size={theme.ICON_SIZE.M}
+                            color={theme.COLORS.FONT_PRIMARY}
+                        />
+                    }
+                    style={{flexBasis: 1}}
+                />
+                <DetailsBlock
+                    label="Duration"
+                    value={
+                        <DurationText
+                            duration={entry.duration}
+                            placeholder="-"
+                        />
+                    }
+                    icon={
+                        <MaterialIcons
+                            name="timer"
+                            size={theme.ICON_SIZE.M}
+                            color={theme.COLORS.FONT_PRIMARY}
+                        />
+                    }
+                    style={{flexBasis: 1}}
+                />
             </View>
             <View style={styles.detailsRow}>
-                <DetailsBlock label="Pace"
-                              value={<PaceText duration={entry.duration} distance={entry.distance}/>}
-                              icon={<MaterialIcons name="speed" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
-                              style={{flexBasis: 1}}/>
+                <DetailsBlock
+                    label="Pace"
+                    value={
+                        <PaceText
+                            duration={entry.duration}
+                            distance={entry.distance}
+                        />
+                    }
+                    icon={
+                        <MaterialIcons
+                            name="speed"
+                            size={theme.ICON_SIZE.M}
+                            color={theme.COLORS.FONT_PRIMARY}
+                        />
+                    }
+                    style={{flexBasis: 1}}
+                />
             </View>
-            <EffortBlock energy={entry.effort}/>
-            <DetailsBlock label="Note"
-                          value={entry.note}
-                          icon={<MaterialCommunityIcons name="note-outline" size={theme.ICON_SIZE.M} color={theme.COLORS.FONT_PRIMARY}/>}
-                          style={{marginBottom: theme.SPACING.M}}/>
+            <EffortBlock energy={entry.effort} />
+            <DetailsBlock
+                label="Note"
+                value={entry.note}
+                icon={
+                    <MaterialCommunityIcons
+                        name="note-outline"
+                        size={theme.ICON_SIZE.M}
+                        color={theme.COLORS.FONT_PRIMARY}
+                    />
+                }
+                style={{marginBottom: theme.SPACING.M}}
+            />
         </ScrollView>
     );
 }
@@ -122,7 +218,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -90,
         right: -30,
-        color: theme.COLORS.BACKGROUND_TERTIARY,
+        color: theme.COLORS.BACKGROUND_TERTIARY
     },
     activityText: {
         position: 'absolute',
@@ -147,7 +243,7 @@ const styles = StyleSheet.create({
     detailsRow: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     },
     detailsBlock: {
         ...appStyles.panel,
@@ -156,11 +252,11 @@ const styles = StyleSheet.create({
     detailsIcon: {
         position: 'absolute',
         top: '50%',
-        right: theme.SPACING.M,
+        right: theme.SPACING.M
     },
     detailsLabel: {
         ...appStyles.primaryText,
-        marginBottom: theme.SPACING.XS,
+        marginBottom: theme.SPACING.XS
     },
     detailsValue: {
         ...appStyles.primaryText,
@@ -196,7 +292,7 @@ const styles = StyleSheet.create({
     effortLabel: {
         ...appStyles.secondaryText,
         color: theme.COLORS.FONT_SECONDARY
-    },
+    }
 });
 
 export default EntryDetails;

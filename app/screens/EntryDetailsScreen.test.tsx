@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {ASYNC_STATE_STATUS} from '../redux/asyncStateStatus';
 import React from 'react';
-import {Provider} from "react-redux";
+import {Provider} from 'react-redux';
 import {render} from '@testing-library/react-native';
 import entriesReducer from '../redux/slices/entriesSlice';
 import entriesFilterReducer from '../redux/slices/entriesFilterSlice';
@@ -13,7 +13,6 @@ import trophiesReducer from '../redux/slices/trophiesSlice';
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
-
 const entries: Partial<Entry>[] = [
     {
         id: '1',
@@ -23,17 +22,16 @@ const entries: Partial<Entry>[] = [
         date: '2021-01-07T09:10:02.207Z',
         effort: 2,
         title: 'YES',
-        note: 'Was really enjoying. Got into flow state.',
+        note: 'Was really enjoying. Got into flow state.'
     }
 ];
 
 describe('EntryDetailsScreen', () => {
-
     let store;
 
     const navigation = {
         setOptions: () => {}
-    }
+    };
 
     beforeEach(() => {
         const initialState: any = {
@@ -55,13 +53,15 @@ describe('EntryDetailsScreen', () => {
             },
             preloadedState: initialState
         });
-
     });
 
     it('should show entry details', () => {
         const component = (
             <Provider store={store}>
-                <EntryDetailsScreen navigation={navigation} route={{params: {id: '1'}}}/>
+                <EntryDetailsScreen
+                    navigation={navigation}
+                    route={{params: {id: '1'}}}
+                />
             </Provider>
         );
 
@@ -73,14 +73,14 @@ describe('EntryDetailsScreen', () => {
     it('should match snapshot', () => {
         const component = (
             <Provider store={store}>
-                <EntryDetailsScreen navigation={navigation} route={{params: {id: '1'}}}/>
+                <EntryDetailsScreen
+                    navigation={navigation}
+                    route={{params: {id: '1'}}}
+                />
             </Provider>
         );
 
-        const tree = renderer
-            .create(component)
-            .toJSON();
+        const tree = renderer.create(component).toJSON();
         expect(tree).toMatchSnapshot();
     });
-
 });

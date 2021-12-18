@@ -10,22 +10,29 @@ function FormWithRef({trophy, onSubmit}) {
     const formRef = useRef<FormikValues>(null);
     return (
         <View>
-            <Button title={'Save'} onPress={() => {
-                if (formRef.current) {
-                    formRef.current.handleSubmit();
-                }
-            }}/>
-            <TrophyForm trophy={trophy} innerRef={formRef} onSubmit={onSubmit}/>
+            <Button
+                title={'Save'}
+                onPress={() => {
+                    if (formRef.current) {
+                        formRef.current.handleSubmit();
+                    }
+                }}
+            />
+            <TrophyForm
+                trophy={trophy}
+                innerRef={formRef}
+                onSubmit={onSubmit}
+            />
         </View>
     );
 }
 
 describe('TrophyForm', () => {
-
     test('should submit default form', async () => {
         const submitSpy = jest.fn();
 
-        const {getByText, getAllByText, getByPlaceholderText, getByTestId} = render(<FormWithRef trophy={null} onSubmit={submitSpy}/>)
+        const {getByText, getAllByText, getByPlaceholderText, getByTestId} =
+            render(<FormWithRef trophy={null} onSubmit={submitSpy} />);
 
         await waitFor(() => {
             fireEvent.press(getByText('Save'));
@@ -39,7 +46,11 @@ describe('TrophyForm', () => {
             fireEvent.changeText(getByPlaceholderText('Title'), 'Ironman swim');
         });
         await act(async () => {
-            fireEvent(getByTestId('dropdown'), 'valueChange', Activity.SWIMMING);
+            fireEvent(
+                getByTestId('dropdown'),
+                'valueChange',
+                Activity.SWIMMING
+            );
         });
         await act(async () => {
             fireEvent.changeText(getByPlaceholderText('HH'), '2');
@@ -55,13 +66,12 @@ describe('TrophyForm', () => {
         });
 
         expect(submitSpy).toHaveBeenCalledWith({
-                title: 'Ironman swim',
-                activity: Activity.SWIMMING,
-                distance: 2.5,
-                duration: 8160,
-                markedAsRead: false
-            }
-        );
+            title: 'Ironman swim',
+            activity: Activity.SWIMMING,
+            distance: 2.5,
+            duration: 8160,
+            markedAsRead: false
+        });
     });
 
     test('should submit edit form', async () => {
@@ -76,7 +86,9 @@ describe('TrophyForm', () => {
             markedAsRead: false
         };
 
-        const { getByText } = render(<FormWithRef trophy={trophy} onSubmit={submitSpy}/>)
+        const {getByText} = render(
+            <FormWithRef trophy={trophy} onSubmit={submitSpy} />
+        );
 
         await act(async () => {
             fireEvent.press(getByText('Save'));

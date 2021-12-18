@@ -6,13 +6,20 @@ import {Entry} from '../types/Entry';
 import HeaderButton from '../components/header/HeaderButton';
 import appStyles from '../styles';
 import EntryDetails from '../components/entry/EntryDetails';
-import {getTrophiesByEntry, saveEntryTrophies} from '../redux/slices/trophiesSlice';
+import {
+    getTrophiesByEntry,
+    saveEntryTrophies
+} from '../redux/slices/trophiesSlice';
 import {useAppDispatch} from '../redux/store';
 import {Trophy} from '../types/Trophy';
 
 function EntryDetailsScreen({route, navigation}) {
-    const entry: Entry = useSelector((state) => getEntry(state, route.params.id));
-    const trophies: Trophy[] = useSelector((state) => getTrophiesByEntry(state, entry));
+    const entry: Entry = useSelector((state) =>
+        getEntry(state, route.params.id)
+    );
+    const trophies: Trophy[] = useSelector((state) =>
+        getTrophiesByEntry(state, entry)
+    );
 
     const dispatch = useAppDispatch();
 
@@ -20,17 +27,17 @@ function EntryDetailsScreen({route, navigation}) {
         navigation.setOptions({
             title: 'Entry Details',
             headerTitleStyle: {
-                maxWidth: 200,
+                maxWidth: 200
             },
             headerRight: () => (
                 <View style={{display: 'flex', flexDirection: 'row'}}>
-                    <HeaderButton iconName="edit"
-                                  onPress={navigateToEntryForm}/>
-                    <HeaderButton iconName="x"
-                                  onPress={confirmDelete}/>
+                    <HeaderButton
+                        iconName="edit"
+                        onPress={navigateToEntryForm}
+                    />
+                    <HeaderButton iconName="x" onPress={confirmDelete} />
                 </View>
-
-            ),
+            )
         });
     }, [navigation]);
 
@@ -45,8 +52,7 @@ function EntryDetailsScreen({route, navigation}) {
             [
                 {
                     text: 'Cancel',
-                    onPress: () => {
-                    },
+                    onPress: () => {},
                     style: 'cancel'
                 },
                 {
@@ -61,12 +67,12 @@ function EntryDetailsScreen({route, navigation}) {
             ],
             {cancelable: false}
         );
-    }
+    };
 
     return (
         <View style={styles.wrapper}>
             <View style={appStyles.screenContainer}>
-                {entry && <EntryDetails entry={entry} trophies={trophies}/>}
+                {entry && <EntryDetails entry={entry} trophies={trophies} />}
             </View>
         </View>
     );
@@ -74,7 +80,7 @@ function EntryDetailsScreen({route, navigation}) {
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
+        flex: 1
     }
 });
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import {ScrollView, View} from "react-native";
-import appStyles from "../styles";
+import {ScrollView, View} from 'react-native';
+import appStyles from '../styles';
 import TotalStatistics from '../components/statistics/TotalStatistics';
 import {useSelector} from 'react-redux';
 import {getEntries} from '../redux/slices/entriesSlice';
@@ -12,18 +12,24 @@ import StatisticsChart from '../components/statistics/StatisticsChart';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 
 function StatisticsScreen({navigation}) {
-    const entries = useSelector(getEntries)
-    const trophies = useSelector(getFilteredCompletedTrophies)
+    const entries = useSelector(getEntries);
+    const trophies = useSelector(getFilteredCompletedTrophies);
 
     return (
         <>
-            <HeaderActivityFilter/>
+            <HeaderActivityFilter />
             <View style={appStyles.screenContainer}>
                 <ScrollView>
-                    <TotalStatistics entries={entries} trophiesCount={trophies.length}/>
-                    <PeakStatistics entries={entries}/>
-                    <AverageStatistics entries={entries} style={{marginBottom: theme.SPACING.M}}/>
-                    <StatisticsChart entries={entries}/>
+                    <TotalStatistics
+                        entries={entries}
+                        trophiesCount={trophies.length}
+                    />
+                    <PeakStatistics entries={entries} />
+                    <AverageStatistics
+                        entries={entries}
+                        style={{marginBottom: theme.SPACING.M}}
+                    />
+                    <StatisticsChart entries={entries} />
                 </ScrollView>
             </View>
         </>

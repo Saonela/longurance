@@ -2,18 +2,18 @@ import React from 'react';
 import {Picker as Select} from '@react-native-picker/picker';
 import {StyleSheet, View} from 'react-native';
 import theme from '../../theme';
-import { FontAwesome } from '@expo/vector-icons';
+import {FontAwesome} from '@expo/vector-icons';
 import appStyles from '../../styles';
 
 interface DropdownOption {
-    label: string,
-    value: any
+    label: string;
+    value: any;
 }
 
 interface DropdownProps {
-    value: string | number,
-    options: DropdownOption[],
-    onChange: any
+    value: string | number;
+    options: DropdownOption[];
+    onChange: any;
 }
 
 function Dropdown({value, options, onChange}: DropdownProps) {
@@ -24,26 +24,32 @@ function Dropdown({value, options, onChange}: DropdownProps) {
                 selectedValue={value}
                 style={styles.dropdown}
                 onValueChange={onChange}
-                testID={'dropdown'}>
-                {options.map((option: DropdownOption) =>
-                    <Select.Item key={option.value} label={option.label} value={option.value} />
-                )}
+                testID={'dropdown'}
+            >
+                {options.map((option: DropdownOption) => (
+                    <Select.Item
+                        key={option.value}
+                        label={option.label}
+                        value={option.value}
+                    />
+                ))}
             </Select>
-            <FontAwesome style={styles.caret} name="caret-down" size={24} color={theme.COLORS.FONT_PRIMARY} />
+            <FontAwesome
+                style={styles.caret}
+                name="caret-down"
+                size={24}
+                color={theme.COLORS.FONT_PRIMARY}
+            />
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     dropdown: {
         ...appStyles.primaryText,
         backgroundColor: 'transparent',
         // Only way to change font size for picker...
-        transform: [
-            { scaleX: 0.90 },
-            { scaleY: 0.90 },
-        ],
+        transform: [{scaleX: 0.9}, {scaleY: 0.9}],
         marginLeft: -24
     },
     caret: {

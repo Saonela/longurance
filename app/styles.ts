@@ -1,5 +1,5 @@
-import {StyleSheet} from "react-native";
-import theme from "./theme";
+import {StyleSheet} from 'react-native';
+import theme from './theme';
 
 const appStyles = StyleSheet.create({
     screenContainer: {

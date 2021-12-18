@@ -9,7 +9,12 @@ interface DurationTextProps {
     style?: any;
 }
 
-function DurationText({duration, placeholder = null, style = {}, ...props}: DurationTextProps) {
+function DurationText({
+    duration,
+    placeholder = null,
+    style = {},
+    ...props
+}: DurationTextProps) {
     if (!duration && !placeholder) {
         return null;
     }
@@ -21,7 +26,9 @@ function DurationText({duration, placeholder = null, style = {}, ...props}: Dura
     }
 
     return (
-        <Text style={[appStyles.primaryText, style]} {...props}>{text}</Text>
+        <Text style={[appStyles.primaryText, style]} {...props}>
+            {text}
+        </Text>
     );
 }
 

@@ -5,19 +5,21 @@ import {ViewStyle} from 'react-native';
 import theme from '../../theme';
 
 interface EntryEffortIconProps {
-    value: number,
-    size: number,
-    disabled?: boolean,
-    style?: ViewStyle
+    value: number;
+    size: number;
+    disabled?: boolean;
+    style?: ViewStyle;
 }
 
 function EntryEffortIcon({value, size, disabled, style}: EntryEffortIconProps) {
     const {name, color} = EffortIcons[value];
     return (
-        <FontAwesome5 name={name}
-                      size={size}
-                      color={disabled ? theme.COLORS.FONT_SECONDARY : color}
-                      style={style}/>
+        <FontAwesome5
+            name={name}
+            size={size}
+            color={disabled ? theme.COLORS.FONT_SECONDARY : color}
+            style={style}
+        />
     );
 }
 

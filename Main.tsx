@@ -1,5 +1,8 @@
 import React, {useEffect} from 'react';
-import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/stack';
+import {
+    CardStyleInterpolators,
+    createStackNavigator
+} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import theme from './app/theme';
 import EntryListScreen from './app/screens/EntryListScreen';
@@ -31,45 +34,75 @@ const mainStackScreenOptions: any = () => {
         headerTintColor: theme.COLORS.FONT_PRIMARY,
         headerTitleAlign: 'center'
     };
-}
+};
 
 const stackScreenOptions: any = ({navigation}) => {
     return {
         ...mainStackScreenOptions(navigation),
         headerLeft: () => (
-            <HeaderButton style={{marginLeft: theme.SPACING.S}}
-                          iconName="arrow-left"
-                          onPress={navigation.goBack}/>
+            <HeaderButton
+                style={{marginLeft: theme.SPACING.S}}
+                iconName="arrow-left"
+                onPress={navigation.goBack}
+            />
         )
-    }
-}
+    };
+};
 
 function EntryScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions} mode="modal">
-            <Stack.Screen name="entry-list" component={EntryListScreen} options={{}}/>
-            <Stack.Screen name="entry-details" component={EntryDetailsScreen} options={{}}/>
-            <Stack.Screen name="entry-form" component={EntryFormScreen} options={{}}/>
+            <Stack.Screen
+                name="entry-list"
+                component={EntryListScreen}
+                options={{}}
+            />
+            <Stack.Screen
+                name="entry-details"
+                component={EntryDetailsScreen}
+                options={{}}
+            />
+            <Stack.Screen
+                name="entry-form"
+                component={EntryFormScreen}
+                options={{}}
+            />
         </Stack.Navigator>
-    )
+    );
 }
 
 function TrophyScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions} mode="modal">
-            <Stack.Screen name="trophy-list" component={TrophyListScreen} options={{}}/>
-            <Stack.Screen name="trophy-details" component={TrophyDetailsScreen} options={{}}/>
-            <Stack.Screen name="trophy-form" component={TrophyFormScreen} options={{}}/>
+            <Stack.Screen
+                name="trophy-list"
+                component={TrophyListScreen}
+                options={{}}
+            />
+            <Stack.Screen
+                name="trophy-details"
+                component={TrophyDetailsScreen}
+                options={{}}
+            />
+            <Stack.Screen
+                name="trophy-form"
+                component={TrophyFormScreen}
+                options={{}}
+            />
         </Stack.Navigator>
-    )
+    );
 }
 
 function StatisticsScreenStack() {
     return (
         <Stack.Navigator screenOptions={mainStackScreenOptions} mode="modal">
-            <Stack.Screen name="statistics" component={StatisticsScreen} options={{}}/>
+            <Stack.Screen
+                name="statistics"
+                component={StatisticsScreen}
+                options={{}}
+            />
         </Stack.Navigator>
-    )
+    );
 }
 
 function Main() {
@@ -82,8 +115,8 @@ function Main() {
 
     return (
         <NavigationContainer theme={DarkTheme}>
-            <Tab.Navigator tabBar={props => <TabBar {...props}/>}>
-                <Tab.Screen name="Entries" component={EntryScreenStack}/>
+            <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
+                <Tab.Screen name="Entries" component={EntryScreenStack} />
                 {/*<Tab.Screen name="Trophies" component={TrophyScreenStack} />*/}
                 {/*<Tab.Screen name="Statistics" component={StatisticsScreenStack} />*/}
             </Tab.Navigator>

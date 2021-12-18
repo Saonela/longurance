@@ -25,8 +25,12 @@ const chartConfig = {
 
 const COLOR_PALETTE = ['#4b4b4e', '#5d5d60', '#6f6f71'];
 
-function PieChart({values, width = Dimensions.get("window").width, height = 220, style = {}}: PieChartProps) {
-
+function PieChart({
+    values,
+    width = Dimensions.get('window').width,
+    height = 220,
+    style = {}
+}: PieChartProps) {
     const data: PieChartValue[] = values.map(({label, value}, index) => {
         return {
             name: label,

@@ -8,9 +8,9 @@ const ActivityFormField = (props) => {
     return (
         <View style={props.style}>
             <FormLabel>Activity</FormLabel>
-            <Dropdown {...props} options={ActivityOptions}/>
+            <Dropdown {...props} options={ActivityOptions} />
         </View>
     );
-}
+};
 
 export default ActivityFormField;

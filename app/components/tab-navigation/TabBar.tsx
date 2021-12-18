@@ -4,11 +4,10 @@ import theme from '../../theme';
 import TabButton from './TabButton';
 
 function TabBar({state, descriptors, navigation}) {
-
     const onPress = (route, isFocused) => {
         const event = navigation.emit({
             type: 'tabPress',
-            target: route.key,
+            target: route.key
         });
 
         if (!isFocused && !event.defaultPrevented) {
@@ -25,20 +24,22 @@ function TabBar({state, descriptors, navigation}) {
     const onLongPress = (route) => {
         navigation.emit({
             type: 'tabLongPress',
-            target: route.key,
+            target: route.key
         });
     };
 
     return (
         <View style={styles.tabBar}>
-            {state.routes.map((route, index) =>
-                <TabButton key={index}
-                           route={route}
-                           options={descriptors[route.key]}
-                           isFocused={state.index === index}
-                           onPress={() => onPress(route, state.index === index)}
-                           onLongPress={() => onLongPress(route)}/>
-            )}
+            {state.routes.map((route, index) => (
+                <TabButton
+                    key={index}
+                    route={route}
+                    options={descriptors[route.key]}
+                    isFocused={state.index === index}
+                    onPress={() => onPress(route, state.index === index)}
+                    onLongPress={() => onLongPress(route)}
+                />
+            ))}
         </View>
     );
 }

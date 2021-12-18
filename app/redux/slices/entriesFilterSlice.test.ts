@@ -5,7 +5,8 @@ describe('EntriesFilterReducer', () => {
     const state = null;
 
     it('should set entries filter', () => {
-        expect(entriesFilterReducer(state, setEntriesFilter(Activity.RUNNING))).toEqual(Activity.RUNNING);
+        expect(
+            entriesFilterReducer(state, setEntriesFilter(Activity.RUNNING))
+        ).toEqual(Activity.RUNNING);
     });
-
 });

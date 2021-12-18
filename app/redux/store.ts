@@ -1,5 +1,5 @@
 import {useDispatch} from 'react-redux';
-import {configureStore} from "@reduxjs/toolkit";
+import {configureStore} from '@reduxjs/toolkit';
 import entriesReducer from './slices/entriesSlice';
 import entriesFilterReducer from './slices/entriesFilterSlice';
 import trophiesReducer from './slices/trophiesSlice';
@@ -14,7 +14,7 @@ const store = configureStore({
     }
 });
 
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = () => useDispatch<AppDispatch>() // Export a hook that can be reused to resolve types
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>(); // Export a hook that can be reused to resolve types
 
 export default store;

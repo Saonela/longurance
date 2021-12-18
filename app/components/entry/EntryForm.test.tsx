@@ -10,18 +10,20 @@ function FormWithRef({entry, onSubmit}) {
     const formRef = useRef<FormikValues>(null);
     return (
         <View>
-            <Button title={'Save'} onPress={() => {
-                if (formRef.current) {
-                    formRef.current.handleSubmit();
-                }
-            }}/>
-            <EntryForm entry={entry} innerRef={formRef} onSubmit={onSubmit}/>
+            <Button
+                title={'Save'}
+                onPress={() => {
+                    if (formRef.current) {
+                        formRef.current.handleSubmit();
+                    }
+                }}
+            />
+            <EntryForm entry={entry} innerRef={formRef} onSubmit={onSubmit} />
         </View>
     );
 }
 
 describe('EntryForm', () => {
-
     describe('title placeholder', () => {
         let _date;
 
@@ -33,52 +35,86 @@ describe('EntryForm', () => {
 
         afterAll(() => {
             Date = _date;
-        })
+        });
 
         const setFakeDate = (isoDate: string) => {
-            jest.spyOn(global, 'Date').mockImplementation(() => new _date(isoDate) as any);
+            jest.spyOn(global, 'Date').mockImplementation(
+                () => new _date(isoDate) as any
+            );
         };
 
         const createComponent = (isoDate: string) => {
             setFakeDate(isoDate);
-            return render(<FormWithRef entry={null} onSubmit={jest.fn()}/>);
+            return render(<FormWithRef entry={null} onSubmit={jest.fn()} />);
         };
 
         it('should set morning title', () => {
-            const {getByPlaceholderText} = createComponent('2022-01-01T09:00:00.000');
-            expect(getByPlaceholderText('Title').props.value).toEqual('Morning Run');
+            const {getByPlaceholderText} = createComponent(
+                '2022-01-01T09:00:00.000'
+            );
+            expect(getByPlaceholderText('Title').props.value).toEqual(
+                'Morning Run'
+            );
         });
 
         it('should set afternoon title', () => {
-            const {getByPlaceholderText} = createComponent('2022-01-01T14:00:00.000');
-            expect(getByPlaceholderText('Title').props.value).toEqual('Afternoon Run');
+            const {getByPlaceholderText} = createComponent(
+                '2022-01-01T14:00:00.000'
+            );
+            expect(getByPlaceholderText('Title').props.value).toEqual(
+                'Afternoon Run'
+            );
         });
 
         it('should set evening title', () => {
-            const {getByPlaceholderText} = createComponent('2022-01-01T18:00:00.000');
-            expect(getByPlaceholderText('Title').props.value).toEqual('Evening Run');
+            const {getByPlaceholderText} = createComponent(
+                '2022-01-01T18:00:00.000'
+            );
+            expect(getByPlaceholderText('Title').props.value).toEqual(
+                'Evening Run'
+            );
         });
 
         it('should set night title', () => {
-            const {getByPlaceholderText} = createComponent('2022-01-01T22:00:00.000');
-            expect(getByPlaceholderText('Title').props.value).toEqual('Night Run');
+            const {getByPlaceholderText} = createComponent(
+                '2022-01-01T22:00:00.000'
+            );
+            expect(getByPlaceholderText('Title').props.value).toEqual(
+                'Night Run'
+            );
         });
 
         it('should change activity in title if not edited yet', () => {
-            const {getByTestId, getByPlaceholderText} = createComponent('2022-01-11T15:00:00.000');
-            fireEvent(getByTestId('dropdown'), 'valueChange', Activity.SWIMMING);
-            expect(getByPlaceholderText('Title').props.value).toEqual('Afternoon Swim');
+            const {getByTestId, getByPlaceholderText} = createComponent(
+                '2022-01-11T15:00:00.000'
+            );
+            fireEvent(
+                getByTestId('dropdown'),
+                'valueChange',
+                Activity.SWIMMING
+            );
+            expect(getByPlaceholderText('Title').props.value).toEqual(
+                'Afternoon Swim'
+            );
 
             fireEvent.changeText(getByPlaceholderText('Title'), 'My title!');
             fireEvent(getByTestId('dropdown'), 'valueChange', Activity.CYCLING);
-            expect(getByPlaceholderText('Title').props.value).toEqual('My title!');
+            expect(getByPlaceholderText('Title').props.value).toEqual(
+                'My title!'
+            );
         });
     });
 
     test('should submit default form', async () => {
         const submitSpy = jest.fn();
 
-        const {getByText, getAllByText, getByPlaceholderText, getByA11yLabel, getByTestId} = render(<FormWithRef entry={null} onSubmit={submitSpy}/>)
+        const {
+            getByText,
+            getAllByText,
+            getByPlaceholderText,
+            getByA11yLabel,
+            getByTestId
+        } = render(<FormWithRef entry={null} onSubmit={submitSpy} />);
 
         await waitFor(() => {
             fireEvent.press(getByText('Save'));
@@ -91,7 +127,11 @@ describe('EntryForm', () => {
             fireEvent.changeText(getByPlaceholderText('Title'), 'My title!');
         });
         await act(async () => {
-            fireEvent(getByTestId('dropdown'), 'valueChange', Activity.SWIMMING);
+            fireEvent(
+                getByTestId('dropdown'),
+                'valueChange',
+                Activity.SWIMMING
+            );
         });
         await act(async () => {
             fireEvent.changeText(getByPlaceholderText('HH'), '2');
@@ -109,10 +149,17 @@ describe('EntryForm', () => {
             fireEvent.press(getByTestId('datepicker-trigger'));
         });
         await act(async () => {
-            fireEvent(getByTestId('datepicker'), 'onConfirm', new Date('2020-09-01'));
+            fireEvent(
+                getByTestId('datepicker'),
+                'onConfirm',
+                new Date('2020-09-01')
+            );
         });
         await act(async () => {
-            fireEvent.changeText(getByA11yLabel('Note field'), 'My interesting note.');
+            fireEvent.changeText(
+                getByA11yLabel('Note field'),
+                'My interesting note.'
+            );
         });
 
         await act(async () => {
@@ -142,10 +189,12 @@ describe('EntryForm', () => {
             duration: 9200,
             date: '2021-01-07T09:10:02.207Z',
             effort: 2,
-            note: 'Was really enjoying. Got into flow state.',
+            note: 'Was really enjoying. Got into flow state.'
         };
 
-        const { debug, getByText } = render(<FormWithRef entry={entry} onSubmit={submitSpy}/>)
+        const {debug, getByText} = render(
+            <FormWithRef entry={entry} onSubmit={submitSpy} />
+        );
 
         await waitFor(() => {
             fireEvent.press(getByText('Save'));

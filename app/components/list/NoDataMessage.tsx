@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
     message: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     text: {
-        ...appStyles.primaryText,
+        ...appStyles.primaryText
     }
 });
 

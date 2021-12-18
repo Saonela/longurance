@@ -7,9 +7,8 @@ import {Activity} from '../types/Activity';
 import {Trophy} from '../types/Trophy';
 import TrophyListScreen from './TrophyListScreen';
 import trophiesReducer from '../redux/slices/trophiesSlice';
-import * as reactRedux from 'react-redux'
+import * as reactRedux from 'react-redux';
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
-
 
 const trophies: Partial<Trophy>[] = [
     {
@@ -19,7 +18,7 @@ const trophies: Partial<Trophy>[] = [
         completedAt: '2021-01-07T09:10:02.207Z',
         completed: true,
         markedAsRead: false,
-        title: 'My first half marathon !',
+        title: 'My first half marathon !'
     },
     {
         id: '2',
@@ -29,7 +28,7 @@ const trophies: Partial<Trophy>[] = [
         completedAt: null,
         completed: false,
         markedAsRead: false,
-        title: 'Sweet 100.',
+        title: 'Sweet 100.'
     },
     {
         id: '3',
@@ -39,7 +38,7 @@ const trophies: Partial<Trophy>[] = [
         completedAt: '2020-12-08T09:10:02.207Z',
         completed: true,
         markedAsRead: true,
-        title: 'IRONMAN',
+        title: 'IRONMAN'
     }
 ];
 
@@ -48,7 +47,7 @@ describe('TrophyListScreen', () => {
     let store: any;
     let navigation: any;
 
-    jest.spyOn(reactRedux, 'useDispatch').mockReturnValue(jest.fn())
+    jest.spyOn(reactRedux, 'useDispatch').mockReturnValue(jest.fn());
 
     beforeEach(() => {
         initialState = {
@@ -60,7 +59,7 @@ describe('TrophyListScreen', () => {
         };
         store = configureStore({
             reducer: {
-                trophies: trophiesReducer,
+                trophies: trophiesReducer
             },
             preloadedState: initialState
         });
@@ -72,7 +71,7 @@ describe('TrophyListScreen', () => {
     test('it should display list', async () => {
         const component = (
             <Provider store={store}>
-                <TrophyListScreen navigation={navigation}/>
+                <TrophyListScreen navigation={navigation} />
             </Provider>
         );
 
@@ -84,7 +83,7 @@ describe('TrophyListScreen', () => {
     test('it should display trophy congratulations card', () => {
         const component = (
             <Provider store={store}>
-                <TrophyListScreen navigation={navigation}/>
+                <TrophyListScreen navigation={navigation} />
             </Provider>
         );
 

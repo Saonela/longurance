@@ -19,26 +19,32 @@ function TrophyFormScreen({route, navigation}) {
         navigation.setOptions({
             title: trophy ? 'Edit Trophy' : 'New Trophy',
             headerRight: () => (
-                <HeaderButton style={{marginRight: theme.SPACING.S}}
-                              iconName="check"
-                              onPress={() => {
-                                  if (formRef.current) {
-                                      formRef.current.handleSubmit();
-                                  }
-                              }}/>
-            ),
+                <HeaderButton
+                    style={{marginRight: theme.SPACING.S}}
+                    iconName="check"
+                    onPress={() => {
+                        if (formRef.current) {
+                            formRef.current.handleSubmit();
+                        }
+                    }}
+                />
+            )
         });
     }, [navigation]);
 
     const handleSubmit = (trophy: Trophy) => {
         dispatch(saveTrophy(trophy));
-        navigation.goBack()
+        navigation.goBack();
     };
 
     return (
         <View style={appStyles.screenContainer}>
             <ScrollView keyboardShouldPersistTaps="handled">
-                <TrophyForm trophy={trophy} innerRef={formRef} onSubmit={handleSubmit}/>
+                <TrophyForm
+                    trophy={trophy}
+                    innerRef={formRef}
+                    onSubmit={handleSubmit}
+                />
             </ScrollView>
         </View>
     );

@@ -3,7 +3,6 @@ import React from 'react';
 import SelectionButtons from './SelectionButtons';
 
 describe('SelectionButtons', () => {
-
     const items = [
         {
             label: 'Duration',
@@ -20,12 +19,16 @@ describe('SelectionButtons', () => {
     ];
 
     it('should toggle buttons', async () => {
-        const onChangeSpy =  jest.fn();
+        const onChangeSpy = jest.fn();
         const component = (
-            <SelectionButtons selected={1} items={items} onChange={onChangeSpy}/>
+            <SelectionButtons
+                selected={1}
+                items={items}
+                onChange={onChangeSpy}
+            />
         );
 
-        const { getByText } = render(component);
+        const {getByText} = render(component);
 
         await act(async () => {
             fireEvent.press(getByText('Duration'));

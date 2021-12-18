@@ -8,12 +8,12 @@ import {Feather} from '@expo/vector-icons';
 const zoomIn = {
     from: {
         translateY: 0,
-        scale: 1,
+        scale: 1
     },
     to: {
         translateY: -3,
         scale: 1.2
-    },
+    }
 };
 
 const zoomOut = {
@@ -24,18 +24,20 @@ const zoomOut = {
     to: {
         translateY: 0,
         scale: 1
-    },
+    }
 };
 
 const routeIcon = {
-    'Entries': 'list',
-    'Trophies': 'award',
-    'Statistics': 'bar-chart'
+    Entries: 'list',
+    Trophies: 'award',
+    Statistics: 'bar-chart'
 };
 
 function TabButton({route, options, isFocused, onPress, onLongPress}) {
     const label = options.tabBarLabel || options.title || route.name;
-    const textColor = isFocused ? theme.COLORS.FONT_PRIMARY : theme.COLORS.FONT_SECONDARY;
+    const textColor = isFocused
+        ? theme.COLORS.FONT_PRIMARY
+        : theme.COLORS.FONT_SECONDARY;
     const iconName = routeIcon[route.name];
 
     return (
@@ -46,13 +48,22 @@ function TabButton({route, options, isFocused, onPress, onLongPress}) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{...styles.tab}}>
-            <Animatable.View animation={isFocused ? zoomIn : zoomOut}
-                             duration={175}
-                             useNativeDriver>
-                <Feather name={iconName} size={24} color={textColor}/>
+            style={{...styles.tab}}
+        >
+            <Animatable.View
+                animation={isFocused ? zoomIn : zoomOut}
+                duration={175}
+                useNativeDriver
+            >
+                <Feather name={iconName} size={24} color={textColor} />
             </Animatable.View>
-            <Text style={{...appStyles.secondaryText, color: textColor, marginTop: 2}}>
+            <Text
+                style={{
+                    ...appStyles.secondaryText,
+                    color: textColor,
+                    marginTop: 2
+                }}
+            >
                 {label}
             </Text>
         </TouchableOpacity>
@@ -65,8 +76,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: theme.TAB_NAVIGATOR_HEIGHT,
-        paddingTop: 2,
+        paddingTop: 2
     }
 });
 
-export default TabButton
+export default TabButton;

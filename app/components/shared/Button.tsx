@@ -12,7 +12,14 @@ interface ButtonProps {
 function Button({label, onPress, style = {}}: ButtonProps) {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
-            <Text style={[appStyles.primaryText, style.color ? {color: style.color} : {}]}>{label}</Text>
+            <Text
+                style={[
+                    appStyles.primaryText,
+                    style.color ? {color: style.color} : {}
+                ]}
+            >
+                {label}
+            </Text>
         </TouchableOpacity>
     );
 }

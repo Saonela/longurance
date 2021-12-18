@@ -10,17 +10,17 @@ import ListLoader from '../list/ListLoader';
 import theme from '../../theme';
 
 interface EntryListProps {
-    onPress: (id: string) => void
+    onPress: (id: string) => void;
 }
 
-const keyExtractor = item => item.id;
+const keyExtractor = (item) => item.id;
 
 function EntryList({onPress}: EntryListProps) {
-    const entries = useSelector(getEntries)
+    const entries = useSelector(getEntries);
     const entriesStatus = useSelector(getEntriesStatus);
 
     if (entriesStatus === ASYNC_STATE_STATUS.LOADING) {
-        return <ListLoader/>;
+        return <ListLoader />;
     }
 
     if (entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED && !entries.length) {
@@ -28,19 +28,23 @@ function EntryList({onPress}: EntryListProps) {
     }
 
     const renderItem = ({item, index}) => (
-        <Animatable.View animation="fadeInRightBig"
-                         duration={300}
-                         delay={index ? (index * 300) / 5 : 0}
-                         useNativeDriver>
-            <EntryCard entry={item} onPress={() => onPress(item.id)}/>
+        <Animatable.View
+            animation="fadeInRightBig"
+            duration={300}
+            delay={index ? (index * 300) / 5 : 0}
+            useNativeDriver
+        >
+            <EntryCard entry={item} onPress={() => onPress(item.id)} />
         </Animatable.View>
     );
     return (
-        <FlatList data={entries}
-                  keyExtractor={keyExtractor}
-                  renderItem={renderItem}
-                  initialNumToRender={6}
-                  contentContainerStyle={{paddingBottom: theme.SPACING.M}}/>
+        <FlatList
+            data={entries}
+            keyExtractor={keyExtractor}
+            renderItem={renderItem}
+            initialNumToRender={6}
+            contentContainerStyle={{paddingBottom: theme.SPACING.M}}
+        />
     );
 }
 

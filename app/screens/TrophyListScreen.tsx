@@ -7,7 +7,6 @@ import HeaderButton from '../components/header/HeaderButton';
 import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
 
 function TrophyListScreen({navigation}) {
-
     const navigateToTrophyForm = (id?: string) => {
         const params = id ? {id} : {};
         navigation.navigate('trophy-form', params);
@@ -21,9 +20,11 @@ function TrophyListScreen({navigation}) {
         navigation.setOptions({
             headerLeft: null,
             headerRight: () => (
-                <HeaderButton style={{marginRight: theme.SPACING.S}}
-                              iconName="plus"
-                              onPress={() => navigateToTrophyForm()}/>
+                <HeaderButton
+                    style={{marginRight: theme.SPACING.S}}
+                    iconName="plus"
+                    onPress={() => navigateToTrophyForm()}
+                />
             )
         });
     }, [navigation]);
@@ -31,16 +32,16 @@ function TrophyListScreen({navigation}) {
     return (
         <View style={styles.wrapper}>
             <View style={appStyles.screenContainer}>
-                <TrophyList onPress={navigateToTrophyDetails}/>
+                <TrophyList onPress={navigateToTrophyDetails} />
             </View>
-            <TrophyCongratulations/>
+            <TrophyCongratulations />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
+        flex: 1
     }
 });
 

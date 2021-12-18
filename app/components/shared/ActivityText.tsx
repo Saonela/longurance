@@ -14,8 +14,10 @@ interface ActivityTextProps {
 function ActivityText({activity, style = {}}: ActivityTextProps) {
     return (
         <View style={[styles.container, style]}>
-            <ActivityIcon activity={activity} style={styles.activityIcon}/>
-            <Text style={appStyles.primaryText}>{getActivityTypeText(activity)}</Text>
+            <ActivityIcon activity={activity} style={styles.activityIcon} />
+            <Text style={appStyles.primaryText}>
+                {getActivityTypeText(activity)}
+            </Text>
         </View>
     );
 }

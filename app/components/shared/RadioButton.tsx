@@ -7,7 +7,6 @@ interface RadioButtonProps {
     value: string | number;
     selected: boolean;
     onPress: any;
-
 }
 
 function RadioButton({label, value, selected, onPress}: RadioButtonProps) {
@@ -16,10 +15,11 @@ function RadioButton({label, value, selected, onPress}: RadioButtonProps) {
             <TouchableNativeFeedback onPress={() => onPress(value)}>
                 <View style={styles.container}>
                     <View style={styles.button}>
-                        {
-                            selected
-                            ? <View style={[styles.button, styles.buttonCenter]}/>
-                            : null}
+                        {selected ? (
+                            <View
+                                style={[styles.button, styles.buttonCenter]}
+                            />
+                        ) : null}
                     </View>
                     <Text style={styles.label}>{label}</Text>
                 </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderWidth: 2,
         borderColor: theme.COLORS.FONT_PRIMARY,
-        color: theme.COLORS.FONT_PRIMARY,
+        color: theme.COLORS.FONT_PRIMARY
     },
     buttonCenter: {
         width: 10,

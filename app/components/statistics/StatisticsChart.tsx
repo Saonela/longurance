@@ -5,7 +5,10 @@ import SelectionButtons from '../shared/SelectionButtons';
 import {useAppDispatch} from '../../redux/store';
 import {ChartDataType, ChartTimeInterval} from '../../types/StatisticsOptions';
 import {useSelector} from 'react-redux';
-import {getStatisticsOptions, updateStatisticsOptions} from '../../redux/slices/statisticsOptionsSlice';
+import {
+    getStatisticsOptions,
+    updateStatisticsOptions
+} from '../../redux/slices/statisticsOptionsSlice';
 import theme from '../../theme';
 import StatisticsTimelineChart from './StatisticsTimelineChart';
 import {getEntriesFilter} from '../../redux/slices/entriesFilterSlice';
@@ -45,30 +48,43 @@ function StatisticsChart({entries}: StatisticsChartProps) {
     const dispatch = useAppDispatch();
 
     const filter = useSelector(getEntriesFilter);
-    const statisticsOptions = useSelector(getStatisticsOptions)
+    const statisticsOptions = useSelector(getStatisticsOptions);
 
-    const onChartTimeIntervalChange = (chartTimeInterval: ChartTimeInterval) => {
-        dispatch(updateStatisticsOptions({chartTimeInterval}))
+    const onChartTimeIntervalChange = (
+        chartTimeInterval: ChartTimeInterval
+    ) => {
+        dispatch(updateStatisticsOptions({chartTimeInterval}));
     };
 
     const onChartDataTypeChange = (chartDataType: ChartDataType) => {
-        dispatch(updateStatisticsOptions({chartDataType}))
+        dispatch(updateStatisticsOptions({chartDataType}));
     };
 
     return (
         <View>
-            <SelectionButtons selected={statisticsOptions.chartDataType}
-                              items={chartDataTypes}
-                              style={styles.buttonsRow}
-                              onChange={onChartDataTypeChange}/>
-            <SelectionButtons selected={statisticsOptions.chartTimeInterval}
-                              items={chartIntervals}
-                              style={styles.buttonsRow}
-                              onChange={onChartTimeIntervalChange}/>
-            {filter
-                ? <StatisticsTimelineChart entries={entries} statisticsOptions={statisticsOptions}/>
-                : <StatisticsDistributionChart entries={entries} statisticsOptions={statisticsOptions}/>
-            }
+            <SelectionButtons
+                selected={statisticsOptions.chartDataType}
+                items={chartDataTypes}
+                style={styles.buttonsRow}
+                onChange={onChartDataTypeChange}
+            />
+            <SelectionButtons
+                selected={statisticsOptions.chartTimeInterval}
+                items={chartIntervals}
+                style={styles.buttonsRow}
+                onChange={onChartTimeIntervalChange}
+            />
+            {filter ? (
+                <StatisticsTimelineChart
+                    entries={entries}
+                    statisticsOptions={statisticsOptions}
+                />
+            ) : (
+                <StatisticsDistributionChart
+                    entries={entries}
+                    statisticsOptions={statisticsOptions}
+                />
+            )}
         </View>
     );
 }

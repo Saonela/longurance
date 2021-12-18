@@ -1,4 +1,3 @@
-
 const COLORS = {
     BACKGROUND_PRIMARY: '#181818',
     BACKGROUND_SECONDARY: '#0e0e0e',
@@ -17,14 +16,14 @@ const FONT_SIZE = {
     HEADER: 28,
     PRIMARY: 17,
     SECONDARY: 14,
-    TERTIARY: 11,
-}
+    TERTIARY: 11
+};
 
 const ICON_SIZE = {
     S: 20,
     SM: 24,
     M: 32
-}
+};
 
 const SPACING = {
     XS: 4,
@@ -33,12 +32,12 @@ const SPACING = {
     M: 16,
     L: 24,
     XL: 40
-}
+};
 
 const BORDER = {
     WIDTH: 1,
     RADIUS: 10
-}
+};
 
 const HEADER_HEIGHT = 60;
 const TAB_NAVIGATOR_HEIGHT = 64;

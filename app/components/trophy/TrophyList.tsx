@@ -9,11 +9,11 @@ import ListLoader from '../list/ListLoader';
 import TrophyCard from './TrophyCard';
 
 interface TrophyListProps {
-    onPress: any
+    onPress: any;
 }
 
 function TrophyList({onPress}: TrophyListProps) {
-    const trophies = useSelector(getTrophies)
+    const trophies = useSelector(getTrophies);
     const trophiesStatus = useSelector(getTrophiesStatus);
 
     if (!trophies.length && trophiesStatus === ASYNC_STATE_STATUS.SUCCEEDED) {
@@ -22,26 +22,30 @@ function TrophyList({onPress}: TrophyListProps) {
 
     const getLoader = () => {
         if (trophiesStatus === ASYNC_STATE_STATUS.LOADING) {
-            return <ListLoader/>;
+            return <ListLoader />;
         }
-    }
+    };
 
-    const keyExtractor = item => item.id;
+    const keyExtractor = (item) => item.id;
     const renderItem = ({item, index}) => (
-        <Animatable.View animation="fadeIn"
-                         duration={300}
-                         delay={index ? (index * 300) / 5 : 0}
-                         useNativeDriver>
-            <TrophyCard trophy={item} onPress={() => onPress(item.id)}/>
+        <Animatable.View
+            animation="fadeIn"
+            duration={300}
+            delay={index ? (index * 300) / 5 : 0}
+            useNativeDriver
+        >
+            <TrophyCard trophy={item} onPress={() => onPress(item.id)} />
         </Animatable.View>
     );
 
     return (
         <>
-            <FlatList data={trophies}
-                      keyExtractor={keyExtractor}
-                      initialNumToRender={6}
-                      renderItem={renderItem}/>
+            <FlatList
+                data={trophies}
+                keyExtractor={keyExtractor}
+                initialNumToRender={6}
+                renderItem={renderItem}
+            />
             {getLoader()}
         </>
     );

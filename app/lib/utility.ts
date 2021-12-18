@@ -1,7 +1,7 @@
-
 export function generateId() {
     let id = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
     for (let i = 0; i < 20; i++) {
         id += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -17,7 +17,7 @@ export function deepCopy(d) {
 }
 
 export function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export const convertToInt = (value: string) => parseInt(value, 10) || 0;
@@ -30,7 +30,7 @@ export function splitSecondsIntoChunks(value: number) {
         hours: Math.floor(value / 3600),
         minutes: Math.floor(value / 60) % 60,
         seconds: value % 60
-    }
+    };
 }
 
 export function getDurationTimeText(duration: number): string {

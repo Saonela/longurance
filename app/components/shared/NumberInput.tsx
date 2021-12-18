@@ -10,12 +10,14 @@ interface NumberInputProps {
     float?: boolean;
 }
 
-const NumberInput = ({value, placeholder, onChange = null, float = false}: NumberInputProps) => {
-
+const NumberInput = ({
+    value,
+    placeholder,
+    onChange = null,
+    float = false
+}: NumberInputProps) => {
     const validate = (value: string) => {
-        return float
-            ? validateFloatInput(value)
-            : validateInput(value)
+        return float ? validateFloatInput(value) : validateInput(value);
     };
 
     const validateInput = (value: string) => {
@@ -43,7 +45,7 @@ const NumberInput = ({value, placeholder, onChange = null, float = false}: Numbe
                 }
             }}
             value={value ? value.toString() : ''}
-            />
+        />
     );
 };
 

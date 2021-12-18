@@ -17,7 +17,7 @@ const defaultTrophy: Partial<Trophy> = {
     distance: null as any,
     duration: null as any,
     markedAsRead: false
-}
+};
 
 const options = {
     mapPropsToValues: ({trophy, ...props}) => {
@@ -43,39 +43,60 @@ const options = {
         Keyboard.dismiss();
         props.onSubmit(values);
     }
-}
+};
 
 function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
     return (
         <View style={styles.form}>
             <Panel>
-                <TextFormField label={'Title'}
-                               placeholder={'Title'}
-                               value={values.title}
-                               onChange={(value) => {
-                                   setErrors({});
-                                   setFieldValue('title', value);
-                               }}/>
-                {errors.title && <ErrorMessage style={styles.error} message={errors.title}/>}
+                <TextFormField
+                    label={'Title'}
+                    placeholder={'Title'}
+                    value={values.title}
+                    onChange={(value) => {
+                        setErrors({});
+                        setFieldValue('title', value);
+                    }}
+                />
+                {errors.title && (
+                    <ErrorMessage style={styles.error} message={errors.title} />
+                )}
             </Panel>
             <Panel>
-                <ActivityFormField value={values.activity} onChange={handleChange('activity')}/>
+                <ActivityFormField
+                    value={values.activity}
+                    onChange={handleChange('activity')}
+                />
             </Panel>
             <Panel>
-                <DistanceFormField value={values.distance}
-                                   onChange={(value) => {
-                                       setErrors({});
-                                       setFieldValue('distance', value)
-                                   }}/>
-                {errors.durationOrDistance && <ErrorMessage style={styles.error} message={errors.durationOrDistance}/>}
+                <DistanceFormField
+                    value={values.distance}
+                    onChange={(value) => {
+                        setErrors({});
+                        setFieldValue('distance', value);
+                    }}
+                />
+                {errors.durationOrDistance && (
+                    <ErrorMessage
+                        style={styles.error}
+                        message={errors.durationOrDistance}
+                    />
+                )}
             </Panel>
             <Panel>
-                <DurationFormField value={values.duration}
-                                   onChange={(value) => {
-                                       setErrors({});
-                                       setFieldValue('duration', value)
-                                   }}/>
-                {errors.durationOrDistance && <ErrorMessage style={styles.error} message={errors.durationOrDistance}/>}
+                <DurationFormField
+                    value={values.duration}
+                    onChange={(value) => {
+                        setErrors({});
+                        setFieldValue('duration', value);
+                    }}
+                />
+                {errors.durationOrDistance && (
+                    <ErrorMessage
+                        style={styles.error}
+                        message={errors.durationOrDistance}
+                    />
+                )}
             </Panel>
         </View>
     );

@@ -56,11 +56,11 @@ const utils = StyleSheet.create({
     marginTopSM: {marginTop: theme.SPACING.SM},
     marginTopXS: {marginTop: theme.SPACING.XS},
 
-    marginRightXL: {marginRight: theme.SPACING.XL,},
+    marginRightXL: {marginRight: theme.SPACING.XL},
     marginRightL: {marginRight: theme.SPACING.L},
     marginRightM: {marginRight: theme.SPACING.M},
-    marginRightS: {marginRight: theme.SPACING.S,},
-    marginRightSM: {marginRight: theme.SPACING.SM,},
+    marginRightS: {marginRight: theme.SPACING.S},
+    marginRightSM: {marginRight: theme.SPACING.SM},
     marginRightXS: {marginRight: theme.SPACING.XS},
 
     marginBottomXL: {marginBottom: theme.SPACING.XL},

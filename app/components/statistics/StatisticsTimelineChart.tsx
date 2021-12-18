@@ -13,10 +13,14 @@ interface StatisticsTimelineChartProps {
     statisticsOptions: StatisticsOptions;
 }
 
-function StatisticsTimelineChart({entries, statisticsOptions}: StatisticsTimelineChartProps) {
-    const chartWidth = Dimensions.get("window").width - theme.SPACING.M * 2;
+function StatisticsTimelineChart({
+    entries,
+    statisticsOptions
+}: StatisticsTimelineChartProps) {
+    const chartWidth = Dimensions.get('window').width - theme.SPACING.M * 2;
 
-    let {labels, values}: TimelineChartData = StatisticsService.getTimelineChartData(statisticsOptions, entries);
+    let {labels, values}: TimelineChartData =
+        StatisticsService.getTimelineChartData(statisticsOptions, entries);
     if (!labels.length) {
         labels = [''];
     }
@@ -26,25 +30,27 @@ function StatisticsTimelineChart({entries, statisticsOptions}: StatisticsTimelin
 
     let formatYLabel;
     if (statisticsOptions.chartDataType === ChartDataType.DISTANCE) {
-        formatYLabel = label => `${parseFloat(label)} Km`;
+        formatYLabel = (label) => `${parseFloat(label)} Km`;
     }
     if (statisticsOptions.chartDataType === ChartDataType.DURATION) {
         formatYLabel = (label) => getDurationTimeText(label);
     }
 
     return (
-        <LineChart labels={labels}
-                   values={values}
-                   formatYLabel={formatYLabel}
-                   width={chartWidth}
-                   style={styles.chart}/>
+        <LineChart
+            labels={labels}
+            values={values}
+            formatYLabel={formatYLabel}
+            width={chartWidth}
+            style={styles.chart}
+        />
     );
 }
 
 const styles = StyleSheet.create({
     chart: {
         marginTop: theme.SPACING.S,
-        paddingLeft: theme.SPACING.M,
+        paddingLeft: theme.SPACING.M
     }
 });
 

@@ -10,26 +10,30 @@ import {Entry} from '../types/Entry';
 import {getEntry} from '../redux/slices/entriesSlice';
 
 function TrophyDetailsScreen({route, navigation}) {
-    const trophy: Trophy = useSelector((state) => getTrophy(state, route.params.id));
-    const entry: Entry = useSelector((state) => getEntry(state, trophy?.entryId));
-    
+    const trophy: Trophy = useSelector((state) =>
+        getTrophy(state, route.params.id)
+    );
+    const entry: Entry = useSelector((state) =>
+        getEntry(state, trophy?.entryId)
+    );
+
     const dispatch = useDispatch();
 
     useLayoutEffect(() => {
         navigation.setOptions({
             title: 'Trophy Details',
             headerTitleStyle: {
-                maxWidth: 200,
+                maxWidth: 200
             },
             headerRight: () => (
                 <View style={{display: 'flex', flexDirection: 'row'}}>
-                    <HeaderButton iconName="edit"
-                                  onPress={navigateToTrophyForm}/>
-                    <HeaderButton iconName="x"
-                                  onPress={confirmDelete}/>
+                    <HeaderButton
+                        iconName="edit"
+                        onPress={navigateToTrophyForm}
+                    />
+                    <HeaderButton iconName="x" onPress={confirmDelete} />
                 </View>
-
-            ),
+            )
         });
     }, [navigation]);
 
@@ -44,8 +48,7 @@ function TrophyDetailsScreen({route, navigation}) {
             [
                 {
                     text: 'Cancel',
-                    onPress: () => {
-                    },
+                    onPress: () => {},
                     style: 'cancel'
                 },
                 {
@@ -58,12 +61,12 @@ function TrophyDetailsScreen({route, navigation}) {
             ],
             {cancelable: false}
         );
-    }
+    };
 
     return (
         <View style={styles.wrapper}>
             <View style={appStyles.screenContainer}>
-                {trophy && <TrophyDetails trophy={trophy} entry={entry}/>}
+                {trophy && <TrophyDetails trophy={trophy} entry={entry} />}
             </View>
         </View>
     );
@@ -71,7 +74,7 @@ function TrophyDetailsScreen({route, navigation}) {
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
+        flex: 1
     }
 });
 

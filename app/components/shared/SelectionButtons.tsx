@@ -12,26 +12,31 @@ interface SelectionButtonsProps {
     selected: any;
     items: SelectionButtonItem[];
     onChange: (value: any) => any;
-    style?:  StyleProp<any>
+    style?: StyleProp<any>;
 }
 
-function SelectionButtons({selected, items, onChange, style = {}}: SelectionButtonsProps) {
+function SelectionButtons({
+    selected,
+    items,
+    onChange,
+    style = {}
+}: SelectionButtonsProps) {
     const buttons = items.map(({label, value}: SelectionButtonItem) => {
         const isSelected = selected === value;
         const selectedStyle = isSelected ? styles.activeButton : {};
         return (
-            <Button key={value}
-                    label={label}
-                    style={{...styles.button, ...selectedStyle}}
-                    onPress={() => !isSelected && onChange(value)}/>
-        )
+            <Button
+                key={value}
+                label={label}
+                style={{...styles.button, ...selectedStyle}}
+                onPress={() => !isSelected && onChange(value)}
+            />
+        );
     });
 
     return (
         <Animated.View style={[styles.wrapper, style]}>
-            <View style={styles.container}>
-                {buttons}
-            </View>
+            <View style={styles.container}>{buttons}</View>
         </Animated.View>
     );
 }
@@ -39,7 +44,7 @@ function SelectionButtons({selected, items, onChange, style = {}}: SelectionButt
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     container: {
         flexDirection: 'row',
@@ -49,7 +54,7 @@ const styles = StyleSheet.create({
     },
     activeButton: {
         color: theme.COLORS.FONT_PRIMARY,
-        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY,
+        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY
     },
     button: {
         color: theme.COLORS.FONT_SECONDARY,

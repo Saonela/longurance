@@ -1,5 +1,5 @@
 export enum EntriesFilter {
-    ALL= 'ALL',
+    ALL = 'ALL',
     SWIMMING = 'SWIMMING',
     CYCLING = 'CYCLING',
     RUNNING = 'RUNNING'

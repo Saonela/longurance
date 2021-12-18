@@ -1,5 +1,9 @@
 import React from 'react';
-import {StyleSheet, TextInput as DefaultTextInput, TouchableOpacity} from 'react-native';
+import {
+    StyleSheet,
+    TextInput as DefaultTextInput,
+    TouchableOpacity
+} from 'react-native';
 import appStyles from '../../styles';
 import theme from '../../theme';
 
@@ -13,22 +17,22 @@ interface TextInputProps {
     onPress?: any;
     onChange?: any;
     testID?: any;
-    [prop:string]: any;
+
+    [prop: string]: any;
 }
 
-function TextInput(
-    {
-        value = '',
-        placeholder = '',
-        placeholderTextColor = theme.COLORS.FONT_SECONDARY,
-        disabled,
-        numberOfLines = 1,
-        onPress,
-        onChange,
-        testID,
-        style = {},
-        ...props
-    }: TextInputProps) {
+function TextInput({
+    value = '',
+    placeholder = '',
+    placeholderTextColor = theme.COLORS.FONT_SECONDARY,
+    disabled,
+    numberOfLines = 1,
+    onPress,
+    onChange,
+    testID,
+    style = {},
+    ...props
+}: TextInputProps) {
     return (
         <TouchableOpacity style={style} onPress={onPress}>
             <DefaultTextInput

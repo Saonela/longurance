@@ -1,10 +1,13 @@
 import {Entry} from '../types/Entry';
 import {Activity} from '../types/Activity';
 import StatisticsService from './StatisticsService';
-import {ChartDataType, ChartTimeInterval, StatisticsOptions} from '../types/StatisticsOptions';
+import {
+    ChartDataType,
+    ChartTimeInterval,
+    StatisticsOptions
+} from '../types/StatisticsOptions';
 
 describe('StatisticsService', () => {
-
     const entries = [
         {
             id: '1',
@@ -14,7 +17,7 @@ describe('StatisticsService', () => {
             date: '2021-01-07T09:10:02.207Z',
             effort: 2,
             title: 'MY RUN',
-            note: 'Was really enjoying. Got into flow state.',
+            note: 'Was really enjoying. Got into flow state.'
         },
         {
             id: '2',
@@ -22,7 +25,7 @@ describe('StatisticsService', () => {
             duration: 180,
             date: '2020-12-15T00:10:02.207Z',
             effort: 0,
-            note: '',
+            note: ''
         },
         {
             id: '3',
@@ -31,7 +34,7 @@ describe('StatisticsService', () => {
             duration: 10,
             date: '2020-12-02T00:10:02.207Z',
             effort: -2,
-            note: '',
+            note: ''
         },
         {
             id: '4',
@@ -39,7 +42,7 @@ describe('StatisticsService', () => {
             distance: 99,
             date: '2020-09-01T00:10:02.207Z',
             effort: -2,
-            note: '',
+            note: ''
         }
     ] as Entry[];
 
@@ -53,7 +56,7 @@ describe('StatisticsService', () => {
                     return new realDate(...args);
                 }
                 return new Date('2021-01-07T09:10:02.207Z');
-            })
+            });
         Date.parse = realDate.parse;
         Date.UTC = realDate.UTC;
     });
@@ -82,18 +85,26 @@ describe('StatisticsService', () => {
         expect(StatisticsService.getAverageDuration(entries)).toEqual(94);
     });
 
-
     describe('distribution chart', () => {
         it('should get activities distance distribution', () => {
-            let options: StatisticsOptions = {chartDataType: ChartDataType.DISTANCE, chartTimeInterval: ChartTimeInterval.MONTHS_6};
-            expect(StatisticsService.getDistributionChartData(options, entries)).toEqual([
+            let options: StatisticsOptions = {
+                chartDataType: ChartDataType.DISTANCE,
+                chartTimeInterval: ChartTimeInterval.MONTHS_6
+            };
+            expect(
+                StatisticsService.getDistributionChartData(options, entries)
+            ).toEqual([
                 {label: 'Running', value: 26},
                 {label: 'Swimming', value: 99},
                 {label: 'Cycling', value: 0}
             ]);
 
-            Object.assign(options, {chartTimeInterval: ChartTimeInterval.MONTHS_3});
-            expect(StatisticsService.getDistributionChartData(options, entries)).toEqual([
+            Object.assign(options, {
+                chartTimeInterval: ChartTimeInterval.MONTHS_3
+            });
+            expect(
+                StatisticsService.getDistributionChartData(options, entries)
+            ).toEqual([
                 {label: 'Running', value: 26},
                 {label: 'Swimming', value: 0},
                 {label: 'Cycling', value: 0}
@@ -101,15 +112,24 @@ describe('StatisticsService', () => {
         });
 
         it('should get activities duration distribution', () => {
-            let options: StatisticsOptions = {chartDataType: ChartDataType.DURATION, chartTimeInterval: ChartTimeInterval.MONTHS_6};
-            expect(StatisticsService.getDistributionChartData(options, entries)).toEqual([
+            let options: StatisticsOptions = {
+                chartDataType: ChartDataType.DURATION,
+                chartTimeInterval: ChartTimeInterval.MONTHS_6
+            };
+            expect(
+                StatisticsService.getDistributionChartData(options, entries)
+            ).toEqual([
                 {label: 'Running', value: 102},
                 {label: 'Swimming', value: 0},
                 {label: 'Cycling', value: 180}
             ]);
 
-            Object.assign(options, {chartTimeInterval: ChartTimeInterval.DAYS_30});
-            expect(StatisticsService.getDistributionChartData(options, entries)).toEqual([
+            Object.assign(options, {
+                chartTimeInterval: ChartTimeInterval.DAYS_30
+            });
+            expect(
+                StatisticsService.getDistributionChartData(options, entries)
+            ).toEqual([
                 {label: 'Running', value: 92},
                 {label: 'Swimming', value: 0},
                 {label: 'Cycling', value: 180}
@@ -117,28 +137,42 @@ describe('StatisticsService', () => {
         });
     });
 
-
     describe('timeline chart', () => {
         it('should get entries distance chart data', () => {
             const chartDataType = ChartDataType.DISTANCE;
-            expect(StatisticsService.getTimelineChartData(
-                {chartDataType, chartTimeInterval: ChartTimeInterval.DAYS_30},
-                entries
-            )).toEqual({
+            expect(
+                StatisticsService.getTimelineChartData(
+                    {
+                        chartDataType,
+                        chartTimeInterval: ChartTimeInterval.DAYS_30
+                    },
+                    entries
+                )
+            ).toEqual({
                 labels: ['Jan 07'],
                 values: [16]
             });
-            expect(StatisticsService.getTimelineChartData(
-                {chartDataType, chartTimeInterval: ChartTimeInterval.MONTHS_3},
-                entries
-            )).toEqual({
+            expect(
+                StatisticsService.getTimelineChartData(
+                    {
+                        chartDataType,
+                        chartTimeInterval: ChartTimeInterval.MONTHS_3
+                    },
+                    entries
+                )
+            ).toEqual({
                 labels: ['Dec 02', 'Jan 07'],
                 values: [10, 16]
             });
-            expect(StatisticsService.getTimelineChartData(
-                {chartDataType, chartTimeInterval: ChartTimeInterval.MONTHS_6},
-                entries
-            )).toEqual({
+            expect(
+                StatisticsService.getTimelineChartData(
+                    {
+                        chartDataType,
+                        chartTimeInterval: ChartTimeInterval.MONTHS_6
+                    },
+                    entries
+                )
+            ).toEqual({
                 labels: ['Sep 2020', '', 'Jan 2021'],
                 values: [99, 10, 16]
             });
@@ -146,14 +180,18 @@ describe('StatisticsService', () => {
 
         it('should get entries duration chart data', () => {
             const chartDataType = ChartDataType.DURATION;
-            expect(StatisticsService.getTimelineChartData(
-                {chartDataType, chartTimeInterval: ChartTimeInterval.MONTHS_6},
-                entries
-            )).toEqual({
+            expect(
+                StatisticsService.getTimelineChartData(
+                    {
+                        chartDataType,
+                        chartTimeInterval: ChartTimeInterval.MONTHS_6
+                    },
+                    entries
+                )
+            ).toEqual({
                 labels: ['Dec 2020', '', 'Jan 2021'],
                 values: [10, 180, 92]
             });
         });
     });
-
 });

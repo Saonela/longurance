@@ -10,12 +10,12 @@ import * as Animatable from 'react-native-animatable';
 const zoomIn = {
     from: {
         translateY: 0,
-        scale: 1,
+        scale: 1
     },
     to: {
         translateY: -3,
         scale: 1.1
-    },
+    }
 };
 
 const zoomOut = {
@@ -26,37 +26,49 @@ const zoomOut = {
     to: {
         translateY: 0,
         scale: 1
-    },
+    }
 };
 
-
 interface EnergyFormFieldProps {
-    value: number,
-    style?: any,
-    onChange: any
+    value: number;
+    style?: any;
+    onChange: any;
 }
 
-function EnergyFormField({value, style = null, onChange}: EnergyFormFieldProps) {
+function EnergyFormField({
+    value,
+    style = null,
+    onChange
+}: EnergyFormFieldProps) {
     return (
         <View style={style}>
             <FormLabel>Effort</FormLabel>
             <View style={styles.list}>
-                {EffortScale.map(option =>
+                {EffortScale.map((option) => (
                     <View key={option} style={styles.option}>
-                        <TouchableNativeFeedback onPress={() => onChange(option)}>
-                                <Animatable.View animation={value === option ? zoomIn : zoomOut} duration={150}>
-                                    <EntryEffortIcon key={option}
-                                                     value={option}
-                                                     disabled={value !== option}
-                                                     size={theme.ICON_SIZE.M}/>
-                                </Animatable.View>
+                        <TouchableNativeFeedback
+                            onPress={() => onChange(option)}
+                        >
+                            <Animatable.View
+                                animation={value === option ? zoomIn : zoomOut}
+                                duration={150}
+                            >
+                                <EntryEffortIcon
+                                    key={option}
+                                    value={option}
+                                    disabled={value !== option}
+                                    size={theme.ICON_SIZE.M}
+                                />
+                            </Animatable.View>
                         </TouchableNativeFeedback>
                     </View>
-                )}
+                ))}
             </View>
             <View style={styles.effortLabels}>
                 <Text style={styles.effortLabel}>Light</Text>
-                <Text style={{...styles.effortLabel, marginLeft: 22}}>Moderate</Text>
+                <Text style={{...styles.effortLabel, marginLeft: 22}}>
+                    Moderate
+                </Text>
                 <Text style={styles.effortLabel}>Vigorous</Text>
             </View>
         </View>
@@ -67,7 +79,7 @@ const styles = StyleSheet.create({
     list: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: theme.SPACING.S,
+        marginTop: theme.SPACING.S
     },
     option: {
         alignItems: 'center',
@@ -84,7 +96,7 @@ const styles = StyleSheet.create({
     },
     effortLabel: {
         ...appStyles.secondaryText
-    },
+    }
 });
 
 export default EnergyFormField;

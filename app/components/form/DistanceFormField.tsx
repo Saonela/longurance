@@ -4,16 +4,25 @@ import NumberInput from '../shared/NumberInput';
 import FormLabel from './FormLabel';
 
 interface DistanceFormFieldProps {
-    value: number,
-    style?: any,
-    onChange: any
+    value: number;
+    style?: any;
+    onChange: any;
 }
 
-function DistanceFormField({value, style = null, onChange}: DistanceFormFieldProps) {
+function DistanceFormField({
+    value,
+    style = null,
+    onChange
+}: DistanceFormFieldProps) {
     return (
         <View style={style}>
             <FormLabel>Distance (km)</FormLabel>
-            <NumberInput value={value} placeholder="Km" float={true} onChange={(value) => onChange(value)}/>
+            <NumberInput
+                value={value}
+                placeholder="Km"
+                float={true}
+                onChange={(value) => onChange(value)}
+            />
         </View>
     );
 }

@@ -8,26 +8,28 @@ import theme from '../../theme';
 import TrophyDetailsPanel from './TrophyDetailsPanel';
 
 interface TrophyDetailsProps {
-    trophy: Trophy,
-    entry: Entry
+    trophy: Trophy;
+    entry: Entry;
 }
 
 function TrophyNotCompletedMessage() {
     return (
         <View style={styles.container}>
-            <Text style={appStyles.primaryText}>Trophy is yet to be achieved.</Text>
+            <Text style={appStyles.primaryText}>
+                Trophy is yet to be achieved.
+            </Text>
             <Text style={appStyles.primaryText}>Keep going!</Text>
-            <View style={styles.decoratorLine}/>
+            <View style={styles.decoratorLine} />
         </View>
-    )
+    );
 }
 
 function TrophyDetails({trophy, entry}: TrophyDetailsProps) {
     return (
         <ScrollView>
-            <TrophyDetailsPanel trophy={trophy}/>
-            {!entry && <TrophyNotCompletedMessage/>}
-            {entry && <EntryDetails entry={entry} trophies={[]}/>}
+            <TrophyDetailsPanel trophy={trophy} />
+            {!entry && <TrophyNotCompletedMessage />}
+            {entry && <EntryDetails entry={entry} trophies={[]} />}
         </ScrollView>
     );
 }

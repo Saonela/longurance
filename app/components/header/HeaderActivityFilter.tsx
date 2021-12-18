@@ -3,16 +3,16 @@ import {StyleSheet, View} from 'react-native';
 import {ActivityOptions} from '../../types/Activity';
 import theme from '../../theme';
 import {useDispatch, useSelector} from 'react-redux';
-import {setEntriesFilter, getEntriesFilter} from '../../redux/slices/entriesFilterSlice';
+import {
+    setEntriesFilter,
+    getEntriesFilter
+} from '../../redux/slices/entriesFilterSlice';
 import {Picker} from '@react-native-picker/picker';
 
-const options = [
-    {label: 'All', value: null},
-    ...ActivityOptions
-]
+const options = [{label: 'All', value: null}, ...ActivityOptions];
 
 interface ActivityFilterProps {
-    style?: any
+    style?: any;
 }
 
 function HeaderActivityFilter({style = {}}: ActivityFilterProps) {
@@ -24,14 +24,19 @@ function HeaderActivityFilter({style = {}}: ActivityFilterProps) {
             <Picker
                 mode="dropdown"
                 selectedValue={filter}
-                onValueChange={value => dispatch(setEntriesFilter(value))}
+                onValueChange={(value) => dispatch(setEntriesFilter(value))}
                 dropdownIconColor={theme.COLORS.FONT_PRIMARY}
-                style={styles.picker}>
-                {options.map(({label, value}) =>
-                    <Picker.Item key={value} label={label} value={value as string}/>
-                )}
+                style={styles.picker}
+            >
+                {options.map(({label, value}) => (
+                    <Picker.Item
+                        key={value}
+                        label={label}
+                        value={value as string}
+                    />
+                ))}
             </Picker>
-         </View>
+        </View>
     );
 }
 
@@ -41,14 +46,13 @@ const styles = StyleSheet.create({
         top: -theme.HEADER_HEIGHT + theme.SPACING.S,
         left: theme.SPACING.S,
         zIndex: 1,
-        borderColor: theme.COLORS.FONT_PRIMARY,
+        borderColor: theme.COLORS.FONT_PRIMARY
     },
     picker: {
         width: 140,
         height: theme.HEADER_HEIGHT - 2 * theme.SPACING.S,
-        color: theme.COLORS.FONT_PRIMARY,
+        color: theme.COLORS.FONT_PRIMARY
     }
 });
 
 export default HeaderActivityFilter;
-

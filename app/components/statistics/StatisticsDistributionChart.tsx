@@ -12,15 +12,15 @@ interface StatisticsDistributionChartProps {
     statisticsOptions: StatisticsOptions;
 }
 
-function StatisticsDistributionChart({entries, statisticsOptions}: StatisticsDistributionChartProps) {
-    const chartWidth = Dimensions.get("window").width - theme.SPACING.M * 2;
-    const values: DistributionChartData = StatisticsService.getDistributionChartData(statisticsOptions, entries);
+function StatisticsDistributionChart({
+    entries,
+    statisticsOptions
+}: StatisticsDistributionChartProps) {
+    const chartWidth = Dimensions.get('window').width - theme.SPACING.M * 2;
+    const values: DistributionChartData =
+        StatisticsService.getDistributionChartData(statisticsOptions, entries);
 
-    return (
-        <PieChart values={values}
-                  width={chartWidth}
-                  style={styles.chart}/>
-    );
+    return <PieChart values={values} width={chartWidth} style={styles.chart} />;
 }
 
 const styles = StyleSheet.create({

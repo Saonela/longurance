@@ -8,7 +8,6 @@ const ENTRIES_KEY = 'entries';
 const STATISTICS_OPTIONS_KEY = 'statisticsOptions';
 
 class StorageService {
-
     static async saveStatisticsOptions(options: StatisticsOptions) {
         return this.saveGenericListItem(STATISTICS_OPTIONS_KEY, options);
     }
@@ -26,7 +25,7 @@ class StorageService {
     }
 
     static async saveTrophies(trophies: Trophy[]) {
-        trophies.forEach(trophy => this.saveTrophy(trophy));
+        trophies.forEach((trophy) => this.saveTrophy(trophy));
     }
 
     static async deleteTrophy(id: string) {
@@ -75,7 +74,7 @@ class StorageService {
 
     static async saveGenericListItem(key: string, item: any) {
         const items = await this.loadGenericList(key);
-        const _item = items.find(x => x.id === item.id);
+        const _item = items.find((x) => x.id === item.id);
 
         if (_item) {
             Object.assign(_item, item);
@@ -88,7 +87,7 @@ class StorageService {
 
     static async deleteGenericListItem(key: string, id: string) {
         let items = await this.loadGenericList(key);
-        items = items.filter(entry => entry.id !== id);
+        items = items.filter((entry) => entry.id !== id);
         this.saveGenericList(key, items);
     }
 
