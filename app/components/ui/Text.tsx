@@ -9,9 +9,25 @@ interface TextProps {
     props?: TextProps;
 }
 
+export function PrimaryHeader({style = {}, children, ...props}: TextProps) {
+    return (
+        <Text {...props} style={[styles.primaryHeader, style]}>
+            {children}
+        </Text>
+    );
+}
+
+export function SecondaryHeader({style = {}, children, ...props}: TextProps) {
+    return (
+        <Text {...props} style={[styles.secondaryHeader, style]}>
+            {children}
+        </Text>
+    );
+}
+
 export function PrimaryText({style = {}, children, ...props}: TextProps) {
     return (
-        <Text {...props} style={[styles.primary, style]}>
+        <Text {...props} style={[styles.primaryText, style]}>
             {children}
         </Text>
     );
@@ -19,19 +35,29 @@ export function PrimaryText({style = {}, children, ...props}: TextProps) {
 
 export function SecondaryText({style = {}, children, ...props}: TextProps) {
     return (
-        <Text {...props} style={[styles.secondary, style]}>
+        <Text {...props} style={[styles.secondaryText, style]}>
             {children}
         </Text>
     );
 }
 
 const styles = StyleSheet.create({
-    primary: {
+    primaryHeader: {
+        fontFamily: 'LatoBlack',
+        fontSize: theme.FONT_SIZE.HEADER,
+        color: theme.COLORS.THEME_FONT
+    },
+    secondaryHeader: {
+        fontFamily: 'LatoBlack',
+        fontSize: theme.FONT_SIZE.HEADER,
+        color: theme.COLORS.FONT_PRIMARY
+    },
+    primaryText: {
         fontFamily: theme.FONT_FAMILY.PRIMARY,
         fontSize: theme.FONT_SIZE.PRIMARY,
         color: theme.COLORS.FONT_PRIMARY
     },
-    secondary: {
+    secondaryText: {
         fontFamily: theme.FONT_FAMILY.PRIMARY,
         fontSize: theme.FONT_SIZE.SECONDARY,
         color: theme.COLORS.FONT_SECONDARY
