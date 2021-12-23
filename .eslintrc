@@ -1,4 +1,9 @@
 {
+    "ignorePatterns": [
+        "node_modules",
+        ".expo",
+        ".expo-shared"
+    ],
     "extends": [
         "airbnb",
         "airbnb/hooks",
