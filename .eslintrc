@@ -33,6 +33,12 @@
                 ]
             }
         ],
+        "react/no-unstable-nested-components": [
+            "error",
+            {
+                "allowAsProps": true
+            }
+        ],
         "prettier/prettier": [
             "error",
             {
