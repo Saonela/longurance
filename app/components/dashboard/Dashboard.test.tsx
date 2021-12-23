@@ -9,12 +9,13 @@ import {Activity} from '../../types/Activity';
 import {Entry} from '../../types/Entry';
 import Dashboard from './Dashboard';
 
-const entries: Partial<Entry>[] = [
+const entries: Entry[] = [
     {
         id: '1',
         activity: Activity.RUNNING,
         distance: 15,
         duration: 92,
+        createdAt: '2021-01-07T09:10:02.207Z',
         date: '2021-01-07T09:10:02.207Z',
         effort: 5,
         title: 'MY RUN',
@@ -22,8 +23,11 @@ const entries: Partial<Entry>[] = [
     },
     {
         id: '2',
+        title: '',
         activity: Activity.CYCLING,
+        distance: 0,
         duration: 180,
+        createdAt: '2021-01-01T00:10:02.207Z',
         date: '2021-01-01T00:10:02.207Z',
         effort: 3,
         note: ''
@@ -32,6 +36,8 @@ const entries: Partial<Entry>[] = [
         id: '3',
         activity: Activity.SWIMMING,
         distance: 5,
+        duration: 0,
+        createdAt: '2020-12-08T09:10:02.207Z',
         date: '2020-12-08T09:10:02.207Z',
         effort: 4,
         title: 'Learn to Swim',
