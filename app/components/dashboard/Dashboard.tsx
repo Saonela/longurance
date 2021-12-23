@@ -16,6 +16,7 @@ import {getEntries} from '../../redux/slices/entriesSlice';
 import {getEntriesFilter} from '../../redux/slices/entriesFilterSlice';
 import useFiltersStore from '../../state/filters';
 import {FilterTimeInterval} from '../../types/FilterTimeInterval';
+import moment from 'moment';
 
 const timeIntervalValues = [
     {
@@ -35,6 +36,15 @@ const timeIntervalValues = [
         value: FilterTimeInterval.ALL
     }
 ];
+
+const getCurrentTimeIntervalText = (timeInterval: FilterTimeInterval) => {
+    if (timeInterval === FilterTimeInterval.WEEK) return 'This week';
+    if (timeInterval === FilterTimeInterval.MONTH)
+        return moment().format('MMMM, YYYY');
+    if (timeInterval === FilterTimeInterval.YEAR)
+        return moment().format('YYYY');
+    return 'All time';
+};
 
 const getActivityFilterText = (filter: Activity | null) => {
     if (filter === Activity.RUNNING) return 'Running';
@@ -57,7 +67,7 @@ function Dashboard() {
             />
             <View style={[utils.marginBottomXL]}>
                 <PrimaryText style={styles.dateText}>
-                    December, 2021
+                    {getCurrentTimeIntervalText(dashboardTimeInterval)}
                 </PrimaryText>
                 <PrimaryHeader>
                     {getActivityFilterText(filter).toUpperCase()}
