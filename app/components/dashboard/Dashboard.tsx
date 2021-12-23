@@ -15,23 +15,24 @@ import EntryEffortBar from '../entry/EntryEffortBar';
 import {getEntries} from '../../redux/slices/entriesSlice';
 import {getEntriesFilter} from '../../redux/slices/entriesFilterSlice';
 import useFiltersStore from '../../state/filters';
+import {FilterTimeInterval} from '../../types/FilterTimeInterval';
 
-const items = [
+const timeIntervalValues = [
     {
         label: 'Week',
-        value: 1
+        value: FilterTimeInterval.WEEK
     },
     {
         label: 'Month',
-        value: 2
+        value: FilterTimeInterval.MONTH
     },
     {
         label: 'Year',
-        value: 3
+        value: FilterTimeInterval.YEAR
     },
     {
         label: 'All',
-        value: 4
+        value: FilterTimeInterval.ALL
     }
 ];
 
@@ -50,7 +51,7 @@ function Dashboard() {
         <View style={styles.panel}>
             <SelectionButtons
                 selected={dashboardTimeInterval}
-                items={items}
+                items={timeIntervalValues}
                 style={[utils.marginBottomXL]}
                 onChange={setDashboardTimeInterval}
             />
