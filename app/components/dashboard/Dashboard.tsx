@@ -14,6 +14,7 @@ import SelectionButtons from '../shared/SelectionButtons';
 import EntryEffortBar from '../entry/EntryEffortBar';
 import {getEntries} from '../../redux/slices/entriesSlice';
 import {getEntriesFilter} from '../../redux/slices/entriesFilterSlice';
+import useFiltersStore from '../../state/filters';
 
 const items = [
     {
@@ -42,16 +43,16 @@ const getActivityFilterText = (filter: Activity | null) => {
 };
 
 function Dashboard() {
+    const {dashboardTimeInterval, setDashboardTimeInterval} = useFiltersStore();
     const filter = useSelector(getEntriesFilter);
     const entries = useSelector(getEntries);
-    const [timeInterval, setTimeInterval] = useState(1);
     return (
         <View style={styles.panel}>
             <SelectionButtons
-                selected={timeInterval}
+                selected={dashboardTimeInterval}
                 items={items}
                 style={[utils.marginBottomXL]}
-                onChange={setTimeInterval}
+                onChange={setDashboardTimeInterval}
             />
             <View style={[utils.marginBottomXL]}>
                 <PrimaryText style={styles.dateText}>

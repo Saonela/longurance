@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, {useEffect} from 'react';
 import {
     CardStyleInterpolators,
@@ -18,6 +19,7 @@ import EntryDetailsScreen from './app/screens/EntryDetailsScreen';
 import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';
 import {loadTrophies} from './app/redux/slices/trophiesSlice';
 import StatisticsScreen from './app/screens/StatisticsScreen';
+import useFiltersStore from './app/state/filters';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -111,11 +113,12 @@ function Main() {
     useEffect(() => {
         dispatch(loadEntries());
         dispatch(loadTrophies());
+        useFiltersStore.getState().loadDashboardTimeInterval();
     }, []);
 
     return (
         <NavigationContainer theme={DarkTheme}>
-            <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
+            <Tab.Navigator tabBar={props => <TabBar {...props} />}>
                 <Tab.Screen name="Entries" component={EntryScreenStack} />
                 {/*<Tab.Screen name="Trophies" component={TrophyScreenStack} />*/}
                 {/*<Tab.Screen name="Statistics" component={StatisticsScreenStack} />*/}
