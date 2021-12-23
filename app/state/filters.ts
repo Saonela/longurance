@@ -8,15 +8,15 @@ interface FiltersState {
     loadDashboardTimeInterval: () => void;
 }
 
-const useFiltersStore = create<FiltersState>(set => ({
+const useFiltersStore = create<FiltersState>((set) => ({
     dashboardTimeInterval: FilterTimeInterval.WEEK,
-    setDashboardTimeInterval: value => {
+    setDashboardTimeInterval: (value) => {
         saveFilters({dashboardTimeInterval: value});
-        set(state => ({...state, dashboardTimeInterval: value}));
+        set((state) => ({...state, dashboardTimeInterval: value}));
     },
     loadDashboardTimeInterval: async () => {
         const filters = await fetchFilters();
-        set(state => ({...state, ...filters}));
+        set((state) => ({...state, ...filters}));
     }
 }));
 

@@ -10,7 +10,7 @@ import theme from '../theme';
 
 function EntryListScreen({navigation}) {
     const navigateToEntryForm = () => navigation.navigate('entry-form', {});
-    const navigateToEntryDetails = id =>
+    const navigateToEntryDetails = (id) =>
         navigation.navigate('entry-details', {id});
 
     useLayoutEffect(() => {
