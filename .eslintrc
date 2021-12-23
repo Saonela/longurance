@@ -58,6 +58,7 @@
             "error",
             "never"
         ],
+        "import/prefer-default-export": "off",
         "react/prop-types": 0,
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": [
