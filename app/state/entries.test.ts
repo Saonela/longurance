@@ -38,9 +38,9 @@ describe('Entries state', () => {
     });
 
     it('should load entries', async () => {
-        deleteEntrySpy = jest
-            .spyOn(api, 'fetchEntries')
-            .mockImplementation(() => Promise.resolve([]));
+        jest.spyOn(api, 'fetchEntries').mockImplementation(() =>
+            Promise.resolve([])
+        );
         await loadEntries();
         expect(useEntriesStore.getState().entries).toEqual([]);
     });
