@@ -1,5 +1,11 @@
 import {Activity} from '../types/Activity';
-import useEntriesStore from './entries';
+import {
+    addEntry,
+    deleteEntry,
+    loadEntries,
+    updateEntry,
+    useEntriesStore
+} from './entries';
 import {Entry} from '../types/Entry';
 import * as api from '../lib/api';
 
@@ -35,13 +41,13 @@ describe('Entries state', () => {
         deleteEntrySpy = jest
             .spyOn(api, 'fetchEntries')
             .mockImplementation(() => Promise.resolve([]));
-        await useEntriesStore.getState().loadEntries();
+        await loadEntries();
         expect(useEntriesStore.getState().entries).toEqual([]);
     });
 
     it('should add entry', () => {
         const entry: Entry = {id: '2'} as Entry;
-        useEntriesStore.getState().addEntry(entry);
+        addEntry(entry);
         expect(useEntriesStore.getState().entries).toEqual([
             ...initialState.entries,
             entry
@@ -51,7 +57,7 @@ describe('Entries state', () => {
 
     it('should update entry', () => {
         const entry: Entry = {id: '1', activity: Activity.SWIMMING} as Entry;
-        useEntriesStore.getState().updateEntry(entry);
+        updateEntry(entry);
         expect(useEntriesStore.getState().entries).toEqual([
             {...initialState.entries[0], ...entry}
         ]);
@@ -59,7 +65,7 @@ describe('Entries state', () => {
     });
 
     it('should delete entry', () => {
-        useEntriesStore.getState().deleteEntry('1');
+        deleteEntry('1');
         expect(useEntriesStore.getState().entries).toEqual([]);
         expect(deleteEntrySpy).toHaveBeenCalled();
     });
