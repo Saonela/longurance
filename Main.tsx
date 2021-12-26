@@ -10,7 +10,7 @@ import EntryListScreen from './app/screens/EntryListScreen';
 import EntryFormScreen from './app/screens/EntryFormScreen';
 import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {loadEntries} from './app/redux/slices/entriesSlice';
+// import {loadEn/.tries} from './app/redux/slices/entriesSlice';
 import HeaderButton from './app/components/header/HeaderButton';
 import TrophyListScreen from './app/screens/TrophyListScreen';
 import TabBar from './app/components/tab-navigation/TabBar';
@@ -20,6 +20,7 @@ import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';
 import {loadTrophies} from './app/redux/slices/trophiesSlice';
 import StatisticsScreen from './app/screens/StatisticsScreen';
 import useFiltersStore from './app/state/filters';
+import {loadEntries, useEntriesStore} from './app/state/entries';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -111,8 +112,9 @@ function Main() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(loadEntries());
+        // dispatch(loadEntries());
         dispatch(loadTrophies());
+        loadEntries();
         useFiltersStore.getState().loadDashboardTimeInterval();
     }, []);
 
