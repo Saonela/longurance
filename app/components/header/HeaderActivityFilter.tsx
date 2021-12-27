@@ -1,13 +1,12 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import {ActivityOptions} from '../../types/Activity';
 import theme from '../../theme';
-import {useDispatch, useSelector} from 'react-redux';
 import {
-    setEntriesFilter,
-    getEntriesFilter
-} from '../../redux/slices/entriesFilterSlice';
-import {Picker} from '@react-native-picker/picker';
+    setActivityFilter,
+    useActivityFilterStore
+} from '../../state/activityFilter';
 
 const options = [{label: 'All', value: null}, ...ActivityOptions];
 
@@ -16,15 +15,13 @@ interface ActivityFilterProps {
 }
 
 function HeaderActivityFilter({style = {}}: ActivityFilterProps) {
-    const filter = useSelector(getEntriesFilter);
-    const dispatch = useDispatch();
-
+    const {filter} = useActivityFilterStore();
     return (
         <View style={[styles.container, style]}>
             <Picker
                 mode="dropdown"
                 selectedValue={filter}
-                onValueChange={(value) => dispatch(setEntriesFilter(value))}
+                onValueChange={setActivityFilter}
                 dropdownIconColor={theme.COLORS.FONT_PRIMARY}
                 style={styles.picker}
             >

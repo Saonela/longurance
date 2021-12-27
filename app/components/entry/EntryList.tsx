@@ -15,7 +15,7 @@ const keyExtractor = (item) => item.id;
 
 function EntryList({onPress}: EntryListProps) {
     const {filter} = useActivityFilterStore();
-    const {entries} = useEntriesStore((state) => getEntries(state, filter));
+    const entries = useEntriesStore((state) => getEntries(state, filter));
 
     if (entries.length === 0) {
         return <NoDataMessage>No activity found</NoDataMessage>;
