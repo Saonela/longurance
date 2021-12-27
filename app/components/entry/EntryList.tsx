@@ -1,13 +1,10 @@
 import React from 'react';
-import {ASYNC_STATE_STATUS} from '../../redux/asyncStateStatus';
-import NoDataMessage from '../list/NoDataMessage';
 import {FlatList} from 'react-native';
-import {useSelector} from 'react-redux';
-import {getEntries, getEntriesStatus} from '../../redux/slices/entriesSlice';
 import * as Animatable from 'react-native-animatable';
 import EntryCard from './EntryCard';
-import ListLoader from '../list/ListLoader';
 import theme from '../../theme';
+import {useEntriesStore} from '../../state/entries';
+import NoDataMessage from '../list/NoDataMessage';
 
 interface EntryListProps {
     onPress: (id: string) => void;
@@ -16,14 +13,9 @@ interface EntryListProps {
 const keyExtractor = (item) => item.id;
 
 function EntryList({onPress}: EntryListProps) {
-    const entries = useSelector(getEntries);
-    const entriesStatus = useSelector(getEntriesStatus);
+    const {entries} = useEntriesStore();
 
-    if (entriesStatus === ASYNC_STATE_STATUS.LOADING) {
-        return <ListLoader />;
-    }
-
-    if (entriesStatus === ASYNC_STATE_STATUS.SUCCEEDED && !entries.length) {
+    if (entries.length === 0) {
         return <NoDataMessage>No activity found</NoDataMessage>;
     }
 
@@ -37,6 +29,7 @@ function EntryList({onPress}: EntryListProps) {
             <EntryCard entry={item} onPress={() => onPress(item.id)} />
         </Animatable.View>
     );
+
     return (
         <FlatList
             data={entries}
