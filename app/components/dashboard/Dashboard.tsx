@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
 import {
     PrimaryHeader,
     PrimaryText,
@@ -13,10 +12,10 @@ import {Activity} from '../../types/Activity';
 import utils from '../../styles-utilities';
 import SelectionButtons from '../shared/SelectionButtons';
 import EntryEffortBar from '../entry/EntryEffortBar';
-import {getEntries} from '../../redux/slices/entriesSlice';
 import useFiltersStore from '../../state/filters';
 import {FilterTimeInterval} from '../../types/FilterTimeInterval';
 import {useActivityFilterStore} from '../../state/activityFilter';
+import {getEntries, useEntriesStore} from '../../state/entries';
 
 const timeIntervalValues = [
     {
@@ -56,7 +55,9 @@ const getActivityFilterText = (filter: Activity | null) => {
 function Dashboard() {
     const {dashboardTimeInterval, setDashboardTimeInterval} = useFiltersStore();
     const {filter} = useActivityFilterStore();
-    const entries = useSelector(getEntries);
+    const entries = useEntriesStore((state) =>
+        getEntries(state, filter, dashboardTimeInterval)
+    );
     return (
         <View style={styles.panel}>
             <SelectionButtons

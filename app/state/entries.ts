@@ -1,8 +1,10 @@
 import create from 'zustand';
+import moment from 'moment';
 import {Entry} from '../types/Entry';
 import {generateId} from '../lib/utility';
 import * as api from '../lib/api';
 import {Activity} from '../types/Activity';
+import {FilterTimeInterval} from '../types/FilterTimeInterval';
 
 interface EntriesState {
     entries: Entry[];
@@ -42,12 +44,46 @@ export async function loadEntries() {
     useEntriesStore.setState(() => ({entries}));
 }
 
+function filterEntriesByActivity(entries: Entry[], activity: Activity | null) {
+    if (activity === null) {
+        return entries;
+    }
+    return entries.filter((entry) => entry.activity === activity);
+}
+
+function filterEntriesByTimeInterval(
+    entries: Entry[],
+    timeInterval: FilterTimeInterval | null
+) {
+    if (timeInterval === FilterTimeInterval.YEAR) {
+        const year = new Date().getFullYear();
+        return entries.filter(
+            (entry) => new Date(entry.date).getFullYear() === year
+        );
+    }
+    if (timeInterval === FilterTimeInterval.MONTH) {
+        const month = new Date().getMonth();
+        return entries.filter(
+            (entry) => new Date(entry.date).getMonth() === month
+        );
+    }
+    if (timeInterval === FilterTimeInterval.WEEK) {
+        const week = moment().format('W');
+        return entries.filter(
+            (entry) => moment(entry.date).format('W') === week
+        );
+    }
+    return entries;
+}
+
 export const getEntry = (state: EntriesState, id: string) =>
     state.entries.find((entry) => entry.id === id);
 
-export const getEntries = (state, activityFilter: Activity | null) => {
-    if (activityFilter === null) {
-        return state.entries;
-    }
-    return state.entries.filter((entry) => entry.activity === activityFilter);
+export const getEntries = (
+    state,
+    activity: Activity | null = null,
+    timeInterval: FilterTimeInterval | null = null
+) => {
+    const activityEntries = filterEntriesByActivity(state.entries, activity);
+    return filterEntriesByTimeInterval(activityEntries, timeInterval);
 };

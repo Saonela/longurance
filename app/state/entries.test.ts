@@ -1,3 +1,4 @@
+/* eslint-disable no-global-assign */
 import {Activity} from '../types/Activity';
 import {
     addEntry,
@@ -9,6 +10,7 @@ import {
 } from './entries';
 import {Entry} from '../types/Entry';
 import * as api from '../lib/api';
+import {FilterTimeInterval} from '../types/FilterTimeInterval';
 
 jest.mock('../lib/storage');
 
@@ -77,6 +79,23 @@ describe('Entries state', () => {
     });
 
     describe('selectors', () => {
+        let RealDate;
+
+        beforeAll(() => {
+            RealDate = Date;
+            setFakeDate(new Date().toISOString());
+        });
+
+        afterAll(() => {
+            Date = RealDate;
+        });
+
+        const setFakeDate = (isoDate: string) => {
+            (jest.spyOn(global, 'Date') as any).mockImplementation((args) => {
+                return new RealDate(args || isoDate);
+            });
+        };
+
         it('should get entries filtered by activity', () => {
             expect(getEntries(initialState, null)).toEqual(
                 initialState.entries
@@ -86,6 +105,24 @@ describe('Entries state', () => {
             );
             expect(getEntries(initialState, Activity.CYCLING)).toEqual([]);
             expect(getEntries(initialState, Activity.SWIMMING)).toEqual([]);
+        });
+
+        it('should get entries filtered by time interval', () => {
+            setFakeDate('2021-01-19T09:00:00.000');
+            expect(
+                getEntries(initialState, null, FilterTimeInterval.MONTH)
+            ).toEqual(initialState.entries);
+            expect(
+                getEntries(initialState, null, FilterTimeInterval.YEAR)
+            ).toEqual(initialState.entries);
+
+            setFakeDate('2021-09-19T09:00:00.000');
+            expect(
+                getEntries(initialState, null, FilterTimeInterval.MONTH)
+            ).toEqual([]);
+            expect(
+                getEntries(initialState, null, FilterTimeInterval.YEAR)
+            ).toEqual(initialState.entries);
         });
     });
 });
