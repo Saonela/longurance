@@ -2,6 +2,7 @@ import {Activity} from '../types/Activity';
 import {
     addEntry,
     deleteEntry,
+    getEntries,
     loadEntries,
     updateEntry,
     useEntriesStore
@@ -28,45 +29,63 @@ describe('Entries state', () => {
         ]
     };
 
-    let saveEntrySpy;
-    let deleteEntrySpy;
+    describe('actions', () => {
+        let saveEntrySpy;
+        let deleteEntrySpy;
 
-    beforeEach(() => {
-        saveEntrySpy = jest.spyOn(api, 'saveEntry');
-        deleteEntrySpy = jest.spyOn(api, 'deleteEntry');
-        useEntriesStore.setState(initialState);
+        beforeEach(() => {
+            saveEntrySpy = jest.spyOn(api, 'saveEntry');
+            deleteEntrySpy = jest.spyOn(api, 'deleteEntry');
+            useEntriesStore.setState(initialState);
+        });
+
+        it('should load entries', async () => {
+            jest.spyOn(api, 'fetchEntries').mockImplementation(() =>
+                Promise.resolve([])
+            );
+            await loadEntries();
+            expect(useEntriesStore.getState().entries).toEqual([]);
+        });
+
+        it('should add entry', () => {
+            const entry: Entry = {id: '2'} as Entry;
+            addEntry(entry);
+            expect(useEntriesStore.getState().entries).toEqual([
+                ...initialState.entries,
+                entry
+            ]);
+            expect(saveEntrySpy).toHaveBeenCalled();
+        });
+
+        it('should update entry', () => {
+            const entry: Entry = {
+                id: '1',
+                activity: Activity.SWIMMING
+            } as Entry;
+            updateEntry(entry);
+            expect(useEntriesStore.getState().entries).toEqual([
+                {...initialState.entries[0], ...entry}
+            ]);
+            expect(saveEntrySpy).toHaveBeenCalled();
+        });
+
+        it('should delete entry', () => {
+            deleteEntry('1');
+            expect(useEntriesStore.getState().entries).toEqual([]);
+            expect(deleteEntrySpy).toHaveBeenCalled();
+        });
     });
 
-    it('should load entries', async () => {
-        jest.spyOn(api, 'fetchEntries').mockImplementation(() =>
-            Promise.resolve([])
-        );
-        await loadEntries();
-        expect(useEntriesStore.getState().entries).toEqual([]);
-    });
-
-    it('should add entry', () => {
-        const entry: Entry = {id: '2'} as Entry;
-        addEntry(entry);
-        expect(useEntriesStore.getState().entries).toEqual([
-            ...initialState.entries,
-            entry
-        ]);
-        expect(saveEntrySpy).toHaveBeenCalled();
-    });
-
-    it('should update entry', () => {
-        const entry: Entry = {id: '1', activity: Activity.SWIMMING} as Entry;
-        updateEntry(entry);
-        expect(useEntriesStore.getState().entries).toEqual([
-            {...initialState.entries[0], ...entry}
-        ]);
-        expect(saveEntrySpy).toHaveBeenCalled();
-    });
-
-    it('should delete entry', () => {
-        deleteEntry('1');
-        expect(useEntriesStore.getState().entries).toEqual([]);
-        expect(deleteEntrySpy).toHaveBeenCalled();
+    describe('selectors', () => {
+        it('should get entries filtered by activity', () => {
+            expect(getEntries(initialState, null)).toEqual(
+                initialState.entries
+            );
+            expect(getEntries(initialState, Activity.RUNNING)).toEqual(
+                initialState.entries
+            );
+            expect(getEntries(initialState, Activity.CYCLING)).toEqual([]);
+            expect(getEntries(initialState, Activity.SWIMMING)).toEqual([]);
+        });
     });
 });

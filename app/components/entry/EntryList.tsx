@@ -3,8 +3,9 @@ import {FlatList} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import EntryCard from './EntryCard';
 import theme from '../../theme';
-import {useEntriesStore} from '../../state/entries';
+import {getEntries, useEntriesStore} from '../../state/entries';
 import NoDataMessage from '../list/NoDataMessage';
+import {useActivityFilterStore} from '../../state/activityFilter';
 
 interface EntryListProps {
     onPress: (id: string) => void;
@@ -13,7 +14,8 @@ interface EntryListProps {
 const keyExtractor = (item) => item.id;
 
 function EntryList({onPress}: EntryListProps) {
-    const {entries} = useEntriesStore();
+    const {filter} = useActivityFilterStore();
+    const {entries} = useEntriesStore((state) => getEntries(state, filter));
 
     if (entries.length === 0) {
         return <NoDataMessage>No activity found</NoDataMessage>;

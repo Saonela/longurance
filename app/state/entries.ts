@@ -2,6 +2,7 @@ import create from 'zustand';
 import {Entry} from '../types/Entry';
 import {generateId} from '../lib/utility';
 import * as api from '../lib/api';
+import {Activity} from '../types/Activity';
 
 interface EntriesState {
     entries: Entry[];
@@ -43,3 +44,10 @@ export async function loadEntries() {
 
 export const getEntry = (state: EntriesState, id: string) =>
     state.entries.find((entry) => entry.id === id);
+
+export const getEntries = (state, activityFilter: Activity | null) => {
+    if (activityFilter === null) {
+        return state.entries;
+    }
+    return state.entries.filter((entry) => entry.activity === activityFilter);
+};
