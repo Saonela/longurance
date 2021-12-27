@@ -4,7 +4,7 @@ import {Entry} from '../types/Entry';
 import {generateId} from '../lib/utility';
 import * as api from '../lib/api';
 import {Activity} from '../types/Activity';
-import {FilterTimeInterval} from '../types/FilterTimeInterval';
+import {TimeInterval} from '../types/TimeInterval';
 
 interface EntriesState {
     entries: Entry[];
@@ -53,21 +53,21 @@ function filterEntriesByActivity(entries: Entry[], activity: Activity | null) {
 
 function filterEntriesByTimeInterval(
     entries: Entry[],
-    timeInterval: FilterTimeInterval | null
+    timeInterval: TimeInterval | null
 ) {
-    if (timeInterval === FilterTimeInterval.YEAR) {
+    if (timeInterval === TimeInterval.YEAR) {
         const year = new Date().getFullYear();
         return entries.filter(
             (entry) => new Date(entry.date).getFullYear() === year
         );
     }
-    if (timeInterval === FilterTimeInterval.MONTH) {
+    if (timeInterval === TimeInterval.MONTH) {
         const month = new Date().getMonth();
         return entries.filter(
             (entry) => new Date(entry.date).getMonth() === month
         );
     }
-    if (timeInterval === FilterTimeInterval.WEEK) {
+    if (timeInterval === TimeInterval.WEEK) {
         const week = moment().format('W');
         return entries.filter(
             (entry) => moment(entry.date).format('W') === week
@@ -82,7 +82,7 @@ export const getEntry = (state: EntriesState, id: string) =>
 export const getEntries = (
     state,
     activity: Activity | null = null,
-    timeInterval: FilterTimeInterval | null = null
+    timeInterval: TimeInterval | null = null
 ) => {
     const activityEntries = filterEntriesByActivity(state.entries, activity);
     return filterEntriesByTimeInterval(activityEntries, timeInterval);

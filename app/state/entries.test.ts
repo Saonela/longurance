@@ -10,7 +10,7 @@ import {
 } from './entries';
 import {Entry} from '../types/Entry';
 import * as api from '../lib/api';
-import {FilterTimeInterval} from '../types/FilterTimeInterval';
+import {TimeInterval} from '../types/TimeInterval';
 
 jest.mock('../lib/storage');
 
@@ -109,20 +109,20 @@ describe('Entries state', () => {
 
         it('should get entries filtered by time interval', () => {
             setFakeDate('2021-01-19T09:00:00.000');
-            expect(
-                getEntries(initialState, null, FilterTimeInterval.MONTH)
-            ).toEqual(initialState.entries);
-            expect(
-                getEntries(initialState, null, FilterTimeInterval.YEAR)
-            ).toEqual(initialState.entries);
+            expect(getEntries(initialState, null, TimeInterval.MONTH)).toEqual(
+                initialState.entries
+            );
+            expect(getEntries(initialState, null, TimeInterval.YEAR)).toEqual(
+                initialState.entries
+            );
 
             setFakeDate('2021-09-19T09:00:00.000');
-            expect(
-                getEntries(initialState, null, FilterTimeInterval.MONTH)
-            ).toEqual([]);
-            expect(
-                getEntries(initialState, null, FilterTimeInterval.YEAR)
-            ).toEqual(initialState.entries);
+            expect(getEntries(initialState, null, TimeInterval.MONTH)).toEqual(
+                []
+            );
+            expect(getEntries(initialState, null, TimeInterval.YEAR)).toEqual(
+                initialState.entries
+            );
         });
     });
 });

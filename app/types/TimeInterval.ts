@@ -1,4 +1,4 @@
-export enum FilterTimeInterval {
+export enum TimeInterval {
     WEEK = 'WEEK',
     MONTH = 'MONTH',
     YEAR = 'YEAR'

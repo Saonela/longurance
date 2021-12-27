@@ -13,22 +13,22 @@ import utils from '../../styles-utilities';
 import SelectionButtons from '../shared/SelectionButtons';
 import EntryEffortBar from '../entry/EntryEffortBar';
 import useFiltersStore from '../../state/filters';
-import {FilterTimeInterval} from '../../types/FilterTimeInterval';
+import {TimeInterval} from '../../types/TimeInterval';
 import {useActivityFilterStore} from '../../state/activityFilter';
 import {getEntries, useEntriesStore} from '../../state/entries';
 
 const timeIntervalValues = [
     {
         label: 'Week',
-        value: FilterTimeInterval.WEEK
+        value: TimeInterval.WEEK
     },
     {
         label: 'Month',
-        value: FilterTimeInterval.MONTH
+        value: TimeInterval.MONTH
     },
     {
         label: 'Year',
-        value: FilterTimeInterval.YEAR
+        value: TimeInterval.YEAR
     },
     {
         label: 'All',
@@ -36,12 +36,11 @@ const timeIntervalValues = [
     }
 ];
 
-const getCurrentTimeIntervalText = (timeInterval: FilterTimeInterval) => {
-    if (timeInterval === FilterTimeInterval.WEEK) return 'This week';
-    if (timeInterval === FilterTimeInterval.MONTH)
+const getCurrentTimeIntervalText = (timeInterval: TimeInterval) => {
+    if (timeInterval === TimeInterval.WEEK) return 'This week';
+    if (timeInterval === TimeInterval.MONTH)
         return moment().format('MMMM, YYYY');
-    if (timeInterval === FilterTimeInterval.YEAR)
-        return moment().format('YYYY');
+    if (timeInterval === TimeInterval.YEAR) return moment().format('YYYY');
     return 'All time';
 };
 
