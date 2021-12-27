@@ -33,7 +33,7 @@ const timeIntervalValues = [
     },
     {
         label: 'All',
-        value: FilterTimeInterval.ALL
+        value: null
     }
 ];
 
