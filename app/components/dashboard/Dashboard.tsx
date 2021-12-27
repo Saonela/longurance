@@ -16,6 +16,17 @@ import useFiltersStore from '../../state/filters';
 import {TimeInterval} from '../../types/TimeInterval';
 import {useActivityFilterStore} from '../../state/activityFilter';
 import {getEntries, useEntriesStore} from '../../state/entries';
+import {
+    getAverageIntensity,
+    getTotalDistance,
+    getTotalDuration
+} from '../../lib/statistics';
+import {
+    getDistanceText,
+    getDurationText,
+    getIntensityText,
+    getPaceText
+} from '../../lib/entry';
 
 const timeIntervalValues = [
     {
@@ -57,6 +68,11 @@ function Dashboard() {
     const entries = useEntriesStore((state) =>
         getEntries(state, filter, dashboardTimeInterval)
     );
+
+    const distance = getTotalDistance(entries);
+    const duration = getTotalDuration(entries);
+    const intensity = getAverageIntensity(entries);
+
     return (
         <View style={styles.panel}>
             <SelectionButtons
@@ -78,13 +94,13 @@ function Dashboard() {
             >
                 <View>
                     <SecondaryHeader style={styles.labelledText}>
-                        120km
+                        {getDistanceText(distance)}
                     </SecondaryHeader>
                     <SecondaryText>Distance</SecondaryText>
                 </View>
                 <View>
                     <SecondaryHeader style={styles.labelledText}>
-                        17h 15min
+                        {getDurationText(duration)}
                     </SecondaryHeader>
                     <SecondaryText>Duration</SecondaryText>
                 </View>
@@ -92,13 +108,15 @@ function Dashboard() {
             <View style={[utils.row]}>
                 <View style={styles.secondaryDetails}>
                     <PrimaryText style={styles.secondaryDetailsText}>
-                        15
+                        {entries.length}
                     </PrimaryText>
-                    <SecondaryText>Workouts</SecondaryText>
+                    <SecondaryText>
+                        {entries.length === 1 ? 'Workout' : 'Workouts'}
+                    </SecondaryText>
                 </View>
                 <View style={styles.secondaryDetails}>
                     <PrimaryText style={styles.secondaryDetailsText}>
-                        5&apos;48&quot;
+                        {getPaceText(duration, distance)}
                     </PrimaryText>
                     <SecondaryText>Avg. Pace</SecondaryText>
                 </View>
@@ -115,10 +133,10 @@ function Dashboard() {
                 >
                     <SecondaryText>Avg. Intensity</SecondaryText>
                     <PrimaryText style={styles.secondaryDetailsText}>
-                        3/5
+                        {getIntensityText(intensity)}
                     </PrimaryText>
                 </View>
-                <EntryEffortBar effort={4} />
+                <EntryEffortBar effort={intensity} />
             </View>
             <View style={styles.backgroundSlice} />
         </View>

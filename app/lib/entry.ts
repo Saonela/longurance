@@ -26,6 +26,10 @@ export function getDistanceText(distance: number) {
     return `${distance || 0}km`;
 }
 
+export function getIntensityText(intensity: number) {
+    return `${intensity}/5`;
+}
+
 export function getActivityTypeText(type: Activity) {
     if (type === Activity.CYCLING) return 'CYCLE';
     if (type === Activity.SWIMMING) return 'SWIM';
