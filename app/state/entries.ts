@@ -40,3 +40,6 @@ export async function loadEntries() {
     const entries = await api.fetchEntries();
     useEntriesStore.setState(() => ({entries}));
 }
+
+export const getEntry = (state: EntriesState, id: string) =>
+    state.entries.find((entry) => entry.id === id);

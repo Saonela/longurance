@@ -6,16 +6,13 @@ import {Trophy} from '../types/Trophy';
 import {deleteTrophy, getTrophy} from '../redux/slices/trophiesSlice';
 import appStyles from '../styles';
 import TrophyDetails from '../components/trophy/TrophyDetails';
-import {Entry} from '../types/Entry';
-import {getEntry} from '../redux/slices/entriesSlice';
+import {getEntry, useEntriesStore} from '../state/entries';
 
 function TrophyDetailsScreen({route, navigation}) {
     const trophy: Trophy = useSelector((state) =>
         getTrophy(state, route.params.id)
     );
-    const entry: Entry = useSelector((state) =>
-        getEntry(state, trophy?.entryId)
-    );
+    const entry = useEntriesStore((state) => getEntry(state, trophy.entryId));
 
     const dispatch = useDispatch();
 

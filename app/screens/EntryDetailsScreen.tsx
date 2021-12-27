@@ -1,8 +1,7 @@
 import React, {useLayoutEffect} from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
-import {deleteEntry, getEntry} from '../redux/slices/entriesSlice';
-import {Entry} from '../types/Entry';
+import {deleteEntry} from '../redux/slices/entriesSlice';
 import HeaderButton from '../components/header/HeaderButton';
 import appStyles from '../styles';
 import EntryDetails from '../components/entry/EntryDetails';
@@ -12,11 +11,11 @@ import {
 } from '../redux/slices/trophiesSlice';
 import {useAppDispatch} from '../redux/store';
 import {Trophy} from '../types/Trophy';
+import {getEntry, useEntriesStore} from '../state/entries';
 
 function EntryDetailsScreen({route, navigation}) {
-    const entry: Entry = useSelector((state) =>
-        getEntry(state, route.params.id)
-    );
+    const entry = useEntriesStore((state) => getEntry(state, route.params.id));
+
     const trophies: Trophy[] = useSelector((state) =>
         getTrophiesByEntry(state, entry)
     );

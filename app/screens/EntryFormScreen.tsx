@@ -3,18 +3,18 @@ import {ScrollView, View} from 'react-native';
 import appStyles from '../styles';
 import EntryForm from '../components/entry/EntryForm';
 import {Entry} from '../types/Entry';
-import {getEntry, saveEntry} from '../redux/slices/entriesSlice';
-import {useSelector} from 'react-redux';
+import {saveEntry} from '../redux/slices/entriesSlice';
 import theme from '../theme';
 import HeaderButton from '../components/header/HeaderButton';
 import {FormikValues} from 'formik';
 import {useAppDispatch} from '../redux/store';
 import {saveEntryTrophies} from '../redux/slices/trophiesSlice';
+import {getEntry, useEntriesStore} from '../state/entries';
 
 function EntryFormScreen({route, navigation}) {
     const dispatch = useAppDispatch();
 
-    const entry = useSelector((state) => getEntry(state, route.params.id));
+    const entry = useEntriesStore((state) => getEntry(state, route.params.id));
     const formRef = useRef<FormikValues>(null);
 
     useLayoutEffect(() => {
