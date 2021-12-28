@@ -5,7 +5,7 @@ import theme from '../../theme';
 
 interface TextProps {
     children: React.ReactNode;
-    style?: TextStyle;
+    style?: TextStyle | TextStyle[];
     props?: TextProps;
 }
 
