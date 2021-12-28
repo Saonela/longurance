@@ -1,12 +1,12 @@
 import React, {useLayoutEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import appStyles from '../styles';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
-import EntryList from '../components/entry/EntryList';
 import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
 import HeaderButton from '../components/header/HeaderButton';
 import Dashboard from '../components/dashboard/Dashboard';
 import theme from '../theme';
+import LatestEntries from '../components/dashboard/LatestEntries';
 
 function EntryListScreen({navigation}) {
     const navigateToEntryForm = () => navigation.navigate('entry-form', {});
@@ -31,9 +31,17 @@ function EntryListScreen({navigation}) {
         <>
             <HeaderActivityFilter />
             <View style={appStyles.screenContainer}>
-                <Dashboard />
-                <EntryList onPress={navigateToEntryDetails} />
-                <TrophyCongratulations />
+                <ScrollView>
+                    <Dashboard />
+                    <LatestEntries
+                        style={{marginTop: -8}}
+                        itemsCount={3}
+                        onPress={navigateToEntryDetails}
+                        onAddNew={() => {}}
+                        onSeeMore={() => {}}
+                    />
+                    <TrophyCongratulations />
+                </ScrollView>
             </View>
         </>
     );
