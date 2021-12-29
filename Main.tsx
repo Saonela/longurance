@@ -21,6 +21,7 @@ import StatisticsScreen from './app/screens/StatisticsScreen';
 import useFiltersStore from './app/state/filters';
 import {loadEntries} from './app/state/entries';
 import {loadActivityFilter} from './app/state/activityFilter';
+import DashboardScreen from './app/screens/DashboardScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -52,12 +53,12 @@ const stackScreenOptions: any = ({navigation}) => {
     };
 };
 
-function EntryScreenStack() {
+function DashboardScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions} mode="modal">
             <Stack.Screen
-                name="entry-list"
-                component={EntryListScreen}
+                name="dashboard"
+                component={DashboardScreen}
                 options={{}}
             />
             <Stack.Screen
@@ -122,7 +123,7 @@ function Main() {
     return (
         <NavigationContainer theme={DarkTheme}>
             <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
-                <Tab.Screen name="Entries" component={EntryScreenStack} />
+                <Tab.Screen name="Dashboard" component={DashboardScreenStack} />
                 {/*<Tab.Screen name="Trophies" component={TrophyScreenStack} />*/}
                 {/*<Tab.Screen name="Statistics" component={StatisticsScreenStack} />*/}
             </Tab.Navigator>

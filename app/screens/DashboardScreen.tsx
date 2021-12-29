@@ -1,15 +1,19 @@
-import React, {useLayoutEffect} from 'react';
-import {View, ScrollView} from 'react-native';
-import appStyles from '../styles';
+import React, {useCallback, useLayoutEffect} from 'react';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
-import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
-import HeaderButton from '../components/header/HeaderButton';
+import {ScrollView, View} from 'react-native';
+import appStyles from '../styles';
 import Dashboard from '../components/dashboard/Dashboard';
-import theme from '../theme';
 import LatestEntries from '../components/dashboard/LatestEntries';
+import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
+import theme from '../theme';
+import HeaderButton from '../components/header/HeaderButton';
 
-function EntryListScreen({navigation}) {
-    const navigateToEntryForm = () => navigation.navigate('entry-form', {});
+function DashboardScreen({navigation}) {
+    const navigateToEntryForm = useCallback(
+        () => navigation.navigate('entry-form', {}),
+        [navigation]
+    );
+
     const navigateToEntryDetails = (id) =>
         navigation.navigate('entry-details', {id});
 
@@ -25,7 +29,7 @@ function EntryListScreen({navigation}) {
                 <HeaderButton iconName="plus" onPress={navigateToEntryForm} />
             )
         });
-    }, [navigation]);
+    }, [navigation, navigateToEntryForm]);
 
     return (
         <>
@@ -47,4 +51,4 @@ function EntryListScreen({navigation}) {
     );
 }
 
-export default EntryListScreen;
+export default DashboardScreen;

@@ -28,7 +28,7 @@ const zoomOut = {
 };
 
 const routeIcon = {
-    Entries: 'list',
+    Dashboard: 'home',
     Trophies: 'award',
     Statistics: 'bar-chart'
 };
