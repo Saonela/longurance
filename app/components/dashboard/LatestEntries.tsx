@@ -4,8 +4,8 @@ import {SecondaryHeader} from '../ui/Text';
 import utils from '../../styles-utilities';
 import {getEntries, useEntriesStore} from '../../state/entries';
 import EntryCard from '../entry/EntryCard';
-import Button from '../shared/Button';
 import theme from '../../theme';
+import {OutlinedButton} from '../ui/Button';
 
 interface LatestEntriesProps {
     itemsCount: number;
@@ -45,16 +45,15 @@ function LatestEntries({
                 />
             ))}
             <View style={styles.buttonsRow}>
-                <Button
-                    style={[styles.button, utils.marginRightM]}
-                    label="Add new"
+                <OutlinedButton
+                    style={[utils.flex1, utils.marginRightM]}
                     onPress={onAddNew}
-                />
-                <Button
-                    style={styles.button}
-                    label="See more"
-                    onPress={onSeeMore}
-                />
+                >
+                    Add New
+                </OutlinedButton>
+                <OutlinedButton style={utils.flex1} onPress={onSeeMore}>
+                    See More
+                </OutlinedButton>
             </View>
         </View>
     );
@@ -65,16 +64,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: theme.SPACING.L,
         marginHorizontal: theme.SPACING.M
-    },
-    button: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: theme.SPACING.SM,
-        paddingBottom: theme.SPACING.SM,
-        borderColor: theme.COLORS.BACKGROUND_TERTIARY,
-        borderWidth: theme.BORDER.WIDTH,
-        backgroundColor: 'transparent',
-        elevation: 0
     }
 });
 
