@@ -17,6 +17,8 @@ function DashboardScreen({navigation}) {
     const navigateToEntryDetails = (id) =>
         navigation.navigate('entry-details', {id});
 
+    const navigateToEntryList = () => navigation.navigate('entry-list');
+
     useLayoutEffect(() => {
         navigation.setOptions({
             headerStyle: {
@@ -42,7 +44,7 @@ function DashboardScreen({navigation}) {
                         itemsCount={3}
                         onPress={navigateToEntryDetails}
                         onAddNew={navigateToEntryForm}
-                        onSeeMore={() => {}}
+                        onSeeMore={navigateToEntryList}
                     />
                     <TrophyCongratulations />
                 </ScrollView>

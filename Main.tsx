@@ -62,6 +62,11 @@ function DashboardScreenStack() {
                 options={{}}
             />
             <Stack.Screen
+                name="entry-list"
+                component={EntryListScreen}
+                options={{}}
+            />
+            <Stack.Screen
                 name="entry-details"
                 component={EntryDetailsScreen}
                 options={{}}
