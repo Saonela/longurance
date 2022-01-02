@@ -28,6 +28,7 @@ const Tab = createBottomTabNavigator();
 
 const mainStackScreenOptions: any = () => {
     return {
+        presentation: 'modal',
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         title: '',
         headerStyle: {
@@ -55,7 +56,7 @@ const stackScreenOptions: any = ({navigation}) => {
 
 function DashboardScreenStack() {
     return (
-        <Stack.Navigator screenOptions={stackScreenOptions} mode="modal">
+        <Stack.Navigator screenOptions={mainStackScreenOptions}>
             <Stack.Screen
                 name="dashboard"
                 component={DashboardScreen}
@@ -82,7 +83,7 @@ function DashboardScreenStack() {
 
 function TrophyScreenStack() {
     return (
-        <Stack.Navigator screenOptions={stackScreenOptions} mode="modal">
+        <Stack.Navigator screenOptions={stackScreenOptions}>
             <Stack.Screen
                 name="trophy-list"
                 component={TrophyListScreen}
@@ -104,7 +105,7 @@ function TrophyScreenStack() {
 
 function StatisticsScreenStack() {
     return (
-        <Stack.Navigator screenOptions={mainStackScreenOptions} mode="modal">
+        <Stack.Navigator screenOptions={mainStackScreenOptions}>
             <Stack.Screen
                 name="statistics"
                 component={StatisticsScreen}
@@ -128,7 +129,11 @@ function Main() {
     return (
         <NavigationContainer theme={DarkTheme}>
             <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
-                <Tab.Screen name="Dashboard" component={DashboardScreenStack} />
+                <Tab.Screen
+                    options={{headerShown: false}}
+                    name="Dashboard"
+                    component={DashboardScreenStack}
+                />
                 {/*<Tab.Screen name="Trophies" component={TrophyScreenStack} />*/}
                 {/*<Tab.Screen name="Statistics" component={StatisticsScreenStack} />*/}
             </Tab.Navigator>
