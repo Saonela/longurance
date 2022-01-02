@@ -53,8 +53,8 @@ describe('Entries state', () => {
             const entry: Entry = {id: '2'} as Entry;
             addEntry(entry);
             expect(useEntriesStore.getState().entries).toEqual([
-                ...initialState.entries,
-                entry
+                entry,
+                ...initialState.entries
             ]);
             expect(saveEntrySpy).toHaveBeenCalled();
         });

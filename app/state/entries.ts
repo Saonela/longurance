@@ -17,7 +17,7 @@ export const useEntriesStore = create<EntriesState>(() => ({
 export function addEntry(entry: Entry) {
     Object.assign(entry, {id: generateId()});
     api.saveEntry(entry);
-    useEntriesStore.setState((state) => ({entries: [...state.entries, entry]}));
+    useEntriesStore.setState((state) => ({entries: [entry, ...state.entries]}));
 }
 
 export function updateEntry(entry: Entry) {
