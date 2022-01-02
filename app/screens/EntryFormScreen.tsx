@@ -1,25 +1,28 @@
 import React, {useLayoutEffect, useRef} from 'react';
 import {ScrollView, View} from 'react-native';
+import {FormikValues} from 'formik';
 import appStyles from '../styles';
 import EntryForm from '../components/entry/EntryForm';
 import {Entry} from '../types/Entry';
-import {saveEntry} from '../redux/slices/entriesSlice';
 import theme from '../theme';
 import HeaderButton from '../components/header/HeaderButton';
-import {FormikValues} from 'formik';
-import {useAppDispatch} from '../redux/store';
-import {saveEntryTrophies} from '../redux/slices/trophiesSlice';
-import {getEntry, useEntriesStore} from '../state/entries';
+import {
+    addEntry,
+    getEntry,
+    updateEntry,
+    useEntriesStore
+} from '../state/entries';
 
 function EntryFormScreen({route, navigation}) {
-    const dispatch = useAppDispatch();
-
-    const entry = useEntriesStore((state) => getEntry(state, route.params.id));
+    const isUpdateForm = route.params.id !== undefined;
+    const entryToEdit = useEntriesStore((state) =>
+        getEntry(state, route.params.id)
+    );
     const formRef = useRef<FormikValues>(null);
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: entry ? 'Edit Entry' : 'New Entry',
+            title: isUpdateForm ? 'Edit Entry' : 'New Entry',
             headerRight: () => (
                 <HeaderButton
                     iconName="check"
@@ -32,12 +35,14 @@ function EntryFormScreen({route, navigation}) {
                 />
             )
         });
-    }, [navigation]);
+    }, [navigation, isUpdateForm]);
 
     const handleSubmit = (entry: Entry) => {
-        dispatch(saveEntry(entry)).then(() => {
-            dispatch(saveEntryTrophies(entry));
-        });
+        if (isUpdateForm) {
+            updateEntry(entry);
+        } else {
+            addEntry(entry);
+        }
         navigation.goBack();
     };
 
@@ -48,7 +53,7 @@ function EntryFormScreen({route, navigation}) {
                 contentContainerStyle={{paddingBottom: theme.SPACING.M}}
             >
                 <EntryForm
-                    entry={entry}
+                    entry={entryToEdit}
                     innerRef={formRef}
                     onSubmit={(entry) => handleSubmit(entry)}
                 />
