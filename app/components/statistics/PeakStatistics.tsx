@@ -21,6 +21,7 @@ const formatDate = (entry: Entry) => moment(entry.date).format('yyyy, MMM DD');
 
 function PeakStatistics({entries}: PeakStatisticsProps) {
     const distanceRecordEntry = getFarthestDistance(entries);
+    const durationRecordEntry = getLongestDuration(entries);
     return (
         <Panel>
             <PrimaryText
@@ -47,10 +48,13 @@ function PeakStatistics({entries}: PeakStatisticsProps) {
                 <View style={styles.statsRow}>
                     <View>
                         <PrimaryText style={styles.tertiaryHeader}>
-                            {getDurationText(getLongestDuration(entries))}
+                            {getDurationText(durationRecordEntry.duration)}
                         </PrimaryText>
                         <SecondaryText>Longest duration</SecondaryText>
                     </View>
+                    <SecondaryText>
+                        {formatDate(durationRecordEntry)}
+                    </SecondaryText>
                 </View>
                 <View style={[styles.statsRow, utils.marginBottomNone]}>
                     <View>
