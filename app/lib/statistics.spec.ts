@@ -1,6 +1,7 @@
 import {
     getAverageIntensity,
     getFarthestDistance,
+    getLongestDuration,
     getTotalDistance,
     getTotalDuration
 } from './statistics';
@@ -40,6 +41,10 @@ describe('Statistics service', () => {
 
         it('should get farthest distance', () => {
             expect(getFarthestDistance(entries)).toEqual(15);
+        });
+
+        it('should get longest duration', () => {
+            expect(getLongestDuration(entries)).toEqual(180);
         });
     });
 });
