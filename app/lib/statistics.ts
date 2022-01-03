@@ -40,7 +40,5 @@ export function getFastestPace(entries: Entry[]) {
             fastestPaceEntry = entry;
         }
     });
-
-    const {distance, duration} = fastestPaceEntry;
-    return getPaceText(duration, distance);
+    return fastestPaceEntry;
 }

@@ -49,7 +49,7 @@ describe('Statistics service', () => {
         });
 
         it('should get fastest pace', () => {
-            expect(getFastestPace(entries)).toEqual('0\'06"');
+            expect(getFastestPace(entries)).toEqual(entries[0]);
         });
     });
 });
