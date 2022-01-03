@@ -1,55 +1,63 @@
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import {Entry} from '../../types/Entry';
-import {MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';
 import theme from '../../theme';
-import StatisticsService from '../../services/StatisticsService';
-import StatisticsPanel from './StatisticsPanel';
+import Panel from '../ui/Panel';
+import {PrimaryText, SecondaryText} from '../ui/Text';
+import utils from '../../styles-utilities';
+import {getDistanceText, getDurationText} from '../../lib/entry';
+import {
+    getFarthestDistance,
+    getFastestPace,
+    getLongestDuration
+} from '../../lib/statistics';
 
 interface PeakStatisticsProps {
     entries: Entry[];
 }
 
 function PeakStatistics({entries}: PeakStatisticsProps) {
-    const duration = StatisticsService.getLongestDuration(entries);
-    const distance = StatisticsService.getFarthestDistance(entries);
-
     return (
-        <StatisticsPanel>
-            <StatisticsPanel.Row>
-                <StatisticsPanel.Column>
-                    <StatisticsPanel.Label>
-                        Farthest distance
-                    </StatisticsPanel.Label>
-                    <StatisticsPanel.Row>
-                        <StatisticsPanel.Icon>
-                            <MaterialCommunityIcons
-                                name="map-marker-distance"
-                                size={theme.ICON_SIZE.M}
-                                color={theme.COLORS.FONT_PRIMARY}
-                            />
-                        </StatisticsPanel.Icon>
-                        <StatisticsPanel.DistanceText value={distance} />
-                    </StatisticsPanel.Row>
-                </StatisticsPanel.Column>
-
-                <StatisticsPanel.Column lastColumn>
-                    <StatisticsPanel.Label>
-                        Longest duration
-                    </StatisticsPanel.Label>
-                    <StatisticsPanel.Row>
-                        <StatisticsPanel.Icon>
-                            <MaterialIcons
-                                name="timer"
-                                size={theme.ICON_SIZE.M}
-                                color={theme.COLORS.FONT_PRIMARY}
-                            />
-                        </StatisticsPanel.Icon>
-                        <StatisticsPanel.DurationText value={duration} />
-                    </StatisticsPanel.Row>
-                </StatisticsPanel.Column>
-            </StatisticsPanel.Row>
-        </StatisticsPanel>
+        <Panel>
+            <PrimaryText
+                style={[
+                    utils.marginBottomM,
+                    styles.tertiaryHeader,
+                    {color: theme.COLORS.FONT_SECONDARY}
+                ]}
+            >
+                Records
+            </PrimaryText>
+            <View style={[utils.col, utils.justifyBetween]}>
+                <View style={utils.marginBottomL}>
+                    <PrimaryText style={styles.tertiaryHeader}>
+                        {getDistanceText(getFarthestDistance(entries))}
+                    </PrimaryText>
+                    <SecondaryText>Farthest distance</SecondaryText>
+                </View>
+                <View style={utils.marginBottomL}>
+                    <PrimaryText style={styles.tertiaryHeader}>
+                        {getDurationText(getLongestDuration(entries))}
+                    </PrimaryText>
+                    <SecondaryText>Longest duration</SecondaryText>
+                </View>
+                <View>
+                    <PrimaryText style={styles.tertiaryHeader}>
+                        {getFastestPace(entries)}
+                    </PrimaryText>
+                    <SecondaryText>Fastest Pace</SecondaryText>
+                </View>
+            </View>
+        </Panel>
     );
 }
+
+const styles = StyleSheet.create({
+    tertiaryHeader: {
+        fontFamily: 'LatoBlack',
+        fontSize: 24,
+        paddingBottom: theme.SPACING.XS
+    }
+});
 
 export default PeakStatistics;

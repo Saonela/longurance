@@ -135,7 +135,11 @@ function Main() {
                     component={DashboardScreenStack}
                 />
                 {/*<Tab.Screen name="Trophies" component={TrophyScreenStack} />*/}
-                {/*<Tab.Screen name="Statistics" component={StatisticsScreenStack} />*/}
+                <Tab.Screen
+                    options={{headerShown: false}}
+                    name="Statistics"
+                    component={StatisticsScreenStack}
+                />
             </Tab.Navigator>
         </NavigationContainer>
     );
