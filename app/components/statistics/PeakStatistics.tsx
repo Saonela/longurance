@@ -83,6 +83,9 @@ const styles = StyleSheet.create({
     statsRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        paddingBottom: theme.SPACING.M,
+        borderBottomColor: theme.COLORS.BACKGROUND_TERTIARY,
+        borderBottomWidth: 1,
         marginBottom: theme.SPACING.L
     }
 });
