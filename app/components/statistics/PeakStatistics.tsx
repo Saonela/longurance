@@ -12,6 +12,7 @@ import {
     getFastestPaceEntry,
     getLongestDurationEntry
 } from '../../lib/statistics';
+import {TouchableStatisticsRow} from './StatisticsRow';
 
 interface PeakStatisticsProps {
     entries: Entry[];
@@ -36,50 +37,40 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
                 Records
             </PrimaryText>
             <View style={[utils.col, utils.justifyBetween]}>
-                <TouchableNativeFeedback
+                <TouchableStatisticsRow
                     onPress={() => onPress(distanceEntry.id)}
                 >
-                    <View style={styles.statsRow}>
-                        <View>
-                            <PrimaryText style={styles.tertiaryHeader}>
-                                {getDistanceText(distanceEntry.distance)}
-                            </PrimaryText>
-                            <SecondaryText>Farthest distance</SecondaryText>
-                        </View>
-                        <SecondaryText>
-                            {formatDate(distanceEntry)}
-                        </SecondaryText>
+                    <View>
+                        <PrimaryText style={styles.tertiaryHeader}>
+                            {getDistanceText(distanceEntry.distance)}
+                        </PrimaryText>
+                        <SecondaryText>Farthest distance</SecondaryText>
                     </View>
-                </TouchableNativeFeedback>
-                <TouchableNativeFeedback
+                    <SecondaryText>{formatDate(distanceEntry)}</SecondaryText>
+                </TouchableStatisticsRow>
+                <TouchableStatisticsRow
                     onPress={() => onPress(durationEntry.id)}
                 >
-                    <View style={styles.statsRow}>
-                        <View>
-                            <PrimaryText style={styles.tertiaryHeader}>
-                                {getDurationText(durationEntry.duration)}
-                            </PrimaryText>
-                            <SecondaryText>Longest duration</SecondaryText>
-                        </View>
-                        <SecondaryText>
-                            {formatDate(durationEntry)}
-                        </SecondaryText>
+                    <View>
+                        <PrimaryText style={styles.tertiaryHeader}>
+                            {getDurationText(durationEntry.duration)}
+                        </PrimaryText>
+                        <SecondaryText>Longest duration</SecondaryText>
                     </View>
-                </TouchableNativeFeedback>
-                <TouchableNativeFeedback onPress={() => onPress(paceEntry.id)}>
-                    <View style={[styles.statsRow, utils.marginBottomNone]}>
-                        <View>
-                            <PrimaryText style={styles.tertiaryHeader}>
-                                {getPaceText(
-                                    paceEntry.duration,
-                                    paceEntry.distance
-                                )}
-                            </PrimaryText>
-                            <SecondaryText>Fastest Pace</SecondaryText>
-                        </View>
-                        <SecondaryText>{formatDate(paceEntry)}</SecondaryText>
+                    <SecondaryText>{formatDate(durationEntry)}</SecondaryText>
+                </TouchableStatisticsRow>
+                <TouchableStatisticsRow onPress={() => onPress(paceEntry.id)}>
+                    <View>
+                        <PrimaryText style={styles.tertiaryHeader}>
+                            {getPaceText(
+                                paceEntry.duration,
+                                paceEntry.distance
+                            )}
+                        </PrimaryText>
+                        <SecondaryText>Fastest Pace</SecondaryText>
                     </View>
-                </TouchableNativeFeedback>
+                    <SecondaryText>{formatDate(paceEntry)}</SecondaryText>
+                </TouchableStatisticsRow>
             </View>
         </Panel>
     );
@@ -90,15 +81,6 @@ const styles = StyleSheet.create({
         fontFamily: 'LatoBlack',
         fontSize: 24,
         paddingBottom: theme.SPACING.XS
-    },
-    statsRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: theme.SPACING.SM,
-        paddingVertical: theme.SPACING.ML,
-        marginHorizontal: -theme.SPACING.SM,
-        borderBottomColor: theme.COLORS.BACKGROUND_TERTIARY,
-        borderBottomWidth: 1
     }
 });
 
