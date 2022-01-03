@@ -1,5 +1,6 @@
 import {
     getAverageDistance,
+    getAverageDuration,
     getAverageIntensity,
     getFarthestDistanceEntry,
     getFastestPaceEntry,
@@ -39,6 +40,10 @@ describe('Statistics service', () => {
 
         it('should get average distance', () => {
             expect(getAverageDistance(entries)).toEqual(10);
+        });
+
+        it('should get average duration', () => {
+            expect(getAverageDuration(entries)).toEqual(136);
         });
 
         it('should get average intensity', () => {

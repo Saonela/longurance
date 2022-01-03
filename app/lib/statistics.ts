@@ -49,3 +49,10 @@ export function getAverageDistance(entries: Entry[]) {
         getTotalDistance(entriesWithDistance) / entriesWithDistance.length;
     return parseFloat(average.toFixed(1));
 }
+
+export function getAverageDuration(entries: Entry[]) {
+    const entriesWithDuration = entries.filter((entry) => entry.duration);
+    const average =
+        getTotalDuration(entriesWithDuration) / entriesWithDuration.length;
+    return parseFloat(average.toFixed(0));
+}
