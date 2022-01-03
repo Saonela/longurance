@@ -18,3 +18,6 @@ export const getAverageIntensity = (entries: Entry[]) =>
             .map((entry) => entry.effort)
             .reduce((total, value) => total + value, 0) / entries.length
     );
+
+export const getFarthestDistance = (entries: Entry[]) =>
+    Math.max(...entries.map((entry) => entry.distance));
