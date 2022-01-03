@@ -27,6 +27,7 @@ const utils = StyleSheet.create({
     paddingTopS: {paddingTop: theme.SPACING.S},
     paddingTopSM: {paddingTop: theme.SPACING.SM},
     paddingTopXS: {paddingTop: theme.SPACING.XS},
+    paddingTopNone: {paddingTop: 0},
 
     paddingRightL: {paddingRight: theme.SPACING.L},
     paddingRightM: {paddingRight: theme.SPACING.M},
@@ -34,6 +35,7 @@ const utils = StyleSheet.create({
     paddingRightSM: {paddingRight: theme.SPACING.SM},
     paddingRightXL: {paddingRight: theme.SPACING.XL},
     paddingRightXS: {paddingRight: theme.SPACING.XS},
+    paddingRightNone: {paddingRight: 0},
 
     paddingBottomXL: {paddingBottom: theme.SPACING.XL},
     paddingBottomL: {paddingBottom: theme.SPACING.L},
@@ -41,6 +43,7 @@ const utils = StyleSheet.create({
     paddingBottomS: {paddingBottom: theme.SPACING.S},
     paddingBottomSM: {paddingBottom: theme.SPACING.SM},
     paddingBottomXS: {paddingBottom: theme.SPACING.XS},
+    paddingBottomNone: {paddingBottom: 0},
 
     paddingLeftXL: {paddingLeft: theme.SPACING.XL},
     paddingLeftL: {paddingLeft: theme.SPACING.L},
@@ -48,6 +51,7 @@ const utils = StyleSheet.create({
     paddingLeftS: {paddingLeft: theme.SPACING.S},
     paddingLeftSM: {paddingLeft: theme.SPACING.SM},
     paddingLeftXS: {paddingLeft: theme.SPACING.XS},
+    paddingLeftNone: {paddingLeft: 0},
 
     marginTopXL: {marginTop: theme.SPACING.XL},
     marginTopL: {marginTop: theme.SPACING.L},
@@ -55,6 +59,7 @@ const utils = StyleSheet.create({
     marginTopS: {marginTop: theme.SPACING.S},
     marginTopSM: {marginTop: theme.SPACING.SM},
     marginTopXS: {marginTop: theme.SPACING.XS},
+    marginTopNone: {marginTop: 0},
 
     marginRightXL: {marginRight: theme.SPACING.XL},
     marginRightL: {marginRight: theme.SPACING.L},
@@ -62,6 +67,7 @@ const utils = StyleSheet.create({
     marginRightS: {marginRight: theme.SPACING.S},
     marginRightSM: {marginRight: theme.SPACING.SM},
     marginRightXS: {marginRight: theme.SPACING.XS},
+    marginRightNone: {marginRight: 0},
 
     marginBottomXL: {marginBottom: theme.SPACING.XL},
     marginBottomL: {marginBottom: theme.SPACING.L},
@@ -69,13 +75,15 @@ const utils = StyleSheet.create({
     marginBottomS: {marginBottom: theme.SPACING.S},
     marginBottomSM: {marginBottom: theme.SPACING.SM},
     marginBottomXS: {marginBottom: theme.SPACING.XS},
+    marginBottomNone: {marginBottom: 0},
 
     marginLeftXL: {marginLeft: theme.SPACING.XL},
     marginLeftL: {marginLeft: theme.SPACING.L},
     marginLeftM: {marginLeft: theme.SPACING.M},
     marginLeftS: {marginLeft: theme.SPACING.S},
     marginLeftSM: {marginLeft: theme.SPACING.SM},
-    marginLeftXS: {marginLeft: theme.SPACING.XS}
+    marginLeftXS: {marginLeft: theme.SPACING.XS},
+    marginLeftNone: {marginLeft: 0}
 });
 
 export default utils;
