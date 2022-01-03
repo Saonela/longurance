@@ -21,7 +21,9 @@ export const getAverageIntensity = (entries: Entry[]) =>
     );
 
 export const getFarthestDistance = (entries: Entry[]) =>
-    Math.max(...entries.map((entry) => entry.distance));
+    entries.reduce((result: Entry, entry: Entry) => {
+        return entry.distance > result.distance ? entry : result;
+    }, entries[0]);
 
 export const getLongestDuration = (entries: Entry[]) =>
     Math.max(...entries.map((entry) => entry.duration));

@@ -40,8 +40,8 @@ describe('Statistics service', () => {
             expect(getAverageIntensity(entries)).toEqual(4);
         });
 
-        it('should get farthest distance', () => {
-            expect(getFarthestDistance(entries)).toEqual(15);
+        it('should get farthest distance entry', () => {
+            expect(getFarthestDistance(entries)).toEqual(entries[0]);
         });
 
         it('should get longest duration', () => {
