@@ -44,7 +44,7 @@ const entries: Entry[] = [
 ];
 
 const navigation = {
-    setOptions: () => {}
+    setOptions: () => null
 };
 
 describe('EntryListScreen', () => {

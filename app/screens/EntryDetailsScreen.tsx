@@ -1,28 +1,38 @@
 import React, {useLayoutEffect} from 'react';
-import {Alert, StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {deleteEntry} from '../redux/slices/entriesSlice';
+import {Alert, View} from 'react-native';
 import HeaderButton from '../components/header/HeaderButton';
 import appStyles from '../styles';
 import EntryDetails from '../components/entry/EntryDetails';
-import {
-    getTrophiesByEntry,
-    saveEntryTrophies
-} from '../redux/slices/trophiesSlice';
-import {useAppDispatch} from '../redux/store';
-import {Trophy} from '../types/Trophy';
-import {getEntry, useEntriesStore} from '../state/entries';
+import {deleteEntry, getEntry, useEntriesStore} from '../state/entries';
+import {Entry} from '../types/Entry';
 
 function EntryDetailsScreen({route, navigation}) {
-    const entry = useEntriesStore((state) => getEntry(state, route.params.id));
-
-    const trophies: Trophy[] = useSelector((state) =>
-        getTrophiesByEntry(state, entry)
-    );
-
-    const dispatch = useAppDispatch();
+    const entry = useEntriesStore((state) =>
+        getEntry(state, route.params.id)
+    ) as Entry;
 
     useLayoutEffect(() => {
+        const confirmDelete = () => {
+            Alert.alert(
+                'Delete entry',
+                'Entry will be removed from history',
+                [
+                    {
+                        text: 'Cancel',
+                        style: 'cancel'
+                    },
+                    {
+                        text: 'OK',
+                        onPress: async () => {
+                            deleteEntry(entry.id);
+                            navigation.goBack();
+                        }
+                    }
+                ],
+                {cancelable: false}
+            );
+        };
+
         navigation.setOptions({
             title: 'Entry Details',
             headerTitleStyle: {
@@ -32,55 +42,21 @@ function EntryDetailsScreen({route, navigation}) {
                 <View style={{display: 'flex', flexDirection: 'row'}}>
                     <HeaderButton
                         iconName="edit"
-                        onPress={navigateToEntryForm}
+                        onPress={() =>
+                            navigation.navigate('entry-form', {id: entry.id})
+                        }
                     />
                     <HeaderButton iconName="x" onPress={confirmDelete} />
                 </View>
             )
         });
-    }, [navigation]);
-
-    const navigateToEntryForm = () => {
-        navigation.navigate('entry-form', {id: entry.id});
-    };
-
-    const confirmDelete = () => {
-        Alert.alert(
-            'Delete entry',
-            'Entry will be removed from history',
-            [
-                {
-                    text: 'Cancel',
-                    onPress: () => {},
-                    style: 'cancel'
-                },
-                {
-                    text: 'OK',
-                    onPress: async () => {
-                        navigation.navigate('entry-list');
-                        dispatch(deleteEntry(entry.id)).then(() => {
-                            dispatch(saveEntryTrophies(entry));
-                        });
-                    }
-                }
-            ],
-            {cancelable: false}
-        );
-    };
+    }, [navigation, entry?.id]);
 
     return (
-        <View style={styles.wrapper}>
-            <View style={appStyles.screenContainer}>
-                {entry && <EntryDetails entry={entry} trophies={trophies} />}
-            </View>
+        <View style={appStyles.screenContainer}>
+            {entry && <EntryDetails entry={entry} trophies={[]} />}
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1
-    }
-});
 
 export default EntryDetailsScreen;
