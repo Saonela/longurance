@@ -42,3 +42,10 @@ export function getFastestPaceEntry(entries: Entry[]) {
     });
     return fastestPaceEntry;
 }
+
+export function getAverageDistance(entries: Entry[]) {
+    const entriesWithDistance = entries.filter((entry) => entry.distance);
+    const average =
+        getTotalDistance(entriesWithDistance) / entriesWithDistance.length;
+    return parseFloat(average.toFixed(1));
+}
