@@ -26,7 +26,9 @@ export const getFarthestDistance = (entries: Entry[]) =>
     }, entries[0]);
 
 export const getLongestDuration = (entries: Entry[]) =>
-    Math.max(...entries.map((entry) => entry.duration));
+    entries.reduce((result: Entry, entry: Entry) => {
+        return entry.duration > result.duration ? entry : result;
+    }, entries[0]);
 
 export function getFastestPace(entries: Entry[]) {
     let fastestPace = 0;

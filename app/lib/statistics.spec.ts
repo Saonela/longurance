@@ -45,7 +45,7 @@ describe('Statistics service', () => {
         });
 
         it('should get longest duration', () => {
-            expect(getLongestDuration(entries)).toEqual(180);
+            expect(getLongestDuration(entries)).toEqual(entries[1]);
         });
 
         it('should get fastest pace', () => {
