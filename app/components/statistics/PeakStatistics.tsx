@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
 import moment from 'moment';
 import {Entry} from '../../types/Entry';
 import theme from '../../theme';
@@ -15,14 +15,15 @@ import {
 
 interface PeakStatisticsProps {
     entries: Entry[];
+    onPress: (id: string) => void;
 }
 
 const formatDate = (entry: Entry) => moment(entry.date).format('yyyy, MMM DD');
 
-function PeakStatistics({entries}: PeakStatisticsProps) {
-    const distanceRecordEntry = getFarthestDistanceEntry(entries);
-    const durationRecordEntry = getLongestDurationEntry(entries);
-    const paceRecordEntry = getFastestPaceEntry(entries);
+function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
+    const distanceEntry = getFarthestDistanceEntry(entries);
+    const durationEntry = getLongestDurationEntry(entries);
+    const paceEntry = getFastestPaceEntry(entries);
     return (
         <Panel>
             <PrimaryText
@@ -35,40 +36,50 @@ function PeakStatistics({entries}: PeakStatisticsProps) {
                 Records
             </PrimaryText>
             <View style={[utils.col, utils.justifyBetween]}>
-                <View style={styles.statsRow}>
-                    <View>
-                        <PrimaryText style={styles.tertiaryHeader}>
-                            {getDistanceText(distanceRecordEntry.distance)}
-                        </PrimaryText>
-                        <SecondaryText>Farthest distance</SecondaryText>
+                <TouchableNativeFeedback
+                    onPress={() => onPress(distanceEntry.id)}
+                >
+                    <View style={styles.statsRow}>
+                        <View>
+                            <PrimaryText style={styles.tertiaryHeader}>
+                                {getDistanceText(distanceEntry.distance)}
+                            </PrimaryText>
+                            <SecondaryText>Farthest distance</SecondaryText>
+                        </View>
+                        <SecondaryText>
+                            {formatDate(distanceEntry)}
+                        </SecondaryText>
                     </View>
-                    <SecondaryText>
-                        {formatDate(distanceRecordEntry)}
-                    </SecondaryText>
-                </View>
-                <View style={styles.statsRow}>
-                    <View>
-                        <PrimaryText style={styles.tertiaryHeader}>
-                            {getDurationText(durationRecordEntry.duration)}
-                        </PrimaryText>
-                        <SecondaryText>Longest duration</SecondaryText>
+                </TouchableNativeFeedback>
+                <TouchableNativeFeedback
+                    onPress={() => onPress(durationEntry.id)}
+                >
+                    <View style={styles.statsRow}>
+                        <View>
+                            <PrimaryText style={styles.tertiaryHeader}>
+                                {getDurationText(durationEntry.duration)}
+                            </PrimaryText>
+                            <SecondaryText>Longest duration</SecondaryText>
+                        </View>
+                        <SecondaryText>
+                            {formatDate(durationEntry)}
+                        </SecondaryText>
                     </View>
-                    <SecondaryText>
-                        {formatDate(durationRecordEntry)}
-                    </SecondaryText>
-                </View>
-                <View style={[styles.statsRow, utils.marginBottomNone]}>
-                    <View>
-                        <PrimaryText style={styles.tertiaryHeader}>
-                            {getPaceText(
-                                paceRecordEntry.duration,
-                                paceRecordEntry.distance
-                            )}
-                        </PrimaryText>
-                        <SecondaryText>Fastest Pace</SecondaryText>
+                </TouchableNativeFeedback>
+                <TouchableNativeFeedback onPress={() => onPress(paceEntry.id)}>
+                    <View style={[styles.statsRow, utils.marginBottomNone]}>
+                        <View>
+                            <PrimaryText style={styles.tertiaryHeader}>
+                                {getPaceText(
+                                    paceEntry.duration,
+                                    paceEntry.distance
+                                )}
+                            </PrimaryText>
+                            <SecondaryText>Fastest Pace</SecondaryText>
+                        </View>
+                        <SecondaryText>{formatDate(paceEntry)}</SecondaryText>
                     </View>
-                    <SecondaryText>{formatDate(paceRecordEntry)}</SecondaryText>
-                </View>
+                </TouchableNativeFeedback>
             </View>
         </Panel>
     );
@@ -83,10 +94,11 @@ const styles = StyleSheet.create({
     statsRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingBottom: theme.SPACING.M,
+        paddingHorizontal: theme.SPACING.SM,
+        paddingVertical: theme.SPACING.ML,
+        marginHorizontal: -theme.SPACING.SM,
         borderBottomColor: theme.COLORS.BACKGROUND_TERTIARY,
-        borderBottomWidth: 1,
-        marginBottom: theme.SPACING.L
+        borderBottomWidth: 1
     }
 });
 

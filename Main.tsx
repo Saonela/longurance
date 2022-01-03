@@ -111,6 +111,11 @@ function StatisticsScreenStack() {
                 component={StatisticsScreen}
                 options={{}}
             />
+            <Stack.Screen
+                name="entry-details"
+                component={EntryDetailsScreen}
+                options={{}}
+            />
         </Stack.Navigator>
     );
 }

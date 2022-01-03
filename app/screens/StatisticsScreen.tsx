@@ -10,6 +10,9 @@ function StatisticsScreen({navigation}) {
     const {filter} = useActivityFilterStore();
     const entries = useEntriesStore((state) => getEntries(state, filter));
 
+    const navigateToEntryDetails = (id) =>
+        navigation.navigate('entry-details', {id});
+
     return (
         <>
             <HeaderActivityFilter />
@@ -19,7 +22,10 @@ function StatisticsScreen({navigation}) {
                     {/*     entries={entries} */}
                     {/*     trophiesCount={trophies.length} */}
                     {/* /> */}
-                    <PeakStatistics entries={entries} />
+                    <PeakStatistics
+                        entries={entries}
+                        onPress={navigateToEntryDetails}
+                    />
                     {/* <AverageStatistics */}
                     {/*     entries={entries} */}
                     {/*     style={{marginBottom: theme.SPACING.M}} */}
