@@ -20,17 +20,17 @@ export const getAverageIntensity = (entries: Entry[]) =>
             .reduce((total, value) => total + value, 0) / entries.length
     );
 
-export const getFarthestDistance = (entries: Entry[]) =>
+export const getFarthestDistanceEntry = (entries: Entry[]) =>
     entries.reduce((result: Entry, entry: Entry) => {
         return entry.distance > result.distance ? entry : result;
     }, entries[0]);
 
-export const getLongestDuration = (entries: Entry[]) =>
+export const getLongestDurationEntry = (entries: Entry[]) =>
     entries.reduce((result: Entry, entry: Entry) => {
         return entry.duration > result.duration ? entry : result;
     }, entries[0]);
 
-export function getFastestPace(entries: Entry[]) {
+export function getFastestPaceEntry(entries: Entry[]) {
     let fastestPace = 0;
     let fastestPaceEntry;
     entries.forEach((entry) => {

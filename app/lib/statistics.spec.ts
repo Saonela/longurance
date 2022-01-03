@@ -1,8 +1,8 @@
 import {
     getAverageIntensity,
-    getFarthestDistance,
-    getFastestPace,
-    getLongestDuration,
+    getFarthestDistanceEntry,
+    getFastestPaceEntry,
+    getLongestDurationEntry,
     getTotalDistance,
     getTotalDuration
 } from './statistics';
@@ -41,15 +41,15 @@ describe('Statistics service', () => {
         });
 
         it('should get farthest distance entry', () => {
-            expect(getFarthestDistance(entries)).toEqual(entries[0]);
+            expect(getFarthestDistanceEntry(entries)).toEqual(entries[0]);
         });
 
-        it('should get longest duration', () => {
-            expect(getLongestDuration(entries)).toEqual(entries[1]);
+        it('should get longest duration entry', () => {
+            expect(getLongestDurationEntry(entries)).toEqual(entries[1]);
         });
 
-        it('should get fastest pace', () => {
-            expect(getFastestPace(entries)).toEqual(entries[0]);
+        it('should get fastest pace entry', () => {
+            expect(getFastestPaceEntry(entries)).toEqual(entries[0]);
         });
     });
 });

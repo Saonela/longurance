@@ -8,9 +8,9 @@ import {PrimaryText, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import {getDistanceText, getDurationText, getPaceText} from '../../lib/entry';
 import {
-    getFarthestDistance,
-    getFastestPace,
-    getLongestDuration
+    getFarthestDistanceEntry,
+    getFastestPaceEntry,
+    getLongestDurationEntry
 } from '../../lib/statistics';
 
 interface PeakStatisticsProps {
@@ -20,9 +20,9 @@ interface PeakStatisticsProps {
 const formatDate = (entry: Entry) => moment(entry.date).format('yyyy, MMM DD');
 
 function PeakStatistics({entries}: PeakStatisticsProps) {
-    const distanceRecordEntry = getFarthestDistance(entries);
-    const durationRecordEntry = getLongestDuration(entries);
-    const paceRecordEntry = getFastestPace(entries);
+    const distanceRecordEntry = getFarthestDistanceEntry(entries);
+    const durationRecordEntry = getLongestDurationEntry(entries);
+    const paceRecordEntry = getFastestPaceEntry(entries);
     return (
         <Panel>
             <PrimaryText
