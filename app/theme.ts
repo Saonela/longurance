@@ -34,6 +34,7 @@ const SPACING = {
     S: 8,
     SM: 12,
     M: 16,
+    ML: 20,
     L: 24,
     XL: 40
 };
