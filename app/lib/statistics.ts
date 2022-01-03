@@ -13,6 +13,27 @@ export const getTotalDuration = (entries: Entry[]) =>
         .filter((value) => value)
         .reduce((total, value) => total + value, 0);
 
+export function getAverageDistance(entries: Entry[]) {
+    const filteredEntries = entries.filter((entry) => entry.distance);
+    const average = getTotalDistance(filteredEntries) / filteredEntries.length;
+    return parseFloat(average.toFixed(1));
+}
+
+export function getAverageDuration(entries: Entry[]) {
+    const filteredEntries = entries.filter((entry) => entry.duration);
+    const average = getTotalDuration(filteredEntries) / filteredEntries.length;
+    return parseFloat(average.toFixed(0));
+}
+
+export const getAveragePace = (entries: Entry[]) => {
+    const filteredEntries = entries.filter(
+        (entry) => entry.distance && entry.duration
+    );
+    const distance = getTotalDistance(filteredEntries);
+    const duration = getTotalDuration(filteredEntries);
+    return getPaceText(duration, distance);
+};
+
 export const getAverageIntensity = (entries: Entry[]) =>
     Math.round(
         entries
@@ -41,18 +62,4 @@ export function getFastestPaceEntry(entries: Entry[]) {
         }
     });
     return fastestPaceEntry;
-}
-
-export function getAverageDistance(entries: Entry[]) {
-    const entriesWithDistance = entries.filter((entry) => entry.distance);
-    const average =
-        getTotalDistance(entriesWithDistance) / entriesWithDistance.length;
-    return parseFloat(average.toFixed(1));
-}
-
-export function getAverageDuration(entries: Entry[]) {
-    const entriesWithDuration = entries.filter((entry) => entry.duration);
-    const average =
-        getTotalDuration(entriesWithDuration) / entriesWithDuration.length;
-    return parseFloat(average.toFixed(0));
 }
