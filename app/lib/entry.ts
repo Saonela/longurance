@@ -1,7 +1,7 @@
 import {Activity} from '../types/Activity';
 import {splitSecondsIntoChunks} from './utility';
 
-function calculatePace(duration: number, distance: number) {
+export function calculatePace(duration: number, distance: number) {
     if (duration && distance) {
         return Math.round(duration / distance);
     }

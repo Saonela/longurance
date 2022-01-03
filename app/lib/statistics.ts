@@ -1,4 +1,5 @@
 import {Entry} from '../types/Entry';
+import {calculatePace, getPaceText} from './entry';
 
 export const getTotalDistance = (entries: Entry[]) =>
     entries
@@ -24,3 +25,18 @@ export const getFarthestDistance = (entries: Entry[]) =>
 
 export const getLongestDuration = (entries: Entry[]) =>
     Math.max(...entries.map((entry) => entry.duration));
+
+export function getFastestPace(entries: Entry[]) {
+    let fastestPace = 0;
+    let fastestPaceEntry;
+    entries.forEach((entry) => {
+        const pace = calculatePace(entry.duration, entry.distance);
+        if (pace > fastestPace) {
+            fastestPace = pace;
+            fastestPaceEntry = entry;
+        }
+    });
+
+    const {distance, duration} = fastestPaceEntry;
+    return getPaceText(duration, distance);
+}
