@@ -11,12 +11,16 @@ import {
     getFastestPace,
     getLongestDuration
 } from '../../lib/statistics';
+import moment from 'moment';
 
 interface PeakStatisticsProps {
     entries: Entry[];
 }
 
+const formatDate = (entry: Entry) => moment(entry.date).format('yyyy, MMM DD');
+
 function PeakStatistics({entries}: PeakStatisticsProps) {
+    const distanceRecordEntry = getFarthestDistance(entries);
     return (
         <Panel>
             <PrimaryText
@@ -29,23 +33,32 @@ function PeakStatistics({entries}: PeakStatisticsProps) {
                 Records
             </PrimaryText>
             <View style={[utils.col, utils.justifyBetween]}>
-                <View style={utils.marginBottomL}>
-                    <PrimaryText style={styles.tertiaryHeader}>
-                        {getDistanceText(getFarthestDistance(entries))}
-                    </PrimaryText>
-                    <SecondaryText>Farthest distance</SecondaryText>
+                <View style={styles.statsRow}>
+                    <View>
+                        <PrimaryText style={styles.tertiaryHeader}>
+                            {getDistanceText(distanceRecordEntry.distance)}
+                        </PrimaryText>
+                        <SecondaryText>Farthest distance</SecondaryText>
+                    </View>
+                    <SecondaryText>
+                        {formatDate(distanceRecordEntry)}
+                    </SecondaryText>
                 </View>
-                <View style={utils.marginBottomL}>
-                    <PrimaryText style={styles.tertiaryHeader}>
-                        {getDurationText(getLongestDuration(entries))}
-                    </PrimaryText>
-                    <SecondaryText>Longest duration</SecondaryText>
+                <View style={styles.statsRow}>
+                    <View>
+                        <PrimaryText style={styles.tertiaryHeader}>
+                            {getDurationText(getLongestDuration(entries))}
+                        </PrimaryText>
+                        <SecondaryText>Longest duration</SecondaryText>
+                    </View>
                 </View>
-                <View>
-                    <PrimaryText style={styles.tertiaryHeader}>
-                        {getFastestPace(entries)}
-                    </PrimaryText>
-                    <SecondaryText>Fastest Pace</SecondaryText>
+                <View style={[styles.statsRow, utils.marginBottomNone]}>
+                    <View>
+                        <PrimaryText style={styles.tertiaryHeader}>
+                            {getFastestPace(entries)}
+                        </PrimaryText>
+                        <SecondaryText>Fastest Pace</SecondaryText>
+                    </View>
                 </View>
             </View>
         </Panel>
@@ -57,6 +70,11 @@ const styles = StyleSheet.create({
         fontFamily: 'LatoBlack',
         fontSize: 24,
         paddingBottom: theme.SPACING.XS
+    },
+    statsRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: theme.SPACING.L
     }
 });
 
