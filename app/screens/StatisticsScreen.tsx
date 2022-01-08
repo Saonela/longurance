@@ -5,6 +5,7 @@ import PeakStatistics from '../components/statistics/PeakStatistics';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import {useActivityFilterStore} from '../state/activityFilter';
 import {getEntries, useEntriesStore} from '../state/entries';
+import AverageStatistics from '../components/statistics/AverageStatistics';
 
 function StatisticsScreen({navigation}) {
     const {filter} = useActivityFilterStore();
@@ -26,10 +27,7 @@ function StatisticsScreen({navigation}) {
                         entries={entries}
                         onPress={navigateToEntryDetails}
                     />
-                    {/* <AverageStatistics */}
-                    {/*     entries={entries} */}
-                    {/*     style={{marginBottom: theme.SPACING.M}} */}
-                    {/* /> */}
+                    <AverageStatistics entries={entries} />
                     {/* <StatisticsChart entries={entries} /> */}
                 </ScrollView>
             </View>
