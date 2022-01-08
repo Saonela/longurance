@@ -6,6 +6,7 @@ const COLORS = {
     FONT_SECONDARY: '#7e7e7e',
     FONT_DANGER: '#d92525',
     THEME_FONT: '#f8bb03',
+    THEME_SECONDARY: '#7c31ee',
     SUCCESS: '#25800b',
     ENERGY_POSITIVE: '#4d9b26',
     ENERGY_NEUTRAL: '#b7b92e',
