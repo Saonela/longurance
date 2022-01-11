@@ -93,15 +93,15 @@ function Dashboard() {
                 style={[utils.row, utils.justifyBetween, utils.marginBottomL]}
             >
                 <View>
-                    <SecondaryHeader style={styles.labelledText}>
+                    <PrimaryHeader style={styles.labelledText}>
                         {getDistanceText(distance)}
-                    </SecondaryHeader>
+                    </PrimaryHeader>
                     <SecondaryText>Distance</SecondaryText>
                 </View>
                 <View>
-                    <SecondaryHeader style={styles.labelledText}>
+                    <PrimaryHeader style={styles.labelledText}>
                         {getDurationText(duration)}
-                    </SecondaryHeader>
+                    </PrimaryHeader>
                     <SecondaryText>Duration</SecondaryText>
                 </View>
             </View>
