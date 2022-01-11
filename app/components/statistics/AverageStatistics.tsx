@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Entry} from '../../types/Entry';
 import theme from '../../theme';
-import {PrimaryText, SecondaryText} from '../ui/Text';
+import {SecondaryHeader, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import Panel from '../ui/Panel';
 import {
@@ -37,47 +37,41 @@ function AverageStatistics({entries}: AverageStatisticsProps) {
     );
     return (
         <Panel>
-            <PrimaryText
-                style={[
-                    utils.marginBottomM,
-                    styles.tertiaryHeader,
-                    {color: theme.COLORS.FONT_SECONDARY}
-                ]}
-            >
+            <SecondaryHeader style={[utils.marginBottomM]} color="secondary">
                 Averages
-            </PrimaryText>
+            </SecondaryHeader>
             <StatisticsRow>
                 <View style={styles.textBlock}>
-                    <PrimaryText style={styles.tertiaryHeader}>
+                    <SecondaryHeader style={styles.textHeader}>
                         {getDistanceText(avgDistance)}
-                    </PrimaryText>
+                    </SecondaryHeader>
                     <SecondaryText>Avg. Distance</SecondaryText>
                 </View>
                 <MinimalLineChart data={distancePoints} />
             </StatisticsRow>
             <StatisticsRow>
                 <View style={styles.textBlock}>
-                    <PrimaryText style={styles.tertiaryHeader}>
+                    <SecondaryHeader style={styles.textHeader}>
                         {getDurationText(avgDuration)}
-                    </PrimaryText>
+                    </SecondaryHeader>
                     <SecondaryText>Avg. Duration</SecondaryText>
                 </View>
                 <MinimalLineChart data={durationPoints} />
             </StatisticsRow>
             <StatisticsRow>
                 <View style={styles.textBlock}>
-                    <PrimaryText style={styles.tertiaryHeader}>
+                    <SecondaryHeader style={styles.textHeader}>
                         {getAveragePace(entries)}
-                    </PrimaryText>
+                    </SecondaryHeader>
                     <SecondaryText>Avg. Pace</SecondaryText>
                 </View>
                 <MinimalLineChart data={pacePoints} />
             </StatisticsRow>
             <StatisticsRow>
                 <View style={styles.textBlock}>
-                    <PrimaryText style={styles.tertiaryHeader}>
+                    <SecondaryHeader style={styles.textHeader}>
                         {getIntensityText(avgIntensity)}
-                    </PrimaryText>
+                    </SecondaryHeader>
                     <SecondaryText>Avg. Intensity</SecondaryText>
                 </View>
                 <MinimalLineChart data={intensityPoints} />
@@ -87,13 +81,11 @@ function AverageStatistics({entries}: AverageStatisticsProps) {
 }
 
 const styles = StyleSheet.create({
-    tertiaryHeader: {
-        fontFamily: 'LatoBlack',
-        fontSize: theme.FONT_SIZE.HEADER_SECONDARY,
-        paddingBottom: theme.SPACING.XS
-    },
     textBlock: {
         width: 135
+    },
+    textHeader: {
+        paddingBottom: theme.SPACING.XS
     }
 });
 

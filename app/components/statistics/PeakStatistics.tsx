@@ -4,7 +4,7 @@ import moment from 'moment';
 import {Entry} from '../../types/Entry';
 import theme from '../../theme';
 import Panel from '../ui/Panel';
-import {PrimaryText, SecondaryText} from '../ui/Text';
+import {SecondaryHeader, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import {getDistanceText, getDurationText, getPaceText} from '../../lib/entry';
 import {
@@ -27,23 +27,20 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
     const paceEntry = getFastestPaceEntry(entries);
     return (
         <Panel>
-            <PrimaryText
-                style={[
-                    utils.marginBottomM,
-                    styles.tertiaryHeader,
-                    {color: theme.COLORS.FONT_SECONDARY}
-                ]}
+            <SecondaryHeader
+                style={[utils.marginBottomM, styles.textHeader]}
+                color="secondary"
             >
                 Records
-            </PrimaryText>
+            </SecondaryHeader>
             <View style={[utils.col, utils.justifyBetween]}>
                 <TouchableStatisticsRow
                     onPress={() => onPress(distanceEntry.id)}
                 >
                     <View>
-                        <PrimaryText style={styles.tertiaryHeader}>
+                        <SecondaryHeader style={styles.textHeader}>
                             {getDistanceText(distanceEntry.distance)}
-                        </PrimaryText>
+                        </SecondaryHeader>
                         <SecondaryText>Farthest distance</SecondaryText>
                     </View>
                     <SecondaryText>{formatDate(distanceEntry)}</SecondaryText>
@@ -52,21 +49,21 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
                     onPress={() => onPress(durationEntry.id)}
                 >
                     <View>
-                        <PrimaryText style={styles.tertiaryHeader}>
+                        <SecondaryHeader style={styles.textHeader}>
                             {getDurationText(durationEntry.duration)}
-                        </PrimaryText>
+                        </SecondaryHeader>
                         <SecondaryText>Longest duration</SecondaryText>
                     </View>
                     <SecondaryText>{formatDate(durationEntry)}</SecondaryText>
                 </TouchableStatisticsRow>
                 <TouchableStatisticsRow onPress={() => onPress(paceEntry.id)}>
                     <View>
-                        <PrimaryText style={styles.tertiaryHeader}>
+                        <SecondaryHeader style={styles.textHeader}>
                             {getPaceText(
                                 paceEntry.duration,
                                 paceEntry.distance
                             )}
-                        </PrimaryText>
+                        </SecondaryHeader>
                         <SecondaryText>Fastest Pace</SecondaryText>
                     </View>
                     <SecondaryText>{formatDate(paceEntry)}</SecondaryText>
@@ -77,9 +74,7 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
 }
 
 const styles = StyleSheet.create({
-    tertiaryHeader: {
-        fontFamily: 'LatoBlack',
-        fontSize: theme.FONT_SIZE.HEADER_SECONDARY,
+    textHeader: {
         paddingBottom: theme.SPACING.XS
     }
 });

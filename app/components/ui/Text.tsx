@@ -6,20 +6,31 @@ import theme from '../../theme';
 interface TextProps {
     children: React.ReactNode;
     style?: TextStyle | TextStyle[];
+    color?: 'theme' | 'primary' | 'secondary';
     props?: TextProps;
 }
 
-export function PrimaryHeader({style = {}, children, ...props}: TextProps) {
+export function PrimaryHeader({
+    style = {},
+    color = 'primary',
+    children,
+    ...props
+}: TextProps) {
     return (
-        <Text {...props} style={[styles.primaryHeader, style]}>
+        <Text {...props} style={[styles.primaryHeader, colors[color], style]}>
             {children}
         </Text>
     );
 }
 
-export function SecondaryHeader({style = {}, children, ...props}: TextProps) {
+export function SecondaryHeader({
+    style = {},
+    color = 'primary',
+    children,
+    ...props
+}: TextProps) {
     return (
-        <Text {...props} style={[styles.secondaryHeader, style]}>
+        <Text {...props} style={[styles.secondaryHeader, colors[color], style]}>
             {children}
         </Text>
     );
@@ -44,13 +55,11 @@ export function SecondaryText({style = {}, children, ...props}: TextProps) {
 const styles = StyleSheet.create({
     primaryHeader: {
         fontFamily: 'LatoBlack',
-        fontSize: theme.FONT_SIZE.HEADER_PRIMARY,
-        color: theme.COLORS.THEME_FONT
+        fontSize: theme.FONT_SIZE.HEADER_PRIMARY
     },
     secondaryHeader: {
         fontFamily: 'LatoBlack',
-        fontSize: theme.FONT_SIZE.HEADER_PRIMARY,
-        color: theme.COLORS.FONT_PRIMARY
+        fontSize: theme.FONT_SIZE.HEADER_SECONDARY
     },
     primaryText: {
         fontFamily: theme.FONT_FAMILY.PRIMARY,
@@ -60,6 +69,18 @@ const styles = StyleSheet.create({
     secondaryText: {
         fontFamily: theme.FONT_FAMILY.PRIMARY,
         fontSize: theme.FONT_SIZE.SECONDARY,
+        color: theme.COLORS.FONT_SECONDARY
+    }
+});
+
+const colors = StyleSheet.create({
+    theme: {
+        color: theme.COLORS.THEME_FONT
+    },
+    primary: {
+        color: theme.COLORS.FONT_PRIMARY
+    },
+    secondary: {
         color: theme.COLORS.FONT_SECONDARY
     }
 });

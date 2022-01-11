@@ -85,7 +85,7 @@ function Dashboard() {
                 <PrimaryText style={styles.dateText}>
                     {getCurrentTimeIntervalText(dashboardTimeInterval)}
                 </PrimaryText>
-                <PrimaryHeader>
+                <PrimaryHeader color="theme">
                     {getActivityFilterText(filter).toUpperCase()}
                 </PrimaryHeader>
             </View>
@@ -107,17 +107,17 @@ function Dashboard() {
             </View>
             <View style={[utils.row]}>
                 <View style={styles.secondaryDetails}>
-                    <PrimaryText style={styles.secondaryDetailsText}>
+                    <SecondaryHeader style={styles.secondaryDetailsText}>
                         {entries.length}
-                    </PrimaryText>
+                    </SecondaryHeader>
                     <SecondaryText>
                         {entries.length === 1 ? 'Workout' : 'Workouts'}
                     </SecondaryText>
                 </View>
                 <View style={styles.secondaryDetails}>
-                    <PrimaryText style={styles.secondaryDetailsText}>
+                    <SecondaryHeader style={styles.secondaryDetailsText}>
                         {getPaceText(duration, distance)}
-                    </PrimaryText>
+                    </SecondaryHeader>
                     <SecondaryText>Avg. Pace</SecondaryText>
                 </View>
             </View>
@@ -132,9 +132,9 @@ function Dashboard() {
                     ]}
                 >
                     <SecondaryText>Avg. Intensity</SecondaryText>
-                    <PrimaryText style={styles.secondaryDetailsText}>
+                    <SecondaryHeader style={styles.secondaryDetailsText}>
                         {getIntensityText(intensity)}
-                    </PrimaryText>
+                    </SecondaryHeader>
                 </View>
                 <EntryEffortBar effort={intensity} />
             </View>
@@ -162,8 +162,6 @@ const styles = StyleSheet.create({
         marginRight: theme.SPACING.XL
     },
     secondaryDetailsText: {
-        fontFamily: 'LatoBlack',
-        fontSize: theme.FONT_SIZE.HEADER_SECONDARY,
         paddingBottom: theme.SPACING.XS
     },
     backgroundSlice: {

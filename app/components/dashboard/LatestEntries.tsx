@@ -31,8 +31,7 @@ function LatestEntries({
                 style={[
                     utils.marginRightXL,
                     utils.marginBottomL,
-                    utils.marginLeftL,
-                    {fontSize: theme.FONT_SIZE.HEADER_SECONDARY}
+                    utils.marginLeftL
                 ]}
             >
                 Latest entries
