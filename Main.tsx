@@ -22,6 +22,7 @@ import useFiltersStore from './app/state/filters';
 import {loadEntries} from './app/state/entries';
 import {loadActivityFilter} from './app/state/activityFilter';
 import DashboardScreen from './app/screens/DashboardScreen';
+import TrophiesOverviewScreen from './app/screens/TrophiesOverviewScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -81,19 +82,24 @@ function DashboardScreenStack() {
     );
 }
 
-function TrophyScreenStack() {
+function TrophiesScreenStack() {
     return (
-        <Stack.Navigator screenOptions={stackScreenOptions}>
+        <Stack.Navigator screenOptions={mainStackScreenOptions}>
             <Stack.Screen
-                name="trophy-list"
-                component={TrophyListScreen}
+                name="trophies-overview"
+                component={TrophiesOverviewScreen}
                 options={{}}
             />
-            <Stack.Screen
-                name="trophy-details"
-                component={TrophyDetailsScreen}
-                options={{}}
-            />
+            {/* <Stack.Screen */}
+            {/*     name="trophy-list" */}
+            {/*     component={TrophyListScreen} */}
+            {/*     options={{}} */}
+            {/* /> */}
+            {/* <Stack.Screen */}
+            {/*     name="trophy-details" */}
+            {/*     component={TrophyDetailsScreen} */}
+            {/*     options={{}} */}
+            {/* /> */}
             <Stack.Screen
                 name="trophy-form"
                 component={TrophyFormScreen}
@@ -139,7 +145,11 @@ function Main() {
                     name="Dashboard"
                     component={DashboardScreenStack}
                 />
-                {/*<Tab.Screen name="Trophies" component={TrophyScreenStack} />*/}
+                <Tab.Screen
+                    options={{headerShown: false}}
+                    name="Trophies"
+                    component={TrophiesScreenStack}
+                />
                 <Tab.Screen
                     options={{headerShown: false}}
                     name="Statistics"
