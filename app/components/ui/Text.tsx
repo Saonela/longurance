@@ -44,12 +44,12 @@ export function SecondaryText({style = {}, children, ...props}: TextProps) {
 const styles = StyleSheet.create({
     primaryHeader: {
         fontFamily: 'LatoBlack',
-        fontSize: theme.FONT_SIZE.HEADER,
+        fontSize: theme.FONT_SIZE.HEADER_PRIMARY,
         color: theme.COLORS.THEME_FONT
     },
     secondaryHeader: {
         fontFamily: 'LatoBlack',
-        fontSize: theme.FONT_SIZE.HEADER,
+        fontSize: theme.FONT_SIZE.HEADER_PRIMARY,
         color: theme.COLORS.FONT_PRIMARY
     },
     primaryText: {

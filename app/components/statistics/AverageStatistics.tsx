@@ -89,7 +89,7 @@ function AverageStatistics({entries}: AverageStatisticsProps) {
 const styles = StyleSheet.create({
     tertiaryHeader: {
         fontFamily: 'LatoBlack',
-        fontSize: 24,
+        fontSize: theme.FONT_SIZE.HEADER_SECONDARY,
         paddingBottom: theme.SPACING.XS
     },
     textBlock: {

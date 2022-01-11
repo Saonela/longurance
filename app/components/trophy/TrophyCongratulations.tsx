@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
         marginBottom: theme.SPACING.L,
-        fontSize: theme.FONT_SIZE.HEADER,
+        fontSize: theme.FONT_SIZE.HEADER_PRIMARY,
         fontWeight: 'bold'
     },
     imageBox: {

@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     },
     activity: {
         fontFamily: 'LatoBlack',
-        fontSize: theme.FONT_SIZE.HEADER,
+        fontSize: theme.FONT_SIZE.HEADER_PRIMARY,
         color: theme.COLORS.THEME_FONT,
         textAlign: 'right'
     },

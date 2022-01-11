@@ -32,7 +32,7 @@ function LatestEntries({
                     utils.marginRightXL,
                     utils.marginBottomL,
                     utils.marginLeftL,
-                    {fontSize: 24}
+                    {fontSize: theme.FONT_SIZE.HEADER_SECONDARY}
                 ]}
             >
                 Latest entries

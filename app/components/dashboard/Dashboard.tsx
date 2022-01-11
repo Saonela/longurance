@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     },
     secondaryDetailsText: {
         fontFamily: 'LatoBlack',
-        fontSize: 24,
+        fontSize: theme.FONT_SIZE.HEADER_SECONDARY,
         paddingBottom: theme.SPACING.XS
     },
     backgroundSlice: {

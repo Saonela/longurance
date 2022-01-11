@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import moment from 'moment';
 import {Entry} from '../../types/Entry';
 import theme from '../../theme';
@@ -79,7 +79,7 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
 const styles = StyleSheet.create({
     tertiaryHeader: {
         fontFamily: 'LatoBlack',
-        fontSize: 24,
+        fontSize: theme.FONT_SIZE.HEADER_SECONDARY,
         paddingBottom: theme.SPACING.XS
     }
 });

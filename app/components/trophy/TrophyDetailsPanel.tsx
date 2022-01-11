@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     title: {
         ...appStyles.primaryText,
         marginBottom: theme.SPACING.SM,
-        fontSize: theme.FONT_SIZE.HEADER
+        fontSize: theme.FONT_SIZE.HEADER_PRIMARY
     },
     titleSubText: {
         ...appStyles.primaryText,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     },
     activityText: {
         marginBottom: theme.SPACING.SM,
-        fontSize: theme.FONT_SIZE.HEADER
+        fontSize: theme.FONT_SIZE.HEADER_PRIMARY
     },
     labelText: {
         marginBottom: theme.SPACING.XS

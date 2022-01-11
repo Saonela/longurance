@@ -18,7 +18,8 @@ const FONT_FAMILY = {
 };
 
 const FONT_SIZE = {
-    HEADER: 28,
+    HEADER_PRIMARY: 28,
+    HEADER_SECONDARY: 24,
     PRIMARY: 17,
     SECONDARY: 14,
     TERTIARY: 11
