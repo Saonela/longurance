@@ -5,24 +5,21 @@ import {
     createStackNavigator
 } from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import theme from './app/theme';
 import EntryListScreen from './app/screens/EntryListScreen';
 import EntryFormScreen from './app/screens/EntryFormScreen';
-import {DarkTheme, NavigationContainer} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
 import HeaderButton from './app/components/header/HeaderButton';
-import TrophyListScreen from './app/screens/TrophyListScreen';
 import TabBar from './app/components/tab-navigation/TabBar';
 import TrophyFormScreen from './app/screens/TrophyFormScreen';
 import EntryDetailsScreen from './app/screens/EntryDetailsScreen';
-import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';
-import {loadTrophies} from './app/redux/slices/trophiesSlice';
 import StatisticsScreen from './app/screens/StatisticsScreen';
 import useFiltersStore from './app/state/filters';
 import {loadEntries} from './app/state/entries';
 import {loadActivityFilter} from './app/state/activityFilter';
 import DashboardScreen from './app/screens/DashboardScreen';
 import TrophiesOverviewScreen from './app/screens/TrophiesOverviewScreen';
+import {loadTrophies} from './app/state/trophies';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -127,13 +124,10 @@ function StatisticsScreenStack() {
 }
 
 function Main() {
-    const dispatch = useDispatch();
-
     useEffect(() => {
-        // dispatch(loadEntries());
-        dispatch(loadTrophies());
         loadActivityFilter();
         loadEntries();
+        loadTrophies();
         useFiltersStore.getState().loadDashboardTimeInterval();
     }, []);
 

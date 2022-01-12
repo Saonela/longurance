@@ -1,0 +1,46 @@
+[
+  {
+    "id": "predefined-run-duration-42",
+    "activity": "RUNNING",
+    "distance": 42.2,
+    "duration": 0,
+    "createdAt": "",
+    "completedAt": null,
+    "completed": false,
+    "markedAsRead": false,
+    "title": "Marathon"
+  },
+  {
+    "id": "predefined-run-distance-21",
+    "activity": "RUNNING",
+    "distance": 21.1,
+    "duration": 0,
+    "createdAt": "",
+    "completedAt": null,
+    "completed": false,
+    "markedAsRead": false,
+    "title": "Half Marathon"
+  },
+  {
+    "id": "predefined-run-distance-10",
+    "activity": "RUNNING",
+    "distance": 10,
+    "duration": 0,
+    "createdAt": "",
+    "completedAt": null,
+    "completed": false,
+    "markedAsRead": false,
+    "title": "10 KM"
+  },
+  {
+    "id": "predefined-run-distance-5",
+    "activity": "RUNNING",
+    "distance": 5,
+    "duration": 0,
+    "createdAt": "",
+    "completedAt": null,
+    "completed": false,
+    "markedAsRead": false,
+    "title": "5 KM"
+  }
+]
