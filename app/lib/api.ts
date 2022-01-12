@@ -1,10 +1,12 @@
 import {Entry} from '../types/Entry';
 import Storage from './storage';
 import {Activity} from '../types/Activity';
+import {Trophy} from '../types/Trophy';
 
 const FILTERS_KEY = 'filters';
 const ACTIVITY_FILTER_KEY = 'activityFilter';
 const ENTRIES_KEY = 'entries';
+const TROPHIES_KEY = 'trophies';
 
 export async function fetchFilters(): Promise<object> {
     const filter = await Storage.getItem<object>(FILTERS_KEY);
@@ -34,4 +36,9 @@ export async function saveEntry(entry: Entry) {
 
 export async function deleteEntry(id: string) {
     return Storage.deleteFromArray<Entry>(ENTRIES_KEY, id);
+}
+
+export async function fetchTrophies(): Promise<Trophy[]> {
+    const trophies = await Storage.getItem<Trophy[]>(TROPHIES_KEY);
+    return trophies || [];
 }
