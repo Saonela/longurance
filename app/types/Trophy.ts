@@ -12,3 +12,14 @@ export interface Trophy {
     distance: number;
     duration: number;
 }
+
+export enum TrophyType {
+    TOTAL = 'TOTAL',
+    INDIVIDUAL = 'INDIVIDUAL'
+}
+
+export enum TrophySubtype {
+    DISTANCE = 'DISTANCE',
+    DURATION = 'DURATION',
+    PACE = 'PACE'
+}
