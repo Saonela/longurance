@@ -16,7 +16,7 @@ import utils from '../../styles-utilities';
 import {Activity} from '../../types/Activity';
 import {PrimaryText, SecondaryText} from '../ui/Text';
 
-interface EntryProps {
+interface EntryCardProps {
     entry: Entry;
     onPress: () => void;
 }
@@ -27,7 +27,7 @@ const activityIconNames = {
     [Activity.CYCLING]: 'bicycle'
 };
 
-function EntryCard({entry, onPress}: EntryProps) {
+function EntryCard({entry, onPress}: EntryCardProps) {
     return (
         <TouchableNativeFeedback onPress={onPress}>
             <View style={styles.card}>
