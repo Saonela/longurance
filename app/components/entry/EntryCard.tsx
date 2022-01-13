@@ -15,6 +15,7 @@ import {EffortIcons} from '../../types/Effort';
 import utils from '../../styles-utilities';
 import {Activity} from '../../types/Activity';
 import {PrimaryText, SecondaryText} from '../ui/Text';
+import Separator from '../ui/Separator';
 
 interface EntryCardProps {
     entry: Entry;
@@ -47,7 +48,10 @@ function EntryCard({entry, onPress}: EntryCardProps) {
                         {getActivityTypeText(entry.activity)}
                     </Text>
                 </View>
-                <View style={styles.separator} />
+                <Separator
+                    marginTop={theme.SPACING.S}
+                    marginBottom={theme.SPACING.L}
+                />
                 <View style={utils.row}>
                     <View style={styles.detailsContainer}>
                         <PrimaryText style={styles.detailsText}>
@@ -94,12 +98,6 @@ const styles = StyleSheet.create({
     detailsText: {
         fontFamily: 'LatoBlack',
         paddingBottom: theme.SPACING.XS
-    },
-    separator: {
-        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY,
-        marginTop: theme.SPACING.S,
-        marginBottom: theme.SPACING.L,
-        height: 2
     },
     effortIndicator: {
         position: 'absolute',

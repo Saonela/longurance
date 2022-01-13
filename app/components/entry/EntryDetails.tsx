@@ -17,6 +17,7 @@ import EntryEffortBar from './EntryEffortBar';
 import utils from '../../styles-utilities';
 import {PrimaryText, SecondaryText} from '../ui/Text';
 import {Activity} from '../../types/Activity';
+import Separator from '../ui/Separator';
 
 interface EntryDetailsProps {
     entry: Entry;
@@ -48,7 +49,10 @@ function EntryDetails({entry, trophies}: EntryDetailsProps) {
                     {getActivityTypeText(entry.activity)}
                 </Text>
             </View>
-            <View style={styles.separator} />
+            <Separator
+                marginTop={theme.SPACING.S}
+                marginBottom={theme.SPACING.L}
+            />
             <View style={[utils.row, utils.marginBottomXL]}>
                 <View style={styles.detailsContainer}>
                     <PrimaryText style={styles.detailsText}>
@@ -103,12 +107,6 @@ const styles = StyleSheet.create({
     detailsText: {
         fontFamily: 'LatoBlack',
         paddingBottom: theme.SPACING.XS
-    },
-    separator: {
-        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY,
-        marginTop: theme.SPACING.S,
-        marginBottom: theme.SPACING.L,
-        height: 2
     },
     activity: {
         fontFamily: 'LatoBlack',

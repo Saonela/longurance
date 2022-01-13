@@ -27,6 +27,7 @@ import {
     getIntensityText,
     getPaceText
 } from '../../lib/entry';
+import Separator from '../ui/Separator';
 
 const timeIntervalValues = [
     {
@@ -121,7 +122,10 @@ function Dashboard() {
                     <SecondaryText>Avg. Pace</SecondaryText>
                 </View>
             </View>
-            <View style={styles.separator} />
+            <Separator
+                marginTop={theme.SPACING.L}
+                marginBottom={theme.SPACING.L}
+            />
             <View>
                 <View
                     style={[
@@ -171,12 +175,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 70,
         borderBottomColor: theme.COLORS.BACKGROUND_SECONDARY,
         borderColor: 'transparent'
-    },
-    separator: {
-        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY,
-        marginTop: theme.SPACING.L,
-        marginBottom: theme.SPACING.L,
-        height: 2
     }
 });
 
