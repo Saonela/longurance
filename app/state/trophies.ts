@@ -22,7 +22,13 @@ export async function loadTrophies() {
     }));
 }
 
-export const getTrophies = (state, activity: Activity | null = null) => {
+export const getTrophy = (state: TrophiesState, id: string) =>
+    state.trophies.find((trophy) => trophy.id === id);
+
+export const getTrophies = (
+    state: TrophiesState,
+    activity: Activity | null = null
+) => {
     return state.trophies.filter(
         (trophy) => !activity || trophy.activity === activity
     );
