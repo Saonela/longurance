@@ -1,54 +1,83 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {SimpleLineIcons} from '@expo/vector-icons';
 import appStyles from '../../styles';
 import {Trophy} from '../../types/Trophy';
-import {Entry} from '../../types/Entry';
-import EntryDetails from '../entry/EntryDetails';
 import theme from '../../theme';
-import TrophyDetailsPanel from './TrophyDetailsPanel';
+import utils from '../../styles-utilities';
+import {PrimaryHeader, PrimaryText, SecondaryText} from '../ui/Text';
+import {
+    getActivityTypeText,
+    getDistanceText,
+    getDurationText
+} from '../../lib/entry';
+import Separator from '../ui/Separator';
 
 interface TrophyDetailsProps {
     trophy: Trophy;
-    entry: Entry;
 }
 
-function TrophyNotCompletedMessage() {
+function TrophyDetails({trophy}: TrophyDetailsProps) {
     return (
-        <View style={styles.container}>
-            <Text style={appStyles.primaryText}>
-                Trophy is yet to be achieved.
-            </Text>
-            <Text style={appStyles.primaryText}>Keep going!</Text>
-            <View style={styles.decoratorLine} />
+        <View style={appStyles.panel}>
+            <View style={[utils.row, utils.justifyBetween]}>
+                <View>
+                    <SecondaryText style={utils.marginBottomXS}>
+                        {trophy.completed
+                            ? 'Trophy achieved!'
+                            : 'Trophy is not yet achieved.'}
+                    </SecondaryText>
+                    <PrimaryHeader>{trophy.title}</PrimaryHeader>
+                </View>
+                <PrimaryHeader color="theme" style={utils.alignSelfEnd}>
+                    {getActivityTypeText(trophy.activity)}
+                </PrimaryHeader>
+            </View>
+            <Separator />
+            <View style={utils.row}>
+                <SimpleLineIcons
+                    name="trophy"
+                    size={72}
+                    color={
+                        trophy.completed
+                            ? theme.COLORS.THEME_FONT
+                            : theme.COLORS.BACKGROUND_TERTIARY
+                    }
+                    style={utils.marginLeftXS}
+                />
+                <View style={utils.marginLeftXL}>
+                    <SecondaryText style={utils.marginBottomM}>
+                        Requirements:
+                    </SecondaryText>
+                    <View style={utils.row}>
+                        {trophy.distance !== 0 && (
+                            <View style={utils.marginRightXL}>
+                                <PrimaryText style={styles.detailsText}>
+                                    {getDistanceText(trophy.distance)}
+                                </PrimaryText>
+                                <SecondaryText>Distance</SecondaryText>
+                            </View>
+                        )}
+                        {trophy.duration !== 0 && (
+                            <View>
+                                <PrimaryText style={styles.detailsText}>
+                                    {getDurationText(trophy.duration)}
+                                </PrimaryText>
+                                <SecondaryText>Duration</SecondaryText>
+                            </View>
+                        )}
+                    </View>
+                </View>
+            </View>
         </View>
     );
 }
 
-function TrophyDetails({trophy, entry}: TrophyDetailsProps) {
-    return (
-        <ScrollView>
-            <TrophyDetailsPanel trophy={trophy} />
-            {!entry && <TrophyNotCompletedMessage />}
-            {entry && <EntryDetails entry={entry} trophies={[]} />}
-        </ScrollView>
-    );
-}
-
-export default TrophyDetails;
-
 const styles = StyleSheet.create({
-    container: {
-        ...appStyles.panel,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        height: 90,
-        overflow: 'hidden'
-    },
-    decoratorLine: {
-        width: '100%',
-        height: theme.SPACING.XS,
-        marginTop: theme.SPACING.S,
-        borderRadius: theme.BORDER.RADIUS,
-        backgroundColor: theme.COLORS.BACKGROUND_TERTIARY
+    detailsText: {
+        fontFamily: 'LatoBlack',
+        paddingBottom: theme.SPACING.XS
     }
 });
+
+export default TrophyDetails;
