@@ -1,27 +1,32 @@
 import React, {useLayoutEffect, useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import {FormikValues} from 'formik';
+import {ScrollView, View} from 'react-native';
 import HeaderButton from '../components/header/HeaderButton';
 import theme from '../theme';
-import {ScrollView, View} from 'react-native';
 import appStyles from '../styles';
-import {getTrophy, saveTrophy} from '../redux/slices/trophiesSlice';
 import TrophyForm from '../components/trophy/TrophyForm';
 import {Trophy} from '../types/Trophy';
+import {
+    addTrophy,
+    getTrophy,
+    updateTrophy,
+    useTrophiesStore
+} from '../state/trophies';
 
 function TrophyFormScreen({route, navigation}) {
-    const dispatch = useDispatch();
-    const trophy = useSelector((state) => getTrophy(state, route.params.id));
-
+    const isUpdateForm = route.params.id !== undefined;
+    const trophyToEdit = useTrophiesStore((state) =>
+        getTrophy(state, route.params.id)
+    );
     const formRef = useRef<FormikValues>(null);
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: trophy ? 'Edit Trophy' : 'New Trophy',
+            title: isUpdateForm ? 'Edit Trophy' : 'New Trophy',
             headerRight: () => (
                 <HeaderButton
-                    style={{marginRight: theme.SPACING.S}}
                     iconName="check"
+                    style={{marginRight: theme.SPACING.S}}
                     onPress={() => {
                         if (formRef.current) {
                             formRef.current.handleSubmit();
@@ -30,10 +35,14 @@ function TrophyFormScreen({route, navigation}) {
                 />
             )
         });
-    }, [navigation]);
+    }, [navigation, isUpdateForm]);
 
     const handleSubmit = (trophy: Trophy) => {
-        dispatch(saveTrophy(trophy));
+        if (isUpdateForm) {
+            updateTrophy(trophy);
+        } else {
+            addTrophy(trophy);
+        }
         navigation.goBack();
     };
 
@@ -41,7 +50,7 @@ function TrophyFormScreen({route, navigation}) {
         <View style={appStyles.screenContainer}>
             <ScrollView keyboardShouldPersistTaps="handled">
                 <TrophyForm
-                    trophy={trophy}
+                    trophy={trophyToEdit}
                     innerRef={formRef}
                     onSubmit={handleSubmit}
                 />
