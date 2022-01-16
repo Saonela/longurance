@@ -66,6 +66,11 @@ describe('TrophyForm', () => {
         });
 
         expect(submitSpy).toHaveBeenCalledWith({
+            id: '',
+            entryId: null,
+            createdAt: '',
+            completedAt: null,
+            completed: false,
             title: 'Ironman swim',
             activity: Activity.SWIMMING,
             distance: 2.5,

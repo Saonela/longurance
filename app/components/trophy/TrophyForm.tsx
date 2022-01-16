@@ -11,12 +11,17 @@ import TextFormField from '../form/TextFormField';
 import {Trophy} from '../../types/Trophy';
 import Panel from '../ui/Panel';
 
-const defaultTrophy: Partial<Trophy> = {
+const defaultTrophy: Trophy = {
+    id: '',
+    entryId: null,
+    createdAt: '',
+    completedAt: null,
+    completed: false,
+    markedAsRead: false,
     title: '',
     activity: Activity.RUNNING,
-    distance: null as any,
-    duration: null as any,
-    markedAsRead: false
+    distance: 0,
+    duration: 0
 };
 
 const options = {
