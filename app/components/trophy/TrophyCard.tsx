@@ -1,74 +1,41 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
-import appStyles from '../../styles';
+import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
 import {SimpleLineIcons} from '@expo/vector-icons';
+import appStyles from '../../styles';
 import theme from '../../theme';
 import {Trophy} from '../../types/Trophy';
-import DistanceText from '../shared/DistanceText';
-import DurationText from '../shared/DurationText';
 import ActivityIcon from '../activity-icon/ActivityIcon';
 import {getActivityTypeText} from '../../lib/entry';
+import {PrimaryHeader, PrimaryText, SecondaryText} from '../ui/Text';
+import utils from '../../styles-utilities';
+import Separator from '../ui/Separator';
 
 interface TrophyCardProps {
     trophy: Trophy;
-    onPress: any;
+    onPress: () => void;
 }
 
 function TrophyCard({trophy, onPress}: TrophyCardProps) {
-    const trophyColor = trophy.completed
+    const color = trophy.completed
         ? theme.COLORS.THEME_FONT
         : theme.COLORS.BACKGROUND_TERTIARY;
     return (
         <TouchableNativeFeedback onPress={onPress}>
-            <View style={[appStyles.panel, {overflow: 'hidden'}]}>
-                <View
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'flex-end'
-                    }}
-                >
-                    <SimpleLineIcons
-                        style={styles.trophyIcon}
-                        name="trophy"
-                        size={50}
-                        color={trophyColor}
-                    />
-                    <Text style={[appStyles.primaryText]}>{trophy.title}</Text>
-                </View>
-                <View
-                    style={[
-                        styles.separatorLine,
-                        {borderBottomColor: trophyColor}
-                    ]}
-                />
-                <View
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between'
-                    }}
-                >
-                    <View
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center'
-                        }}
-                    >
-                        <Text style={appStyles.primaryText}>
+            <View style={styles.card}>
+                <View style={[utils.row, utils.justifyBetween]}>
+                    <SimpleLineIcons name="trophy" size={50} color={color} />
+                    <View>
+                        <SecondaryText>Distance</SecondaryText>
+                        <PrimaryHeader color="theme">
                             {getActivityTypeText(trophy.activity)}
-                        </Text>
-                        <DistanceText
-                            distance={trophy.distance}
-                            style={{marginLeft: 8}}
-                        />
-                        <DurationText
-                            duration={trophy.duration}
-                            style={{marginLeft: 8}}
-                        />
+                        </PrimaryHeader>
                     </View>
                 </View>
+                <Separator
+                    marginTop={theme.SPACING.S}
+                    marginBottom={theme.SPACING.SM}
+                />
+                <PrimaryText style={[styles.title]}>{trophy.title}</PrimaryText>
                 <ActivityIcon
                     activity={trophy.activity}
                     size={150}
@@ -80,25 +47,19 @@ function TrophyCard({trophy, onPress}: TrophyCardProps) {
 }
 
 const styles = StyleSheet.create({
+    card: {
+        ...appStyles.panel,
+        overflow: 'hidden'
+    },
+    title: {
+        fontFamily: 'LatoBlack'
+    },
     activityIcon: {
         position: 'absolute',
         right: -20,
         bottom: -40,
+        zIndex: -1,
         color: theme.COLORS.BACKGROUND_TERTIARY
-    },
-    trophyIcon: {
-        marginRight: theme.SPACING.M,
-        marginBottom: -12
-    },
-    separatorLine: {
-        width: '55%',
-        marginTop: theme.SPACING.SM,
-        marginBottom: theme.SPACING.SM,
-        marginLeft: theme.SPACING.S,
-        borderBottomColor: theme.COLORS.THEME_FONT,
-        borderBottomWidth: 3,
-        borderRadius: 6,
-        elevation: 4
     }
 });
 
