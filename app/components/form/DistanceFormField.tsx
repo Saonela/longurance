@@ -20,8 +20,8 @@ function DistanceFormField({
             <NumberInput
                 value={value}
                 placeholder="Km"
-                float={true}
-                onChange={(value) => onChange(value)}
+                float
+                onChange={(value) => onChange(parseFloat(value))}
             />
         </View>
     );

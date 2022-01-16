@@ -1,9 +1,9 @@
 import React, {useRef} from 'react';
 import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
-import TrophyForm from './TrophyForm';
-import {Activity} from '../../types/Activity';
 import {FormikValues} from 'formik';
 import {View, Button} from 'react-native';
+import TrophyForm from './TrophyForm';
+import {Activity} from '../../types/Activity';
 import {Trophy} from '../../types/Trophy';
 
 function FormWithRef({trophy, onSubmit}) {
@@ -11,7 +11,7 @@ function FormWithRef({trophy, onSubmit}) {
     return (
         <View>
             <Button
-                title={'Save'}
+                title="Save"
                 onPress={() => {
                     if (formRef.current) {
                         formRef.current.handleSubmit();

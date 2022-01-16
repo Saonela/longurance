@@ -26,14 +26,10 @@ const defaultTrophy: Trophy = {
 
 const options = {
     mapPropsToValues: ({trophy, ...props}) => {
-        return trophy ? trophy : defaultTrophy;
+        return trophy || defaultTrophy;
     },
     validate: (values) => {
-        if (values.distance && typeof values.distance !== 'number') {
-            values.distance = parseFloat(values.distance);
-        }
-
-        const errors: any = {};
+        const errors: {title?: string; durationOrDistance?: string} = {};
         if (!values.title) {
             errors.title = 'Title must be set!';
         }
@@ -55,8 +51,8 @@ function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
         <View style={styles.form}>
             <Panel>
                 <TextFormField
-                    label={'Title'}
-                    placeholder={'Title'}
+                    label="Title"
+                    placeholder="Title"
                     value={values.title}
                     onChange={(value) => {
                         setErrors({});
