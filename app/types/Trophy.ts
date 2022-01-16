@@ -2,8 +2,9 @@ import {Activity} from './Activity';
 
 export interface Trophy {
     id: string;
-    entryId?: string;
     createdAt: string;
+    type: TrophyType;
+    entryId: string | null;
     completedAt: string | null;
     completed: boolean;
     markedAsRead?: boolean;

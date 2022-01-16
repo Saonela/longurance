@@ -4,7 +4,7 @@ import {FormikValues} from 'formik';
 import {View, Button} from 'react-native';
 import TrophyForm from './TrophyForm';
 import {Activity} from '../../types/Activity';
-import {Trophy} from '../../types/Trophy';
+import {Trophy, TrophyType} from '../../types/Trophy';
 
 function FormWithRef({trophy, onSubmit}) {
     const formRef = useRef<FormikValues>(null);
@@ -53,6 +53,9 @@ describe('TrophyForm', () => {
             );
         });
         await act(async () => {
+            fireEvent.press(getByText('Individual'));
+        });
+        await act(async () => {
             fireEvent.changeText(getByPlaceholderText('HH'), '2');
         });
         await act(async () => {
@@ -73,6 +76,7 @@ describe('TrophyForm', () => {
             completed: false,
             title: 'Ironman swim',
             activity: Activity.SWIMMING,
+            type: TrophyType.INDIVIDUAL,
             distance: 2.5,
             duration: 8160,
             markedAsRead: false

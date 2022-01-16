@@ -8,8 +8,12 @@ import DurationFormField from '../form/DurationFormField';
 import ErrorMessage from '../shared/ErrorMessage';
 import ActivityFormField from '../form/ActivityFormField';
 import TextFormField from '../form/TextFormField';
-import {Trophy} from '../../types/Trophy';
+import {Trophy, TrophyType} from '../../types/Trophy';
 import Panel from '../ui/Panel';
+import FormLabel from '../form/FormLabel';
+import RadioButton from '../shared/RadioButton';
+import FormHint from '../form/FormHint';
+import utils from '../../styles-utilities';
 
 const defaultTrophy: Trophy = {
     id: '',
@@ -20,6 +24,7 @@ const defaultTrophy: Trophy = {
     markedAsRead: false,
     title: '',
     activity: Activity.RUNNING,
+    type: TrophyType.TOTAL,
     distance: 0,
     duration: 0
 };
@@ -62,6 +67,28 @@ function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
                 {errors.title && (
                     <ErrorMessage style={styles.error} message={errors.title} />
                 )}
+            </Panel>
+            <Panel>
+                <FormLabel>Trophy type</FormLabel>
+                <View style={[utils.marginTopM, utils.marginBottomM]}>
+                    <RadioButton
+                        label="Total"
+                        value={TrophyType.TOTAL}
+                        selected={values.type === TrophyType.TOTAL}
+                        onPress={handleChange('type')}
+                    />
+                </View>
+                <View style={[utils.marginBottomS]}>
+                    <RadioButton
+                        label="Individual"
+                        value={TrophyType.INDIVIDUAL}
+                        selected={values.type === TrophyType.INDIVIDUAL}
+                        onPress={handleChange('type')}
+                    />
+                </View>
+                <FormHint>
+                    Choose to apply conditions per all activity or per entry
+                </FormHint>
             </Panel>
             <Panel>
                 <ActivityFormField
