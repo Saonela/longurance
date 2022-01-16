@@ -1,22 +1,38 @@
 import React, {useLayoutEffect} from 'react';
-import {Alert, StyleSheet, View} from 'react-native';
+import {Alert, View} from 'react-native';
 import HeaderButton from '../components/header/HeaderButton';
-import {useDispatch, useSelector} from 'react-redux';
 import {Trophy} from '../types/Trophy';
-import {deleteTrophy, getTrophy} from '../redux/slices/trophiesSlice';
 import appStyles from '../styles';
 import TrophyDetails from '../components/trophy/TrophyDetails';
-import {getEntry, useEntriesStore} from '../state/entries';
+import {deleteTrophy, getTrophy, useTrophiesStore} from '../state/trophies';
 
 function TrophyDetailsScreen({route, navigation}) {
-    const trophy: Trophy = useSelector((state) =>
+    const trophy = useTrophiesStore((state) =>
         getTrophy(state, route.params.id)
-    );
-    const entry = useEntriesStore((state) => getEntry(state, trophy.entryId));
-
-    const dispatch = useDispatch();
+    ) as Trophy;
 
     useLayoutEffect(() => {
+        const confirmDelete = () => {
+            Alert.alert(
+                'Delete trophy',
+                'Trophy will be removed from history',
+                [
+                    {
+                        text: 'Cancel',
+                        style: 'cancel'
+                    },
+                    {
+                        text: 'OK',
+                        onPress: async () => {
+                            deleteTrophy(trophy.id);
+                            navigation.goBack();
+                        }
+                    }
+                ],
+                {cancelable: false}
+            );
+        };
+
         navigation.setOptions({
             title: 'Trophy Details',
             headerTitleStyle: {
@@ -26,53 +42,21 @@ function TrophyDetailsScreen({route, navigation}) {
                 <View style={{display: 'flex', flexDirection: 'row'}}>
                     <HeaderButton
                         iconName="edit"
-                        onPress={navigateToTrophyForm}
+                        onPress={() =>
+                            navigation.navigate('trophy-form', {id: trophy.id})
+                        }
                     />
                     <HeaderButton iconName="x" onPress={confirmDelete} />
                 </View>
             )
         });
-    }, [navigation]);
-
-    const navigateToTrophyForm = () => {
-        navigation.navigate('trophy-form', {id: trophy.id});
-    };
-
-    const confirmDelete = () => {
-        Alert.alert(
-            'Delete trophy',
-            'Trophy will be removed from history',
-            [
-                {
-                    text: 'Cancel',
-                    onPress: () => {},
-                    style: 'cancel'
-                },
-                {
-                    text: 'OK',
-                    onPress: async () => {
-                        navigation.navigate('trophy-list');
-                        dispatch(deleteTrophy(trophy.id));
-                    }
-                }
-            ],
-            {cancelable: false}
-        );
-    };
+    }, [navigation, trophy?.id]);
 
     return (
-        <View style={styles.wrapper}>
-            <View style={appStyles.screenContainer}>
-                {trophy && <TrophyDetails trophy={trophy} entry={entry} />}
-            </View>
+        <View style={appStyles.screenContainer}>
+            <TrophyDetails trophy={trophy} />
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1
-    }
-});
 
 export default TrophyDetailsScreen;
