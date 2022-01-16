@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SimpleLineIcons} from '@expo/vector-icons';
 import appStyles from '../../styles';
-import {Trophy} from '../../types/Trophy';
+import {Trophy, TrophyType} from '../../types/Trophy';
 import theme from '../../theme';
 import utils from '../../styles-utilities';
 import {PrimaryHeader, PrimaryText, SecondaryText} from '../ui/Text';
@@ -47,6 +47,9 @@ function TrophyDetails({trophy}: TrophyDetailsProps) {
                 />
                 <View style={utils.marginLeftXL}>
                     <SecondaryText style={utils.marginBottomM}>
+                        {trophy.type === TrophyType.INDIVIDUAL
+                            ? 'Individual '
+                            : 'Total '}
                         Requirements:
                     </SecondaryText>
                     <View style={utils.row}>

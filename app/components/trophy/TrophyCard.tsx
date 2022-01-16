@@ -3,17 +3,29 @@ import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
 import {SimpleLineIcons} from '@expo/vector-icons';
 import appStyles from '../../styles';
 import theme from '../../theme';
-import {Trophy} from '../../types/Trophy';
+import {Trophy, TrophySubtype, TrophyType} from '../../types/Trophy';
 import ActivityIcon from '../activity-icon/ActivityIcon';
 import {getActivityTypeText} from '../../lib/entry';
 import {PrimaryHeader, PrimaryText, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import Separator from '../ui/Separator';
+import {getTrophySubtype} from '../../lib/trophy';
 
 interface TrophyCardProps {
     trophy: Trophy;
     onPress: () => void;
 }
+
+const trophyTypeLabels = {
+    [TrophyType.TOTAL]: 'Total',
+    [TrophyType.INDIVIDUAL]: 'Individual'
+};
+
+const trophySubtypeLabels = {
+    [TrophySubtype.DISTANCE]: 'Distance',
+    [TrophySubtype.DURATION]: 'Duration',
+    [TrophySubtype.PACE]: 'Pace'
+};
 
 function TrophyCard({trophy, onPress}: TrophyCardProps) {
     const color = trophy.completed
@@ -24,8 +36,11 @@ function TrophyCard({trophy, onPress}: TrophyCardProps) {
             <View style={styles.card}>
                 <View style={[utils.row, utils.justifyBetween]}>
                     <SimpleLineIcons name="trophy" size={50} color={color} />
-                    <View>
-                        <SecondaryText>Distance</SecondaryText>
+                    <View style={[utils.alignEnd, utils.alignSelfEnd]}>
+                        <SecondaryText>
+                            {trophyTypeLabels[trophy.type]}{' '}
+                            {trophySubtypeLabels[getTrophySubtype(trophy)]}
+                        </SecondaryText>
                         <PrimaryHeader color="theme">
                             {getActivityTypeText(trophy.activity)}
                         </PrimaryHeader>
