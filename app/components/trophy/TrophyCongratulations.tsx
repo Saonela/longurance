@@ -1,107 +1,149 @@
-import React, {useEffect, useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {
-    getUnreadTrophies,
-    markTrophyAsRead
-} from '../../redux/slices/trophiesSlice';
-import {View, Text, StyleSheet} from 'react-native';
-import {Trophy} from '../../types/Trophy';
+import React, {useEffect, useRef, useState} from 'react';
+import {View, StyleSheet} from 'react-native';
+import {SimpleLineIcons, Feather} from '@expo/vector-icons';
+import * as Animatable from 'react-native-animatable';
+import {Trophy, TrophyType} from '../../types/Trophy';
 import theme from '../../theme';
 import appStyles from '../../styles';
-import {SimpleLineIcons} from '@expo/vector-icons';
-import {Feather} from '@expo/vector-icons';
-import Button from '../shared/Button';
-import DistanceText from '../shared/DistanceText';
-import DurationText from '../shared/DurationText';
-import ActivityText from '../shared/ActivityText';
-import * as Animatable from 'react-native-animatable';
+import {updateTrophy, useTrophiesStore} from '../../state/trophies';
+import {Button} from '../ui/Button';
+import {PrimaryHeader, PrimaryText, SecondaryText} from '../ui/Text';
+import Separator from '../ui/Separator';
+import utils from '../../styles-utilities';
+import {
+    getActivityTypeText,
+    getDistanceText,
+    getDurationText
+} from '../../lib/entry';
 
-interface CongratulationsCardProps {
-    trophy: Trophy;
-    onClose: any;
-}
+const fadeIn = {
+    from: {
+        opacity: 0
+    },
+    to: {
+        opacity: 0.75
+    }
+};
 
-function CongratulationsCard({
-    trophy,
-    onClose,
-    ...props
-}: CongratulationsCardProps) {
-    const animationRef = useRef<any>(null);
+const fadeOut = {
+    from: {
+        opacity: 0.75
+    },
+    to: {
+        opacity: 0
+    }
+};
+
+function TrophyCongratulations() {
+    const fadeAnimationRef = useRef<any>();
+    const bounceAnimationRef = useRef<any>();
+
+    const [visible, setVisible] = useState(false);
+    const trophy = useTrophiesStore((state) =>
+        state.trophies.find(
+            ({completed, markedAsRead}) => completed && !markedAsRead
+        )
+    );
 
     useEffect(() => {
-        if (animationRef) {
-            animationRef.current.startAnimation();
-        }
+        setVisible(trophy !== undefined);
     }, [trophy]);
 
-    return (
-        <Animatable.View
-            ref={animationRef}
-            style={[appStyles.panel, styles.card]}
-            animation="bounceIn"
-            {...props}
-        >
-            <Text style={[appStyles.primaryText, styles.headerText]}>
-                Trophy achieved!
-            </Text>
-            <View style={styles.imageBox}>
-                <SimpleLineIcons
-                    name="trophy"
-                    size={100}
-                    color={theme.COLORS.THEME_FONT}
-                    style={styles.trophyIcon}
-                />
-                <Feather
-                    name="check"
-                    size={100}
-                    color={theme.COLORS.THEME_FONT}
-                    style={styles.checkIcon}
-                />
-            </View>
-            <Text style={appStyles.primaryText}>{trophy.title}</Text>
-            <View style={styles.details}>
-                <View style={styles.detailsRow}>
-                    <Text style={styles.detailsLabel}>Activity:</Text>
-                    <ActivityText activity={trophy.activity} />
-                </View>
-                {trophy.distance ? (
-                    <View style={styles.detailsRow}>
-                        <Text style={styles.detailsLabel}>Distance:</Text>
-                        <DistanceText distance={trophy.distance} />
-                    </View>
-                ) : null}
-                {trophy.duration ? (
-                    <View style={[styles.detailsRow, {marginBottom: 0}]}>
-                        <Text style={styles.detailsLabel}>Duration:</Text>
-                        <DurationText duration={trophy.duration} />
-                    </View>
-                ) : null}
-            </View>
-            <Button label={'Close'} onPress={onClose} />
-        </Animatable.View>
-    );
-}
-
-function TrophyCongratulations(props) {
-    const trophies = useSelector(getUnreadTrophies);
-    const dispatch = useDispatch();
-
-    const setAsRead = (trophy: Trophy) => {
-        dispatch(markTrophyAsRead(trophy));
+    const markAsRead = async (readTrophy: Trophy) => {
+        if (fadeAnimationRef.current && bounceAnimationRef.current) {
+            await Promise.all([
+                fadeAnimationRef.current.animate(fadeOut),
+                bounceAnimationRef.current.bounceOut()
+            ]);
+        }
+        await setVisible(false);
+        updateTrophy({...readTrophy, markedAsRead: true});
     };
 
-    if (!trophies.length) {
+    if (!visible) {
         return null;
     }
 
     return (
         <>
-            <View style={{...styles.backgroundShade}} />
+            <Animatable.View
+                ref={fadeAnimationRef}
+                style={styles.backgroundShade}
+                animation={fadeIn}
+                duration={500}
+                delay={250}
+            />
             <View style={{...styles.container}}>
-                <CongratulationsCard
-                    trophy={trophies[0]}
-                    onClose={() => setAsRead(trophies[0])}
-                />
+                <Animatable.View
+                    ref={bounceAnimationRef}
+                    style={styles.card}
+                    animation="bounceIn"
+                    duration={600}
+                    delay={250}
+                >
+                    {trophy && (
+                        <>
+                            <View
+                                style={[
+                                    utils.justifyCenter,
+                                    utils.alignCenter,
+                                    utils.marginBottomL
+                                ]}
+                            >
+                                <PrimaryHeader style={utils.marginBottomXL}>
+                                    Trophy achieved!
+                                </PrimaryHeader>
+                                <View>
+                                    <SimpleLineIcons
+                                        name="trophy"
+                                        size={100}
+                                        color={theme.COLORS.THEME_FONT}
+                                    />
+                                    <Feather
+                                        name="check"
+                                        size={100}
+                                        color={theme.COLORS.THEME_FONT}
+                                        style={styles.checkIcon}
+                                    />
+                                </View>
+                            </View>
+                            <View style={[utils.row, utils.justifyBetween]}>
+                                <PrimaryHeader>{trophy.title}</PrimaryHeader>
+                                <PrimaryHeader color="theme">
+                                    {getActivityTypeText(trophy.activity)}
+                                </PrimaryHeader>
+                            </View>
+                            <Separator />
+                            <SecondaryText style={utils.marginBottomM}>
+                                {trophy.type === TrophyType.INDIVIDUAL
+                                    ? 'Individual '
+                                    : 'Total '}
+                                Requirements:
+                            </SecondaryText>
+                            <View style={[utils.row, utils.marginBottomXL]}>
+                                {trophy.distance !== 0 && (
+                                    <View style={utils.marginRightXL}>
+                                        <PrimaryText style={styles.detailsText}>
+                                            {getDistanceText(trophy.distance)}
+                                        </PrimaryText>
+                                        <SecondaryText>Distance</SecondaryText>
+                                    </View>
+                                )}
+                                {trophy.duration !== 0 && (
+                                    <View>
+                                        <PrimaryText style={styles.detailsText}>
+                                            {getDurationText(trophy.duration)}
+                                        </PrimaryText>
+                                        <SecondaryText>Duration</SecondaryText>
+                                    </View>
+                                )}
+                            </View>
+                            <Button onPress={() => markAsRead(trophy)}>
+                                Close
+                            </Button>
+                        </>
+                    )}
+                </Animatable.View>
             </View>
         </>
     );
@@ -114,60 +156,29 @@ const styles = StyleSheet.create({
         height: '100%',
         elevation: 100,
         backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
-        opacity: 0.7
+        opacity: 0.85
     },
     container: {
         position: 'absolute',
-        elevation: 100,
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        elevation: 100
     },
     card: {
-        position: 'absolute',
-        elevation: 5,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        ...appStyles.panel,
         width: '80%',
-        paddingTop: theme.SPACING.XL,
-        paddingBottom: theme.SPACING.L
-    },
-    headerText: {
-        marginBottom: theme.SPACING.L,
-        fontSize: theme.FONT_SIZE.HEADER_PRIMARY,
-        fontWeight: 'bold'
-    },
-    imageBox: {
-        position: 'relative'
-    },
-    trophyIcon: {
-        paddingBottom: theme.SPACING.XS,
-        marginBottom: theme.SPACING.M,
-        borderBottomWidth: 2,
-        borderBottomColor: theme.COLORS.THEME_FONT
+        elevation: 5
     },
     checkIcon: {
         position: 'absolute',
-        top: -40,
-        right: -10
+        top: -38,
+        right: -12
     },
-    details: {
-        display: 'flex',
-        width: 175,
-        marginTop: theme.SPACING.SM,
-        marginBottom: theme.SPACING.L
-    },
-    detailsRow: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: theme.SPACING.XS
-    },
-    detailsLabel: {
-        ...appStyles.primaryText
+    detailsText: {
+        fontFamily: 'LatoBlack',
+        paddingBottom: theme.SPACING.XS
     }
 });
 

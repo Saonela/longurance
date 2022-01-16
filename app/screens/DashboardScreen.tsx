@@ -1,6 +1,6 @@
 import React, {useCallback, useLayoutEffect} from 'react';
-import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import {ScrollView, View} from 'react-native';
+import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import appStyles from '../styles';
 import Dashboard from '../components/dashboard/Dashboard';
 import LatestEntries from '../components/dashboard/LatestEntries';
@@ -46,8 +46,8 @@ function DashboardScreen({navigation}) {
                         onAddNew={navigateToEntryForm}
                         onSeeMore={navigateToEntryList}
                     />
-                    <TrophyCongratulations />
                 </ScrollView>
+                <TrophyCongratulations />
             </View>
         </>
     );
