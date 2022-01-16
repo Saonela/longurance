@@ -1,17 +1,26 @@
 /* eslint-disable no-global-assign */
 import {Activity} from '../types/Activity';
-import {getTrophies, loadTrophies, useTrophiesStore} from './trophies';
+import {
+    addTrophy,
+    deleteTrophy,
+    getTrophies,
+    loadTrophies,
+    updateTrophy,
+    useTrophiesStore
+} from './trophies';
 import * as api from '../lib/api';
-import {Trophy} from '../types/Trophy';
+import {Trophy, TrophyType} from '../types/Trophy';
 
 jest.mock('../lib/storage');
 jest.mock('../../assets/data/trophies.json', () => []);
 
 describe('Trophies state', () => {
-    const trophies = [
+    const trophies: Trophy[] = [
         {
             id: '1',
             activity: Activity.RUNNING,
+            type: TrophyType.INDIVIDUAL,
+            entryId: '11',
             distance: 21,
             duration: 0,
             createdAt: '2021-01-07T09:10:02.207Z',
@@ -27,7 +36,12 @@ describe('Trophies state', () => {
     };
 
     describe('actions', () => {
+        let saveTrophySpy;
+        let deleteTrophySpy;
+
         beforeEach(() => {
+            saveTrophySpy = jest.spyOn(api, 'saveTrophy');
+            deleteTrophySpy = jest.spyOn(api, 'deleteTrophy');
             useTrophiesStore.setState(initialState);
         });
 
@@ -38,6 +52,34 @@ describe('Trophies state', () => {
             );
             await loadTrophies();
             expect(useTrophiesStore.getState().trophies).toEqual([trophy]);
+        });
+
+        it('should add trophy', () => {
+            const trophy: Trophy = {id: '2'} as Trophy;
+            addTrophy(trophy);
+            expect(useTrophiesStore.getState().trophies).toEqual([
+                trophy,
+                ...initialState.trophies
+            ]);
+            expect(saveTrophySpy).toHaveBeenCalled();
+        });
+
+        it('should update trophy', () => {
+            const trophy: Trophy = {
+                id: '1',
+                activity: Activity.SWIMMING
+            } as Trophy;
+            updateTrophy(trophy);
+            expect(useTrophiesStore.getState().trophies).toEqual([
+                {...initialState.trophies[0], ...trophy}
+            ]);
+            expect(saveTrophySpy).toHaveBeenCalled();
+        });
+
+        it('should delete trophy', () => {
+            deleteTrophy('1');
+            expect(useTrophiesStore.getState().trophies).toEqual([]);
+            expect(deleteTrophySpy).toHaveBeenCalled();
         });
     });
 

@@ -4,6 +4,7 @@ import * as api from '../lib/api';
 // eslint-disable-next-line import/extensions
 import trophiesJson from '../../assets/data/trophies.json';
 import {Activity} from '../types/Activity';
+import {generateId} from '../lib/utility';
 
 const predefinedTrophies = trophiesJson as Trophy[];
 
@@ -14,6 +15,33 @@ interface TrophiesState {
 export const useTrophiesStore = create<TrophiesState>(() => ({
     trophies: []
 }));
+
+export function addTrophy(trophy: Trophy) {
+    Object.assign(trophy, {id: generateId()});
+    api.saveTrophy(trophy);
+    useTrophiesStore.setState((state) => ({
+        trophies: [trophy, ...state.trophies]
+    }));
+}
+
+export function updateTrophy(trophy: Trophy) {
+    api.saveTrophy(trophy);
+    useTrophiesStore.setState((state) => ({
+        trophies: state.trophies.map((stateTrophy) => {
+            if (stateTrophy.id === trophy.id) {
+                return {...stateTrophy, ...trophy};
+            }
+            return stateTrophy;
+        })
+    }));
+}
+
+export function deleteTrophy(id: string) {
+    api.deleteTrophy(id);
+    useTrophiesStore.setState((state) => ({
+        trophies: state.trophies.filter((trophy) => trophy.id !== id)
+    }));
+}
 
 export async function loadTrophies() {
     const trophies = await api.fetchTrophies();

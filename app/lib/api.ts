@@ -42,3 +42,11 @@ export async function fetchTrophies(): Promise<Trophy[]> {
     const trophies = await Storage.getItem<Trophy[]>(TROPHIES_KEY);
     return trophies || [];
 }
+
+export async function saveTrophy(trophy: Trophy) {
+    return Storage.upsertToArray<Trophy>(TROPHIES_KEY, trophy);
+}
+
+export async function deleteTrophy(id: string) {
+    return Storage.deleteFromArray<Trophy>(ENTRIES_KEY, id);
+}
