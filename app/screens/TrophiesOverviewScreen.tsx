@@ -5,8 +5,13 @@ import theme from '../theme';
 import HeaderButton from '../components/header/HeaderButton';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import TrophiesOverview from '../components/trophy/TrophiesOverview';
+import TrophiesTimeline from '../components/trophy/TrophiesTimeline';
 
 function TrophiesOverviewScreen({navigation}) {
+    const navigateToTrophyDetails = (id: string) => {
+        navigation.navigate('trophy-details', {id});
+    };
+
     useLayoutEffect(() => {
         navigation.setOptions({
             headerStyle: {
@@ -30,6 +35,7 @@ function TrophiesOverviewScreen({navigation}) {
             <View style={appStyles.screenContainer}>
                 <ScrollView>
                     <TrophiesOverview />
+                    <TrophiesTimeline onPress={navigateToTrophyDetails} />
                 </ScrollView>
             </View>
         </>
