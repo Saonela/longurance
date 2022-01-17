@@ -180,16 +180,6 @@ describe('Trophies state', () => {
                     duration: 0,
                     completedAt: '2022-01-16',
                     completed: true
-                },
-                {
-                    id: '5',
-                    activity: Activity.RUNNING,
-                    type: TrophyType.INDIVIDUAL,
-                    entryIds: ['999'],
-                    distance: 11,
-                    duration: 3600,
-                    completedAt: '2022-01-16',
-                    completed: true
                 }
             ]);
         });

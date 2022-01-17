@@ -71,6 +71,7 @@ function isTrophyCompleted(
 
             const isPaceCompleted =
                 subtype === TrophySubtype.PACE &&
+                entry.duration !== 0 &&
                 entry.distance >= trophy.distance &&
                 entry.duration <= trophy.duration;
 
