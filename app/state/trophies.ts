@@ -53,7 +53,7 @@ export async function loadTrophies() {
     }));
 }
 
-function isTrophyCompleted(
+function isIndividualTrophyCompleted(
     trophy: Trophy,
     entries: Entry[]
 ): Entry | undefined {
@@ -113,50 +113,29 @@ export function updateCompletedTrophies() {
     const {entries} = useEntriesStore.getState();
     const {trophies} = useTrophiesStore.getState();
 
-    const entriesMap = entries.reduce((map, entry) => {
-        map.set(entry.id, entry);
-        return map;
-    }, new Map<string, Entry>());
-
-    const totalTrophies = trophies.filter(
-        (trophy) => trophy.type === TrophyType.TOTAL
-    );
-
-    totalTrophies.forEach((trophy) => {
-        const trophyEntries = isTotalTrophyCompleted(trophy, entries);
-        updateTrophy({
-            ...trophy,
-            completed: trophyEntries.length !== 0,
-            completedAt: trophyEntries[trophyEntries.length - 1]?.date || null,
-            entryIds: trophyEntries.map((entry) => entry.id)
-        });
-    });
-
-    const individualTrophies = trophies.filter(
-        (trophy) => trophy.type === TrophyType.INDIVIDUAL
-    );
-
-    individualTrophies.forEach((trophy) => {
-        const entry = isTrophyCompleted(trophy, entries);
-        updateTrophy({
-            ...trophy,
-            completed: !!entry,
-            completedAt: entry ? entry.date : null,
-            entryIds: entry ? [entry.id] : []
-        });
-    });
-
-    individualTrophies
-        .filter((trophy) => trophy.completed)
+    trophies
+        .filter((trophy) => trophy.type === TrophyType.TOTAL)
         .forEach((trophy) => {
-            if (!entriesMap.has(trophy.entryIds[0] as string)) {
-                updateTrophy({
-                    ...trophy,
-                    completed: false,
-                    completedAt: null,
-                    entryIds: []
-                });
-            }
+            const trophyEntries = isTotalTrophyCompleted(trophy, entries);
+            updateTrophy({
+                ...trophy,
+                completed: trophyEntries.length !== 0,
+                completedAt:
+                    trophyEntries[trophyEntries.length - 1]?.date || null,
+                entryIds: trophyEntries.map((entry) => entry.id)
+            });
+        });
+
+    trophies
+        .filter((trophy) => trophy.type === TrophyType.INDIVIDUAL)
+        .forEach((trophy) => {
+            const entry = isIndividualTrophyCompleted(trophy, entries);
+            updateTrophy({
+                ...trophy,
+                completed: !!entry,
+                completedAt: entry ? entry.date : null,
+                entryIds: entry ? [entry.id] : []
+            });
         });
 }
 
