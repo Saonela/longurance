@@ -100,7 +100,8 @@ describe('Trophies state', () => {
                         distance: 0,
                         duration: 7200,
                         completedAt: null,
-                        completed: false
+                        completed: false,
+                        markedAsRead: false
                     },
                     {
                         id: '2',
@@ -110,7 +111,8 @@ describe('Trophies state', () => {
                         distance: 20,
                         duration: 0,
                         completedAt: null,
-                        completed: false
+                        completed: false,
+                        markedAsRead: false
                     },
                     {
                         id: '3',
@@ -120,7 +122,8 @@ describe('Trophies state', () => {
                         distance: 15,
                         duration: 0,
                         completedAt: null,
-                        completed: false
+                        completed: false,
+                        markedAsRead: false
                     },
                     {
                         id: '4',
@@ -130,7 +133,8 @@ describe('Trophies state', () => {
                         distance: 0,
                         duration: 5000,
                         completedAt: null,
-                        completed: false
+                        completed: false,
+                        markedAsRead: false
                     },
                     {
                         id: '5',
@@ -140,7 +144,8 @@ describe('Trophies state', () => {
                         distance: 11,
                         duration: 3600,
                         completedAt: null,
-                        completed: false
+                        completed: false,
+                        markedAsRead: false
                     }
                 ] as unknown as Trophy[]
             });
@@ -179,7 +184,8 @@ describe('Trophies state', () => {
                     distance: 15,
                     duration: 0,
                     completedAt: '2022-01-16',
-                    completed: true
+                    completed: true,
+                    markedAsRead: false
                 }
             ]);
         });
@@ -210,7 +216,8 @@ describe('Trophies state', () => {
                     distance: 0,
                     duration: 5000,
                     completedAt: '2022-01-16',
-                    completed: true
+                    completed: true,
+                    markedAsRead: false
                 }
             ]);
         });
@@ -242,7 +249,8 @@ describe('Trophies state', () => {
                     distance: 11,
                     duration: 3600,
                     completedAt: '2022-01-16',
-                    completed: true
+                    completed: true,
+                    markedAsRead: false
                 }
             ]);
         });
@@ -280,7 +288,8 @@ describe('Trophies state', () => {
                     distance: 20,
                     duration: 0,
                     completedAt: '2022-01-17',
-                    completed: true
+                    completed: true,
+                    markedAsRead: false
                 }
             ]);
         });
@@ -332,7 +341,8 @@ describe('Trophies state', () => {
                     distance: 0,
                     duration: 7200,
                     completedAt: '2022-01-16',
-                    completed: true
+                    completed: true,
+                    markedAsRead: false
                 }
             ]);
         });
@@ -348,7 +358,8 @@ describe('Trophies state', () => {
                         distance: 20,
                         duration: 7200,
                         completedAt: '2022-01-16',
-                        completed: true
+                        completed: true,
+                        markedAsRead: true
                     },
                     {
                         id: '2',
@@ -358,7 +369,8 @@ describe('Trophies state', () => {
                         distance: 5,
                         duration: 0,
                         completedAt: '2022-01-16',
-                        completed: true
+                        completed: true,
+                        markedAsRead: false
                     }
                 ] as Trophy[]
             });
@@ -383,7 +395,8 @@ describe('Trophies state', () => {
                     distance: 20,
                     duration: 7200,
                     completedAt: null,
-                    completed: false
+                    completed: false,
+                    markedAsRead: false
                 },
                 {
                     id: '2',
@@ -393,7 +406,8 @@ describe('Trophies state', () => {
                     distance: 5,
                     duration: 0,
                     completedAt: null,
-                    completed: false
+                    completed: false,
+                    markedAsRead: false
                 }
             ]);
         });
@@ -409,7 +423,8 @@ describe('Trophies state', () => {
                         distance: 0,
                         duration: 7200,
                         completedAt: '2022-01-16',
-                        completed: true
+                        completed: true,
+                        markedAsRead: true
                     },
                     {
                         id: '2',
@@ -419,7 +434,8 @@ describe('Trophies state', () => {
                         distance: 5,
                         duration: 0,
                         completedAt: '2022-01-16',
-                        completed: true
+                        completed: true,
+                        markedAsRead: true
                     }
                 ] as Trophy[]
             });
@@ -458,7 +474,8 @@ describe('Trophies state', () => {
                     distance: 0,
                     duration: 7200,
                     completedAt: '2022-01-16',
-                    completed: true
+                    completed: true,
+                    markedAsRead: true
                 },
                 {
                     id: '2',
@@ -468,7 +485,8 @@ describe('Trophies state', () => {
                     distance: 5,
                     duration: 0,
                     completedAt: null,
-                    completed: false
+                    completed: false,
+                    markedAsRead: false
                 }
             ]);
         });

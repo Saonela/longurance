@@ -122,6 +122,9 @@ export function updateCompletedTrophies() {
                 completed: trophyEntries.length !== 0,
                 completedAt:
                     trophyEntries[trophyEntries.length - 1]?.date || null,
+                markedAsRead: trophyEntries.length
+                    ? trophy.markedAsRead
+                    : false,
                 entryIds: trophyEntries.map((entry) => entry.id)
             });
         });
@@ -134,6 +137,7 @@ export function updateCompletedTrophies() {
                 ...trophy,
                 completed: !!entry,
                 completedAt: entry ? entry.date : null,
+                markedAsRead: entry ? trophy.markedAsRead : false,
                 entryIds: entry ? [entry.id] : []
             });
         });
