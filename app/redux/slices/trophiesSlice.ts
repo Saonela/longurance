@@ -23,7 +23,7 @@ export const saveTrophy = createAsyncThunk(
         }
 
         const trophyEntry = state.entries.data.find(
-            (entry) => entry.id === trophy.entryId
+            (entry) => entry.id === trophy.entryIds
         );
         if (trophyEntry && !isTrophyCompletedByEntry(trophyEntry, trophy)) {
             trophy = setTrophyToNotCompleted(trophy);
@@ -160,20 +160,22 @@ const isTrophyCompletedByEntry = (entry: Entry, trophy: Trophy) =>
         isTrophyCompletedByDuration(entry, trophy));
 
 const setTrophyToCompleted = (trophy: Trophy, entry: Entry) => {
-    return Object.assign({}, trophy, {
+    return {
+        ...trophy,
         entryId: entry.id,
         completedAt: new Date().toISOString(),
         completed: true
-    });
+    };
 };
 
 const setTrophyToNotCompleted = (trophy: Trophy) => {
-    return Object.assign({}, trophy, {
+    return {
+        ...trophy,
         entryId: null,
         completedAt: null,
         completed: false,
         markedAsRead: false
-    });
+    };
 };
 
 export const getTrophy = (state, id) =>

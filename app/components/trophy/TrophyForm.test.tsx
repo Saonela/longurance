@@ -70,7 +70,7 @@ describe('TrophyForm', () => {
 
         expect(submitSpy).toHaveBeenCalledWith({
             id: '',
-            entryId: null,
+            entryIds: [],
             createdAt: '',
             completedAt: null,
             completed: false,

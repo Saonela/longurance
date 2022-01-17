@@ -99,19 +99,19 @@ export function updateCompletedTrophies() {
             ...trophy,
             completed: !!entry,
             completedAt: entry ? entry.date : null,
-            entryId: entry ? entry.id : null
+            entryIds: entry ? [entry.id] : []
         });
     });
 
     individualTrophies
         .filter((trophy) => trophy.completed)
         .forEach((trophy) => {
-            if (!entriesMap.has(trophy.entryId as string)) {
+            if (!entriesMap.has(trophy.entryIds[0] as string)) {
                 updateTrophy({
                     ...trophy,
                     completed: false,
                     completedAt: null,
-                    entryId: null
+                    entryIds: []
                 });
             }
         });

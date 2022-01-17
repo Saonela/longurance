@@ -17,7 +17,7 @@ import utils from '../../styles-utilities';
 
 const defaultTrophy: Trophy = {
     id: '',
-    entryId: null,
+    entryIds: [],
     createdAt: '',
     completedAt: null,
     completed: false,

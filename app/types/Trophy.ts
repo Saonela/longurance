@@ -4,7 +4,7 @@ export interface Trophy {
     id: string;
     createdAt: string;
     type: TrophyType;
-    entryId: string | null;
+    entryIds: string[];
     completedAt: string | null;
     completed: boolean;
     markedAsRead?: boolean;

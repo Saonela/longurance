@@ -1,3 +1,4 @@
+import {Dispatch} from '@reduxjs/toolkit';
 import {Activity} from '../../types/Activity';
 import trophiesReducer, {
     deleteTrophy,
@@ -9,7 +10,6 @@ import trophiesReducer, {
 } from './trophiesSlice';
 import {Trophy} from '../../types/Trophy';
 import {Entry} from '../../types/Entry';
-import {Dispatch} from '@reduxjs/toolkit';
 import StorageService from '../../services/StorageService';
 
 jest.mock('../../services/StorageService', () => ({
@@ -453,7 +453,7 @@ describe('TrophiesReducer', () => {
             activity: Activity.RUNNING,
             distance: 21,
             duration: 90,
-            entryId: '2',
+            entryIds: '2',
             completed: true,
             completedAt: '2020-09-01T00:00:00.000Z',
             markedAsRead: true
