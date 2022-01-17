@@ -142,7 +142,7 @@ describe('Trophies state', () => {
                         completedAt: null,
                         completed: false
                     }
-                ] as Trophy[]
+                ] as unknown as Trophy[]
             });
         });
 
@@ -247,7 +247,97 @@ describe('Trophies state', () => {
             ]);
         });
 
-        it('should reset when no conditions met', () => {
+        it('should update with total distance', () => {
+            useEntriesStore.setState({
+                entries: [
+                    {
+                        id: '999',
+                        date: '2022-01-16',
+                        activity: Activity.RUNNING,
+                        distance: 10,
+                        duration: 0
+                    },
+                    {
+                        id: '1000',
+                        date: '2022-01-17',
+                        activity: Activity.RUNNING,
+                        distance: 11,
+                        duration: 0
+                    }
+                ] as Entry[]
+            });
+            updateCompletedTrophies();
+            expect(
+                useTrophiesStore
+                    .getState()
+                    .trophies.filter((trophy) => trophy.completed)
+            ).toEqual([
+                {
+                    id: '2',
+                    activity: Activity.RUNNING,
+                    type: TrophyType.TOTAL,
+                    entryIds: ['999', '1000'],
+                    distance: 20,
+                    duration: 0,
+                    completedAt: '2022-01-17',
+                    completed: true
+                }
+            ]);
+        });
+
+        it('should update with total duration', () => {
+            useEntriesStore.setState({
+                entries: [
+                    {
+                        id: '997',
+                        date: '2022-01-15',
+                        activity: Activity.RUNNING,
+                        distance: 10,
+                        duration: 4000
+                    },
+                    {
+                        id: '998',
+                        date: '2022-01-16',
+                        activity: Activity.RUNNING,
+                        distance: 0,
+                        duration: 4000
+                    },
+                    {
+                        id: '999',
+                        date: '2022-01-17',
+                        activity: Activity.RUNNING,
+                        distance: 0,
+                        duration: 1000
+                    },
+                    {
+                        id: '1000',
+                        date: '2022-01-17',
+                        activity: Activity.SWIMMING,
+                        distance: 11,
+                        duration: 0
+                    }
+                ] as Entry[]
+            });
+            updateCompletedTrophies();
+            expect(
+                useTrophiesStore
+                    .getState()
+                    .trophies.filter((trophy) => trophy.completed)
+            ).toEqual([
+                {
+                    id: '1',
+                    activity: Activity.RUNNING,
+                    type: TrophyType.TOTAL,
+                    entryIds: ['997', '998'],
+                    distance: 0,
+                    duration: 7200,
+                    completedAt: '2022-01-16',
+                    completed: true
+                }
+            ]);
+        });
+
+        it('should reset when no individual conditions met', () => {
             useTrophiesStore.setState({
                 trophies: [
                     {
@@ -299,6 +389,81 @@ describe('Trophies state', () => {
                     id: '2',
                     activity: Activity.SWIMMING,
                     type: TrophyType.INDIVIDUAL,
+                    entryIds: [],
+                    distance: 5,
+                    duration: 0,
+                    completedAt: null,
+                    completed: false
+                }
+            ]);
+        });
+
+        it('should reset when no total conditions met', () => {
+            useTrophiesStore.setState({
+                trophies: [
+                    {
+                        id: '1',
+                        activity: Activity.RUNNING,
+                        type: TrophyType.TOTAL,
+                        entryIds: ['997', '998'],
+                        distance: 0,
+                        duration: 7200,
+                        completedAt: '2022-01-16',
+                        completed: true
+                    },
+                    {
+                        id: '2',
+                        activity: Activity.SWIMMING,
+                        type: TrophyType.TOTAL,
+                        entryIds: ['999', '1000'],
+                        distance: 5,
+                        duration: 0,
+                        completedAt: '2022-01-16',
+                        completed: true
+                    }
+                ] as Trophy[]
+            });
+            useEntriesStore.setState({
+                entries: [
+                    {
+                        id: '998',
+                        date: '2022-01-16',
+                        activity: Activity.RUNNING,
+                        distance: 0,
+                        duration: 8000
+                    },
+                    {
+                        id: '999',
+                        date: '2022-01-17',
+                        activity: Activity.SWIMMING,
+                        distance: 1,
+                        duration: 1000
+                    },
+                    {
+                        id: '1000',
+                        date: '2022-01-17',
+                        activity: Activity.SWIMMING,
+                        distance: 2,
+                        duration: 0
+                    }
+                ] as Entry[]
+            });
+            updateCompletedTrophies();
+            expect(useTrophiesStore.getState().trophies).toEqual([
+                {
+                    id: '1',
+                    activity: Activity.RUNNING,
+                    type: TrophyType.TOTAL,
+                    entryIds: ['998'],
+                    distance: 0,
+                    duration: 7200,
+                    completedAt: '2022-01-16',
+                    completed: true
+                },
+                {
+                    id: '2',
+                    activity: Activity.SWIMMING,
+                    type: TrophyType.TOTAL,
                     entryIds: [],
                     distance: 5,
                     duration: 0,

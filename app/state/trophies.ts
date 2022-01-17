@@ -81,6 +81,34 @@ function isTrophyCompleted(
         });
 }
 
+function isTotalTrophyCompleted(trophy: Trophy, entries: Entry[]): Entry[] {
+    const subtype = getTrophySubtype(trophy);
+    const trophyEntries: Entry[] = [];
+
+    let totalDistance = 0;
+    let totalDuration = 0;
+
+    const isCompleted = entries
+        .filter((entry) => entry.activity === trophy.activity)
+        .some((entry) => {
+            trophyEntries.push(entry);
+            totalDistance += entry.distance;
+            totalDuration += entry.duration;
+
+            const isDistanceCompleted =
+                subtype === TrophySubtype.DISTANCE &&
+                totalDistance >= trophy.distance;
+
+            const isDurationCompleted =
+                subtype === TrophySubtype.DURATION &&
+                totalDuration >= trophy.duration;
+
+            return isDistanceCompleted || isDurationCompleted;
+        });
+
+    return isCompleted ? trophyEntries : [];
+}
+
 export function updateCompletedTrophies() {
     const {entries} = useEntriesStore.getState();
     const {trophies} = useTrophiesStore.getState();
@@ -89,6 +117,20 @@ export function updateCompletedTrophies() {
         map.set(entry.id, entry);
         return map;
     }, new Map<string, Entry>());
+
+    const totalTrophies = trophies.filter(
+        (trophy) => trophy.type === TrophyType.TOTAL
+    );
+
+    totalTrophies.forEach((trophy) => {
+        const trophyEntries = isTotalTrophyCompleted(trophy, entries);
+        updateTrophy({
+            ...trophy,
+            completed: trophyEntries.length !== 0,
+            completedAt: trophyEntries[trophyEntries.length - 1]?.date || null,
+            entryIds: trophyEntries.map((entry) => entry.id)
+        });
+    });
 
     const individualTrophies = trophies.filter(
         (trophy) => trophy.type === TrophyType.INDIVIDUAL
