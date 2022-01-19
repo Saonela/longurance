@@ -54,7 +54,7 @@ function TrophyDetailsScreen({route, navigation}) {
 
     return (
         <View style={appStyles.screenContainer}>
-            <TrophyDetails trophy={trophy} />
+            {trophy && <TrophyDetails trophy={trophy} />}
         </View>
     );
 }
