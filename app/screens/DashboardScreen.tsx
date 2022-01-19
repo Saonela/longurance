@@ -7,17 +7,21 @@ import LatestEntries from '../components/dashboard/LatestEntries';
 import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
 import theme from '../theme';
 import HeaderButton from '../components/header/HeaderButton';
+import LatestTrophies from '../components/dashboard/LatestTrophies';
 
 function DashboardScreen({navigation}) {
     const navigateToEntryForm = useCallback(
         () => navigation.navigate('entry-form', {}),
         [navigation]
     );
-
+    const navigateToEntryList = () => navigation.navigate('entry-list');
     const navigateToEntryDetails = (id) =>
         navigation.navigate('entry-details', {id});
 
-    const navigateToEntryList = () => navigation.navigate('entry-list');
+    const navigateToTrophyForm = () => navigation.navigate('trophy-form', {});
+    const navigateToTrophyList = () => navigation.navigate('trophy-list');
+    const navigateToTrophyDetails = (id) =>
+        navigation.navigate('trophy-details', {id});
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -40,11 +44,17 @@ function DashboardScreen({navigation}) {
                 <ScrollView>
                     <Dashboard />
                     <LatestEntries
-                        style={{marginTop: -8}}
+                        style={{marginTop: -8, marginBottom: theme.SPACING.XL}}
                         itemsCount={3}
                         onPress={navigateToEntryDetails}
                         onAddNew={navigateToEntryForm}
                         onSeeMore={navigateToEntryList}
+                    />
+                    <LatestTrophies
+                        itemsCount={3}
+                        onPress={navigateToTrophyDetails}
+                        onAddNew={navigateToTrophyForm}
+                        onSeeMore={navigateToTrophyList}
                     />
                 </ScrollView>
                 <TrophyCongratulations />
