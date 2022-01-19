@@ -48,5 +48,5 @@ export async function saveTrophy(trophy: Trophy) {
 }
 
 export async function deleteTrophy(id: string) {
-    return Storage.deleteFromArray<Trophy>(ENTRIES_KEY, id);
+    return Storage.deleteFromArray<Trophy>(TROPHIES_KEY, id);
 }
