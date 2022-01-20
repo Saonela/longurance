@@ -1,11 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
-import {SecondaryHeader} from '../ui/Text';
+import {PrimaryText, SecondaryHeader} from '../ui/Text';
 import utils from '../../styles-utilities';
 import {OutlinedButton} from '../ui/Button';
 import TrophyCard from '../trophy/TrophyCard';
 import theme from '../../theme';
 import {getTrophies, useTrophiesStore} from '../../state/trophies';
+import appStyles from '../../styles';
 
 interface LatestTrophiesProps {
     itemsCount: number;
@@ -38,6 +39,14 @@ function LatestTrophies({
             >
                 Latest trophies
             </SecondaryHeader>
+
+            {trophies.length === 0 && (
+                <View style={[appStyles.centeredView, {height: 174}]}>
+                    <PrimaryText color="secondary">
+                        There are no achieved trophies yet!
+                    </PrimaryText>
+                </View>
+            )}
             {trophies.map((trophy) => (
                 <TrophyCard
                     key={trophy.id}
@@ -45,6 +54,7 @@ function LatestTrophies({
                     onPress={() => onPress(trophy.id)}
                 />
             ))}
+
             <View style={styles.buttonsRow}>
                 <OutlinedButton
                     style={[utils.flex1, utils.marginRightM]}
@@ -52,9 +62,11 @@ function LatestTrophies({
                 >
                     Create New
                 </OutlinedButton>
-                <OutlinedButton style={utils.flex1} onPress={onSeeMore}>
-                    See More
-                </OutlinedButton>
+                {trophies.length > 0 && (
+                    <OutlinedButton style={utils.flex1} onPress={onSeeMore}>
+                        See More
+                    </OutlinedButton>
+                )}
             </View>
         </View>
     );
