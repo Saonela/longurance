@@ -36,17 +36,27 @@ export function SecondaryHeader({
     );
 }
 
-export function PrimaryText({style = {}, children, ...props}: TextProps) {
+export function PrimaryText({
+    style = {},
+    color = 'primary',
+    children,
+    ...props
+}: TextProps) {
     return (
-        <Text {...props} style={[styles.primaryText, style]}>
+        <Text {...props} style={[styles.primaryText, colors[color], style]}>
             {children}
         </Text>
     );
 }
 
-export function SecondaryText({style = {}, children, ...props}: TextProps) {
+export function SecondaryText({
+    style = {},
+    color = 'secondary',
+    children,
+    ...props
+}: TextProps) {
     return (
-        <Text {...props} style={[styles.secondaryText, style]}>
+        <Text {...props} style={[styles.secondaryText, colors[color], style]}>
             {children}
         </Text>
     );
@@ -63,13 +73,11 @@ const styles = StyleSheet.create({
     },
     primaryText: {
         fontFamily: theme.FONT_FAMILY.PRIMARY,
-        fontSize: theme.FONT_SIZE.PRIMARY,
-        color: theme.COLORS.FONT_PRIMARY
+        fontSize: theme.FONT_SIZE.PRIMARY
     },
     secondaryText: {
         fontFamily: theme.FONT_FAMILY.PRIMARY,
-        fontSize: theme.FONT_SIZE.SECONDARY,
-        color: theme.COLORS.FONT_SECONDARY
+        fontSize: theme.FONT_SIZE.SECONDARY
     }
 });
 
