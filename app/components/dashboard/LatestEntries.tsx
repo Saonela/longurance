@@ -1,11 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
-import {SecondaryHeader} from '../ui/Text';
+import {PrimaryText, SecondaryHeader} from '../ui/Text';
 import utils from '../../styles-utilities';
 import {getEntries, useEntriesStore} from '../../state/entries';
 import EntryCard from '../entry/EntryCard';
 import theme from '../../theme';
 import {OutlinedButton} from '../ui/Button';
+import appStyles from '../../styles';
 
 interface LatestEntriesProps {
     itemsCount: number;
@@ -36,6 +37,14 @@ function LatestEntries({
             >
                 Latest entries
             </SecondaryHeader>
+
+            {entries.length === 0 && (
+                <View style={[appStyles.centeredView, {height: 174}]}>
+                    <PrimaryText color="secondary">
+                        There is no activity yet!
+                    </PrimaryText>
+                </View>
+            )}
             {entries.map((entry) => (
                 <EntryCard
                     key={entry.id}
@@ -43,6 +52,7 @@ function LatestEntries({
                     onPress={() => onPress(entry.id)}
                 />
             ))}
+
             <View style={styles.buttonsRow}>
                 <OutlinedButton
                     style={[utils.flex1, utils.marginRightM]}
@@ -50,9 +60,11 @@ function LatestEntries({
                 >
                     Add New
                 </OutlinedButton>
-                <OutlinedButton style={utils.flex1} onPress={onSeeMore}>
-                    See More
-                </OutlinedButton>
+                {entries.length > 0 && (
+                    <OutlinedButton style={utils.flex1} onPress={onSeeMore}>
+                        See More
+                    </OutlinedButton>
+                )}
             </View>
         </View>
     );
