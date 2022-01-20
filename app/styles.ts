@@ -15,6 +15,11 @@ const appStyles = StyleSheet.create({
         borderRadius: theme.BORDER.RADIUS,
         backgroundColor: theme.COLORS.BACKGROUND_PRIMARY
     },
+    centeredView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     primaryText: {
         fontFamily: theme.FONT_FAMILY.PRIMARY,
         fontSize: theme.FONT_SIZE.PRIMARY,
