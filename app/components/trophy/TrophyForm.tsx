@@ -70,22 +70,22 @@ function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
             </Panel>
             <Panel>
                 <FormLabel>Trophy type</FormLabel>
-                <View style={[utils.marginTopM, utils.marginBottomM]}>
-                    <RadioButton
-                        label="Total"
-                        value={TrophyType.TOTAL}
-                        selected={values.type === TrophyType.TOTAL}
-                        onPress={handleChange('type')}
-                    />
-                </View>
-                <View style={[utils.marginBottomS]}>
-                    <RadioButton
-                        label="Individual"
-                        value={TrophyType.INDIVIDUAL}
-                        selected={values.type === TrophyType.INDIVIDUAL}
-                        onPress={handleChange('type')}
-                    />
-                </View>
+                <RadioButton
+                    style={utils.marginTopM}
+                    value={TrophyType.TOTAL}
+                    selected={values.type === TrophyType.TOTAL}
+                    onPress={handleChange('type')}
+                >
+                    Total
+                </RadioButton>
+                <RadioButton
+                    style={utils.marginBottomS}
+                    value={TrophyType.INDIVIDUAL}
+                    selected={values.type === TrophyType.INDIVIDUAL}
+                    onPress={handleChange('type')}
+                >
+                    Individual
+                </RadioButton>
                 <FormHint>
                     Choose to apply conditions per all activity or per entry
                 </FormHint>

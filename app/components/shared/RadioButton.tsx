@@ -1,27 +1,36 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
+import {
+    StyleSheet,
+    TouchableNativeFeedback,
+    View,
+    ViewStyle
+} from 'react-native';
 import theme from '../../theme';
+import {PrimaryText} from '../ui/Text';
 
-interface RadioButtonProps {
-    label: string | number;
-    value: string | number;
+interface RadioButtonProps<T> {
+    value: T;
     selected: boolean;
-    onPress: any;
+    children: React.ReactNode;
+    style?: ViewStyle;
+    onPress: (value: T) => void;
 }
 
-function RadioButton({label, value, selected, onPress}: RadioButtonProps) {
+function RadioButton<T>({
+    value,
+    selected,
+    children,
+    style,
+    onPress
+}: RadioButtonProps<T>) {
     return (
-        <View>
+        <View style={[style]}>
             <TouchableNativeFeedback onPress={() => onPress(value)}>
                 <View style={styles.container}>
-                    <View style={styles.button}>
-                        {selected ? (
-                            <View
-                                style={[styles.button, styles.buttonCenter]}
-                            />
-                        ) : null}
+                    <View style={styles.radio}>
+                        {selected && <View style={styles.radioCenter} />}
                     </View>
-                    <Text style={styles.label}>{label}</Text>
+                    <PrimaryText>{children}</PrimaryText>
                 </View>
             </TouchableNativeFeedback>
         </View>
@@ -30,25 +39,24 @@ function RadioButton({label, value, selected, onPress}: RadioButtonProps) {
 
 const styles = StyleSheet.create({
     container: {
-        display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: theme.SPACING.SM
     },
-    label: {
-        color: theme.COLORS.FONT_PRIMARY
-    },
-    button: {
+    radio: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: 24,
-        height: 24,
-        borderRadius: 12,
+        width: 22,
+        height: 22,
+        marginRight: theme.SPACING.S,
         borderWidth: 2,
-        borderColor: theme.COLORS.FONT_PRIMARY,
-        color: theme.COLORS.FONT_PRIMARY
+        borderRadius: 11,
+        borderColor: theme.COLORS.FONT_PRIMARY
     },
-    buttonCenter: {
-        width: 10,
-        height: 10,
+    radioCenter: {
+        width: 11,
+        height: 11,
+        borderRadius: 6,
         backgroundColor: theme.COLORS.FONT_PRIMARY
     }
 });
