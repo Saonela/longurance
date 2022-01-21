@@ -6,7 +6,7 @@ import {
     ViewStyle
 } from 'react-native';
 import theme from '../../theme';
-import {PrimaryText} from '../ui/Text';
+import {PrimaryText} from './Text';
 
 interface RadioButtonProps<T> {
     value: T;

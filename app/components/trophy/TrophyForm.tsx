@@ -11,7 +11,7 @@ import TextFormField from '../form/TextFormField';
 import {Trophy, TrophyType} from '../../types/Trophy';
 import Panel from '../ui/Panel';
 import FormLabel from '../form/FormLabel';
-import RadioButton from '../shared/RadioButton';
+import RadioButton from '../ui/RadioButton';
 import FormHint from '../form/FormHint';
 import utils from '../../styles-utilities';
 
