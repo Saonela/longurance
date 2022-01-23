@@ -1,9 +1,12 @@
 import React from 'react';
+import {render, within} from '@testing-library/react-native';
 import EntryListScreen from './EntryListScreen';
-import {render} from '@testing-library/react-native';
 import {Activity} from '../types/Activity';
 import {Entry} from '../types/Entry';
 import {useEntriesStore} from '../state/entries';
+import {useEntriesSettingsStore} from '../state/entries-settings';
+import {EntriesSortBy} from '../enums/EntriesSortBy';
+import {SortDirection} from '../enums/SortDirection';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
@@ -55,5 +58,21 @@ describe('EntryListScreen', () => {
         getByText('MY RUN');
         getByText('99km');
         getByText('Learn to Swim');
+    });
+
+    it('should sort list', () => {
+        useEntriesStore.setState({entries});
+        useEntriesSettingsStore.setState({
+            settings: {
+                sortBy: EntriesSortBy.EFFORT,
+                sortDirection: SortDirection.ASCENDING
+            }
+        });
+        const component = <EntryListScreen navigation={navigation} />;
+        const {getAllByA11yLabel} = render(component);
+        const cards = getAllByA11yLabel('Entry card');
+        within(cards[0]).getByText('99km');
+        within(cards[1]).getByText('Learn to Swim');
+        within(cards[2]).getByText('MY RUN');
     });
 });

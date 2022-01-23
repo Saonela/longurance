@@ -5,8 +5,12 @@ import {generateId} from '../lib/utility';
 import * as api from '../lib/api';
 import {Activity} from '../types/Activity';
 import {TimeInterval} from '../types/TimeInterval';
+import {EntriesSettings} from '../types/EntriesSettings';
+import {EntriesSortBy} from '../enums/EntriesSortBy';
+import {SortDirection} from '../enums/SortDirection';
+import {calculatePace} from '../lib/entry';
 
-interface EntriesState {
+export interface EntriesState {
     entries: Entry[];
 }
 
@@ -87,3 +91,31 @@ export const getEntries = (
     const activityEntries = filterEntriesByActivity(state.entries, activity);
     return filterEntriesByTimeInterval(activityEntries, timeInterval);
 };
+
+export const getSortedEntries =
+    (settings: EntriesSettings) => (state: EntriesState) =>
+        [...state.entries].sort((entry1, entry2) => {
+            let diff = 0;
+            if (settings.sortBy === EntriesSortBy.DATE) {
+                diff =
+                    new Date(entry1.date).getTime() -
+                    new Date(entry2.date).getTime();
+            }
+            if (settings.sortBy === EntriesSortBy.DISTANCE) {
+                diff = entry1.distance - entry2.distance;
+            }
+            if (settings.sortBy === EntriesSortBy.DURATION) {
+                diff = entry1.duration - entry2.duration;
+            }
+            if (settings.sortBy === EntriesSortBy.PACE) {
+                diff =
+                    calculatePace(entry1.duration, entry1.distance) -
+                    calculatePace(entry2.duration, entry2.distance);
+            }
+            if (settings.sortBy === EntriesSortBy.EFFORT) {
+                diff = entry1.effort - entry2.effort;
+            }
+            return settings.sortDirection === SortDirection.ASCENDING
+                ? diff
+                : -diff;
+        });
