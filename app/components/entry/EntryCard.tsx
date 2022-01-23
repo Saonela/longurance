@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
 import moment from 'moment';
@@ -134,4 +134,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EntryCard;
+export default memo(EntryCard);

@@ -1,6 +1,5 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import EntryCard from './EntryCard';
 import theme from '../../theme';
 import {getSortedEntries, useEntriesStore} from '../../state/entries';
@@ -12,8 +11,6 @@ interface EntryListProps {
     onPress: (id: string) => void;
 }
 
-const keyExtractor = (item) => item.id;
-
 function EntryList({onPress}: EntryListProps) {
     const {filter} = useActivityFilterStore();
     const {settings} = useEntriesSettingsStore();
@@ -23,15 +20,9 @@ function EntryList({onPress}: EntryListProps) {
         return <NoDataMessage>No activity found</NoDataMessage>;
     }
 
-    const renderItem = ({item, index}) => (
-        <Animatable.View
-            animation="fadeInRightBig"
-            duration={300}
-            delay={index ? (index * 300) / 5 : 0}
-            useNativeDriver
-        >
-            <EntryCard entry={item} onPress={() => onPress(item.id)} />
-        </Animatable.View>
+    const keyExtractor = (entry) => entry.id;
+    const renderItem = ({item}) => (
+        <EntryCard entry={item} onPress={() => onPress(item.id)} />
     );
 
     return (
@@ -39,7 +30,13 @@ function EntryList({onPress}: EntryListProps) {
             data={entries}
             keyExtractor={keyExtractor}
             renderItem={renderItem}
+            getItemLayout={(data, index) => ({
+                length: 200,
+                offset: 200 * index,
+                index
+            })}
             initialNumToRender={6}
+            removeClippedSubviews
             contentContainerStyle={{paddingBottom: theme.SPACING.M}}
         />
     );
