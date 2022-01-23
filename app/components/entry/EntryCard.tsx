@@ -30,7 +30,10 @@ const activityIconNames = {
 
 function EntryCard({entry, onPress}: EntryCardProps) {
     return (
-        <TouchableNativeFeedback onPress={onPress}>
+        <TouchableNativeFeedback
+            accessibilityLabel="Entry card"
+            onPress={onPress}
+        >
             <View style={styles.card}>
                 <FontAwesome5
                     name={activityIconNames[entry.activity]}
