@@ -22,6 +22,7 @@ import TrophiesOverviewScreen from './app/screens/TrophiesOverviewScreen';
 import {loadTrophies} from './app/state/trophies';
 import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';
 import TrophyListScreen from './app/screens/TrophyListScreen';
+import EntryFiltersScreen from './app/screens/EntryFiltersScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,6 +67,11 @@ function DashboardScreenStack() {
                 name="entry-list"
                 component={EntryListScreen}
                 options={{}}
+            />
+            <Stack.Screen
+                name="entry-filters"
+                component={EntryFiltersScreen}
+                options={{title: 'Entries Filter'}}
             />
             <Stack.Screen
                 name="entry-details"

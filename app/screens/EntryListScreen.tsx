@@ -2,6 +2,7 @@ import React, {useLayoutEffect} from 'react';
 import {View} from 'react-native';
 import appStyles from '../styles';
 import EntryList from '../components/entry/EntryList';
+import HeaderButton from '../components/header/HeaderButton';
 
 function EntryListScreen({navigation}) {
     const navigateToEntryDetails = (id) =>
@@ -9,7 +10,13 @@ function EntryListScreen({navigation}) {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: 'Entries'
+            title: 'Entries',
+            headerRight: () => (
+                <HeaderButton
+                    iconName="filter"
+                    onPress={() => navigation.navigate('entry-filters')}
+                />
+            )
         });
     }, [navigation]);
 
