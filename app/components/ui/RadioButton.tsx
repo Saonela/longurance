@@ -11,7 +11,7 @@ import {PrimaryText} from './Text';
 interface RadioButtonProps<T> {
     value: T;
     selected: boolean;
-    children: React.ReactNode;
+    children: string;
     style?: ViewStyle;
     onPress: (value: T) => void;
 }
@@ -25,7 +25,12 @@ function RadioButton<T>({
 }: RadioButtonProps<T>) {
     return (
         <View style={[style]}>
-            <TouchableNativeFeedback onPress={() => onPress(value)}>
+            <TouchableNativeFeedback
+                accessibilityRole="checkbox"
+                accessibilityState={{checked: selected}}
+                accessibilityLabel={children}
+                onPress={() => onPress(value)}
+            >
                 <View style={styles.container}>
                     <View style={styles.radio}>
                         {selected && <View style={styles.radioCenter} />}
