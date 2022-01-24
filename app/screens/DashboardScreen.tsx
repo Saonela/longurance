@@ -1,5 +1,6 @@
 import React, {useCallback, useLayoutEffect} from 'react';
 import {ScrollView, View} from 'react-native';
+import {useIsFocused} from '@react-navigation/native';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import appStyles from '../styles';
 import Dashboard from '../components/dashboard/Dashboard';
@@ -10,6 +11,8 @@ import HeaderButton from '../components/header/HeaderButton';
 import LatestTrophies from '../components/dashboard/LatestTrophies';
 
 function DashboardScreen({navigation}) {
+    const isFocused = useIsFocused();
+
     const navigateToEntryForm = useCallback(
         () => navigation.navigate('entry-form', {}),
         [navigation]
@@ -57,7 +60,7 @@ function DashboardScreen({navigation}) {
                         onSeeMore={navigateToTrophyList}
                     />
                 </ScrollView>
-                <TrophyCongratulations />
+                {isFocused && <TrophyCongratulations />}
             </View>
         </>
     );
