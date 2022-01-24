@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     },
     card: {
         ...appStyles.panel,
-        width: '80%',
+        width: '84%',
         elevation: 5
     },
     checkIcon: {
