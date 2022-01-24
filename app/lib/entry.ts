@@ -27,7 +27,7 @@ export function getDistanceText(distance: number) {
 }
 
 export function getIntensityText(intensity: number) {
-    return `${intensity}/5`;
+    return `${intensity || 0}/5`;
 }
 
 export function getActivityTypeText(type: Activity) {
