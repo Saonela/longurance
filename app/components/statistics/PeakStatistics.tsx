@@ -19,7 +19,7 @@ interface PeakStatisticsProps {
     onPress: (id: string) => void;
 }
 
-const formatDate = (entry: Entry) => moment(entry.date).format('yyyy, MMM DD');
+const formatDate = (entry: Entry) => moment(entry?.date).format('yyyy, MMM DD');
 
 function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
     const distanceEntry = getFarthestDistanceEntry(entries);
@@ -35,33 +35,38 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
             </SecondaryHeader>
             <View style={[utils.col, utils.justifyBetween]}>
                 <TouchableStatisticsRow
+                    disabled={!distanceEntry}
                     onPress={() => onPress(distanceEntry.id)}
                 >
                     <View>
                         <SecondaryHeader style={styles.textHeader}>
-                            {getDistanceText(distanceEntry.distance)}
+                            {getDistanceText(distanceEntry?.distance)}
                         </SecondaryHeader>
                         <SecondaryText>Farthest distance</SecondaryText>
                     </View>
                     <SecondaryText>{formatDate(distanceEntry)}</SecondaryText>
                 </TouchableStatisticsRow>
                 <TouchableStatisticsRow
+                    disabled={!durationEntry}
                     onPress={() => onPress(durationEntry.id)}
                 >
                     <View>
                         <SecondaryHeader style={styles.textHeader}>
-                            {getDurationText(durationEntry.duration)}
+                            {getDurationText(durationEntry?.duration)}
                         </SecondaryHeader>
                         <SecondaryText>Longest duration</SecondaryText>
                     </View>
                     <SecondaryText>{formatDate(durationEntry)}</SecondaryText>
                 </TouchableStatisticsRow>
-                <TouchableStatisticsRow onPress={() => onPress(paceEntry.id)}>
+                <TouchableStatisticsRow
+                    disabled={!paceEntry}
+                    onPress={() => onPress(paceEntry.id)}
+                >
                     <View>
                         <SecondaryHeader style={styles.textHeader}>
                             {getPaceText(
-                                paceEntry.duration,
-                                paceEntry.distance
+                                paceEntry?.duration,
+                                paceEntry?.distance
                             )}
                         </SecondaryHeader>
                         <SecondaryText>Fastest Pace</SecondaryText>

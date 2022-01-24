@@ -12,15 +12,17 @@ export function StatisticsRow({children}: StatisticsRowProps) {
 
 interface TouchableStatisticsRowProps {
     children: React.ReactNode;
+    disabled?: boolean;
     onPress: () => void;
 }
 
 export function TouchableStatisticsRow({
     children,
+    disabled = false,
     onPress
 }: TouchableStatisticsRowProps) {
     return (
-        <TouchableNativeFeedback onPress={onPress}>
+        <TouchableNativeFeedback disabled={disabled} onPress={onPress}>
             <View style={styles.row}>{children}</View>
         </TouchableNativeFeedback>
     );

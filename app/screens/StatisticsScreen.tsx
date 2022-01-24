@@ -19,16 +19,11 @@ function StatisticsScreen({navigation}) {
             <HeaderActivityFilter />
             <View style={appStyles.screenContainer}>
                 <ScrollView>
-                    {/* <TotalStatistics */}
-                    {/*     entries={entries} */}
-                    {/*     trophiesCount={trophies.length} */}
-                    {/* /> */}
                     <PeakStatistics
                         entries={entries}
                         onPress={navigateToEntryDetails}
                     />
                     <AverageStatistics entries={entries} />
-                    {/* <StatisticsChart entries={entries} /> */}
                 </ScrollView>
             </View>
         </>
