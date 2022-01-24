@@ -9,6 +9,7 @@ import {Trophy} from '../types/Trophy';
 import {
     addTrophy,
     getTrophy,
+    updateCompletedTrophies,
     updateTrophy,
     useTrophiesStore
 } from '../state/trophies';
@@ -43,6 +44,7 @@ function TrophyFormScreen({route, navigation}) {
         } else {
             addTrophy(trophy);
         }
+        updateCompletedTrophies();
         navigation.goBack();
     };
 

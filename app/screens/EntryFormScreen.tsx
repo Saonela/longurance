@@ -12,6 +12,7 @@ import {
     updateEntry,
     useEntriesStore
 } from '../state/entries';
+import {updateCompletedTrophies} from '../state/trophies';
 
 function EntryFormScreen({route, navigation}) {
     const isUpdateForm = route.params.id !== undefined;
@@ -43,6 +44,7 @@ function EntryFormScreen({route, navigation}) {
         } else {
             addEntry(entry);
         }
+        updateCompletedTrophies();
         navigation.goBack();
     };
 

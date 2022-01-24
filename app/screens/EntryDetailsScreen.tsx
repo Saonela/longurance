@@ -5,6 +5,7 @@ import appStyles from '../styles';
 import EntryDetails from '../components/entry/EntryDetails';
 import {deleteEntry, getEntry, useEntriesStore} from '../state/entries';
 import {Entry} from '../types/Entry';
+import {updateCompletedTrophies} from '../state/trophies';
 
 function EntryDetailsScreen({route, navigation}) {
     const entry = useEntriesStore((state) =>
@@ -25,6 +26,7 @@ function EntryDetailsScreen({route, navigation}) {
                         text: 'OK',
                         onPress: async () => {
                             deleteEntry(entry.id);
+                            updateCompletedTrophies();
                             navigation.goBack();
                         }
                     }
