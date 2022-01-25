@@ -86,7 +86,7 @@ function DashboardScreenStack() {
             <Stack.Screen
                 name="trophy-list"
                 component={TrophyListScreen}
-                options={{}}
+                options={{title: 'Trophies'}}
             />
             <Stack.Screen
                 name="trophy-details"
