@@ -19,8 +19,10 @@ import {Entry} from '../types/Entry';
 import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
 import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
 
+const predefinedTrophies: Trophy[] = [{id: 'predefined'}] as Trophy[];
+
 jest.mock('../lib/storage');
-jest.mock('../../assets/data/trophies.json', () => []);
+jest.mock('../../assets/data/trophies.json', () => predefinedTrophies);
 
 describe('Trophies state', () => {
     const trophies: Trophy[] = [
@@ -50,6 +52,17 @@ describe('Trophies state', () => {
         beforeEach(() => {
             saveTrophiesSpy = jest.spyOn(api, 'saveTrophies');
             deleteTrophySpy = jest.spyOn(api, 'deleteTrophy');
+        });
+
+        it('should load predefined trophies if first time', async () => {
+            jest.spyOn(api, 'fetchTrophies').mockImplementation(() =>
+                Promise.resolve([])
+            );
+            await loadTrophies();
+            expect(useTrophiesStore.getState().trophies).toEqual(
+                predefinedTrophies
+            );
+            expect(saveTrophiesSpy).toHaveBeenCalledWith(predefinedTrophies);
         });
 
         it('should load trophies', async () => {

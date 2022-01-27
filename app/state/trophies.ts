@@ -51,9 +51,16 @@ export function deleteTrophy(id: string) {
 
 export async function loadTrophies() {
     const trophies = await api.fetchTrophies();
-    useTrophiesStore.setState(() => ({
-        trophies: [...predefinedTrophies, ...trophies]
-    }));
+    if (!trophies.length) {
+        api.saveTrophies(predefinedTrophies);
+        useTrophiesStore.setState(() => ({
+            trophies: predefinedTrophies
+        }));
+    } else {
+        useTrophiesStore.setState(() => ({
+            trophies
+        }));
+    }
 }
 
 function isIndividualTrophyCompleted(
