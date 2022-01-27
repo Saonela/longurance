@@ -3,6 +3,7 @@ import {Activity} from '../types/Activity';
 import {
     addTrophy,
     deleteTrophy,
+    getEntryIndividualTrophies,
     getFilteredTrophies,
     getTrophies,
     loadTrophies,
@@ -504,6 +505,40 @@ describe('Trophies state', () => {
             );
             expect(getTrophies(initialState, Activity.CYCLING)).toEqual([]);
             expect(getTrophies(initialState, Activity.SWIMMING)).toEqual([]);
+        });
+
+        it('should get individual trophies for entry', () => {
+            const state: TrophiesState = {
+                trophies: [
+                    {
+                        id: '100',
+                        completed: true,
+                        type: TrophyType.TOTAL,
+                        entryIds: ['1', '2']
+                    },
+                    {
+                        id: '101',
+                        completed: true,
+                        type: TrophyType.INDIVIDUAL,
+                        entryIds: ['1']
+                    },
+                    {
+                        id: '102',
+                        completed: false,
+                        type: TrophyType.INDIVIDUAL,
+                        entryIds: []
+                    }
+                ] as Trophy[]
+            };
+            expect(getEntryIndividualTrophies('1')(state)).toEqual([
+                {
+                    id: '101',
+                    completed: true,
+                    type: TrophyType.INDIVIDUAL,
+                    entryIds: ['1']
+                }
+            ]);
+            expect(getEntryIndividualTrophies('2')(state)).toEqual([]);
         });
 
         describe('settings filtering', () => {

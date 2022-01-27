@@ -12,7 +12,6 @@ import {
     getIntensityText,
     getPaceText
 } from '../../lib/entry';
-import {Trophy} from '../../types/Trophy';
 import EntryEffortBar from './EntryEffortBar';
 import utils from '../../styles-utilities';
 import {PrimaryText, SecondaryText} from '../ui/Text';
@@ -21,7 +20,6 @@ import Separator from '../ui/Separator';
 
 interface EntryDetailsProps {
     entry: Entry;
-    trophies: Trophy[];
 }
 
 const activityIconNames = {
@@ -30,7 +28,7 @@ const activityIconNames = {
     [Activity.CYCLING]: 'bicycle'
 };
 
-function EntryDetails({entry, trophies}: EntryDetailsProps) {
+function EntryDetails({entry}: EntryDetailsProps) {
     return (
         <View style={styles.card}>
             <FontAwesome5

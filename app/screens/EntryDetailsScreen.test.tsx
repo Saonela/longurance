@@ -4,6 +4,8 @@ import {Activity} from '../types/Activity';
 import {Entry} from '../types/Entry';
 import EntryDetailsScreen from './EntryDetailsScreen';
 import {useEntriesStore} from '../state/entries';
+import {Trophy, TrophyType} from '../types/Trophy';
+import {useTrophiesStore} from '../state/trophies';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
@@ -18,6 +20,35 @@ const entries: Entry[] = [
         effort: 2,
         title: 'YES',
         note: 'Was really enjoying. Got into flow state.'
+    }
+];
+
+const trophies: Trophy[] = [
+    {
+        id: '200',
+        title: 'Half marathon trophy',
+        activity: Activity.RUNNING,
+        type: TrophyType.INDIVIDUAL,
+        entryIds: ['1'],
+        distance: 20,
+        duration: 0,
+        createdAt: '2022-01-01',
+        completedAt: '2022-01-01',
+        completed: true,
+        markedAsRead: false
+    },
+    {
+        id: '300',
+        title: '10 hours of running',
+        activity: Activity.RUNNING,
+        type: TrophyType.TOTAL,
+        entryIds: ['1', '2', '3'],
+        distance: 0,
+        duration: 36000,
+        createdAt: '2021-01-01',
+        completedAt: '2022-01-01',
+        completed: true,
+        markedAsRead: false
     }
 ];
 
@@ -36,5 +67,19 @@ describe('EntryDetailsScreen', () => {
         );
         const {getByText} = render(component);
         getByText('Was really enjoying. Got into flow state.');
+    });
+
+    it('should show associated completed individual trophies', () => {
+        useEntriesStore.setState({entries});
+        useTrophiesStore.setState({trophies});
+        const component = (
+            <EntryDetailsScreen
+                navigation={navigation}
+                route={{params: {id: '1'}}}
+            />
+        );
+        const {queryByText, getByText} = render(component);
+        getByText('Half marathon trophy');
+        expect(queryByText('10 hours of running')).toBeNull();
     });
 });

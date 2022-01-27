@@ -158,6 +158,14 @@ export const getTrophies = (
     );
 };
 
+export const getEntryIndividualTrophies = (entryId: string) => (state) =>
+    state.trophies.filter(
+        (trophy) =>
+            trophy.completed &&
+            trophy.type === TrophyType.INDIVIDUAL &&
+            trophy.entryIds.includes(entryId)
+    );
+
 export const getFilteredTrophies =
     (settings: TrophiesSettings) => (state: TrophiesState) =>
         state.trophies
