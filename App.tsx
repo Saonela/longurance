@@ -1,10 +1,8 @@
 import React from 'react';
 import {useFonts} from 'expo-font';
-import {Provider} from 'react-redux';
-import store from './app/redux/store';
-import Main from './Main';
 import {StatusBar} from 'react-native';
 import AppLoading from 'expo-app-loading';
+import Main from './Main';
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -15,10 +13,10 @@ export default function App() {
         <>
             <StatusBar barStyle="light-content" />
             {fontsLoaded ? (
-                <Provider store={store}>
+                <>
                     <StatusBar barStyle="light-content" />
                     <Main />
-                </Provider>
+                </>
             ) : (
                 <AppLoading autoHideSplash />
             )}
