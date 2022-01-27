@@ -44,11 +44,11 @@ describe('Trophies state', () => {
     };
 
     describe('actions', () => {
-        let saveTrophySpy;
+        let saveTrophiesSpy;
         let deleteTrophySpy;
 
         beforeEach(() => {
-            saveTrophySpy = jest.spyOn(api, 'saveTrophy');
+            saveTrophiesSpy = jest.spyOn(api, 'saveTrophies');
             deleteTrophySpy = jest.spyOn(api, 'deleteTrophy');
         });
 
@@ -69,7 +69,7 @@ describe('Trophies state', () => {
                 trophy,
                 ...initialState.trophies
             ]);
-            expect(saveTrophySpy).toHaveBeenCalled();
+            expect(saveTrophiesSpy).toHaveBeenCalled();
         });
 
         it('should update trophy', () => {
@@ -82,7 +82,7 @@ describe('Trophies state', () => {
             expect(useTrophiesStore.getState().trophies).toEqual([
                 {...initialState.trophies[0], ...trophy}
             ]);
-            expect(saveTrophySpy).toHaveBeenCalled();
+            expect(saveTrophiesSpy).toHaveBeenCalled();
         });
 
         it('should delete trophy', () => {

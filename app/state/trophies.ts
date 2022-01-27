@@ -24,14 +24,14 @@ export const useTrophiesStore = create<TrophiesState>(() => ({
 
 export function addTrophy(trophy: Trophy) {
     Object.assign(trophy, {id: generateId()});
-    api.saveTrophy(trophy);
+    api.saveTrophies([trophy]);
     useTrophiesStore.setState((state) => ({
         trophies: [trophy, ...state.trophies]
     }));
 }
 
 export function updateTrophy(trophy: Trophy) {
-    api.saveTrophy(trophy);
+    api.saveTrophies([trophy]);
     useTrophiesStore.setState((state) => ({
         trophies: state.trophies.map((stateTrophy) => {
             if (stateTrophy.id === trophy.id) {

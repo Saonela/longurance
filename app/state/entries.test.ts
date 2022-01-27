@@ -37,11 +37,11 @@ describe('Entries state', () => {
     };
 
     describe('actions', () => {
-        let saveEntrySpy;
+        let saveEntriesSpy;
         let deleteEntrySpy;
 
         beforeEach(() => {
-            saveEntrySpy = jest.spyOn(api, 'saveEntry');
+            saveEntriesSpy = jest.spyOn(api, 'saveEntries');
             deleteEntrySpy = jest.spyOn(api, 'deleteEntry');
             useEntriesStore.setState(initialState);
         });
@@ -61,7 +61,7 @@ describe('Entries state', () => {
                 entry,
                 ...initialState.entries
             ]);
-            expect(saveEntrySpy).toHaveBeenCalled();
+            expect(saveEntriesSpy).toHaveBeenCalled();
         });
 
         it('should update entry', () => {
@@ -73,7 +73,7 @@ describe('Entries state', () => {
             expect(useEntriesStore.getState().entries).toEqual([
                 {...initialState.entries[0], ...entry}
             ]);
-            expect(saveEntrySpy).toHaveBeenCalled();
+            expect(saveEntriesSpy).toHaveBeenCalled();
         });
 
         it('should delete entry', () => {

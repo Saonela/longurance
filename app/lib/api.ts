@@ -34,8 +34,8 @@ export async function fetchEntries(): Promise<Entry[]> {
     return entries || [];
 }
 
-export async function saveEntry(entry: Entry) {
-    return Storage.upsertToArray<Entry>(ENTRIES_KEY, entry);
+export async function saveEntries(entries: Entry[]) {
+    return Storage.upsertToArray<Entry>(ENTRIES_KEY, entries);
 }
 
 export async function deleteEntry(id: string) {
@@ -47,8 +47,8 @@ export async function fetchTrophies(): Promise<Trophy[]> {
     return trophies || [];
 }
 
-export async function saveTrophy(trophy: Trophy) {
-    return Storage.upsertToArray<Trophy>(TROPHIES_KEY, trophy);
+export async function saveTrophies(trophies: Trophy[]) {
+    return Storage.upsertToArray<Trophy>(TROPHIES_KEY, trophies);
 }
 
 export async function deleteTrophy(id: string) {

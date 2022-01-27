@@ -19,19 +19,21 @@ async function getItem<T>(key: string): Promise<T> {
 
 async function upsertToArray<T extends {id: string}>(
     key: string,
-    value: T
+    values: T[]
 ): Promise<void> {
     const items = await getItem<T[]>(key);
     if (!items) {
-        return setItem(key, [value]);
+        return setItem(key, values);
     }
 
-    const toUpdate = items.find((item) => item.id === value.id);
-    if (toUpdate) {
-        Object.assign(toUpdate, value);
-    } else {
-        items.push(value);
-    }
+    values.forEach((value) => {
+        const toUpdate = items.find((item) => item.id === value.id);
+        if (toUpdate) {
+            Object.assign(toUpdate, value);
+        } else {
+            items.push(value);
+        }
+    });
 
     return setItem(key, items);
 }
