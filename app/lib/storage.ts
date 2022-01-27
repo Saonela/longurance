@@ -51,11 +51,16 @@ async function deleteFromArray<T extends {id: string}>(
     return setItem(key, filtered);
 }
 
+async function clear() {
+    return AsyncStorage.clear();
+}
+
 const Storage = {
     setItem,
     getItem,
     upsertToArray,
-    deleteFromArray
+    deleteFromArray,
+    clear
 };
 
 export default Storage;
