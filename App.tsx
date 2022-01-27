@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React from 'react';
 import {useFonts} from 'expo-font';
 import {StatusBar} from 'react-native';
@@ -9,17 +10,13 @@ export default function App() {
         Lato: require('./assets/fonts/Lato-Regular.ttf'),
         LatoBlack: require('./assets/fonts/Lato-Black.ttf')
     });
+    if (!fontsLoaded) {
+        return <AppLoading autoHideSplash />;
+    }
     return (
         <>
             <StatusBar barStyle="light-content" />
-            {fontsLoaded ? (
-                <>
-                    <StatusBar barStyle="light-content" />
-                    <Main />
-                </>
-            ) : (
-                <AppLoading autoHideSplash />
-            )}
+            <Main />
         </>
     );
 }
