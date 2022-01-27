@@ -5,6 +5,7 @@ import {
     deleteEntry,
     EntriesState,
     getEntries,
+    getEntriesByIds,
     getSortedEntries,
     loadEntries,
     updateEntry,
@@ -127,6 +128,13 @@ describe('Entries state', () => {
             expect(getEntries(initialState, null, TimeInterval.YEAR)).toEqual(
                 initialState.entries
             );
+        });
+
+        it('should get entries by ids', () => {
+            expect(getEntriesByIds(['1', '2'])(initialState)).toEqual(
+                initialState.entries
+            );
+            expect(getEntriesByIds(['2', '3'])(initialState)).toEqual([]);
         });
 
         describe('sorting', () => {

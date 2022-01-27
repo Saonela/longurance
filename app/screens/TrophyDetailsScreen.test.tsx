@@ -4,6 +4,22 @@ import {Activity} from '../types/Activity';
 import {Trophy, TrophyType} from '../types/Trophy';
 import {useTrophiesStore} from '../state/trophies';
 import TrophyDetailsScreen from './TrophyDetailsScreen';
+import {useEntriesStore} from '../state/entries';
+import {Entry} from '../types/Entry';
+
+const entries: Entry[] = [
+    {
+        id: '1',
+        activity: Activity.RUNNING,
+        distance: 20,
+        duration: 4000,
+        createdAt: '2021-01-07T09:10:02.207Z',
+        date: '2021-01-07T09:10:02.207Z',
+        effort: 2,
+        title: 'My best run',
+        note: 'Was really enjoying. Got into flow state.'
+    }
+];
 
 const trophies: Trophy[] = [
     {
@@ -51,5 +67,31 @@ describe('TrophyDetailsScreen', () => {
         getByText('Half marathon trophy');
         getByText('20km');
         getByText('RUN');
+    });
+
+    it('should show associated individual entries', () => {
+        useEntriesStore.setState({entries});
+        useTrophiesStore.setState({trophies});
+        const component = (
+            <TrophyDetailsScreen
+                navigation={navigation}
+                route={{params: {id: '200'}}}
+            />
+        );
+        const {getByText} = render(component);
+        getByText('My best run');
+    });
+
+    it('should show associated total entries', () => {
+        useEntriesStore.setState({entries});
+        useTrophiesStore.setState({trophies});
+        const component = (
+            <TrophyDetailsScreen
+                navigation={navigation}
+                route={{params: {id: '300'}}}
+            />
+        );
+        const {getByText} = render(component);
+        getByText('My best run');
     });
 });

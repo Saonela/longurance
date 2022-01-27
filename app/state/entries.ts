@@ -92,6 +92,9 @@ export const getEntries = (
     return filterEntriesByTimeInterval(activityEntries, timeInterval);
 };
 
+export const getEntriesByIds = (ids: string[]) => (state: EntriesState) =>
+    state.entries.filter((entry) => ids.includes(entry.id));
+
 export const getSortedEntries =
     (settings: EntriesSettings) => (state: EntriesState) =>
         [...state.entries].sort((entry1, entry2) => {
