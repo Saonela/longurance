@@ -8,10 +8,13 @@ import {generateId} from '../lib/utility';
 import {useEntriesStore} from './entries';
 import {getTrophySubtype} from '../lib/trophy';
 import {Entry} from '../types/Entry';
+import {TrophiesSettings} from '../types/TrophiesSettings';
+import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
+import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
 
 const predefinedTrophies = trophiesJson as Trophy[];
 
-interface TrophiesState {
+export interface TrophiesState {
     trophies: Trophy[];
 }
 
@@ -154,3 +157,25 @@ export const getTrophies = (
         (trophy) => !activity || trophy.activity === activity
     );
 };
+
+export const getFilteredTrophies =
+    (settings: TrophiesSettings) => (state: TrophiesState) =>
+        state.trophies
+            .filter((trophy) => {
+                if (settings.stateFilter === TrophiesStateFilter.PENDING) {
+                    return !trophy.completed;
+                }
+                if (settings.stateFilter === TrophiesStateFilter.COMPLETED) {
+                    return trophy.completed;
+                }
+                return true;
+            })
+            .filter((trophy) => {
+                if (settings.typeFilter === TrophiesTypeFilter.TOTAL) {
+                    return trophy.type === TrophyType.TOTAL;
+                }
+                if (settings.typeFilter === TrophiesTypeFilter.INDIVIDUAL) {
+                    return trophy.type === TrophyType.INDIVIDUAL;
+                }
+                return true;
+            });

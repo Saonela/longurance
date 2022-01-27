@@ -4,6 +4,9 @@ import {Activity} from '../types/Activity';
 import {Trophy, TrophyType} from '../types/Trophy';
 import TrophyListScreen from './TrophyListScreen';
 import {useTrophiesStore} from '../state/trophies';
+import {useTrophiesSettingsStore} from '../state/trophies-settings';
+import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
+import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
@@ -60,6 +63,21 @@ describe('TrophyListScreen', () => {
         const {getByText} = render(component);
         getByText('My first half marathon !');
         getByText('Sweet 100.');
+        getByText('IRONMAN');
+    });
+
+    it('should filter list', () => {
+        useTrophiesStore.setState({trophies});
+        useTrophiesSettingsStore.setState({
+            settings: {
+                stateFilter: TrophiesStateFilter.COMPLETED,
+                typeFilter: TrophiesTypeFilter.INDIVIDUAL
+            }
+        });
+        const component = <TrophyListScreen navigation={navigation} />;
+        const {queryByText, getByText} = render(component);
+        expect(queryByText('My first half marathon !')).toBeNull();
+        expect(queryByText('Sweet 100.')).toBeNull();
         getByText('IRONMAN');
     });
 });

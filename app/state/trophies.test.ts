@@ -3,8 +3,10 @@ import {Activity} from '../types/Activity';
 import {
     addTrophy,
     deleteTrophy,
+    getFilteredTrophies,
     getTrophies,
     loadTrophies,
+    TrophiesState,
     updateCompletedTrophies,
     updateTrophy,
     useTrophiesStore
@@ -13,6 +15,8 @@ import * as api from '../lib/api';
 import {Trophy, TrophyType} from '../types/Trophy';
 import {useEntriesStore} from './entries';
 import {Entry} from '../types/Entry';
+import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
+import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
 
 jest.mock('../lib/storage');
 jest.mock('../../assets/data/trophies.json', () => []);
@@ -500,6 +504,102 @@ describe('Trophies state', () => {
             );
             expect(getTrophies(initialState, Activity.CYCLING)).toEqual([]);
             expect(getTrophies(initialState, Activity.SWIMMING)).toEqual([]);
+        });
+
+        describe('settings filtering', () => {
+            let state: TrophiesState;
+
+            beforeEach(() => {
+                state = {
+                    trophies: [
+                        {
+                            id: '1',
+                            activity: Activity.RUNNING,
+                            type: TrophyType.INDIVIDUAL,
+                            entryIds: ['20'],
+                            distance: 5,
+                            duration: 0,
+                            completedAt: '2021-09-21',
+                            completed: true,
+                            markedAsRead: true
+                        },
+                        {
+                            id: '2',
+                            activity: Activity.RUNNING,
+                            type: TrophyType.INDIVIDUAL,
+                            entryIds: [],
+                            distance: 20,
+                            duration: 0,
+                            completedAt: null,
+                            completed: false,
+                            markedAsRead: false
+                        },
+                        {
+                            id: '3',
+                            activity: Activity.RUNNING,
+                            type: TrophyType.TOTAL,
+                            entryIds: [],
+                            distance: 0,
+                            duration: 7200,
+                            completedAt: null,
+                            completed: false,
+                            markedAsRead: false
+                        },
+                        {
+                            id: '4',
+                            activity: Activity.RUNNING,
+                            type: TrophyType.TOTAL,
+                            entryIds: ['20', '21', '22'],
+                            distance: 20,
+                            duration: 0,
+                            completedAt: '2022-01-01',
+                            completed: true,
+                            markedAsRead: false
+                        }
+                    ] as unknown as Trophy[]
+                };
+            });
+
+            const getIds = (trophy) => trophy.id;
+
+            it('should skip filtering', () => {
+                expect(
+                    getFilteredTrophies({
+                        stateFilter: TrophiesStateFilter.ALL,
+                        typeFilter: TrophiesTypeFilter.ALL
+                    })(state).map(getIds)
+                ).toEqual(['1', '2', '3', '4']);
+            });
+
+            it('should filter by state', () => {
+                expect(
+                    getFilteredTrophies({
+                        stateFilter: TrophiesStateFilter.PENDING,
+                        typeFilter: TrophiesTypeFilter.ALL
+                    })(state).map(getIds)
+                ).toEqual(['2', '3']);
+                expect(
+                    getFilteredTrophies({
+                        stateFilter: TrophiesStateFilter.COMPLETED,
+                        typeFilter: TrophiesTypeFilter.ALL
+                    })(state).map(getIds)
+                ).toEqual(['1', '4']);
+            });
+
+            it('should filter by type', () => {
+                expect(
+                    getFilteredTrophies({
+                        stateFilter: TrophiesStateFilter.ALL,
+                        typeFilter: TrophiesTypeFilter.TOTAL
+                    })(state).map(getIds)
+                ).toEqual(['3', '4']);
+                expect(
+                    getFilteredTrophies({
+                        stateFilter: TrophiesStateFilter.ALL,
+                        typeFilter: TrophiesTypeFilter.INDIVIDUAL
+                    })(state).map(getIds)
+                ).toEqual(['1', '2']);
+            });
         });
     });
 });

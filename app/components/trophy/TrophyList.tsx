@@ -2,15 +2,17 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import NoDataMessage from '../list/NoDataMessage';
 import TrophyCard from './TrophyCard';
-import {useTrophiesStore} from '../../state/trophies';
+import {getFilteredTrophies, useTrophiesStore} from '../../state/trophies';
 import theme from '../../theme';
+import {useTrophiesSettingsStore} from '../../state/trophies-settings';
 
 interface TrophyListProps {
     onPress: (id: string) => void;
 }
 
 function TrophyList({onPress}: TrophyListProps) {
-    const trophies = useTrophiesStore((state) => state.trophies);
+    const {settings} = useTrophiesSettingsStore();
+    const trophies = useTrophiesStore(getFilteredTrophies(settings));
 
     if (trophies.length === 0) {
         return <NoDataMessage>No trophies found</NoDataMessage>;
