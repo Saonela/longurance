@@ -165,6 +165,10 @@ export const getTrophies = (
     );
 };
 
+export const getTrophiesByState =
+    (completed: boolean) => (state: TrophiesState) =>
+        state.trophies.filter((trophy) => trophy.completed === completed);
+
 export const getEntryIndividualTrophies = (entryId: string) => (state) =>
     state.trophies.filter(
         (trophy) =>

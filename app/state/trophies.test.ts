@@ -6,6 +6,7 @@ import {
     getEntryIndividualTrophies,
     getFilteredTrophies,
     getTrophies,
+    getTrophiesByState,
     loadTrophies,
     TrophiesState,
     updateCompletedTrophies,
@@ -518,6 +519,13 @@ describe('Trophies state', () => {
             );
             expect(getTrophies(initialState, Activity.CYCLING)).toEqual([]);
             expect(getTrophies(initialState, Activity.SWIMMING)).toEqual([]);
+        });
+
+        it('should get trophies by state', () => {
+            expect(getTrophiesByState(true)(initialState)).toEqual(
+                initialState.trophies
+            );
+            expect(getTrophiesByState(false)(initialState)).toEqual([]);
         });
 
         it('should get individual trophies for entry', () => {
