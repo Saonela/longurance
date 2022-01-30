@@ -41,10 +41,6 @@ const timeIntervalValues = [
     {
         label: 'Year',
         value: TimeInterval.YEAR
-    },
-    {
-        label: 'All',
-        value: null
     }
 ];
 
