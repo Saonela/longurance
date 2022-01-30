@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         paddingVertical: theme.SPACING.ML,
         marginHorizontal: -theme.SPACING.SM,
         borderBottomColor: theme.COLORS.BACKGROUND_TERTIARY,
-        borderBottomWidth: 1
+        borderBottomWidth: 2
     }
 });
 
