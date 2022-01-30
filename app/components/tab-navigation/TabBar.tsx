@@ -13,8 +13,8 @@ function TabBar({state, descriptors, navigation}) {
         if (!isFocused && !event.defaultPrevented) {
             if (route.name === 'Entries') {
                 navigation.navigate(route.name, {screen: 'entry-list'});
-            } else if (route.name === 'Trophies') {
-                navigation.navigate(route.name, {screen: 'trophy-list'});
+            } else if (route.name === 'Timeline') {
+                navigation.navigate(route.name, {screen: 'timeline'});
             } else {
                 navigation.navigate(route.name);
             }

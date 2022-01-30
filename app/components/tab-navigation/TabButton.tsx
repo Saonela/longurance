@@ -1,9 +1,9 @@
-import theme from '../../theme';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import appStyles from '../../styles';
 import React from 'react';
 import * as Animatable from 'react-native-animatable';
 import {Feather} from '@expo/vector-icons';
+import appStyles from '../../styles';
+import theme from '../../theme';
 
 const zoomIn = {
     from: {
@@ -29,7 +29,7 @@ const zoomOut = {
 
 const routeIcon = {
     Dashboard: 'home',
-    Trophies: 'award',
+    Timeline: 'activity',
     Statistics: 'bar-chart'
 };
 
