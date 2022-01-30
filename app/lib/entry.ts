@@ -30,6 +30,14 @@ export function getIntensityText(intensity: number) {
     return `${intensity || 0}/5`;
 }
 
+export function getWorkoutsLabel(count: number) {
+    return count === 1 ? 'Workout' : 'Workouts';
+}
+
+export function getTrophiesLabel(count: number) {
+    return count === 1 ? 'Trophy' : 'Trophies';
+}
+
 export function getActivityTypeText(type: Activity) {
     if (type === Activity.CYCLING) return 'CYCLE';
     if (type === Activity.SWIMMING) return 'SWIM';

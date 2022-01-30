@@ -4,7 +4,12 @@ import Panel from '../ui/Panel';
 import {SecondaryHeader, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import StatisticsRow from './StatisticsRow';
-import {getDistanceText, getDurationText} from '../../lib/entry';
+import {
+    getDistanceText,
+    getDurationText,
+    getTrophiesLabel,
+    getWorkoutsLabel
+} from '../../lib/entry';
 import {getTotalDistance, getTotalDuration} from '../../lib/statistics';
 import theme from '../../theme';
 import {Entry} from '../../types/Entry';
@@ -28,7 +33,7 @@ function TotalStatistics({entries, trophiesCount}: TotalStatisticsProps) {
                         {entries.length}
                     </SecondaryHeader>
                     <SecondaryText>
-                        {entries.length === 1 ? 'Workout' : 'Workouts'}
+                        {getWorkoutsLabel(entries.length)}
                     </SecondaryText>
                 </View>
                 <View style={styles.textBlock}>
@@ -36,7 +41,7 @@ function TotalStatistics({entries, trophiesCount}: TotalStatisticsProps) {
                         {trophiesCount}
                     </SecondaryHeader>
                     <SecondaryText>
-                        {trophiesCount === 1 ? 'Trophy' : 'Trophies'}
+                        {getTrophiesLabel(trophiesCount)}
                     </SecondaryText>
                 </View>
             </StatisticsRow>
