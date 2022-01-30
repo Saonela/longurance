@@ -1,76 +1,76 @@
 import React from 'react';
-import {Dimensions, StyleProp} from 'react-native';
-import {LineChart as LineChartKit} from 'react-native-chart-kit';
+import {StyleSheet, View, ViewStyle} from 'react-native';
+import {LineChart as SvgLineChart, YAxis, Grid} from 'react-native-svg-charts';
+import {Circle} from 'react-native-svg';
 import theme from '../../theme';
-import {hexToRGB} from '../../lib/utility';
 
 interface LineChartProps {
-    labels: string[];
-    values: number[];
-    highlightedIndexes?: number[];
-    width?: number;
-    height?: number;
-    formatYLabel?: (label: string) => string;
-    style?: StyleProp<any>;
+    data: number[];
+    formatLabel?: (value: number) => string;
+    style?: ViewStyle | ViewStyle[];
 }
 
-const chartConfig = {
-    backgroundGradientFrom: theme.COLORS.BACKGROUND_SECONDARY,
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: theme.COLORS.BACKGROUND_SECONDARY,
-    backgroundGradientToOpacity: 0,
-    color: (opacity = 1) => {
-        return hexToRGB(theme.COLORS.FONT_PRIMARY, opacity);
-    },
-    strokeWidth: 2,
-    barPercentage: 0.5,
-    useShadowColorFromDataset: false,
-    propsForDots: {
-        r: 6
-    }
+const Decorator = ({x, y, data}: any) => {
+    return data.map((value, index) => (
+        <Circle
+            key={index}
+            cx={x(index)}
+            cy={y(value)}
+            r={5}
+            stroke={theme.COLORS.THEME_SECONDARY}
+            fill={theme.COLORS.BACKGROUND_PRIMARY}
+        />
+    ));
 };
 
-function LineChart({
-    labels,
-    values,
-    highlightedIndexes = [],
-    width = Dimensions.get('window').width,
-    height = 220,
-    formatYLabel = (label) => label,
-    style = {}
-}: LineChartProps) {
-    const chartData = {
-        labels,
-        datasets: [
-            {
-                data: values,
-                color: (opacity = 1) =>
-                    hexToRGB(theme.COLORS.FONT_SECONDARY, opacity),
-                strokeWidth: 2
-            }
-        ]
+function LineChart({data, formatLabel, style}: LineChartProps) {
+    const yAxisData = [...data, 0];
+    const contentInset = {
+        top: 7,
+        right: 7,
+        bottom: 7,
+        left: 7
     };
-
-    const getDotColor = (point: number, index: number) => {
-        if (highlightedIndexes?.includes(index)) {
-            return theme.COLORS.THEME_FONT;
-        }
-        return theme.COLORS.FONT_SECONDARY;
-    };
-
     return (
-        <LineChartKit
-            data={chartData}
-            width={width}
-            height={height}
-            chartConfig={chartConfig}
-            getDotColor={getDotColor}
-            formatYLabel={formatYLabel}
-            withDots={true}
-            segments={4}
-            style={style}
-        />
+        <View style={[styles.container, style]}>
+            <YAxis
+                data={yAxisData}
+                formatLabel={formatLabel}
+                contentInset={contentInset}
+                numberOfTicks={4}
+                svg={{
+                    fontSize: theme.FONT_SIZE.SECONDARY,
+                    fill: theme.COLORS.FONT_SECONDARY
+                }}
+            />
+            <SvgLineChart
+                style={styles.chart}
+                data={data}
+                contentInset={contentInset}
+                gridMin={0}
+                svg={{stroke: theme.COLORS.THEME_SECONDARY}}
+            >
+                <Decorator />
+                <Grid
+                    svg={{
+                        stroke: theme.COLORS.BACKGROUND_TERTIARY,
+                        strokeDasharray: '8,4'
+                    }}
+                />
+            </SvgLineChart>
+        </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        height: 175,
+        flexDirection: 'row'
+    },
+    chart: {
+        flex: 1,
+        marginLeft: theme.SPACING.S
+    }
+});
 
 export default LineChart;
