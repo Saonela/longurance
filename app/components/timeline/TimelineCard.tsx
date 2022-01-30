@@ -1,65 +1,38 @@
 import React from 'react';
 import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
 import Panel from '../ui/Panel';
-import {
-    PrimaryHeader,
-    PrimaryText,
-    SecondaryHeader,
-    SecondaryText
-} from '../ui/Text';
+import {PrimaryText, SecondaryHeader, SecondaryText} from '../ui/Text';
 import {
     getDistanceText,
     getDurationText,
-    getIntensityText,
-    getPaceText
+    getPaceText,
+    getWorkoutsLabel
 } from '../../lib/entry';
 import Separator from '../ui/Separator';
 import theme from '../../theme';
 import utils from '../../styles-utilities';
 import {EffortIcons} from '../../types/Effort';
+import {TimelineEntry} from '../../types/TimelineEntry';
 
-interface TimelineCardProps {}
+interface TimelineCardProps {
+    timelineEntry: TimelineEntry;
+    onPress: () => void;
+}
 
-function TimelineCard({title, duration, distance, effort, workouts, onPress}) {
+function TimelineCard({timelineEntry, onPress}: TimelineCardProps) {
+    const {title, distance, duration, effort, workoutsCount} = timelineEntry;
     return (
         <TouchableNativeFeedback
             accessibilityLabel="Timeline card"
-            onPress={() => {
-                console.log('timeline card');
-                onPress();
-            }}
+            onPress={onPress}
         >
             <View>
                 <Panel>
-                    {/* <View style={[utils.row, utils.justifyBetween, utils.alignCenter]}> */}
-                    <View style={[]}>
-                        <SecondaryHeader color="primary">
-                            {title}{' '}
-                        </SecondaryHeader>
-                        {/* <View style={[utils.row, utils.alignCenter]}> */}
-
-                        {/* <SecondaryText color="secondary"> */}
-                        {/* <SecondaryHeader>{workouts}</SecondaryHeader> Workouts */}
-                        <SecondaryText
-                            style={utils.marginTopS}
-                            color="secondary"
-                        >
-                            {workouts} Workouts
-                        </SecondaryText>
-                        {/* </SecondaryText> */}
-                        {/* </View> */}
-                        {/* <View style={styles.detailsContainer}> */}
-                        {/*     <PrimaryText style={styles.detailsText}> */}
-                        {/*         {workouts} */}
-                        {/*     </PrimaryText> */}
-                        {/*     <SecondaryText>Workouts</SecondaryText> */}
-                        {/* </View> */}
-                    </View>
+                    <SecondaryHeader color="primary">{title} </SecondaryHeader>
+                    <SecondaryText style={utils.marginTopS} color="secondary">
+                        {getWorkoutsLabel(workoutsCount)}
+                    </SecondaryText>
                     <Separator marginBottom={theme.SPACING.L} />
-                    {/* <PrimaryText>{workouts}</PrimaryText> */}
-                    {/* <PrimaryText>{getDurationText(duration)}</PrimaryText> */}
-                    {/* <PrimaryText>{getDistanceText(distance)}</PrimaryText> */}
-                    {/* <PrimaryText>{getIntensityText(effort)}</PrimaryText> */}
                     <View style={[utils.row]}>
                         <View style={styles.detailsContainer}>
                             <PrimaryText style={styles.detailsText}>
@@ -86,20 +59,6 @@ function TimelineCard({title, duration, distance, effort, workouts, onPress}) {
                             {backgroundColor: EffortIcons[effort].color}
                         ]}
                     />
-                    {/* <View style={[utils.row]}> */}
-                    {/* <View style={styles.detailsContainer}> */}
-                    {/*     <PrimaryText style={styles.detailsText}> */}
-                    {/*         {getPaceText(duration, distance)} */}
-                    {/*     </PrimaryText> */}
-                    {/*     <SecondaryText>Avg. Pace</SecondaryText> */}
-                    {/* </View> */}
-                    {/* <View style={styles.detailsContainer}> */}
-                    {/*     <PrimaryText style={styles.detailsText}> */}
-                    {/*         {getIntensityText(effort)} */}
-                    {/*     </PrimaryText> */}
-                    {/*     <SecondaryText>Avg. Intensity</SecondaryText> */}
-                    {/* </View> */}
-                    {/* </View> */}
                 </Panel>
             </View>
         </TouchableNativeFeedback>
