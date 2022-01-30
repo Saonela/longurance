@@ -169,13 +169,14 @@ export const getTrophiesByState =
     (completed: boolean) => (state: TrophiesState) =>
         state.trophies.filter((trophy) => trophy.completed === completed);
 
-export const getEntryIndividualTrophies = (entryId: string) => (state) =>
-    state.trophies.filter(
-        (trophy) =>
-            trophy.completed &&
-            trophy.type === TrophyType.INDIVIDUAL &&
-            trophy.entryIds.includes(entryId)
-    );
+export const getEntryTrophies =
+    (entryId: string, type: TrophyType) => (state) =>
+        state.trophies.filter(
+            (trophy) =>
+                trophy.completed &&
+                trophy.type === type &&
+                trophy.entryIds.includes(entryId)
+        );
 
 export const getFilteredTrophies =
     (settings: TrophiesSettings) => (state: TrophiesState) =>

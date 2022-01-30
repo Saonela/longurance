@@ -3,7 +3,7 @@ import {Activity} from '../types/Activity';
 import {
     addTrophy,
     deleteTrophy,
-    getEntryIndividualTrophies,
+    getEntryTrophies,
     getFilteredTrophies,
     getTrophies,
     getTrophiesByState,
@@ -551,15 +551,19 @@ describe('Trophies state', () => {
                     }
                 ] as Trophy[]
             };
-            expect(getEntryIndividualTrophies('1')(state)).toEqual([
-                {
-                    id: '101',
-                    completed: true,
-                    type: TrophyType.INDIVIDUAL,
-                    entryIds: ['1']
-                }
-            ]);
-            expect(getEntryIndividualTrophies('2')(state)).toEqual([]);
+            expect(getEntryTrophies('1', TrophyType.INDIVIDUAL)(state)).toEqual(
+                [
+                    {
+                        id: '101',
+                        completed: true,
+                        type: TrophyType.INDIVIDUAL,
+                        entryIds: ['1']
+                    }
+                ]
+            );
+            expect(getEntryTrophies('2', TrophyType.INDIVIDUAL)(state)).toEqual(
+                []
+            );
         });
 
         describe('settings filtering', () => {

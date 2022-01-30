@@ -6,19 +6,22 @@ import EntryDetails from '../components/entry/EntryDetails';
 import {deleteEntry, getEntry, useEntriesStore} from '../state/entries';
 import {Entry} from '../types/Entry';
 import {
-    getEntryIndividualTrophies,
+    getEntryTrophies,
     updateCompletedTrophies,
     useTrophiesStore
 } from '../state/trophies';
 import theme from '../theme';
 import TrophyCardLite from '../components/trophy/TrophyCardLite';
+import {TrophyType} from '../types/Trophy';
 
 function EntryDetailsScreen({route, navigation}) {
     const entry = useEntriesStore((state) =>
         getEntry(state, route.params.id)
     ) as Entry;
 
-    const trophies = useTrophiesStore(getEntryIndividualTrophies(entry.id));
+    const trophies = useTrophiesStore(
+        getEntryTrophies(entry.id, TrophyType.INDIVIDUAL)
+    );
 
     useLayoutEffect(() => {
         const confirmDelete = () => {
