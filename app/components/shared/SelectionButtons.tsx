@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     container: {
+        flex: 1,
         flexDirection: 'row',
         borderWidth: theme.BORDER.WIDTH,
         borderRadius: theme.BORDER.RADIUS + 2,
@@ -57,6 +58,8 @@ const styles = StyleSheet.create({
         backgroundColor: theme.COLORS.BACKGROUND_TERTIARY
     },
     button: {
+        flex: 1,
+        alignItems: 'center',
         color: theme.COLORS.FONT_SECONDARY,
         backgroundColor: 'transparent',
         elevation: 0
