@@ -4,10 +4,10 @@ import {SecondaryHeader, SecondaryText} from '../ui/Text';
 import Panel from '../ui/Panel';
 import theme from '../../theme';
 import {
-    calculatePace,
     getCalculatedPaceText,
     getDistanceText,
     getDurationText,
+    getEntriesFieldValues,
     getIntensityText,
     getPaceText,
     getTrophiesLabel,
@@ -18,52 +18,84 @@ import Separator from '../ui/Separator';
 import LineChart from '../chart/LineChart';
 import {TimelineEntry} from '../../types/TimelineEntry';
 import {getEntriesByIds, useEntriesStore} from '../../state/entries';
+import ChartLegend from '../chart/ChartLegend';
+import {TimeInterval} from '../../types/TimeInterval';
 
 interface TimelineDetailsProps {
-    timelineEntry: TimelineEntry;
+    currentEntry: TimelineEntry;
+    previousEntry: TimelineEntry | null;
+    timeInterval: TimeInterval.YEAR | TimeInterval.MONTH;
 }
 
-function TimelineDetails({timelineEntry}: TimelineDetailsProps) {
-    const entries = useEntriesStore(getEntriesByIds(timelineEntry.entryIds));
-    const distancePoints = entries.map((entry) => entry.distance);
-    const durationPoints = entries.map((entry) => entry.duration);
-    const intensityPoints = entries.map((entry) => entry.effort);
-    const pacePoints = entries.map((entry) =>
-        calculatePace(entry.duration, entry.distance)
+const labelsMap = {
+    [TimeInterval.YEAR]: 'year',
+    [TimeInterval.MONTH]: 'month'
+};
+
+const getLegendItems = (timeInterval: TimeInterval) => [
+    {
+        label: `Current ${labelsMap[timeInterval]}`,
+        color: theme.COLORS.THEME_SECONDARY
+    },
+    {
+        label: `Previous ${labelsMap[timeInterval]}`,
+        color: theme.COLORS.THEME_SECONDARY_FADED
+    }
+];
+
+function TimelineDetails({
+    currentEntry,
+    previousEntry,
+    timeInterval
+}: TimelineDetailsProps) {
+    const currentEntries = useEntriesStore(
+        getEntriesByIds(currentEntry.entryIds)
     );
+    const previousEntries = useEntriesStore(
+        getEntriesByIds(previousEntry?.entryIds || [])
+    );
+    const currentPoints = getEntriesFieldValues(currentEntries);
+    const previousPoints = getEntriesFieldValues(previousEntries);
     return (
         <Panel>
             <SecondaryHeader color="secondary" style={[utils.marginBottomXL]}>
-                {timelineEntry.title}
+                {currentEntry.title}
             </SecondaryHeader>
             <View style={utils.row}>
                 <View style={utils.flex1}>
                     <SecondaryHeader style={styles.textHeader}>
-                        {timelineEntry.entryIds.length}
+                        {currentEntry.entryIds.length}
                     </SecondaryHeader>
                     <SecondaryText>
-                        {getWorkoutsLabel(timelineEntry.entryIds.length)}
+                        {getWorkoutsLabel(currentEntry.entryIds.length)}
                     </SecondaryText>
                 </View>
                 <View style={utils.flex1}>
                     <SecondaryHeader style={styles.textHeader}>
-                        {timelineEntry.trophiesCount}
+                        {currentEntry.trophiesCount}
                     </SecondaryHeader>
                     <SecondaryText>
-                        {getTrophiesLabel(timelineEntry.trophiesCount)}
+                        {getTrophiesLabel(currentEntry.trophiesCount)}
                     </SecondaryText>
                 </View>
             </View>
+            {previousEntry !== undefined && (
+                <>
+                    <Separator />
+                    <ChartLegend items={getLegendItems(timeInterval)} />
+                </>
+            )}
             <Separator marginBottom={theme.SPACING.L} />
             <View>
                 <SecondaryHeader style={styles.textHeader}>
-                    {getDistanceText(timelineEntry.distance)}
+                    {getDistanceText(currentEntry.distance)}
                 </SecondaryHeader>
                 <SecondaryText>Distance</SecondaryText>
             </View>
             <LineChart
                 style={styles.chart}
-                data={distancePoints}
+                data={currentPoints.distance}
+                secondaryData={previousPoints.distance}
                 formatLabel={getDistanceText}
             />
             <Separator
@@ -72,13 +104,14 @@ function TimelineDetails({timelineEntry}: TimelineDetailsProps) {
             />
             <View>
                 <SecondaryHeader style={styles.textHeader}>
-                    {getDurationText(timelineEntry.duration)}
+                    {getDurationText(currentEntry.duration)}
                 </SecondaryHeader>
                 <SecondaryText>Duration</SecondaryText>
             </View>
             <LineChart
                 style={styles.chart}
-                data={durationPoints}
+                data={currentPoints.duration}
+                secondaryData={previousPoints.duration}
                 formatLabel={getDurationText}
             />
             <Separator
@@ -87,16 +120,14 @@ function TimelineDetails({timelineEntry}: TimelineDetailsProps) {
             />
             <View>
                 <SecondaryHeader style={styles.textHeader}>
-                    {getPaceText(
-                        timelineEntry.duration,
-                        timelineEntry.distance
-                    )}
+                    {getPaceText(currentEntry.duration, currentEntry.distance)}
                 </SecondaryHeader>
                 <SecondaryText>Avg. Pace</SecondaryText>
             </View>
             <LineChart
                 style={styles.chart}
-                data={pacePoints}
+                data={currentPoints.pace}
+                secondaryData={previousPoints.pace}
                 formatLabel={getCalculatedPaceText}
             />
             <Separator
@@ -105,13 +136,14 @@ function TimelineDetails({timelineEntry}: TimelineDetailsProps) {
             />
             <View>
                 <SecondaryHeader style={styles.textHeader}>
-                    {getIntensityText(timelineEntry.effort)}
+                    {getIntensityText(currentEntry.effort)}
                 </SecondaryHeader>
                 <SecondaryText>Avg. Intensity</SecondaryText>
             </View>
             <LineChart
                 style={styles.chart}
-                data={intensityPoints}
+                data={currentPoints.intensity}
+                secondaryData={previousPoints.intensity}
                 yAxisData={[1, 2, 3, 4, 5]}
                 formatLabel={getIntensityText}
             />

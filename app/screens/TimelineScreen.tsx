@@ -33,8 +33,15 @@ function TimelineScreen({navigation}) {
         getTimelineEntries(filter, timeInterval)
     );
 
-    const navigateToDetails = (entry: TimelineEntry) => {
-        navigation.navigate('timeline-details', entry);
+    const navigateToDetails = (
+        currentEntry: TimelineEntry,
+        previousEntry: TimelineEntry | undefined
+    ) => {
+        navigation.navigate('timeline-details', {
+            currentEntry,
+            previousEntry,
+            timeInterval
+        });
     };
 
     const setTimeInterval = (
@@ -52,11 +59,13 @@ function TimelineScreen({navigation}) {
                         style={[utils.marginHorizontalM, utils.marginVerticalM]}
                         onChange={setTimeInterval}
                     />
-                    {timelineEntries.map((entry) => (
+                    {timelineEntries.map((entry, i) => (
                         <TimelineCard
                             key={entry.title}
                             timelineEntry={entry}
-                            onPress={() => navigateToDetails(entry)}
+                            onPress={() =>
+                                navigateToDetails(entry, timelineEntries[i - 1])
+                            }
                         />
                     ))}
                 </ScrollView>
