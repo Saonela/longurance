@@ -9,14 +9,6 @@ import {EntriesSettings} from '../types/EntriesSettings';
 import {EntriesSortBy} from '../enums/EntriesSortBy';
 import {SortDirection} from '../enums/SortDirection';
 import {calculatePace} from '../lib/entry';
-import {TimelineEntry} from '../types/TimelineEntry';
-import {
-    getAverageIntensity,
-    getTotalDistance,
-    getTotalDuration
-} from '../lib/statistics';
-import {getEntryTrophies, useTrophiesStore} from './trophies';
-import {TrophyType} from '../types/Trophy';
 
 export interface EntriesState {
     entries: Entry[];
@@ -130,48 +122,3 @@ export const getSortedEntries =
                 ? diff
                 : -diff;
         });
-
-export const getTimelineEntries =
-    (activity: Activity | null, timeInterval: TimeInterval) =>
-    (state: EntriesState): TimelineEntry[] => {
-        const keyFunc = (date: string) => {
-            if (timeInterval === TimeInterval.YEAR) {
-                return new Date(date).getFullYear().toString();
-            }
-            return moment(date).format('MMMM, YYYY');
-        };
-
-        const entriesMap = new Map();
-        filterEntriesByActivity(state.entries, activity).forEach((entry) => {
-            const key = keyFunc(entry.date);
-            if (!entriesMap.has(key)) entriesMap.set(key, []);
-            entriesMap.get(key).push(entry);
-        });
-
-        const trophiesState = useTrophiesStore.getState();
-        return Array.from(entriesMap).map(([key, entries]) => {
-            return {
-                title: key,
-                distance: getTotalDistance(entries),
-                duration: getTotalDuration(entries),
-                effort: getAverageIntensity(entries),
-                workoutsCount: entries.length,
-                trophiesCount: entries.reduce((total, {id}) => {
-                    const individualTrophies = getEntryTrophies(
-                        id,
-                        TrophyType.INDIVIDUAL
-                    )(trophiesState);
-                    const totalTrophies = getEntryTrophies(
-                        id,
-                        TrophyType.TOTAL
-                    )(trophiesState).filter(
-                        (trophy) =>
-                            trophy.entryIds[trophy.entryIds.length - 1] === id
-                    );
-                    return (
-                        total + individualTrophies.length + totalTrophies.length
-                    );
-                }, 0)
-            };
-        });
-    };
