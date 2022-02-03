@@ -6,26 +6,34 @@ import theme from '../../theme';
 
 interface LineChartProps {
     data: number[];
+    secondaryData?: number[];
     yAxisData?: number[];
     formatLabel?: (value: number) => string;
     style?: ViewStyle | ViewStyle[];
 }
 
 const Decorator = ({x, y, data}: any) => {
-    return data.map((value, index) => (
-        <Circle
-            key={index}
-            cx={x(index)}
-            cy={y(value)}
-            r={5}
-            stroke={theme.COLORS.THEME_SECONDARY}
-            fill={theme.COLORS.BACKGROUND_PRIMARY}
-        />
-    ));
+    return data.map((dataset, datasetIndex) =>
+        dataset.data.map((value, index) => (
+            <Circle
+                key={index}
+                cx={x(index)}
+                cy={y(value)}
+                r={5}
+                stroke={
+                    datasetIndex === 1
+                        ? theme.COLORS.THEME_SECONDARY
+                        : theme.COLORS.THEME_SECONDARY_FADED
+                }
+                fill={theme.COLORS.BACKGROUND_PRIMARY}
+            />
+        ))
+    );
 };
 
 function LineChart({
-    data,
+    data = [],
+    secondaryData = [],
     yAxisData = [...data, 0],
     formatLabel,
     style
@@ -38,6 +46,18 @@ function LineChart({
         bottom: 7,
         left: 7
     };
+
+    const datasets = [
+        {
+            data: secondaryData,
+            svg: {stroke: theme.COLORS.THEME_SECONDARY_FADED}
+        },
+        {
+            data,
+            svg: {stroke: theme.COLORS.THEME_SECONDARY}
+        }
+    ];
+
     return (
         <View style={[styles.container, style]}>
             <YAxis
@@ -54,7 +74,7 @@ function LineChart({
             />
             <SvgLineChart
                 style={styles.chart}
-                data={data}
+                data={datasets}
                 contentInset={contentInset}
                 numberOfTicks={4}
                 gridMax={maxValue}
