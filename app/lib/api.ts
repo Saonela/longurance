@@ -4,6 +4,7 @@ import {Activity} from '../types/Activity';
 import {Trophy} from '../types/Trophy';
 import {EntriesSettings} from '../types/EntriesSettings';
 import {TrophiesSettings} from '../types/TrophiesSettings';
+import {TimelineSettings} from '../types/TimelineSettings';
 
 const FILTERS_KEY = 'filters';
 const ACTIVITY_FILTER_KEY = 'activityFilter';
@@ -11,6 +12,7 @@ const ENTRIES_KEY = 'entries';
 const TROPHIES_KEY = 'trophies';
 const ENTRIES_SETTINGS_KEY = 'entriesSettings';
 const TROPHIES_SETTINGS_KEY = 'trophiesSettings';
+const TIMELINE_SETTINGS_KEY = 'timelineSettings';
 
 export async function fetchFilters(): Promise<object> {
     const filter = await Storage.getItem<object>(FILTERS_KEY);
@@ -69,4 +71,12 @@ export async function fetchTrophiesSettings(): Promise<TrophiesSettings | null> 
 
 export async function saveTrophiesSettings(settings: TrophiesSettings | null) {
     return Storage.setItem(TROPHIES_SETTINGS_KEY, settings);
+}
+
+export async function fetchTimelineSettings(): Promise<TimelineSettings | null> {
+    return Storage.getItem<TimelineSettings | null>(TIMELINE_SETTINGS_KEY);
+}
+
+export async function saveTimelineSettings(settings: TimelineSettings | null) {
+    return Storage.setItem(TIMELINE_SETTINGS_KEY, settings);
 }
