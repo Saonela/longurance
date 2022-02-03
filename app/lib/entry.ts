@@ -10,6 +10,10 @@ export function calculatePace(duration: number, distance: number) {
 
 export function getPaceText(duration: number, distance: number) {
     const pace = calculatePace(duration, distance);
+    return getCalculatedPaceText(pace);
+}
+
+export function getCalculatedPaceText(pace: number) {
     const minutes = Math.round(pace / 60) % 60;
     const seconds = pace % 60;
     return `${minutes}'${seconds < 10 ? `0${seconds}` : seconds}"`;
