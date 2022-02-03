@@ -6,6 +6,7 @@ import theme from '../../theme';
 
 interface LineChartProps {
     data: number[];
+    yAxisData?: number[];
     formatLabel?: (value: number) => string;
     style?: ViewStyle | ViewStyle[];
 }
@@ -23,8 +24,14 @@ const Decorator = ({x, y, data}: any) => {
     ));
 };
 
-function LineChart({data, formatLabel, style}: LineChartProps) {
-    const yAxisData = [...data, 0];
+function LineChart({
+    data,
+    yAxisData = [...data, 0],
+    formatLabel,
+    style
+}: LineChartProps) {
+    const maxValue = Math.max(...yAxisData);
+    const minValue = Math.min(...yAxisData);
     const contentInset = {
         top: 7,
         right: 7,
@@ -38,6 +45,8 @@ function LineChart({data, formatLabel, style}: LineChartProps) {
                 formatLabel={formatLabel}
                 contentInset={contentInset}
                 numberOfTicks={4}
+                max={maxValue}
+                min={minValue}
                 svg={{
                     fontSize: theme.FONT_SIZE.SECONDARY,
                     fill: theme.COLORS.FONT_SECONDARY
@@ -47,14 +56,16 @@ function LineChart({data, formatLabel, style}: LineChartProps) {
                 style={styles.chart}
                 data={data}
                 contentInset={contentInset}
-                gridMin={0}
+                numberOfTicks={4}
+                gridMax={maxValue}
+                gridMin={minValue}
                 svg={{stroke: theme.COLORS.THEME_SECONDARY}}
             >
                 <Decorator />
                 <Grid
                     svg={{
                         stroke: theme.COLORS.BACKGROUND_TERTIARY,
-                        strokeDasharray: '8,4'
+                        strokeDasharray: '16,8'
                     }}
                 />
             </SvgLineChart>
