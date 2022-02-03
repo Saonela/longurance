@@ -2,14 +2,14 @@ import React from 'react';
 import {ScrollView, View} from 'react-native';
 import appStyles from '../styles';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
-import {useActivityFilterStore} from '../state/activityFilter';
+import {useActivityFilterStore} from '../state/activity-filter';
 import TimelineCard from '../components/timeline/TimelineCard';
 import SelectionButtons from '../components/shared/SelectionButtons';
 import utils from '../styles-utilities';
 import {TimeInterval} from '../types/TimeInterval';
 import {TimelineEntry} from '../types/TimelineEntry';
 import {useEntriesStore} from '../state/entries';
-import {getTimelineEntries} from '../state/timelineEntries';
+import {getTimelineEntries} from '../state/timeline-entries';
 import {
     setTimelineSettings,
     useTimelineSettingsStore

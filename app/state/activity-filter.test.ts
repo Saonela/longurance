@@ -2,7 +2,7 @@ import {
     loadActivityFilter,
     setActivityFilter,
     useActivityFilterStore
-} from './activityFilter';
+} from './activity-filter';
 import {Activity} from '../types/Activity';
 import * as api from '../lib/api';
 

@@ -4,7 +4,7 @@ import EntryCard from './EntryCard';
 import theme from '../../theme';
 import {getSortedEntries, useEntriesStore} from '../../state/entries';
 import NoDataMessage from '../list/NoDataMessage';
-import {useActivityFilterStore} from '../../state/activityFilter';
+import {useActivityFilterStore} from '../../state/activity-filter';
 import {useEntriesSettingsStore} from '../../state/entries-settings';
 
 interface EntryListProps {

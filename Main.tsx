@@ -16,7 +16,7 @@ import EntryDetailsScreen from './app/screens/EntryDetailsScreen';
 import StatisticsScreen from './app/screens/StatisticsScreen';
 import useFiltersStore from './app/state/filters';
 import {loadEntries} from './app/state/entries';
-import {loadActivityFilter} from './app/state/activityFilter';
+import {loadActivityFilter} from './app/state/activity-filter';
 import DashboardScreen from './app/screens/DashboardScreen';
 import {loadTrophies} from './app/state/trophies';
 import TrophyDetailsScreen from './app/screens/TrophyDetailsScreen';

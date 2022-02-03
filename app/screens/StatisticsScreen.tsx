@@ -5,7 +5,7 @@ import TotalStatistics from '../components/statistics/TotalStatistics';
 import AverageStatistics from '../components/statistics/AverageStatistics';
 import PeakStatistics from '../components/statistics/PeakStatistics';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
-import {useActivityFilterStore} from '../state/activityFilter';
+import {useActivityFilterStore} from '../state/activity-filter';
 import {getEntries, useEntriesStore} from '../state/entries';
 import {getTrophiesByState, useTrophiesStore} from '../state/trophies';
 

@@ -14,7 +14,7 @@ import SelectionButtons from '../shared/SelectionButtons';
 import EntryEffortBar from '../entry/EntryEffortBar';
 import useFiltersStore from '../../state/filters';
 import {TimeInterval} from '../../types/TimeInterval';
-import {useActivityFilterStore} from '../../state/activityFilter';
+import {useActivityFilterStore} from '../../state/activity-filter';
 import {getEntries, useEntriesStore} from '../../state/entries';
 import {
     getAverageIntensity,

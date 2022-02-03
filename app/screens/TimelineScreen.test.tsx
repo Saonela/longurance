@@ -4,7 +4,7 @@ import {Activity} from '../types/Activity';
 import {Entry} from '../types/Entry';
 import {useEntriesStore} from '../state/entries';
 import TimelineScreen from './TimelineScreen';
-import {useActivityFilterStore} from '../state/activityFilter';
+import {useActivityFilterStore} from '../state/activity-filter';
 import {useTimelineSettingsStore} from '../state/timeline-settings';
 import {TimeInterval} from '../types/TimeInterval';
 

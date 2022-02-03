@@ -6,7 +6,7 @@ import theme from '../../theme';
 import {
     setActivityFilter,
     useActivityFilterStore
-} from '../../state/activityFilter';
+} from '../../state/activity-filter';
 
 const options = [{label: 'All', value: null}, ...ActivityOptions];
 

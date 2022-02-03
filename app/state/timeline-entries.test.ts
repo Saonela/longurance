@@ -4,7 +4,7 @@ import {useTrophiesStore} from './trophies';
 import {Trophy, TrophyType} from '../types/Trophy';
 import {TimeInterval} from '../types/TimeInterval';
 import {EntriesState} from './entries';
-import {getTimelineEntries} from './timelineEntries';
+import {getTimelineEntries} from './timeline-entries';
 
 describe('Timeline entries state', () => {
     let state: EntriesState;
