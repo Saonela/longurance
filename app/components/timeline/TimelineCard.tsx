@@ -20,7 +20,7 @@ interface TimelineCardProps {
 }
 
 function TimelineCard({timelineEntry, onPress}: TimelineCardProps) {
-    const {title, distance, duration, effort, workoutsCount} = timelineEntry;
+    const {title, distance, duration, effort, entryIds} = timelineEntry;
     return (
         <TouchableNativeFeedback
             accessibilityLabel="Timeline card"
@@ -30,7 +30,7 @@ function TimelineCard({timelineEntry, onPress}: TimelineCardProps) {
                 <Panel>
                     <SecondaryHeader color="primary">{title} </SecondaryHeader>
                     <SecondaryText style={utils.marginTopS} color="secondary">
-                        {workoutsCount} {getWorkoutsLabel(workoutsCount)}
+                        {entryIds.length} {getWorkoutsLabel(entryIds.length)}
                     </SecondaryText>
                     <Separator marginBottom={theme.SPACING.L} />
                     <View style={[utils.row]}>

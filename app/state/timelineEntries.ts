@@ -37,7 +37,7 @@ export const getTimelineEntries =
                 distance: getTotalDistance(entries),
                 duration: getTotalDuration(entries),
                 effort: getAverageIntensity(entries),
-                workoutsCount: entries.length,
+                entryIds: entries.map((entry) => entry.id),
                 trophiesCount: entries.reduce((total, {id}) => {
                     const individualTrophies = getEntryTrophies(
                         id,

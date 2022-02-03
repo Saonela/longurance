@@ -3,6 +3,6 @@ export interface TimelineEntry {
     distance: number;
     duration: number;
     effort: number;
-    workoutsCount: number;
+    entryIds: string[];
     trophiesCount: number;
 }

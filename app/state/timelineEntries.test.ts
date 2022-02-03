@@ -73,7 +73,7 @@ describe('Timeline entries state', () => {
                 distance: 2.5,
                 duration: 3000,
                 effort: 4,
-                workoutsCount: 1,
+                entryIds: ['4'],
                 trophiesCount: 1
             },
             {
@@ -81,7 +81,7 @@ describe('Timeline entries state', () => {
                 distance: 50,
                 duration: 7200,
                 effort: 5,
-                workoutsCount: 1,
+                entryIds: ['3'],
                 trophiesCount: 1
             },
             {
@@ -89,7 +89,7 @@ describe('Timeline entries state', () => {
                 distance: 12,
                 duration: 7200,
                 effort: 2,
-                workoutsCount: 2,
+                entryIds: ['2', '1'],
                 trophiesCount: 0
             }
         ]);
@@ -102,7 +102,7 @@ describe('Timeline entries state', () => {
                 distance: 2.5,
                 duration: 3000,
                 effort: 4,
-                workoutsCount: 1,
+                entryIds: ['4'],
                 trophiesCount: 1
             },
             {
@@ -110,7 +110,7 @@ describe('Timeline entries state', () => {
                 distance: 62,
                 duration: 14400,
                 effort: 3,
-                workoutsCount: 3,
+                entryIds: ['3', '2', '1'],
                 trophiesCount: 1
             }
         ]);
