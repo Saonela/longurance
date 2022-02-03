@@ -30,7 +30,7 @@ function TimelineCard({timelineEntry, onPress}: TimelineCardProps) {
                 <Panel>
                     <SecondaryHeader color="primary">{title} </SecondaryHeader>
                     <SecondaryText style={utils.marginTopS} color="secondary">
-                        {getWorkoutsLabel(workoutsCount)}
+                        {workoutsCount} {getWorkoutsLabel(workoutsCount)}
                     </SecondaryText>
                     <Separator marginBottom={theme.SPACING.L} />
                     <View style={[utils.row]}>
