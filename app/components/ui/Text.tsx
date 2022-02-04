@@ -36,6 +36,19 @@ export function SecondaryHeader({
     );
 }
 
+export function PrimaryTitle({
+    style = {},
+    color = 'primary',
+    children,
+    ...props
+}: TextProps) {
+    return (
+        <Text {...props} style={[styles.primaryTitle, colors[color], style]}>
+            {children}
+        </Text>
+    );
+}
+
 export function PrimaryText({
     style = {},
     color = 'primary',
@@ -70,6 +83,10 @@ const styles = StyleSheet.create({
     secondaryHeader: {
         fontFamily: 'LatoBlack',
         fontSize: theme.FONT_SIZE.HEADER_SECONDARY
+    },
+    primaryTitle: {
+        fontFamily: 'LatoBlack',
+        fontSize: theme.FONT_SIZE.PRIMARY
     },
     primaryText: {
         fontFamily: theme.FONT_FAMILY.PRIMARY,
