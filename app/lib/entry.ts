@@ -1,5 +1,6 @@
 import {Activity} from '../types/Activity';
 import {splitSecondsIntoChunks} from './utility';
+import {Entry} from '../types/Entry';
 
 export function calculatePace(duration: number, distance: number) {
     if (duration && distance) {
@@ -46,4 +47,27 @@ export function getActivityTypeText(type: Activity) {
     if (type === Activity.CYCLING) return 'CYCLE';
     if (type === Activity.SWIMMING) return 'SWIM';
     if (type === Activity.RUNNING) return 'RUN';
+}
+
+export function getEntriesFieldValues(entries: Entry[]) {
+    return entries.reduce(
+        (values, {distance, duration, effort}) => {
+            values.distance.push(distance);
+            values.duration.push(duration);
+            values.intensity.push(effort);
+            values.pace.push(calculatePace(duration, distance));
+            return values;
+        },
+        {
+            distance: [],
+            duration: [],
+            intensity: [],
+            pace: []
+        } as {
+            distance: number[];
+            duration: number[];
+            intensity: number[];
+            pace: number[];
+        }
+    );
 }

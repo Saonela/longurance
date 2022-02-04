@@ -6,9 +6,9 @@ import {SecondaryHeader, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import Panel from '../ui/Panel';
 import {
-    calculatePace,
     getDistanceText,
     getDurationText,
+    getEntriesFieldValues,
     getIntensityText
 } from '../../lib/entry';
 import StatisticsRow from './StatisticsRow';
@@ -28,13 +28,7 @@ function AverageStatistics({entries}: AverageStatisticsProps) {
     const avgDistance = getAverageDistance(entries);
     const avgDuration = getAverageDuration(entries);
     const avgIntensity = getAverageIntensity(entries);
-
-    const distancePoints = entries.map((entry) => entry.distance);
-    const durationPoints = entries.map((entry) => entry.duration);
-    const intensityPoints = entries.map((entry) => entry.effort);
-    const pacePoints = entries.map((entry) =>
-        calculatePace(entry.duration, entry.distance)
-    );
+    const points = getEntriesFieldValues(entries);
     return (
         <Panel>
             <SecondaryHeader style={[utils.marginBottomM]} color="secondary">
@@ -47,7 +41,7 @@ function AverageStatistics({entries}: AverageStatisticsProps) {
                     </SecondaryHeader>
                     <SecondaryText>Avg. Distance</SecondaryText>
                 </View>
-                <MinimalLineChart data={distancePoints} />
+                <MinimalLineChart data={points.distance} />
             </StatisticsRow>
             <StatisticsRow>
                 <View style={styles.textBlock}>
@@ -56,7 +50,7 @@ function AverageStatistics({entries}: AverageStatisticsProps) {
                     </SecondaryHeader>
                     <SecondaryText>Avg. Duration</SecondaryText>
                 </View>
-                <MinimalLineChart data={durationPoints} />
+                <MinimalLineChart data={points.duration} />
             </StatisticsRow>
             <StatisticsRow>
                 <View style={styles.textBlock}>
@@ -65,7 +59,7 @@ function AverageStatistics({entries}: AverageStatisticsProps) {
                     </SecondaryHeader>
                     <SecondaryText>Avg. Pace</SecondaryText>
                 </View>
-                <MinimalLineChart data={pacePoints} />
+                <MinimalLineChart data={points.pace} />
             </StatisticsRow>
             <StatisticsRow>
                 <View style={styles.textBlock}>
@@ -74,7 +68,7 @@ function AverageStatistics({entries}: AverageStatisticsProps) {
                     </SecondaryHeader>
                     <SecondaryText>Avg. Intensity</SecondaryText>
                 </View>
-                <MinimalLineChart data={intensityPoints} />
+                <MinimalLineChart data={points.intensity} />
             </StatisticsRow>
         </Panel>
     );
