@@ -36,6 +36,21 @@ describe('TimelineDetailsScreen', () => {
         getByText(/24'00"/);
         getByText(/3\/5/);
         expect(queryByTestId('chart-legend')).toBeNull();
+        expect(queryByTestId('previous-timeline-entry-details')).toBeNull();
+    });
+
+    it('should display previous entry details', () => {
+        const params = {currentEntry, previousEntry};
+        const component = <TimelineDetailsScreen route={{params}} />;
+        const {getByText, queryByTestId, queryAllByTestId} = render(component);
+        getByText(/20km/);
+        getByText(/10h 00min/);
+        getByText(/25'00"/);
+        getByText(/4\/5/);
+        expect(queryByTestId('chart-legend')).toBeTruthy();
+        expect(queryAllByTestId('previous-timeline-entry-details').length).toBe(
+            4
+        );
     });
 
     it('should set monthly chart legend labels', () => {

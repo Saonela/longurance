@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {SecondaryHeader, SecondaryText} from '../ui/Text';
+import {PrimaryTitle, SecondaryHeader, SecondaryText} from '../ui/Text';
 import Panel from '../ui/Panel';
 import theme from '../../theme';
 import {
@@ -42,6 +42,32 @@ const getLegendItems = (timeInterval: TimeInterval) => [
         color: theme.COLORS.THEME_SECONDARY_FADED
     }
 ];
+
+function TimelineDetailsRow({
+    label,
+    currentValue,
+    previousValue,
+    showPrevious
+}) {
+    return (
+        <View style={[utils.row, utils.justifyBetween, utils.alignEnd]}>
+            <View>
+                <SecondaryHeader style={styles.textHeader}>
+                    {currentValue}
+                </SecondaryHeader>
+                <SecondaryText>{label}</SecondaryText>
+            </View>
+            {showPrevious && (
+                <View testID="previous-timeline-entry-details">
+                    <PrimaryTitle color="secondary" style={[styles.textHeader]}>
+                        {previousValue}
+                    </PrimaryTitle>
+                    <SecondaryText>{label}</SecondaryText>
+                </View>
+            )}
+        </View>
+    );
+}
 
 function TimelineDetails({
     currentEntry,
@@ -86,12 +112,12 @@ function TimelineDetails({
                 </>
             )}
             <Separator marginBottom={theme.SPACING.L} />
-            <View>
-                <SecondaryHeader style={styles.textHeader}>
-                    {getDistanceText(currentEntry.distance)}
-                </SecondaryHeader>
-                <SecondaryText>Distance</SecondaryText>
-            </View>
+            <TimelineDetailsRow
+                label="Distance"
+                currentValue={getDistanceText(currentEntry.distance)}
+                previousValue={getDistanceText(previousEntry?.distance || 0)}
+                showPrevious={!!previousEntry}
+            />
             <LineChart
                 style={styles.chart}
                 data={currentPoints.distance}
@@ -102,12 +128,12 @@ function TimelineDetails({
                 marginTop={theme.SPACING.L}
                 marginBottom={theme.SPACING.L}
             />
-            <View>
-                <SecondaryHeader style={styles.textHeader}>
-                    {getDurationText(currentEntry.duration)}
-                </SecondaryHeader>
-                <SecondaryText>Duration</SecondaryText>
-            </View>
+            <TimelineDetailsRow
+                label="Duration"
+                currentValue={getDurationText(currentEntry.duration)}
+                previousValue={getDurationText(previousEntry?.duration || 0)}
+                showPrevious={!!previousEntry}
+            />
             <LineChart
                 style={styles.chart}
                 data={currentPoints.duration}
@@ -118,12 +144,18 @@ function TimelineDetails({
                 marginTop={theme.SPACING.L}
                 marginBottom={theme.SPACING.L}
             />
-            <View>
-                <SecondaryHeader style={styles.textHeader}>
-                    {getPaceText(currentEntry.duration, currentEntry.distance)}
-                </SecondaryHeader>
-                <SecondaryText>Avg. Pace</SecondaryText>
-            </View>
+            <TimelineDetailsRow
+                label="Avg. Pace"
+                currentValue={getPaceText(
+                    currentEntry.duration,
+                    currentEntry.distance
+                )}
+                previousValue={getPaceText(
+                    previousEntry?.duration || 0,
+                    previousEntry?.distance || 0
+                )}
+                showPrevious={!!previousEntry}
+            />
             <LineChart
                 style={styles.chart}
                 data={currentPoints.pace}
@@ -134,12 +166,12 @@ function TimelineDetails({
                 marginTop={theme.SPACING.L}
                 marginBottom={theme.SPACING.L}
             />
-            <View>
-                <SecondaryHeader style={styles.textHeader}>
-                    {getIntensityText(currentEntry.effort)}
-                </SecondaryHeader>
-                <SecondaryText>Avg. Intensity</SecondaryText>
-            </View>
+            <TimelineDetailsRow
+                label="Avg. Intensity"
+                currentValue={getIntensityText(currentEntry.effort)}
+                previousValue={getIntensityText(previousEntry?.effort || 0)}
+                showPrevious={!!previousEntry}
+            />
             <LineChart
                 style={styles.chart}
                 data={currentPoints.intensity}
