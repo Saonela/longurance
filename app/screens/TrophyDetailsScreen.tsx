@@ -8,6 +8,7 @@ import {deleteTrophy, getTrophy, useTrophiesStore} from '../state/trophies';
 import {getEntriesByIds, useEntriesStore} from '../state/entries';
 import EntryCard from '../components/entry/EntryCard';
 import theme from '../theme';
+import utils from '../styles-utilities';
 
 function TrophyDetailsScreen({route, navigation}) {
     const trophy = useTrophiesStore((state) =>
@@ -43,11 +44,8 @@ function TrophyDetailsScreen({route, navigation}) {
 
         navigation.setOptions({
             title: 'Trophy Details',
-            headerTitleStyle: {
-                maxWidth: 200
-            },
             headerRight: () => (
-                <View style={{display: 'flex', flexDirection: 'row'}}>
+                <View style={utils.row}>
                     <HeaderButton
                         iconName="edit"
                         onPress={() =>
