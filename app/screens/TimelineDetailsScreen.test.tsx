@@ -53,6 +53,18 @@ describe('TimelineDetailsScreen', () => {
         );
     });
 
+    it('should display percentage difference between current and previous data', () => {
+        const params = {currentEntry, previousEntry};
+        const component = <TimelineDetailsScreen route={{params}} />;
+        const {queryByTestId} = render(component);
+        within(queryByTestId('timeline-entry-distance-details')).getByText(
+            /25%/
+        );
+        within(queryByTestId('timeline-entry-duration-details')).getByText(
+            /20%/
+        );
+    });
+
     it('should set monthly chart legend labels', () => {
         const params = {
             currentEntry,

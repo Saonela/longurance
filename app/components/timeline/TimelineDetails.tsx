@@ -4,12 +4,12 @@ import {PrimaryTitle, SecondaryHeader, SecondaryText} from '../ui/Text';
 import Panel from '../ui/Panel';
 import theme from '../../theme';
 import {
+    calculatePace,
     getCalculatedPaceText,
     getDistanceText,
     getDurationText,
     getEntriesFieldValues,
     getIntensityText,
-    getPaceText,
     getTrophiesLabel,
     getWorkoutsLabel
 } from '../../lib/entry';
@@ -20,6 +20,7 @@ import {TimelineEntry} from '../../types/TimelineEntry';
 import {getEntriesByIds, useEntriesStore} from '../../state/entries';
 import ChartLegend from '../chart/ChartLegend';
 import {TimeInterval} from '../../types/TimeInterval';
+import PercentageLabel from '../ui/PercentageLabel';
 
 interface TimelineDetailsProps {
     currentEntry: TimelineEntry;
@@ -43,24 +44,44 @@ const getLegendItems = (timeInterval: TimeInterval) => [
     }
 ];
 
+interface TimelineDetailsRowProps {
+    label: string;
+    formatValue: (value: number, value2?: number) => string;
+    currentValue: number;
+    previousValue: number | undefined;
+    showPercentage?: boolean;
+    testID?: string;
+}
+
 function TimelineDetailsRow({
     label,
+    formatValue,
     currentValue,
     previousValue,
-    showPrevious
-}) {
+    showPercentage = false,
+    testID = ''
+}: TimelineDetailsRowProps) {
     return (
-        <View style={[utils.row, utils.justifyBetween, utils.alignEnd]}>
+        <View
+            testID={testID}
+            style={[utils.row, utils.justifyBetween, utils.alignEnd]}
+        >
             <View>
                 <SecondaryHeader style={styles.textHeader}>
-                    {currentValue}
+                    {formatValue(currentValue)}{' '}
+                    {showPercentage && !!previousValue && (
+                        <PercentageLabel
+                            value1={currentValue}
+                            value2={previousValue}
+                        />
+                    )}
                 </SecondaryHeader>
                 <SecondaryText>{label}</SecondaryText>
             </View>
-            {showPrevious && (
+            {!!previousValue && (
                 <View testID="previous-timeline-entry-details">
                     <PrimaryTitle color="secondary" style={[styles.textHeader]}>
-                        {previousValue}
+                        {formatValue(previousValue)}
                     </PrimaryTitle>
                     <SecondaryText>{label}</SecondaryText>
                 </View>
@@ -113,10 +134,12 @@ function TimelineDetails({
             )}
             <Separator marginBottom={theme.SPACING.L} />
             <TimelineDetailsRow
+                testID="timeline-entry-distance-details"
                 label="Distance"
-                currentValue={getDistanceText(currentEntry.distance)}
-                previousValue={getDistanceText(previousEntry?.distance || 0)}
-                showPrevious={!!previousEntry}
+                formatValue={getDistanceText}
+                currentValue={currentEntry.distance}
+                previousValue={previousEntry?.distance}
+                showPercentage
             />
             <LineChart
                 style={styles.chart}
@@ -129,10 +152,12 @@ function TimelineDetails({
                 marginBottom={theme.SPACING.L}
             />
             <TimelineDetailsRow
+                testID="timeline-entry-duration-details"
                 label="Duration"
-                currentValue={getDurationText(currentEntry.duration)}
-                previousValue={getDurationText(previousEntry?.duration || 0)}
-                showPrevious={!!previousEntry}
+                formatValue={getDurationText}
+                currentValue={currentEntry.duration}
+                previousValue={previousEntry?.duration}
+                showPercentage
             />
             <LineChart
                 style={styles.chart}
@@ -146,15 +171,15 @@ function TimelineDetails({
             />
             <TimelineDetailsRow
                 label="Avg. Pace"
-                currentValue={getPaceText(
+                formatValue={getCalculatedPaceText}
+                currentValue={calculatePace(
                     currentEntry.duration,
                     currentEntry.distance
                 )}
-                previousValue={getPaceText(
+                previousValue={calculatePace(
                     previousEntry?.duration || 0,
                     previousEntry?.distance || 0
                 )}
-                showPrevious={!!previousEntry}
             />
             <LineChart
                 style={styles.chart}
@@ -168,9 +193,9 @@ function TimelineDetails({
             />
             <TimelineDetailsRow
                 label="Avg. Intensity"
-                currentValue={getIntensityText(currentEntry.effort)}
-                previousValue={getIntensityText(previousEntry?.effort || 0)}
-                showPrevious={!!previousEntry}
+                formatValue={getIntensityText}
+                currentValue={currentEntry.effort}
+                previousValue={previousEntry?.effort}
             />
             <LineChart
                 style={styles.chart}
