@@ -30,7 +30,8 @@ const zoomOut = {
 const routeIcon = {
     Dashboard: 'home',
     Timeline: 'activity',
-    Statistics: 'bar-chart'
+    Statistics: 'bar-chart',
+    Settings: 'settings'
 };
 
 function TabButton({route, options, isFocused, onPress, onLongPress}) {

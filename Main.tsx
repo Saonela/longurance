@@ -25,6 +25,7 @@ import EntryFiltersScreen from './app/screens/EntryFiltersScreen';
 import TrophiesFilterScreen from './app/screens/TrophiesFilterScreen';
 import TimelineScreen from './app/screens/TimelineScreen';
 import TimelineDetailsScreen from './app/screens/TimelineDetailsScreen';
+import SettingsScreen from './app/screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -143,6 +144,18 @@ function StatisticsScreenStack() {
     );
 }
 
+function SettingsScreenStack() {
+    return (
+        <Stack.Navigator screenOptions={mainStackScreenOptions}>
+            <Stack.Screen
+                name="settings"
+                component={SettingsScreen}
+                options={{title: 'Settings'}}
+            />
+        </Stack.Navigator>
+    );
+}
+
 function Main() {
     useEffect(() => {
         loadActivityFilter();
@@ -168,6 +181,11 @@ function Main() {
                     options={{headerShown: false}}
                     name="Statistics"
                     component={StatisticsScreenStack}
+                />
+                <Tab.Screen
+                    options={{headerShown: false}}
+                    name="Settings"
+                    component={SettingsScreenStack}
                 />
             </Tab.Navigator>
         </NavigationContainer>

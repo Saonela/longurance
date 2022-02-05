@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingHorizontal: theme.SPACING.SM,
         backgroundColor: theme.COLORS.BACKGROUND_SECONDARY
     }
 });
