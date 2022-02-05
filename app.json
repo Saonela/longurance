@@ -1,8 +1,11 @@
 {
     "expo": {
         "name": "Longurance",
-        "slug": "Longurance",
+        "slug": "longurance",
         "version": "1.0.0",
+        "platforms": [
+            "android"
+        ],
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "splash": {
@@ -20,7 +23,7 @@
             "supportsTablet": true
         },
         "android": {
-            "package": "com.klaudijus.longurance",
+            "package": "com.longurance.app",
             "versionCode": 1
         },
         "web": {
