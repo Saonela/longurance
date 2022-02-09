@@ -53,3 +53,10 @@ export function hexToRGB(hex: string, alpha: number) {
     }
     return `rgba(${r}, ${g}, ${b})`;
 }
+
+export function sortByDate<T>(items: T[], key: string) {
+    return items.sort(
+        (item1, item2) =>
+            new Date(item2[key]).getTime() - new Date(item1[key]).getTime()
+    );
+}
