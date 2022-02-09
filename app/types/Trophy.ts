@@ -7,7 +7,7 @@ export interface Trophy {
     entryIds: string[];
     completedAt: string | null;
     completed: boolean;
-    markedAsRead?: boolean;
+    markedAsRead: boolean;
     predefined: boolean;
     title: string;
     activity: Activity;
