@@ -40,7 +40,7 @@ function TrophyFormScreen({route, navigation}) {
 
     const handleSubmit = (trophy: Trophy) => {
         if (isUpdateForm) {
-            updateTrophy(trophy);
+            updateTrophy({...trophy, predefined: false});
         } else {
             addTrophy(trophy);
         }

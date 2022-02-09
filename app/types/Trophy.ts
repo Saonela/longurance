@@ -8,6 +8,7 @@ export interface Trophy {
     completedAt: string | null;
     completed: boolean;
     markedAsRead?: boolean;
+    predefined: boolean;
     title: string;
     activity: Activity;
     distance: number;

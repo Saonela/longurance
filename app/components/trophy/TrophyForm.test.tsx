@@ -79,7 +79,8 @@ describe('TrophyForm', () => {
             type: TrophyType.INDIVIDUAL,
             distance: 2.5,
             duration: 8160,
-            markedAsRead: false
+            markedAsRead: false,
+            predefined: false
         });
     });
 

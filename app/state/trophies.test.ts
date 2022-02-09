@@ -38,6 +38,7 @@ describe('Trophies state', () => {
             completedAt: '2021-01-07T09:10:02.207Z',
             completed: true,
             markedAsRead: false,
+            predefined: false,
             title: 'My first half marathon !'
         }
     ];

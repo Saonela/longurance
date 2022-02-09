@@ -22,6 +22,7 @@ const defaultTrophy: Trophy = {
     completedAt: null,
     completed: false,
     markedAsRead: false,
+    predefined: false,
     title: '',
     activity: Activity.RUNNING,
     type: TrophyType.TOTAL,
