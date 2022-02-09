@@ -62,11 +62,9 @@ function LatestTrophies({
                 >
                     Create New
                 </OutlinedButton>
-                {trophies.length > 0 && (
-                    <OutlinedButton style={utils.flex1} onPress={onSeeMore}>
-                        See More
-                    </OutlinedButton>
-                )}
+                <OutlinedButton style={utils.flex1} onPress={onSeeMore}>
+                    See More
+                </OutlinedButton>
             </View>
         </View>
     );
