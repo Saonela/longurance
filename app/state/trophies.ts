@@ -12,7 +12,11 @@ import {TrophiesSettings} from '../types/TrophiesSettings';
 import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
 import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
 
-const predefinedTrophies = trophiesJson as Trophy[];
+const getPredefinedTrophies = () =>
+    (trophiesJson as Trophy[]).map((trophy) => ({
+        ...trophy,
+        id: generateId()
+    }));
 
 export interface TrophiesState {
     trophies: Trophy[];
@@ -52,6 +56,7 @@ export function deleteTrophy(id: string) {
 export async function loadTrophies() {
     const trophies = await api.fetchTrophies();
     if (!trophies.length) {
+        const predefinedTrophies = getPredefinedTrophies();
         api.saveTrophies(predefinedTrophies);
         useTrophiesStore.setState(() => ({
             trophies: predefinedTrophies

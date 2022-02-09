@@ -20,9 +20,12 @@ import {Entry} from '../types/Entry';
 import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
 import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
 
-const predefinedTrophies: Trophy[] = [{id: 'predefined'}] as Trophy[];
+const predefinedTrophies: Trophy[] = [
+    {id: 'predefined-1', title: 'First activity.'}
+] as Trophy[];
 
 jest.mock('../lib/storage');
+jest.mock('../lib/utility', () => ({generateId: () => '123456'}));
 jest.mock('../../assets/data/trophies.json', () => predefinedTrophies);
 
 describe('Trophies state', () => {
@@ -60,11 +63,10 @@ describe('Trophies state', () => {
             jest.spyOn(api, 'fetchTrophies').mockImplementation(() =>
                 Promise.resolve([])
             );
+            const expected = [{id: '123456', title: 'First activity.'}];
             await loadTrophies();
-            expect(useTrophiesStore.getState().trophies).toEqual(
-                predefinedTrophies
-            );
-            expect(saveTrophiesSpy).toHaveBeenCalledWith(predefinedTrophies);
+            expect(useTrophiesStore.getState().trophies).toEqual(expected);
+            expect(saveTrophiesSpy).toHaveBeenCalledWith(expected);
         });
 
         it('should load trophies', async () => {
