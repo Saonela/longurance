@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import TextInput from '../shared/TextInput';
+import TextInput from '../ui/TextInput';
 import theme from '../../theme';
 import FormLabel from './FormLabel';
 
@@ -17,7 +17,7 @@ function NoteFormField({value, style = null, onChange}: NoteFormFieldProps) {
             <TextInput
                 value={value}
                 accessibilityLabel="Note field"
-                placeholder={''}
+                placeholder=""
                 placeholderTextColor={theme.COLORS.FONT_SECONDARY}
                 numberOfLines={3}
                 onChange={onChange}

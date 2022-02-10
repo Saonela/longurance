@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment/moment';
-import TextInput from '../shared/TextInput';
+import TextInput from './TextInput';
 import appStyles from '../../styles';
 import theme from '../../theme';
 
