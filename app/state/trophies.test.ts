@@ -50,13 +50,18 @@ describe('Trophies state', () => {
         trophies
     };
 
-    describe('actions', () => {
-        let saveTrophiesSpy;
-        let deleteTrophySpy;
+    let saveTrophiesSpy;
+    let deleteTrophySpy;
 
+    beforeEach(() => {
+        saveTrophiesSpy = jest.spyOn(api, 'saveTrophies');
+        deleteTrophySpy = jest.spyOn(api, 'deleteTrophy');
+    });
+
+    describe('actions', () => {
         beforeEach(() => {
-            saveTrophiesSpy = jest.spyOn(api, 'saveTrophies');
-            deleteTrophySpy = jest.spyOn(api, 'deleteTrophy');
+            saveTrophiesSpy.mockClear();
+            deleteTrophySpy.mockClear();
         });
 
         it('should load predefined trophies if first time', async () => {
@@ -112,6 +117,7 @@ describe('Trophies state', () => {
 
     describe('completed trophies', () => {
         beforeEach(() => {
+            saveTrophiesSpy.mockClear();
             useTrophiesStore.setState({
                 trophies: [
                     {
@@ -210,6 +216,7 @@ describe('Trophies state', () => {
                     markedAsRead: false
                 }
             ]);
+            expect(saveTrophiesSpy).toHaveBeenCalledTimes(1);
         });
 
         it('should update with individual duration', () => {

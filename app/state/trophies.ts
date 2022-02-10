@@ -124,6 +124,18 @@ function isTotalTrophyCompleted(trophy: Trophy, entries: Entry[]): Entry[] {
     return isCompleted ? trophyEntries : [];
 }
 
+const hasTrophyChanged = (
+    trophy: Trophy,
+    newTrophy: Pick<
+        Trophy,
+        'completed' | 'completedAt' | 'markedAsRead' | 'entryIds'
+    >
+) =>
+    trophy.completed !== newTrophy.completed ||
+    trophy.completedAt !== newTrophy.completedAt ||
+    trophy.markedAsRead !== newTrophy.markedAsRead ||
+    trophy.entryIds.join() !== newTrophy.entryIds.join();
+
 export function updateCompletedTrophies() {
     const {entries} = useEntriesStore.getState();
     const {trophies} = useTrophiesStore.getState();
@@ -132,8 +144,7 @@ export function updateCompletedTrophies() {
         .filter((trophy) => trophy.type === TrophyType.TOTAL)
         .forEach((trophy) => {
             const trophyEntries = isTotalTrophyCompleted(trophy, entries);
-            updateTrophy({
-                ...trophy,
+            const newTrophy = {
                 completed: trophyEntries.length !== 0,
                 completedAt:
                     trophyEntries[trophyEntries.length - 1]?.date || null,
@@ -141,20 +152,25 @@ export function updateCompletedTrophies() {
                     ? trophy.markedAsRead
                     : false,
                 entryIds: trophyEntries.map((entry) => entry.id)
-            });
+            };
+            if (hasTrophyChanged(trophy, newTrophy)) {
+                updateTrophy({...trophy, ...newTrophy});
+            }
         });
 
     trophies
         .filter((trophy) => trophy.type === TrophyType.INDIVIDUAL)
         .forEach((trophy) => {
             const entry = isIndividualTrophyCompleted(trophy, entries);
-            updateTrophy({
-                ...trophy,
+            const newTrophy = {
                 completed: !!entry,
                 completedAt: entry ? entry.date : null,
                 markedAsRead: entry ? trophy.markedAsRead : false,
                 entryIds: entry ? [entry.id] : []
-            });
+            };
+            if (hasTrophyChanged(trophy, newTrophy)) {
+                updateTrophy({...trophy, ...newTrophy});
+            }
         });
 }
 
