@@ -5,7 +5,7 @@ import {Activity} from '../../types/Activity';
 import theme from '../../theme';
 import DistanceFormField from '../form/DistanceFormField';
 import DurationFormField from '../form/DurationFormField';
-import ErrorMessage from '../shared/ErrorMessage';
+import ErrorMessage from '../ui/ErrorMessage';
 import ActivityFormField from '../form/ActivityFormField';
 import TextFormField from '../form/TextFormField';
 import {Trophy, TrophyType} from '../../types/Trophy';
@@ -66,7 +66,9 @@ function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
                     }}
                 />
                 {errors.title && (
-                    <ErrorMessage style={styles.error} message={errors.title} />
+                    <ErrorMessage style={styles.error}>
+                        {errors.title}
+                    </ErrorMessage>
                 )}
             </Panel>
             <Panel>
@@ -107,10 +109,9 @@ function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
                     }}
                 />
                 {errors.durationOrDistance && (
-                    <ErrorMessage
-                        style={styles.error}
-                        message={errors.durationOrDistance}
-                    />
+                    <ErrorMessage style={styles.error}>
+                        {errors.durationOrDistance}
+                    </ErrorMessage>
                 )}
             </Panel>
             <Panel>
@@ -122,10 +123,9 @@ function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
                     }}
                 />
                 {errors.durationOrDistance && (
-                    <ErrorMessage
-                        style={styles.error}
-                        message={errors.durationOrDistance}
-                    />
+                    <ErrorMessage style={styles.error}>
+                        {errors.durationOrDistance}
+                    </ErrorMessage>
                 )}
             </Panel>
         </View>

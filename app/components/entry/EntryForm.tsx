@@ -3,7 +3,7 @@ import {Keyboard, StyleSheet, View} from 'react-native';
 import {withFormik} from 'formik';
 import {Activity} from '../../types/Activity';
 import theme from '../../theme';
-import ErrorMessage from '../shared/ErrorMessage';
+import ErrorMessage from '../ui/ErrorMessage';
 import ActivityFormField from '../form/ActivityFormField';
 import DistanceFormField from '../form/DistanceFormField';
 import DurationFormField from '../form/DurationFormField';
@@ -131,10 +131,9 @@ function EntryForm({
                     }}
                 />
                 {durationOrDistanceError && (
-                    <ErrorMessage
-                        style={styles.error}
-                        message={errors.durationOrDistance}
-                    />
+                    <ErrorMessage style={styles.error}>
+                        {errors.durationOrDistance}
+                    </ErrorMessage>
                 )}
             </Panel>
             <Panel>
@@ -146,10 +145,9 @@ function EntryForm({
                     }}
                 />
                 {durationOrDistanceError && (
-                    <ErrorMessage
-                        style={styles.error}
-                        message={errors.durationOrDistance}
-                    />
+                    <ErrorMessage style={styles.error}>
+                        {errors.durationOrDistance}
+                    </ErrorMessage>
                 )}
             </Panel>
             <Panel>
