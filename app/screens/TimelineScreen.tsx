@@ -72,7 +72,7 @@ function TimelineScreen({navigation}) {
                             key={entry.title}
                             timelineEntry={entry}
                             onPress={() =>
-                                navigateToDetails(entry, timelineEntries[i - 1])
+                                navigateToDetails(entry, timelineEntries[i + 1])
                             }
                         />
                     ))}
