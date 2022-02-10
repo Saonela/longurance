@@ -1,8 +1,8 @@
 import {act, fireEvent, render} from '@testing-library/react-native';
 import React from 'react';
-import SelectionButtons from './SelectionButtons';
+import ButtonGroup from './ButtonGroup';
 
-describe('SelectionButtons', () => {
+describe('ButtonGroup', () => {
     const items = [
         {
             label: 'Duration',
@@ -21,15 +21,10 @@ describe('SelectionButtons', () => {
     it('should toggle buttons', async () => {
         const onChangeSpy = jest.fn();
         const component = (
-            <SelectionButtons
-                selected={1}
-                items={items}
-                onChange={onChangeSpy}
-            />
+            <ButtonGroup selected={1} items={items} onChange={onChangeSpy} />
         );
 
         const {getByText} = render(component);
-
         await act(async () => {
             fireEvent.press(getByText('Duration'));
         });
@@ -39,7 +34,6 @@ describe('SelectionButtons', () => {
             fireEvent.press(getByText('Distance'));
         });
         expect(onChangeSpy).toHaveBeenCalledWith(2);
-
         getByText('Achievements');
     });
 });

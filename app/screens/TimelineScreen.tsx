@@ -4,7 +4,7 @@ import appStyles from '../styles';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import {useActivityFilterStore} from '../state/activity-filter';
 import TimelineCard from '../components/timeline/TimelineCard';
-import SelectionButtons from '../components/shared/SelectionButtons';
+import ButtonGroup from '../components/ui/ButtonGroup';
 import utils from '../styles-utilities';
 import {TimeInterval} from '../types/TimeInterval';
 import {TimelineEntry} from '../types/TimelineEntry';
@@ -45,9 +45,10 @@ function TimelineScreen({navigation}) {
         });
     };
 
-    const setTimeInterval = (
-        interval: TimeInterval.MONTH | TimeInterval.YEAR
-    ) => setTimelineSettings({timeInterval: interval});
+    const setTimeInterval = (interval: TimeInterval) =>
+        setTimelineSettings({
+            timeInterval: interval as TimeInterval.MONTH | TimeInterval.YEAR
+        });
 
     return (
         <>
@@ -61,7 +62,7 @@ function TimelineScreen({navigation}) {
                     </View>
                 )}
                 <ScrollView>
-                    <SelectionButtons
+                    <ButtonGroup<TimeInterval>
                         selected={timeInterval}
                         items={timeIntervalValues}
                         style={[utils.marginHorizontalM, utils.marginVerticalM]}

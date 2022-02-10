@@ -10,7 +10,7 @@ import {
 import theme from '../../theme';
 import {Activity} from '../../types/Activity';
 import utils from '../../styles-utilities';
-import SelectionButtons from '../shared/SelectionButtons';
+import ButtonGroup from '../ui/ButtonGroup';
 import EntryEffortBar from '../entry/EntryEffortBar';
 import useFiltersStore from '../../state/filters';
 import {TimeInterval} from '../../types/TimeInterval';
@@ -72,10 +72,10 @@ function Dashboard() {
 
     return (
         <View style={styles.panel}>
-            <SelectionButtons
+            <ButtonGroup<TimeInterval>
                 selected={dashboardTimeInterval}
                 items={timeIntervalValues}
-                style={[utils.marginBottomXL]}
+                style={utils.marginBottomXL}
                 onChange={setDashboardTimeInterval}
             />
             <View style={[utils.marginBottomXL]}>
