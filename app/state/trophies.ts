@@ -35,11 +35,21 @@ export function addTrophy(trophy: Trophy) {
 }
 
 export function updateTrophy(trophy: Trophy) {
-    api.saveTrophies([trophy]);
+    updateTrophies([trophy]);
+}
+
+export function updateTrophies(trophies: Trophy[]) {
+    api.saveTrophies(trophies);
+
+    const idMap = trophies.reduce((map, trophy) => {
+        map.set(trophy.id, trophy);
+        return map;
+    }, new Map());
+
     useTrophiesStore.setState((state) => ({
         trophies: state.trophies.map((stateTrophy) => {
-            if (stateTrophy.id === trophy.id) {
-                return {...stateTrophy, ...trophy};
+            if (idMap.has(stateTrophy.id)) {
+                return {...stateTrophy, ...idMap.get(stateTrophy.id)};
             }
             return stateTrophy;
         })
