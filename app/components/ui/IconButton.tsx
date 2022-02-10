@@ -1,32 +1,35 @@
 import React from 'react';
-import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
-import theme from '../../theme';
+import {
+    StyleSheet,
+    TouchableNativeFeedback,
+    View,
+    ViewStyle
+} from 'react-native';
+
+interface IconButtonProps {
+    size: number;
+    onPress: () => void;
+    children: React.ReactNode;
+    style: ViewStyle | ViewStyle[];
+}
 
 function IconButton({
-    icon,
     size = 36,
     style = {},
-    onPress,
-    noBackground = false
-}) {
-    const backgroundColor = noBackground
-        ? ''
-        : theme.COLORS.BACKGROUND_TERTIARY;
+    children,
+    onPress
+}: IconButtonProps) {
     return (
         <View style={[styles.button, style]}>
-            <TouchableNativeFeedback
-                style={{...styles.button}}
-                onPress={onPress}
-            >
+            <TouchableNativeFeedback style={styles.button} onPress={onPress}>
                 <View
                     style={{
                         ...styles.button,
                         width: size,
-                        height: size,
-                        backgroundColor
+                        height: size
                     }}
                 >
-                    {icon}
+                    {children}
                 </View>
             </TouchableNativeFeedback>
         </View>
