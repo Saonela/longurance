@@ -10,6 +10,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "10,000 km"
   },
   {
@@ -23,6 +24,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "5,000 km"
   },
   {
@@ -36,6 +38,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1,000 km"
   },
   {
@@ -49,6 +52,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "100 km"
   },
   {
@@ -62,6 +66,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1,000 km"
   },
   {
@@ -75,6 +80,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "500 km"
   },
   {
@@ -88,6 +94,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "100 km"
   },
   {
@@ -101,6 +108,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "10 km"
   },
   {
@@ -114,6 +122,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "100,000 km"
   },
   {
@@ -127,6 +136,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "50,000 km"
   },
   {
@@ -140,6 +150,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "10,000 km"
   },
   {
@@ -153,6 +164,7 @@
     "completed": false,
     "markedAsRead": false,
     "title": "1000 km",
+    "entryIds": [],
     "predefined": true
   },
   {
@@ -166,6 +178,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1,000 hours"
   },
   {
@@ -179,6 +192,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "500 hours"
   },
   {
@@ -192,6 +206,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "100 hours"
   },
   {
@@ -205,6 +220,7 @@
     "completed": false,
     "markedAsRead": false,
     "title": "10 hours",
+    "entryIds": [],
     "predefined": true
   },
   {
@@ -218,6 +234,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1,000 hours"
   },
   {
@@ -231,6 +248,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "500 hours"
   },
   {
@@ -244,6 +262,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "100 hours"
   },
   {
@@ -257,6 +276,7 @@
     "completed": false,
     "markedAsRead": false,
     "title": "10 hours",
+    "entryIds": [],
     "predefined": true
   },
   {
@@ -270,6 +290,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "2,000 hours"
   },
   {
@@ -283,6 +304,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1,000 hours"
   },
   {
@@ -296,6 +318,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "200 hours"
   },
   {
@@ -309,6 +332,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "20 hours"
   },
   {
@@ -322,6 +346,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Marathon"
   },
   {
@@ -335,6 +360,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Half Marathon"
   },
   {
@@ -348,6 +374,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "10 km"
   },
   {
@@ -361,6 +388,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "5 km"
   },
   {
@@ -374,6 +402,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Marathon"
   },
   {
@@ -387,6 +416,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Half Marathon"
   },
   {
@@ -400,6 +430,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "2.5 km"
   },
   {
@@ -413,6 +444,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1 km"
   },
   {
@@ -426,6 +458,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Century"
   },
   {
@@ -439,6 +472,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Half Century"
   },
   {
@@ -452,6 +486,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "40 km"
   },
   {
@@ -465,6 +500,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "20 km"
   },
   {
@@ -478,6 +514,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "4 hours"
   },
   {
@@ -491,6 +528,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "2 hours"
   },
   {
@@ -504,6 +542,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1 hour"
   },
   {
@@ -517,6 +556,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "30 minutes"
   },
   {
@@ -530,6 +570,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "3 hours"
   },
   {
@@ -543,6 +584,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "2 hours"
   },
   {
@@ -556,6 +598,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1 hour"
   },
   {
@@ -569,6 +612,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "30 minutes"
   },
   {
@@ -582,6 +626,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "8 hours"
   },
   {
@@ -595,6 +640,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "4 hours"
   },
   {
@@ -608,6 +654,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "2 hours"
   },
   {
@@ -621,6 +668,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "1 hour"
   },
   {
@@ -634,6 +682,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 4 42k"
   },
   {
@@ -647,6 +696,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 2 21k"
   },
   {
@@ -660,6 +710,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 20 5k"
   },
   {
@@ -673,6 +724,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 4 10k"
   },
   {
@@ -686,6 +738,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 2 5k"
   },
   {
@@ -699,6 +752,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 1 2.5k"
   },
   {
@@ -712,6 +766,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 9 160k"
   },
   {
@@ -725,6 +780,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 4 80k"
   },
   {
@@ -738,6 +794,7 @@
     "completed": false,
     "markedAsRead": false,
     "predefined": true,
+    "entryIds": [],
     "title": "Sub 2 40k"
   }
 ]
