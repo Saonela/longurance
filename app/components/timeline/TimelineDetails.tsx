@@ -95,12 +95,13 @@ function TimelineDetails({
     previousEntry,
     timeInterval
 }: TimelineDetailsProps) {
-    const currentEntries = useEntriesStore(
-        getEntriesByIds(currentEntry.entryIds)
-    );
-    const previousEntries = useEntriesStore(
-        getEntriesByIds(previousEntry?.entryIds || [])
-    );
+    const currentEntries = [
+        ...useEntriesStore(getEntriesByIds(currentEntry.entryIds))
+    ].reverse();
+    const previousEntries = [
+        ...useEntriesStore(getEntriesByIds(previousEntry?.entryIds || []))
+    ].reverse();
+
     const currentPoints = getEntriesFieldValues(currentEntries);
     const previousPoints = getEntriesFieldValues(previousEntries);
     return (

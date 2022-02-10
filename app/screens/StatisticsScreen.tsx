@@ -11,7 +11,9 @@ import {getTrophiesByState, useTrophiesStore} from '../state/trophies';
 
 function StatisticsScreen({navigation}) {
     const {filter} = useActivityFilterStore();
-    const entries = useEntriesStore((state) => getEntries(state, filter));
+    const entries = [
+        ...useEntriesStore((state) => getEntries(state, filter))
+    ].reverse();
     const trophies = useTrophiesStore(getTrophiesByState(true));
 
     const navigateToEntryDetails = (id) =>
