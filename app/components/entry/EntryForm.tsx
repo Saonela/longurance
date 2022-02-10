@@ -13,6 +13,7 @@ import NoteFormField from '../form/NoteFormField';
 import TextFormField from '../form/TextFormField';
 import FormHint from '../form/FormHint';
 import Panel from '../ui/Panel';
+import {Entry} from '../../types/Entry';
 
 function getTitlePlaceholder(activity: Activity, date: Date) {
     const hours = date.getHours();
@@ -32,10 +33,10 @@ function getTitlePlaceholder(activity: Activity, date: Date) {
     } else if (hours >= 21) {
         timeOfTheDay = 'Night';
     }
-    return timeOfTheDay + ' ' + activityName;
+    return `${timeOfTheDay} ${activityName}`;
 }
 
-const getDefaultEntry = () => {
+const getDefaultEntry = (): Entry => {
     const date = new Date();
     const defaultActivity = Activity.RUNNING;
     return {
@@ -53,7 +54,7 @@ const getDefaultEntry = () => {
 
 const options = {
     mapPropsToValues: ({entry, ...props}) => {
-        return entry ? entry : getDefaultEntry();
+        return entry || getDefaultEntry();
     },
     validate: (values) => {
         const errors: any = {};
@@ -87,8 +88,8 @@ function EntryForm({
         <View>
             <Panel>
                 <TextFormField
-                    label={'Title'}
-                    placeholder={'Title'}
+                    label="Title"
+                    placeholder="Title"
                     value={values.title}
                     onChange={handleChange('title')}
                 />
