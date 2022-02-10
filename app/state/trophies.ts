@@ -149,6 +149,7 @@ const hasTrophyChanged = (
 export function updateCompletedTrophies() {
     const {entries} = useEntriesStore.getState();
     const {trophies} = useTrophiesStore.getState();
+    const toUpdate: Trophy[] = [];
 
     trophies
         .filter((trophy) => trophy.type === TrophyType.TOTAL)
@@ -164,7 +165,7 @@ export function updateCompletedTrophies() {
                 entryIds: trophyEntries.map((entry) => entry.id)
             };
             if (hasTrophyChanged(trophy, newTrophy)) {
-                updateTrophy({...trophy, ...newTrophy});
+                toUpdate.push({...trophy, ...newTrophy});
             }
         });
 
@@ -179,9 +180,11 @@ export function updateCompletedTrophies() {
                 entryIds: entry ? [entry.id] : []
             };
             if (hasTrophyChanged(trophy, newTrophy)) {
-                updateTrophy({...trophy, ...newTrophy});
+                toUpdate.push({...trophy, ...newTrophy});
             }
         });
+
+    updateTrophies(toUpdate);
 }
 
 export const getTrophy = (state: TrophiesState, id: string) =>

@@ -179,6 +179,10 @@ describe('Trophies state', () => {
             });
         });
 
+        afterEach(() => {
+            expect(saveTrophiesSpy).toHaveBeenCalledTimes(1);
+        });
+
         it('should update with individual distance', () => {
             useEntriesStore.setState({
                 entries: [
@@ -216,7 +220,6 @@ describe('Trophies state', () => {
                     markedAsRead: false
                 }
             ]);
-            expect(saveTrophiesSpy).toHaveBeenCalledTimes(1);
         });
 
         it('should update with individual duration', () => {
