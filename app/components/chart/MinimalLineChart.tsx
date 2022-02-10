@@ -19,7 +19,7 @@ function MinimalLineChart({data, style}: MinimalLineChartProps) {
                 data={data}
                 svg={{strokeWidth: 2, stroke: theme.COLORS.THEME_SECONDARY}}
                 curve={shape.curveNatural}
-                contentInset={{top: 5, bottom: 5}}
+                contentInset={{top: 7, bottom: 7}}
             />
         </View>
     );
