@@ -74,4 +74,11 @@ describe('TimelineScreen', () => {
         expect(queryByText('January, 2022')).toBeNull();
         expect(queryByText('April, 2021')).toBeNull();
     });
+
+    it('should show message if no activity', () => {
+        useEntriesStore.setState({entries: []});
+        const component = <TimelineScreen navigation={navigation} />;
+        const {getByText} = render(component);
+        getByText('There is no activity yet!');
+    });
 });

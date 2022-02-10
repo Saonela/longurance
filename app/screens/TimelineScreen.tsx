@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import appStyles from '../styles';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import {useActivityFilterStore} from '../state/activity-filter';
@@ -14,6 +14,7 @@ import {
     setTimelineSettings,
     useTimelineSettingsStore
 } from '../state/timeline-settings';
+import {PrimaryText} from '../components/ui/Text';
 
 const timeIntervalValues = [
     {
@@ -52,6 +53,13 @@ function TimelineScreen({navigation}) {
         <>
             <HeaderActivityFilter />
             <View style={appStyles.screenContainer}>
+                {timelineEntries.length === 0 && (
+                    <View style={styles.noDataMessage}>
+                        <PrimaryText color="secondary">
+                            There is no activity yet!
+                        </PrimaryText>
+                    </View>
+                )}
                 <ScrollView>
                     <SelectionButtons
                         selected={timeInterval}
@@ -73,5 +81,15 @@ function TimelineScreen({navigation}) {
         </>
     );
 }
+
+const styles = StyleSheet.create({
+    noDataMessage: {
+        position: 'absolute',
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+});
 
 export default TimelineScreen;
