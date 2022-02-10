@@ -1,4 +1,4 @@
-import {getEntriesFieldValues, getPaceText} from './entry';
+import {getEntriesFieldValues, getPaceText, sortEntryList} from './entry';
 import {Entry} from '../types/Entry';
 import {Activity} from '../types/Activity';
 
@@ -42,5 +42,18 @@ describe('Entry service', () => {
             intensity: [5, 1, 3],
             pace: [144, 1800, 360]
         });
+    });
+
+    it('should sort entry list by date', () => {
+        const entries: Entry[] = [
+            {id: '1', date: '2021-01-07'},
+            {id: '2', date: '2021-01-10'},
+            {id: '3', date: '2020-12-23'}
+        ] as Entry[];
+        expect(sortEntryList(entries)).toEqual([
+            {id: '2', date: '2021-01-10'},
+            {id: '1', date: '2021-01-07'},
+            {id: '3', date: '2020-12-23'}
+        ]);
     });
 });

@@ -8,7 +8,7 @@ import {TimeInterval} from '../types/TimeInterval';
 import {EntriesSettings} from '../types/EntriesSettings';
 import {EntriesSortBy} from '../enums/EntriesSortBy';
 import {SortDirection} from '../enums/SortDirection';
-import {calculatePace} from '../lib/entry';
+import {calculatePace, sortEntryList} from '../lib/entry';
 
 export interface EntriesState {
     entries: Entry[];
@@ -21,18 +21,22 @@ export const useEntriesStore = create<EntriesState>(() => ({
 export function addEntry(entry: Entry) {
     Object.assign(entry, {id: generateId()});
     api.saveEntries([entry]);
-    useEntriesStore.setState((state) => ({entries: [entry, ...state.entries]}));
+    useEntriesStore.setState((state) => ({
+        entries: sortEntryList([entry, ...state.entries])
+    }));
 }
 
 export function updateEntry(entry: Entry) {
     api.saveEntries([entry]);
     useEntriesStore.setState((state) => ({
-        entries: state.entries.map((stateEntry) => {
-            if (stateEntry.id === entry.id) {
-                return {...stateEntry, ...entry};
-            }
-            return stateEntry;
-        })
+        entries: sortEntryList(
+            state.entries.map((stateEntry) => {
+                if (stateEntry.id === entry.id) {
+                    return {...stateEntry, ...entry};
+                }
+                return stateEntry;
+            })
+        )
     }));
 }
 
@@ -45,7 +49,7 @@ export function deleteEntry(id: string) {
 
 export async function loadEntries() {
     const entries = await api.fetchEntries();
-    useEntriesStore.setState(() => ({entries}));
+    useEntriesStore.setState(() => ({entries: sortEntryList(entries)}));
 }
 
 function filterEntriesByActivity(entries: Entry[], activity: Activity | null) {

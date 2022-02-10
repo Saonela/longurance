@@ -71,3 +71,9 @@ export function getEntriesFieldValues(entries: Entry[]) {
         }
     );
 }
+
+export const sortEntryList = (entries: Entry[]) =>
+    [...entries].sort(
+        (entry1, entry2) =>
+            new Date(entry2.date).getTime() - new Date(entry1.date).getTime()
+    );
