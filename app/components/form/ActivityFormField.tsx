@@ -1,16 +1,25 @@
 import React from 'react';
 import {View} from 'react-native';
-import {ActivityOptions} from '../../types/Activity';
-import Dropdown from '../shared/Dropdown';
+import {Activity, ActivityOptions} from '../../types/Activity';
+import Dropdown from '../ui/Dropdown';
 import FormLabel from './FormLabel';
 
-const ActivityFormField = (props) => {
+interface ActivityFormFieldProps {
+    value: Activity;
+    onChange: (value: Activity) => void;
+}
+
+function ActivityFormField({value, onChange}: ActivityFormFieldProps) {
     return (
-        <View style={props.style}>
+        <View>
             <FormLabel>Activity</FormLabel>
-            <Dropdown {...props} options={ActivityOptions} />
+            <Dropdown<Activity>
+                value={value}
+                onChange={onChange}
+                options={ActivityOptions}
+            />
         </View>
     );
-};
+}
 
 export default ActivityFormField;
