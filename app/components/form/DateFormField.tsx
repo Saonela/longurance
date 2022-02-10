@@ -1,17 +1,16 @@
 import React from 'react';
 import {View} from 'react-native';
-import DatePicker from '../shared/DatePicker';
+import DatePicker from '../ui/DatePicker';
 import FormLabel from './FormLabel';
 
 interface DateFormFieldProps {
-    value: any;
-    style?: any;
-    onChange: any;
+    value: string;
+    onChange: (value: Date) => void;
 }
 
-function DateFormField({value, style = null, onChange}: DateFormFieldProps) {
+function DateFormField({value, onChange}: DateFormFieldProps) {
     return (
-        <View style={style}>
+        <View>
             <FormLabel>Date</FormLabel>
             <DatePicker value={value} onChange={onChange} />
         </View>
