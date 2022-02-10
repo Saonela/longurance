@@ -15,7 +15,7 @@ function TrophyDetailsScreen({route, navigation}) {
         getTrophy(state, route.params.id)
     ) as Trophy;
 
-    const entries = useEntriesStore(getEntriesByIds(trophy.entryIds || []));
+    const entries = useEntriesStore(getEntriesByIds(trophy?.entryIds || []));
 
     const navigateToEntryDetails = (id) =>
         navigation.navigate('entry-details', {id});

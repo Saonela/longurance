@@ -20,7 +20,7 @@ function EntryDetailsScreen({route, navigation}) {
     ) as Entry;
 
     const trophies = useTrophiesStore(
-        getEntryTrophies(entry.id, TrophyType.INDIVIDUAL)
+        getEntryTrophies(entry?.id, TrophyType.INDIVIDUAL)
     );
 
     useLayoutEffect(() => {
