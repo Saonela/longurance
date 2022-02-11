@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import NoDataMessage from '../list/NoDataMessage';
+import EmptyListMessage from '../list/EmptyListMessage';
 import TrophyCard from './TrophyCard';
 import {getFilteredTrophies, useTrophiesStore} from '../../state/trophies';
 import theme from '../../theme';
@@ -15,7 +15,7 @@ function TrophyList({onPress}: TrophyListProps) {
     const trophies = useTrophiesStore(getFilteredTrophies(settings));
 
     if (trophies.length === 0) {
-        return <NoDataMessage>No trophies found</NoDataMessage>;
+        return <EmptyListMessage>No trophies found</EmptyListMessage>;
     }
 
     const keyExtractor = (trophy) => trophy.id;

@@ -3,7 +3,7 @@ import {FlatList} from 'react-native';
 import EntryCard from './EntryCard';
 import theme from '../../theme';
 import {getSortedEntries, useEntriesStore} from '../../state/entries';
-import NoDataMessage from '../list/NoDataMessage';
+import EmptyListMessage from '../list/EmptyListMessage';
 import {useActivityFilterStore} from '../../state/activity-filter';
 import {useEntriesSettingsStore} from '../../state/entries-settings';
 
@@ -17,7 +17,7 @@ function EntryList({onPress}: EntryListProps) {
     const entries = useEntriesStore(getSortedEntries(settings));
 
     if (entries.length === 0) {
-        return <NoDataMessage>No activity found</NoDataMessage>;
+        return <EmptyListMessage>No activity found</EmptyListMessage>;
     }
 
     const keyExtractor = (entry) => entry.id;
