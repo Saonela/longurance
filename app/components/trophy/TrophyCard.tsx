@@ -1,20 +1,26 @@
 import React from 'react';
 import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
-import {SimpleLineIcons} from '@expo/vector-icons';
+import {FontAwesome5, SimpleLineIcons} from '@expo/vector-icons';
 import appStyles from '../../styles';
 import theme from '../../theme';
 import {Trophy, TrophySubtype, TrophyType} from '../../types/Trophy';
-import ActivityIcon from '../activity-icon/ActivityIcon';
 import {getActivityTypeText} from '../../lib/entry';
 import {PrimaryHeader, PrimaryText, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import Separator from '../ui/Separator';
 import {getTrophySubtype} from '../../lib/trophy';
+import {Activity} from '../../types/Activity';
 
 interface TrophyCardProps {
     trophy: Trophy;
     onPress: () => void;
 }
+
+const activityIconNames = {
+    [Activity.RUNNING]: 'running',
+    [Activity.SWIMMING]: 'swimmer',
+    [Activity.CYCLING]: 'bicycle'
+};
 
 const trophyTypeLabels = {
     [TrophyType.TOTAL]: 'Total',
@@ -51,10 +57,10 @@ function TrophyCard({trophy, onPress}: TrophyCardProps) {
                     marginBottom={theme.SPACING.SM}
                 />
                 <PrimaryText style={[styles.title]}>{trophy.title}</PrimaryText>
-                <ActivityIcon
-                    activity={trophy.activity}
+                <FontAwesome5
+                    name={activityIconNames[trophy.activity]}
                     size={150}
-                    style={styles.activityIcon}
+                    style={[styles.activityImage, styles[trophy.activity]]}
                 />
             </View>
         </TouchableNativeFeedback>
@@ -69,12 +75,20 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'LatoBlack'
     },
-    activityIcon: {
+    activityImage: {
         position: 'absolute',
         right: -20,
         bottom: -40,
         zIndex: -1,
         color: theme.COLORS.BACKGROUND_TERTIARY
+    },
+    [Activity.RUNNING]: {
+        transform: [{rotateY: '180deg'}]
+    },
+    [Activity.SWIMMING]: {},
+    [Activity.CYCLING]: {
+        bottom: -44,
+        transform: [{rotateY: '180deg'}]
     }
 });
 
