@@ -57,9 +57,9 @@ const options = {
         return entry || getDefaultEntry();
     },
     validate: (values) => {
-        const errors: any = {};
+        const errors: {durationOrDistance?: string} = {};
         if (values.distance && typeof values.distance !== 'number') {
-            values.distance = parseFloat(values.distance);
+            Object.assign(values, {distance: parseFloat(values.distance)});
         }
         if (!values.duration && !values.distance) {
             errors.durationOrDistance = 'Duration or distance must be set!';

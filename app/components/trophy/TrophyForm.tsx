@@ -39,6 +39,9 @@ const options = {
         if (!values.title) {
             errors.title = 'Title must be set!';
         }
+        if (values.distance && typeof values.distance !== 'number') {
+            Object.assign(values, {distance: parseFloat(values.distance)});
+        }
         if (!values.duration && !values.distance) {
             errors.durationOrDistance = 'Duration or distance must be set!';
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import NumberInput from '../shared/NumberInput';
+import NumberInput from '../ui/NumberInput';
 import FormLabel from './FormLabel';
 import theme from '../../theme';
 import {

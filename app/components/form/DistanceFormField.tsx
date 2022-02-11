@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import NumberInput from '../shared/NumberInput';
+import NumberInput from '../ui/NumberInput';
 import FormLabel from './FormLabel';
 
 interface DistanceFormFieldProps {
@@ -18,10 +18,10 @@ function DistanceFormField({
         <View style={style}>
             <FormLabel>Distance (km)</FormLabel>
             <NumberInput
-                value={value}
-                placeholder="Km"
                 float
-                onChange={(value) => onChange(parseFloat(value))}
+                placeholder="Km"
+                value={value}
+                onChange={onChange}
             />
         </View>
     );
