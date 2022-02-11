@@ -1,17 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
-import theme from '../../theme';
-import appStyles from '../../styles';
+import {SecondaryText} from '../ui/Text';
+import utils from '../../styles-utilities';
 
-function FormHint({children}) {
-    return <Text style={styles.text}>{children}</Text>;
+interface FormHintProps {
+    children: React.ReactNode;
 }
 
-const styles = StyleSheet.create({
-    text: {
-        ...appStyles.secondaryText,
-        paddingTop: theme.SPACING.S
-    }
-});
+function FormHint({children}: FormHintProps) {
+    return <SecondaryText style={utils.marginTopS}>{children}</SecondaryText>;
+}
 
 export default FormHint;
