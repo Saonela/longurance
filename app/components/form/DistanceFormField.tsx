@@ -4,18 +4,13 @@ import NumberInput from '../ui/NumberInput';
 import FormLabel from './FormLabel';
 
 interface DistanceFormFieldProps {
-    value: number;
-    style?: any;
-    onChange: any;
+    value: number | string;
+    onChange: (value: string) => void;
 }
 
-function DistanceFormField({
-    value,
-    style = null,
-    onChange
-}: DistanceFormFieldProps) {
+function DistanceFormField({value, onChange}: DistanceFormFieldProps) {
     return (
-        <View style={style}>
+        <View>
             <FormLabel>Distance (km)</FormLabel>
             <NumberInput
                 float
