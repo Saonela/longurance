@@ -23,7 +23,8 @@ const trophies: Trophy[] = [
         completed: true,
         markedAsRead: false,
         entryIds: [],
-        title: 'My first half marathon !'
+        title: 'My first half marathon !',
+        predefined: false
     },
     {
         id: '2',
@@ -36,7 +37,8 @@ const trophies: Trophy[] = [
         completed: false,
         markedAsRead: false,
         entryIds: [],
-        title: 'Sweet 100.'
+        title: 'Sweet 100.',
+        predefined: false
     },
     {
         id: '3',
@@ -49,7 +51,8 @@ const trophies: Trophy[] = [
         completed: true,
         markedAsRead: true,
         entryIds: ['11'],
-        title: 'IRONMAN'
+        title: 'IRONMAN',
+        predefined: false
     }
 ];
 

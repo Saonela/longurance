@@ -34,7 +34,8 @@ const trophies: Trophy[] = [
         createdAt: '2022-01-01',
         completedAt: '2022-01-01',
         completed: true,
-        markedAsRead: false
+        markedAsRead: false,
+        predefined: false
     },
     {
         id: '300',
@@ -47,7 +48,8 @@ const trophies: Trophy[] = [
         createdAt: '2021-01-01',
         completedAt: '2022-01-01',
         completed: true,
-        markedAsRead: false
+        markedAsRead: false,
+        predefined: false
     }
 ];
 
