@@ -53,6 +53,7 @@ const getDefaultEntry = (): Entry => {
 };
 
 const options = {
+    // keep spread so formik would be recognized when passing props
     mapPropsToValues: ({entry, ...props}) => {
         return entry || getDefaultEntry();
     },

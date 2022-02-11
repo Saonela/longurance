@@ -1,17 +1,17 @@
 import React, {useRef} from 'react';
 import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
+import {FormikValues} from 'formik';
+import {View, Button} from 'react-native';
 import EntryForm from './EntryForm';
 import {Activity} from '../../types/Activity';
 import {Entry} from '../../types/Entry';
-import {FormikValues} from 'formik';
-import {View, Button} from 'react-native';
 
 function FormWithRef({entry, onSubmit}) {
     const formRef = useRef<FormikValues>(null);
     return (
         <View>
             <Button
-                title={'Save'}
+                title="Save"
                 onPress={() => {
                     if (formRef.current) {
                         formRef.current.handleSubmit();
@@ -25,21 +25,22 @@ function FormWithRef({entry, onSubmit}) {
 
 describe('EntryForm', () => {
     describe('title placeholder', () => {
-        let _date;
+        let OriginalDate;
 
         beforeAll(() => {
-            _date = Date;
+            OriginalDate = Date;
             setFakeDate(new Date().toISOString());
-            Date.now = _date.now;
+            Date.now = OriginalDate.now;
         });
 
         afterAll(() => {
-            Date = _date;
+            // eslint-disable-next-line no-global-assign
+            Date = OriginalDate;
         });
 
         const setFakeDate = (isoDate: string) => {
             jest.spyOn(global, 'Date').mockImplementation(
-                () => new _date(isoDate) as any
+                () => new OriginalDate(isoDate)
             );
         };
 
