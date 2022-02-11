@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, TouchableNativeFeedback, StyleSheet, Text} from 'react-native';
+import * as Animatable from 'react-native-animatable';
 import EntryEffortIcon from '../entry/EntryEffortIcon';
 import theme from '../../theme';
 import FormLabel from './FormLabel';
 import {EffortScale} from '../../types/Effort';
 import appStyles from '../../styles';
-import * as Animatable from 'react-native-animatable';
 
 const zoomIn = {
     from: {
@@ -31,17 +31,12 @@ const zoomOut = {
 
 interface EnergyFormFieldProps {
     value: number;
-    style?: any;
-    onChange: any;
+    onChange: (value: number) => void;
 }
 
-function EnergyFormField({
-    value,
-    style = null,
-    onChange
-}: EnergyFormFieldProps) {
+function EffortFormField({value, onChange}: EnergyFormFieldProps) {
     return (
-        <View style={style}>
+        <View>
             <FormLabel>Effort</FormLabel>
             <View style={styles.list}>
                 {EffortScale.map((option) => (
@@ -99,4 +94,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EnergyFormField;
+export default EffortFormField;

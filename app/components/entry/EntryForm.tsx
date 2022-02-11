@@ -8,7 +8,7 @@ import ActivityFormField from '../form/ActivityFormField';
 import DistanceFormField from '../form/DistanceFormField';
 import DurationFormField from '../form/DurationFormField';
 import DateFormField from '../form/DateFormField';
-import EnergyFormField from '../form/EnergyFormField';
+import EffortFormField from '../form/EffortFormField';
 import NoteFormField from '../form/NoteFormField';
 import TextFormField from '../form/TextFormField';
 import FormHint from '../form/FormHint';
@@ -151,7 +151,7 @@ function EntryForm({
                 )}
             </Panel>
             <Panel>
-                <EnergyFormField
+                <EffortFormField
                     value={values.effort}
                     onChange={(value) => setFieldValue('effort', value)}
                 />

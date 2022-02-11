@@ -1,7 +1,7 @@
 import React from 'react';
 import {FontAwesome5} from '@expo/vector-icons';
-import {EffortIcons} from '../../types/Effort';
 import {ViewStyle} from 'react-native';
+import {EffortIcons} from '../../types/Effort';
 import theme from '../../theme';
 
 interface EntryEffortIconProps {
