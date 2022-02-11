@@ -1,5 +1,5 @@
 /* eslint-disable no-global-assign */
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {
     addEntry,
     deleteEntry,

@@ -1,4 +1,4 @@
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {splitSecondsIntoChunks} from './utility';
 import {Entry} from '../types/Entry';
 

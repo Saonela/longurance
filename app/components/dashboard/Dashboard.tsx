@@ -8,7 +8,7 @@ import {
     SecondaryText
 } from '../ui/Text';
 import theme from '../../theme';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 import utils from '../../styles-utilities';
 import ButtonGroup from '../ui/ButtonGroup';
 import EntryEffortBar from '../entry/EntryEffortBar';

@@ -1,6 +1,6 @@
 import {render} from '@testing-library/react-native';
 import React from 'react';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 import {Entry} from '../../types/Entry';
 import LatestEntries from './LatestEntries';
 import {useEntriesStore} from '../../state/entries';

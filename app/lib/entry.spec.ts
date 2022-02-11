@@ -1,6 +1,6 @@
 import {getEntriesFieldValues, getPaceText, sortEntryList} from './entry';
 import {Entry} from '../types/Entry';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 
 describe('Entry service', () => {
     it('should get pace text', () => {

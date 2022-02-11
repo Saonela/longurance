@@ -9,7 +9,7 @@ import {PrimaryHeader, PrimaryText, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import Separator from '../ui/Separator';
 import {getTrophySubtype} from '../../lib/trophy';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 
 interface TrophyCardProps {
     trophy: Trophy;

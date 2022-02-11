@@ -2,7 +2,7 @@ import {render} from '@testing-library/react-native';
 import React from 'react';
 import {useTrophiesStore} from '../../state/trophies';
 import {Trophy} from '../../types/Trophy';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 import LatestTrophies from './LatestTrophies';
 
 const trophies: Trophy[] = [

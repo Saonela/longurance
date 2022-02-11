@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import {ActivityOptions} from '../../types/Activity';
+import {ActivityOptions} from '../../enums/Activity';
 import theme from '../../theme';
 import {
     setActivityFilter,

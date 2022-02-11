@@ -3,7 +3,7 @@ import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
 import {FormikValues} from 'formik';
 import {View, Button} from 'react-native';
 import TrophyForm from './TrophyForm';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 import {Trophy, TrophyType} from '../../types/Trophy';
 
 function FormWithRef({trophy, onSubmit}) {

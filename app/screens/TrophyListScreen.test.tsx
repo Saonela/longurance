@@ -1,6 +1,6 @@
 import {render} from '@testing-library/react-native';
 import React from 'react';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {Trophy, TrophyType} from '../types/Trophy';
 import TrophyListScreen from './TrophyListScreen';
 import {useTrophiesStore} from '../state/trophies';

@@ -1,5 +1,5 @@
 import {Entry} from '../types/Entry';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {isEntryValid} from './entry-validator';
 
 describe('Entry validator', () => {

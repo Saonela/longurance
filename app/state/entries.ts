@@ -3,7 +3,7 @@ import moment from 'moment';
 import {Entry} from '../types/Entry';
 import {generateId} from '../lib/utility';
 import * as api from '../lib/api';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {TimeInterval} from '../types/TimeInterval';
 import {EntriesSettings} from '../types/EntriesSettings';
 import {EntriesSortBy} from '../enums/EntriesSortBy';

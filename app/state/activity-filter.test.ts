@@ -3,7 +3,7 @@ import {
     setActivityFilter,
     useActivityFilterStore
 } from './activity-filter';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import * as api from '../lib/api';
 
 jest.mock('../lib/storage');

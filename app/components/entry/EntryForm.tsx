@@ -1,7 +1,7 @@
 import React from 'react';
 import {Keyboard, StyleSheet, View} from 'react-native';
 import {withFormik} from 'formik';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 import theme from '../../theme';
 import ErrorMessage from '../ui/ErrorMessage';
 import ActivityFormField from '../form/ActivityFormField';

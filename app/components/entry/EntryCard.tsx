@@ -13,7 +13,7 @@ import {
 } from '../../lib/entry';
 import {EffortIcons} from '../../types/Effort';
 import utils from '../../styles-utilities';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 import {PrimaryText, SecondaryText} from '../ui/Text';
 import Separator from '../ui/Separator';
 

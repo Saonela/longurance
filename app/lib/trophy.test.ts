@@ -1,4 +1,4 @@
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {Trophy, TrophySubtype, TrophyType} from '../types/Trophy';
 import {filterByTrophyType, getTrophySubtype} from './trophy';
 

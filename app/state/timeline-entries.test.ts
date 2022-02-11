@@ -1,4 +1,4 @@
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {Entry} from '../types/Entry';
 import {useTrophiesStore} from './trophies';
 import {Trophy, TrophyType} from '../types/Trophy';

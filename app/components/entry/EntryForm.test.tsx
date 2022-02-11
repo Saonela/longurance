@@ -3,7 +3,7 @@ import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
 import {FormikValues} from 'formik';
 import {View, Button} from 'react-native';
 import EntryForm from './EntryForm';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 import {Entry} from '../../types/Entry';
 
 function FormWithRef({entry, onSubmit}) {

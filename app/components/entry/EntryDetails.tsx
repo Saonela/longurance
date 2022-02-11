@@ -15,7 +15,7 @@ import {
 import EntryEffortBar from './EntryEffortBar';
 import utils from '../../styles-utilities';
 import {PrimaryText, SecondaryText} from '../ui/Text';
-import {Activity} from '../../types/Activity';
+import {Activity} from '../../enums/Activity';
 import Separator from '../ui/Separator';
 
 interface EntryDetailsProps {

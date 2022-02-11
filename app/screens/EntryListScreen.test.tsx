@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, within} from '@testing-library/react-native';
 import EntryListScreen from './EntryListScreen';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {Entry} from '../types/Entry';
 import {useEntriesStore} from '../state/entries';
 import {useEntriesSettingsStore} from '../state/entries-settings';

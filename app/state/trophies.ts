@@ -3,7 +3,7 @@ import {Trophy, TrophySubtype, TrophyType} from '../types/Trophy';
 import * as api from '../lib/api';
 // eslint-disable-next-line import/extensions
 import trophiesJson from '../../assets/data/trophies.json';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {generateId} from '../lib/utility';
 import {useEntriesStore} from './entries';
 import {getTrophySubtype} from '../lib/trophy';

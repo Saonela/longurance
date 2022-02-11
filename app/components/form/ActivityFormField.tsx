@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Activity, ActivityOptions} from '../../types/Activity';
+import {Activity, ActivityOptions} from '../../enums/Activity';
 import Dropdown from '../ui/Dropdown';
 import FormLabel from './FormLabel';
 

@@ -1,6 +1,6 @@
 import {Entry} from '../types/Entry';
 import Storage from './storage';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {Trophy} from '../types/Trophy';
 import {EntriesSettings} from '../types/EntriesSettings';
 import {TrophiesSettings} from '../types/TrophiesSettings';

@@ -1,5 +1,5 @@
 import create from 'zustand';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {saveActivityFilter} from '../lib/api';
 import * as api from '../lib/api';
 

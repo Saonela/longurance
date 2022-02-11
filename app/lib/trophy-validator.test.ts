@@ -1,5 +1,5 @@
 import {isTrophyValid} from './trophy-validator';
-import {Activity} from '../types/Activity';
+import {Activity} from '../enums/Activity';
 import {Trophy, TrophyType} from '../types/Trophy';
 
 describe('Trophy validator', () => {
