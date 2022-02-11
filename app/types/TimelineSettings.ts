@@ -1,4 +1,4 @@
-import {TimeInterval} from './TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 
 export interface TimelineSettings {
     timeInterval: TimeInterval.MONTH | TimeInterval.YEAR;

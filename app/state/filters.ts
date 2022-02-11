@@ -1,6 +1,6 @@
 import create from 'zustand';
 import {fetchFilters, saveFilters} from '../lib/api';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 
 interface FiltersState {
     dashboardTimeInterval: TimeInterval;

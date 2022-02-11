@@ -19,7 +19,7 @@ import LineChart from '../chart/LineChart';
 import {TimelineEntry} from '../../types/TimelineEntry';
 import {getEntriesByIds, useEntriesStore} from '../../state/entries';
 import ChartLegend from '../chart/ChartLegend';
-import {TimeInterval} from '../../types/TimeInterval';
+import {TimeInterval} from '../../enums/TimeInterval';
 import PercentageLabel from '../ui/PercentageLabel';
 
 interface TimelineDetailsProps {

@@ -2,7 +2,7 @@ import {render, within} from '@testing-library/react-native';
 import React from 'react';
 import TimelineDetailsScreen from './TimelineDetailsScreen';
 import {TimelineEntry} from '../types/TimelineEntry';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 
 describe('TimelineDetailsScreen', () => {
     let currentEntry: TimelineEntry;

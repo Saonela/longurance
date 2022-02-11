@@ -1,5 +1,5 @@
 import create from 'zustand';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 import {fetchTimelineSettings, saveTimelineSettings} from '../lib/api';
 import {TimelineSettings} from '../types/TimelineSettings';
 

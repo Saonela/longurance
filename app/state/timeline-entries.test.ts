@@ -2,7 +2,7 @@ import {Activity} from '../enums/Activity';
 import {Entry} from '../types/Entry';
 import {useTrophiesStore} from './trophies';
 import {Trophy, TrophyType} from '../types/Trophy';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 import {EntriesState} from './entries';
 import {getTimelineEntries} from './timeline-entries';
 

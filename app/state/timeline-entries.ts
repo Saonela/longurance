@@ -1,6 +1,6 @@
 import moment from 'moment';
 import {Activity} from '../enums/Activity';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 import {TimelineEntry} from '../types/TimelineEntry';
 import {getEntryTrophies, useTrophiesStore} from './trophies';
 import {

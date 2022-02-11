@@ -13,7 +13,7 @@ import utils from '../../styles-utilities';
 import ButtonGroup from '../ui/ButtonGroup';
 import EntryEffortBar from '../entry/EntryEffortBar';
 import useFiltersStore from '../../state/filters';
-import {TimeInterval} from '../../types/TimeInterval';
+import {TimeInterval} from '../../enums/TimeInterval';
 import {useActivityFilterStore} from '../../state/activity-filter';
 import {getEntries, useEntriesStore} from '../../state/entries';
 import {

@@ -1,6 +1,6 @@
 import * as api from '../lib/api';
 import {TimelineSettings} from '../types/TimelineSettings';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 import {
     loadTimelineSettings,
     setTimelineSettings,

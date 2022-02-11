@@ -6,7 +6,7 @@ import {useActivityFilterStore} from '../state/activity-filter';
 import TimelineCard from '../components/timeline/TimelineCard';
 import ButtonGroup from '../components/ui/ButtonGroup';
 import utils from '../styles-utilities';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 import {TimelineEntry} from '../types/TimelineEntry';
 import {useEntriesStore} from '../state/entries';
 import {getTimelineEntries} from '../state/timeline-entries';

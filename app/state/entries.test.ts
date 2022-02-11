@@ -13,7 +13,7 @@ import {
 } from './entries';
 import {Entry} from '../types/Entry';
 import * as api from '../lib/api';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 import {EntriesSortBy} from '../enums/EntriesSortBy';
 import {SortDirection} from '../enums/SortDirection';
 

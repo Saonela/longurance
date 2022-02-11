@@ -6,7 +6,7 @@ import {useEntriesStore} from '../state/entries';
 import TimelineScreen from './TimelineScreen';
 import {useActivityFilterStore} from '../state/activity-filter';
 import {useTimelineSettingsStore} from '../state/timeline-settings';
-import {TimeInterval} from '../types/TimeInterval';
+import {TimeInterval} from '../enums/TimeInterval';
 
 const entries: Entry[] = [
     {
