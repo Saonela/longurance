@@ -10,14 +10,10 @@ import {
 
 const options = [{label: 'All', value: null}, ...ActivityOptions];
 
-interface ActivityFilterProps {
-    style?: any;
-}
-
-function HeaderActivityFilter({style = {}}: ActivityFilterProps) {
+function HeaderActivityFilter() {
     const {filter} = useActivityFilterStore();
     return (
-        <View style={[styles.container, style]}>
+        <View style={styles.container}>
             <Picker
                 mode="dropdown"
                 selectedValue={filter}

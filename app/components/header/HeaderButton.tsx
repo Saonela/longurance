@@ -1,9 +1,16 @@
 import React from 'react';
 import {Feather} from '@expo/vector-icons';
+import {ViewStyle} from 'react-native';
 import IconButton from '../ui/IconButton';
 import theme from '../../theme';
 
-function HeaderButton({iconName, style = {}, onPress}) {
+interface HeaderButtonProps {
+    iconName; // string
+    style?: ViewStyle | ViewStyle[];
+    onPress: () => void;
+}
+
+function HeaderButton({iconName, style = {}, onPress}: HeaderButtonProps) {
     return (
         <IconButton
             size={36}
