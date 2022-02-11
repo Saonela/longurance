@@ -31,6 +31,7 @@ const defaultTrophy: Trophy = {
 };
 
 const options = {
+    // keep spread so formik would be recognized when passing props
     mapPropsToValues: ({trophy, ...props}) => {
         return trophy || defaultTrophy;
     },
