@@ -1,14 +1,14 @@
 import React from 'react';
 import {View} from 'react-native';
 import appStyles from '../styles';
-import EntryFilters from '../components/entry/EntryFilters';
+import EntriesFilter from '../components/entry/EntriesFilter';
 
-function EntryFiltersScreen() {
+function EntriesFilterScreen() {
     return (
         <View style={appStyles.screenContainer}>
-            <EntryFilters />
+            <EntriesFilter />
         </View>
     );
 }
 
-export default EntryFiltersScreen;
+export default EntriesFilterScreen;

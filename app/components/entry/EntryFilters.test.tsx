@@ -1,6 +1,6 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
-import EntryFilters from './EntryFilters';
+import EntriesFilter from './EntriesFilter';
 import {useEntriesSettingsStore} from '../../state/entries-settings';
 import * as store from '../../state/entries-settings';
 import {SortDirection} from '../../enums/SortDirection';
@@ -17,7 +17,7 @@ describe('EntryFilters', () => {
     });
 
     it('should display entry sort settings', () => {
-        const {getByA11yLabel} = render(<EntryFilters />);
+        const {getByA11yLabel} = render(<EntriesFilter />);
         expect(
             getByA11yLabel('Ascending').props.accessibilityState.checked
         ).toBeTruthy();
@@ -28,7 +28,7 @@ describe('EntryFilters', () => {
 
     it('should update entry sort settings', async () => {
         const spy = jest.spyOn(store, 'setEntriesSettings');
-        const {getByText} = render(<EntryFilters />);
+        const {getByText} = render(<EntriesFilter />);
         fireEvent.press(getByText('Descending'));
         fireEvent.press(getByText('Pace'));
         expect(spy).toHaveBeenCalledWith({

@@ -13,7 +13,7 @@ function EntryListScreen({navigation}) {
             headerRight: () => (
                 <HeaderButton
                     iconName="filter"
-                    onPress={() => navigation.navigate('entry-filters')}
+                    onPress={() => navigation.navigate('entries-filter')}
                 />
             )
         });

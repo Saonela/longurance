@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import {SecondaryHeader, SecondaryText} from '../ui/Text';
 import RadioButton from '../ui/RadioButton';
@@ -12,7 +12,7 @@ import {
 } from '../../state/entries-settings';
 import {EntriesSortBy} from '../../enums/EntriesSortBy';
 
-function EntryFilters() {
+function EntriesFilter() {
     const {settings} = useEntriesSettingsStore();
 
     const updateSortDirection = (sortDirection: SortDirection) =>
@@ -90,4 +90,4 @@ function EntryFilters() {
     );
 }
 
-export default EntryFilters;
+export default EntriesFilter;
