@@ -1,5 +1,5 @@
 import create from 'zustand';
-import {Trophy, TrophySubtype, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
 import * as api from '../lib/api';
 // eslint-disable-next-line import/extensions
 import trophiesJson from '../../assets/data/trophies.json';
@@ -11,6 +11,8 @@ import {Entry} from '../types/Entry';
 import {TrophiesSettings} from '../types/TrophiesSettings';
 import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
 import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
+import {TrophyType} from '../enums/TrophyType';
+import {TrophySubtype} from '../enums/TrophySubtype';
 
 const getPredefinedTrophies = () =>
     (trophiesJson as Trophy[]).map((trophy) => ({

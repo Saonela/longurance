@@ -1,10 +1,11 @@
 import {Activity} from '../enums/Activity';
 import {Entry} from '../types/Entry';
 import {useTrophiesStore} from './trophies';
-import {Trophy, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
 import {TimeInterval} from '../enums/TimeInterval';
 import {EntriesState} from './entries';
 import {getTimelineEntries} from './timeline-entries';
+import {TrophyType} from '../enums/TrophyType';
 
 describe('Timeline entries state', () => {
     let state: EntriesState;

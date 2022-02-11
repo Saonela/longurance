@@ -1,6 +1,7 @@
 import {isTrophyValid} from './trophy-validator';
 import {Activity} from '../enums/Activity';
-import {Trophy, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
+import {TrophyType} from '../enums/TrophyType';
 
 describe('Trophy validator', () => {
     it('should determine if trophy is valid', () => {

@@ -1,4 +1,5 @@
 import {Activity} from '../enums/Activity';
+import {TrophyType} from '../enums/TrophyType';
 
 export interface Trophy {
     id: string;
@@ -13,15 +14,4 @@ export interface Trophy {
     activity: Activity;
     distance: number;
     duration: number;
-}
-
-export enum TrophyType {
-    TOTAL = 'TOTAL',
-    INDIVIDUAL = 'INDIVIDUAL'
-}
-
-export enum TrophySubtype {
-    DISTANCE = 'DISTANCE',
-    DURATION = 'DURATION',
-    PACE = 'PACE'
 }

@@ -1,4 +1,6 @@
-import {Trophy, TrophySubtype, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
+import {TrophyType} from '../enums/TrophyType';
+import {TrophySubtype} from '../enums/TrophySubtype';
 
 export const getTrophySubtype = (trophy: Trophy) => {
     if (trophy?.distance && trophy?.duration) return TrophySubtype.PACE;

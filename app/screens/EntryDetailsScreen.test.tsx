@@ -4,8 +4,9 @@ import {Activity} from '../enums/Activity';
 import {Entry} from '../types/Entry';
 import EntryDetailsScreen from './EntryDetailsScreen';
 import {useEntriesStore} from '../state/entries';
-import {Trophy, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
 import {useTrophiesStore} from '../state/trophies';
+import {TrophyType} from '../enums/TrophyType';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 

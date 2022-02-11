@@ -1,6 +1,8 @@
 import {Activity} from '../enums/Activity';
-import {Trophy, TrophySubtype, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
 import {filterByTrophyType, getTrophySubtype} from './trophy';
+import {TrophyType} from '../enums/TrophyType';
+import {TrophySubtype} from '../enums/TrophySubtype';
 
 describe('Trophy service', () => {
     const trophies: Trophy[] = [

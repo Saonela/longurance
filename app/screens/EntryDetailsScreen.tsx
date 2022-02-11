@@ -12,7 +12,7 @@ import {
 } from '../state/trophies';
 import theme from '../theme';
 import TrophyCardLite from '../components/trophy/TrophyCardLite';
-import {TrophyType} from '../types/Trophy';
+import {TrophyType} from '../enums/TrophyType';
 
 function EntryDetailsScreen({route, navigation}) {
     const entry = useEntriesStore((state) =>

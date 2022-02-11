@@ -8,8 +8,8 @@ import {
     getTotalDistance,
     getTotalDuration
 } from '../lib/statistics';
-import {TrophyType} from '../types/Trophy';
 import {EntriesState} from './entries';
+import {TrophyType} from '../enums/TrophyType';
 
 export const getTimelineEntries =
     (activity: Activity | null, timeInterval: TimeInterval) =>

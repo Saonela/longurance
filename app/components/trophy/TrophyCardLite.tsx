@@ -3,10 +3,12 @@ import {View} from 'react-native';
 import {SimpleLineIcons} from '@expo/vector-icons';
 import appStyles from '../../styles';
 import theme from '../../theme';
-import {Trophy, TrophySubtype, TrophyType} from '../../types/Trophy';
+import {Trophy} from '../../types/Trophy';
 import {SecondaryHeader, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import {getTrophySubtype} from '../../lib/trophy';
+import {TrophyType} from '../../enums/TrophyType';
+import {TrophySubtype} from '../../enums/TrophySubtype';
 
 interface TrophyLiteCardProps {
     trophy: Trophy;

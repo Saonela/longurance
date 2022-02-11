@@ -14,11 +14,12 @@ import {
     useTrophiesStore
 } from './trophies';
 import * as api from '../lib/api';
-import {Trophy, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
 import {useEntriesStore} from './entries';
 import {Entry} from '../types/Entry';
 import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
 import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
+import {TrophyType} from '../enums/TrophyType';
 
 const predefinedTrophies: Trophy[] = [
     {id: 'predefined-1', title: 'First activity.'}

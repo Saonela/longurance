@@ -8,12 +8,13 @@ import DurationFormField from '../form/DurationFormField';
 import ErrorMessage from '../ui/ErrorMessage';
 import ActivityFormField from '../form/ActivityFormField';
 import TextFormField from '../form/TextFormField';
-import {Trophy, TrophyType} from '../../types/Trophy';
+import {Trophy} from '../../types/Trophy';
 import Panel from '../ui/Panel';
 import FormLabel from '../form/FormLabel';
 import RadioButton from '../ui/RadioButton';
 import FormHint from '../form/FormHint';
 import utils from '../../styles-utilities';
+import {TrophyType} from '../../enums/TrophyType';
 
 const defaultTrophy: Trophy = {
     id: '',

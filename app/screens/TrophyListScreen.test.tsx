@@ -1,12 +1,13 @@
 import {render} from '@testing-library/react-native';
 import React from 'react';
 import {Activity} from '../enums/Activity';
-import {Trophy, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
 import TrophyListScreen from './TrophyListScreen';
 import {useTrophiesStore} from '../state/trophies';
 import {useTrophiesSettingsStore} from '../state/trophies-settings';
 import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
 import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
+import {TrophyType} from '../enums/TrophyType';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 

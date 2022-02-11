@@ -4,7 +4,8 @@ import {FormikValues} from 'formik';
 import {View, Button} from 'react-native';
 import TrophyForm from './TrophyForm';
 import {Activity} from '../../enums/Activity';
-import {Trophy, TrophyType} from '../../types/Trophy';
+import {Trophy} from '../../types/Trophy';
+import {TrophyType} from '../../enums/TrophyType';
 
 function FormWithRef({trophy, onSubmit}) {
     const formRef = useRef<FormikValues>(null);

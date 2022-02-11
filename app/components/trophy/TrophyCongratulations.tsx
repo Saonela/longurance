@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {SimpleLineIcons, Feather} from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
-import {Trophy, TrophyType} from '../../types/Trophy';
+import {Trophy} from '../../types/Trophy';
 import theme from '../../theme';
 import appStyles from '../../styles';
 import {updateTrophy, useTrophiesStore} from '../../state/trophies';
@@ -15,6 +15,7 @@ import {
     getDistanceText,
     getDurationText
 } from '../../lib/entry';
+import {TrophyType} from '../../enums/TrophyType';
 
 const fadeIn = {
     from: {

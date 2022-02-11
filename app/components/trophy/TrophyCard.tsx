@@ -3,13 +3,15 @@ import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
 import {FontAwesome5, SimpleLineIcons} from '@expo/vector-icons';
 import appStyles from '../../styles';
 import theme from '../../theme';
-import {Trophy, TrophySubtype, TrophyType} from '../../types/Trophy';
+import {Trophy} from '../../types/Trophy';
 import {getActivityTypeText} from '../../lib/entry';
 import {PrimaryHeader, PrimaryText, SecondaryText} from '../ui/Text';
 import utils from '../../styles-utilities';
 import Separator from '../ui/Separator';
 import {getTrophySubtype} from '../../lib/trophy';
 import {Activity} from '../../enums/Activity';
+import {TrophyType} from '../../enums/TrophyType';
+import {TrophySubtype} from '../../enums/TrophySubtype';
 
 interface TrophyCardProps {
     trophy: Trophy;

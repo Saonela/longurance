@@ -1,9 +1,10 @@
 import {getExportData, setImportedData} from './import-export';
 import {Entry} from '../types/Entry';
 import {Activity} from '../enums/Activity';
-import {Trophy, TrophyType} from '../types/Trophy';
+import {Trophy} from '../types/Trophy';
 import {useEntriesStore} from '../state/entries';
 import {useTrophiesStore} from '../state/trophies';
+import {TrophyType} from '../enums/TrophyType';
 
 const entries: Entry[] = [
     {
