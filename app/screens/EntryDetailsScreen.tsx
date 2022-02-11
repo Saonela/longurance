@@ -47,7 +47,6 @@ function EntryDetailsScreen({route, navigation}) {
         };
 
         navigation.setOptions({
-            title: 'Entry Details',
             headerTitleStyle: {
                 maxWidth: 200
             },

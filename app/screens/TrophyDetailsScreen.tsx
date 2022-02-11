@@ -43,7 +43,6 @@ function TrophyDetailsScreen({route, navigation}) {
         };
 
         navigation.setOptions({
-            title: 'Trophy Details',
             headerRight: () => (
                 <View style={utils.row}>
                     <HeaderButton

@@ -9,7 +9,6 @@ import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import theme from './app/theme';
 import EntryListScreen from './app/screens/EntryListScreen';
 import EntryFormScreen from './app/screens/EntryFormScreen';
-import HeaderButton from './app/components/header/HeaderButton';
 import TabBar from './app/components/tab-navigation/TabBar';
 import TrophyFormScreen from './app/screens/TrophyFormScreen';
 import EntryDetailsScreen from './app/screens/EntryDetailsScreen';
@@ -30,62 +29,43 @@ import SettingsScreen from './app/screens/SettingsScreen';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const mainStackScreenOptions: any = () => {
-    return {
-        presentation: 'modal',
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        title: '',
-        headerStyle: {
-            height: theme.HEADER_HEIGHT,
-            backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
-            elevation: 0
-        },
-        headerTintColor: theme.COLORS.FONT_PRIMARY,
-        headerTitleAlign: 'center'
-    };
-};
+const stackScreenOptions = {
+    presentation: 'modal',
+    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+    title: '',
+    headerStyle: {
+        height: theme.HEADER_HEIGHT,
+        backgroundColor: theme.COLORS.BACKGROUND_SECONDARY,
+        elevation: 0
+    },
+    headerTintColor: theme.COLORS.FONT_PRIMARY,
+    headerTitleAlign: 'center'
+} as any;
 
-const stackScreenOptions: any = ({navigation}) => {
-    return {
-        ...mainStackScreenOptions(navigation),
-        headerLeft: () => (
-            <HeaderButton
-                style={{marginLeft: theme.SPACING.S}}
-                iconName="arrow-left"
-                onPress={navigation.goBack}
-            />
-        )
-    };
-};
+const entryDetailsStackScreen = (
+    <Stack.Screen
+        name="entry-details"
+        component={EntryDetailsScreen}
+        options={{title: 'Entry Details'}}
+    />
+);
 
 function DashboardScreenStack() {
     return (
-        <Stack.Navigator screenOptions={mainStackScreenOptions}>
-            <Stack.Screen
-                name="dashboard"
-                component={DashboardScreen}
-                options={{}}
-            />
+        <Stack.Navigator screenOptions={stackScreenOptions}>
+            <Stack.Screen name="dashboard" component={DashboardScreen} />
             <Stack.Screen
                 name="entry-list"
                 component={EntryListScreen}
-                options={{}}
+                options={{title: 'Entries'}}
             />
             <Stack.Screen
                 name="entry-filters"
                 component={EntryFiltersScreen}
                 options={{title: 'Entries Filter'}}
             />
-            <Stack.Screen
-                name="entry-details"
-                component={EntryDetailsScreen}
-                options={{}}
-            />
-            <Stack.Screen
-                name="entry-form"
-                component={EntryFormScreen}
-                options={{}}
-            />
+            {entryDetailsStackScreen}
+            <Stack.Screen name="entry-form" component={EntryFormScreen} />
             <Stack.Screen
                 name="trophy-list"
                 component={TrophyListScreen}
@@ -99,29 +79,20 @@ function DashboardScreenStack() {
             <Stack.Screen
                 name="trophy-details"
                 component={TrophyDetailsScreen}
-                options={{}}
+                options={{title: 'Trophy Details'}}
             />
-            <Stack.Screen
-                name="trophy-form"
-                component={TrophyFormScreen}
-                options={{}}
-            />
+            <Stack.Screen name="trophy-form" component={TrophyFormScreen} />
         </Stack.Navigator>
     );
 }
 
 function TimelineScreenStack() {
     return (
-        <Stack.Navigator screenOptions={mainStackScreenOptions}>
-            <Stack.Screen
-                name="timeline"
-                component={TimelineScreen}
-                options={{}}
-            />
+        <Stack.Navigator screenOptions={stackScreenOptions}>
+            <Stack.Screen name="timeline" component={TimelineScreen} />
             <Stack.Screen
                 name="timeline-details"
                 component={TimelineDetailsScreen}
-                options={{}}
             />
         </Stack.Navigator>
     );
@@ -129,24 +100,16 @@ function TimelineScreenStack() {
 
 function StatisticsScreenStack() {
     return (
-        <Stack.Navigator screenOptions={mainStackScreenOptions}>
-            <Stack.Screen
-                name="statistics"
-                component={StatisticsScreen}
-                options={{}}
-            />
-            <Stack.Screen
-                name="entry-details"
-                component={EntryDetailsScreen}
-                options={{}}
-            />
+        <Stack.Navigator screenOptions={stackScreenOptions}>
+            <Stack.Screen name="statistics" component={StatisticsScreen} />
+            {entryDetailsStackScreen}
         </Stack.Navigator>
     );
 }
 
 function SettingsScreenStack() {
     return (
-        <Stack.Navigator screenOptions={mainStackScreenOptions}>
+        <Stack.Navigator screenOptions={stackScreenOptions}>
             <Stack.Screen
                 name="settings"
                 component={SettingsScreen}
@@ -155,6 +118,8 @@ function SettingsScreenStack() {
         </Stack.Navigator>
     );
 }
+
+const tabScreenOptions = {headerShown: false};
 
 function Main() {
     useEffect(() => {
@@ -168,22 +133,22 @@ function Main() {
         <NavigationContainer theme={DarkTheme}>
             <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
                 <Tab.Screen
-                    options={{headerShown: false}}
+                    options={tabScreenOptions}
                     name="Dashboard"
                     component={DashboardScreenStack}
                 />
                 <Tab.Screen
-                    options={{headerShown: false}}
+                    options={tabScreenOptions}
                     name="Timeline"
                     component={TimelineScreenStack}
                 />
                 <Tab.Screen
-                    options={{headerShown: false}}
+                    options={tabScreenOptions}
                     name="Statistics"
                     component={StatisticsScreenStack}
                 />
                 <Tab.Screen
-                    options={{headerShown: false}}
+                    options={tabScreenOptions}
                     name="Settings"
                     component={SettingsScreenStack}
                 />

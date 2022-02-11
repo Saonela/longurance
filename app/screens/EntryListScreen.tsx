@@ -10,7 +10,6 @@ function EntryListScreen({navigation}) {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            title: 'Entries',
             headerRight: () => (
                 <HeaderButton
                     iconName="filter"
