@@ -6,13 +6,12 @@ import FormLabel from './FormLabel';
 
 interface NoteFormFieldProps {
     value: string;
-    style?: any;
-    onChange: any;
+    onChange: (value: string) => void;
 }
 
-function NoteFormField({value, style = null, onChange}: NoteFormFieldProps) {
+function NoteFormField({value, onChange}: NoteFormFieldProps) {
     return (
-        <View style={style}>
+        <View>
             <FormLabel>Note</FormLabel>
             <TextInput
                 value={value}

@@ -9,8 +9,7 @@ interface NoteFormFieldProps {
     label: string;
     accessibilityLabel?: string;
     placeholder?: string;
-    style?: any;
-    onChange: any;
+    onChange: (value: string) => void;
 }
 
 function TextFormField({
@@ -18,11 +17,10 @@ function TextFormField({
     label,
     accessibilityLabel = '',
     placeholder = '',
-    style = null,
     onChange
 }: NoteFormFieldProps) {
     return (
-        <View style={style}>
+        <View>
             <FormLabel>{label}</FormLabel>
             <TextInput
                 value={value}
