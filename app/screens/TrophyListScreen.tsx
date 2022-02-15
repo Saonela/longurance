@@ -3,17 +3,18 @@ import {View} from 'react-native';
 import appStyles from '../styles';
 import TrophyList from '../components/trophy/TrophyList';
 import HeaderButton from '../components/header/HeaderButton';
+import {Screen} from '../enums/Screen';
 
 function TrophyListScreen({navigation}) {
     const navigateToTrophyDetails = (id: string) =>
-        navigation.navigate('trophy-details', {id});
+        navigation.navigate(Screen.TROPHY_DETAILS, {id});
 
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
                 <HeaderButton
                     iconName="filter"
-                    onPress={() => navigation.navigate('trophies-filter')}
+                    onPress={() => navigation.navigate(Screen.TROPHIES_FILTER)}
                 />
             )
         });

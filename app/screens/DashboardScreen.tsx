@@ -9,22 +9,27 @@ import TrophyCongratulations from '../components/trophy/TrophyCongratulations';
 import theme from '../theme';
 import HeaderButton from '../components/header/HeaderButton';
 import LatestTrophies from '../components/dashboard/LatestTrophies';
+import {Screen} from '../enums/Screen';
 
 function DashboardScreen({navigation}) {
     const isFocused = useIsFocused();
 
     const navigateToEntryForm = useCallback(
-        () => navigation.navigate('entry-form', {}),
+        () => navigation.navigate(Screen.ENTRY_FORM, {}),
         [navigation]
     );
-    const navigateToEntryList = () => navigation.navigate('entry-list');
-    const navigateToEntryDetails = (id) =>
-        navigation.navigate('entry-details', {id});
+    const navigateToEntryList = () => navigation.navigate(Screen.ENTRY_LIST);
 
-    const navigateToTrophyForm = () => navigation.navigate('trophy-form', {});
-    const navigateToTrophyList = () => navigation.navigate('trophy-list');
+    const navigateToEntryDetails = (id) =>
+        navigation.navigate(Screen.ENTRY_DETAILS, {id});
+
+    const navigateToTrophyForm = () =>
+        navigation.navigate(Screen.TROPHY_FORM, {});
+
+    const navigateToTrophyList = () => navigation.navigate(Screen.TROPHY_LIST);
+
     const navigateToTrophyDetails = (id) =>
-        navigation.navigate('trophy-details', {id});
+        navigation.navigate(Screen.TROPHY_DETAILS, {id});
 
     useLayoutEffect(() => {
         navigation.setOptions({

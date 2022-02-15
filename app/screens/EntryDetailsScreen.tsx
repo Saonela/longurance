@@ -13,6 +13,7 @@ import {
 import theme from '../theme';
 import TrophyCardLite from '../components/trophy/TrophyCardLite';
 import {TrophyType} from '../enums/TrophyType';
+import {Screen} from '../enums/Screen';
 
 function EntryDetailsScreen({route, navigation}) {
     const entry = useEntriesStore((state) =>
@@ -55,7 +56,9 @@ function EntryDetailsScreen({route, navigation}) {
                     <HeaderButton
                         iconName="edit"
                         onPress={() =>
-                            navigation.navigate('entry-form', {id: entry.id})
+                            navigation.navigate(Screen.ENTRY_FORM, {
+                                id: entry.id
+                            })
                         }
                     />
                     <HeaderButton iconName="x" onPress={confirmDelete} />

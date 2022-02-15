@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import theme from '../../theme';
 import TabButton from './TabButton';
+import {Screen, TabScreen} from '../../enums/Screen';
 
 function TabBar({state, descriptors, navigation}) {
     const onPress = (route, isFocused) => {
@@ -11,10 +12,10 @@ function TabBar({state, descriptors, navigation}) {
         });
 
         if (!isFocused && !event.defaultPrevented) {
-            if (route.name === 'Entries') {
-                navigation.navigate(route.name, {screen: 'entry-list'});
-            } else if (route.name === 'Timeline') {
-                navigation.navigate(route.name, {screen: 'timeline'});
+            if (route.name === TabScreen.DASHBOARD) {
+                navigation.navigate(route.name, {screen: Screen.DASHBOARD});
+            } else if (route.name === TabScreen.TIMELINE) {
+                navigation.navigate(route.name, {screen: Screen.TIMELINE});
             } else {
                 navigation.navigate(route.name);
             }

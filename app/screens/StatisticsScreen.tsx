@@ -8,6 +8,7 @@ import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import {useActivityFilterStore} from '../state/activity-filter';
 import {getEntries, useEntriesStore} from '../state/entries';
 import {getTrophiesByState, useTrophiesStore} from '../state/trophies';
+import {Screen} from '../enums/Screen';
 
 function StatisticsScreen({navigation}) {
     const {filter} = useActivityFilterStore();
@@ -17,7 +18,7 @@ function StatisticsScreen({navigation}) {
     const trophies = useTrophiesStore(getTrophiesByState(true));
 
     const navigateToEntryDetails = (id) =>
-        navigation.navigate('entry-details', {id});
+        navigation.navigate(Screen.ENTRY_DETAILS, {id});
 
     return (
         <>

@@ -4,6 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import {Feather} from '@expo/vector-icons';
 import appStyles from '../../styles';
 import theme from '../../theme';
+import {TabScreen} from '../../enums/Screen';
 
 const zoomIn = {
     from: {
@@ -28,10 +29,10 @@ const zoomOut = {
 };
 
 const routeIcon = {
-    Dashboard: 'home',
-    Timeline: 'activity',
-    Statistics: 'bar-chart',
-    Settings: 'settings'
+    [TabScreen.DASHBOARD]: 'home',
+    [TabScreen.TIMELINE]: 'activity',
+    [TabScreen.STATISTICS]: 'bar-chart',
+    [TabScreen.SETTINGS]: 'settings'
 };
 
 function TabButton({route, options, isFocused, onPress, onLongPress}) {

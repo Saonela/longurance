@@ -9,6 +9,7 @@ import {getEntriesByIds, useEntriesStore} from '../state/entries';
 import EntryCard from '../components/entry/EntryCard';
 import theme from '../theme';
 import utils from '../styles-utilities';
+import {Screen} from '../enums/Screen';
 
 function TrophyDetailsScreen({route, navigation}) {
     const trophy = useTrophiesStore((state) =>
@@ -18,7 +19,7 @@ function TrophyDetailsScreen({route, navigation}) {
     const entries = useEntriesStore(getEntriesByIds(trophy?.entryIds || []));
 
     const navigateToEntryDetails = (id) =>
-        navigation.navigate('entry-details', {id});
+        navigation.navigate(Screen.ENTRY_DETAILS, {id});
 
     useLayoutEffect(() => {
         const confirmDelete = () => {
@@ -48,7 +49,9 @@ function TrophyDetailsScreen({route, navigation}) {
                     <HeaderButton
                         iconName="edit"
                         onPress={() =>
-                            navigation.navigate('trophy-form', {id: trophy.id})
+                            navigation.navigate(Screen.TROPHY_FORM, {
+                                id: trophy.id
+                            })
                         }
                     />
                     <HeaderButton iconName="x" onPress={confirmDelete} />

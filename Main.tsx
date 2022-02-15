@@ -25,6 +25,7 @@ import TrophiesFilterScreen from './app/screens/TrophiesFilterScreen';
 import TimelineScreen from './app/screens/TimelineScreen';
 import TimelineDetailsScreen from './app/screens/TimelineDetailsScreen';
 import SettingsScreen from './app/screens/SettingsScreen';
+import {Screen, TabScreen} from './app/enums/Screen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -44,7 +45,7 @@ const stackScreenOptions = {
 
 const entryDetailsStackScreen = (
     <Stack.Screen
-        name="entry-details"
+        name={Screen.ENTRY_DETAILS}
         component={EntryDetailsScreen}
         options={{title: 'Entry Details'}}
     />
@@ -53,35 +54,41 @@ const entryDetailsStackScreen = (
 function DashboardScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions}>
-            <Stack.Screen name="dashboard" component={DashboardScreen} />
+            <Stack.Screen name={Screen.DASHBOARD} component={DashboardScreen} />
             <Stack.Screen
-                name="entry-list"
+                name={Screen.ENTRY_LIST}
                 component={EntryListScreen}
                 options={{title: 'Entries'}}
             />
             <Stack.Screen
-                name="entries-filter"
+                name={Screen.ENTRIES_FILTER}
                 component={EntriesFilterScreen}
                 options={{title: 'Entries Filter'}}
             />
             {entryDetailsStackScreen}
-            <Stack.Screen name="entry-form" component={EntryFormScreen} />
             <Stack.Screen
-                name="trophy-list"
+                name={Screen.ENTRY_FORM}
+                component={EntryFormScreen}
+            />
+            <Stack.Screen
+                name={Screen.TROPHY_LIST}
                 component={TrophyListScreen}
                 options={{title: 'Trophies'}}
             />
             <Stack.Screen
-                name="trophies-filter"
+                name={Screen.TROPHIES_FILTER}
                 component={TrophiesFilterScreen}
                 options={{title: 'Trophies Settings'}}
             />
             <Stack.Screen
-                name="trophy-details"
+                name={Screen.TROPHY_DETAILS}
                 component={TrophyDetailsScreen}
                 options={{title: 'Trophy Details'}}
             />
-            <Stack.Screen name="trophy-form" component={TrophyFormScreen} />
+            <Stack.Screen
+                name={Screen.TROPHY_FORM}
+                component={TrophyFormScreen}
+            />
         </Stack.Navigator>
     );
 }
@@ -89,9 +96,9 @@ function DashboardScreenStack() {
 function TimelineScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions}>
-            <Stack.Screen name="timeline" component={TimelineScreen} />
+            <Stack.Screen name={Screen.TIMELINE} component={TimelineScreen} />
             <Stack.Screen
-                name="timeline-details"
+                name={Screen.TIMELINE_DETAILS}
                 component={TimelineDetailsScreen}
             />
         </Stack.Navigator>
@@ -101,7 +108,10 @@ function TimelineScreenStack() {
 function StatisticsScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions}>
-            <Stack.Screen name="statistics" component={StatisticsScreen} />
+            <Stack.Screen
+                name={Screen.STATISTICS}
+                component={StatisticsScreen}
+            />
             {entryDetailsStackScreen}
         </Stack.Navigator>
     );
@@ -111,7 +121,7 @@ function SettingsScreenStack() {
     return (
         <Stack.Navigator screenOptions={stackScreenOptions}>
             <Stack.Screen
-                name="settings"
+                name={Screen.SETTINGS}
                 component={SettingsScreen}
                 options={{title: 'Settings'}}
             />
@@ -134,22 +144,22 @@ function Main() {
             <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
                 <Tab.Screen
                     options={tabScreenOptions}
-                    name="Dashboard"
+                    name={TabScreen.DASHBOARD}
                     component={DashboardScreenStack}
                 />
                 <Tab.Screen
                     options={tabScreenOptions}
-                    name="Timeline"
+                    name={TabScreen.TIMELINE}
                     component={TimelineScreenStack}
                 />
                 <Tab.Screen
                     options={tabScreenOptions}
-                    name="Statistics"
+                    name={TabScreen.STATISTICS}
                     component={StatisticsScreenStack}
                 />
                 <Tab.Screen
                     options={tabScreenOptions}
-                    name="Settings"
+                    name={TabScreen.SETTINGS}
                     component={SettingsScreenStack}
                 />
             </Tab.Navigator>

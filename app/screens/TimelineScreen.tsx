@@ -15,6 +15,7 @@ import {
     useTimelineSettingsStore
 } from '../state/timeline-settings';
 import {PrimaryText} from '../components/ui/Text';
+import {Screen} from '../enums/Screen';
 
 const timeIntervalValues = [
     {
@@ -38,7 +39,7 @@ function TimelineScreen({navigation}) {
         currentEntry: TimelineEntry,
         previousEntry: TimelineEntry | undefined
     ) => {
-        navigation.navigate('timeline-details', {
+        navigation.navigate(Screen.TIMELINE_DETAILS, {
             currentEntry,
             previousEntry,
             timeInterval
