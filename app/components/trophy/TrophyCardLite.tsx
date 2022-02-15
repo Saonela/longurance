@@ -27,7 +27,7 @@ const trophySubtypeLabels = {
 
 function TrophyCardLite({trophy}: TrophyLiteCardProps) {
     const color = trophy.completed
-        ? theme.COLORS.THEME_FONT
+        ? theme.COLORS.THEME
         : theme.COLORS.BACKGROUND_TERTIARY;
     return (
         <View style={appStyles.panel}>

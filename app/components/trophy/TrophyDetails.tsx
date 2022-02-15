@@ -41,7 +41,7 @@ function TrophyDetails({trophy}: TrophyDetailsProps) {
                     size={72}
                     color={
                         trophy.completed
-                            ? theme.COLORS.THEME_FONT
+                            ? theme.COLORS.THEME
                             : theme.COLORS.BACKGROUND_TERTIARY
                     }
                     style={utils.marginLeftXS}

@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 
 const colors = StyleSheet.create({
     theme: {
-        color: theme.COLORS.THEME_FONT
+        color: theme.COLORS.THEME
     },
     primary: {
         color: theme.COLORS.FONT_PRIMARY

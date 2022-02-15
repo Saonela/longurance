@@ -98,12 +98,12 @@ function TrophyCongratulations() {
                                     <SimpleLineIcons
                                         name="trophy"
                                         size={100}
-                                        color={theme.COLORS.THEME_FONT}
+                                        color={theme.COLORS.THEME}
                                     />
                                     <Feather
                                         name="check"
                                         size={100}
-                                        color={theme.COLORS.THEME_FONT}
+                                        color={theme.COLORS.THEME}
                                         style={styles.checkIcon}
                                     />
                                 </View>

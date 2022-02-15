@@ -12,11 +12,11 @@ interface PercentageLabel {
 
 function PercentageLabel({value1, value2}: PercentageLabel) {
     const percentage = getPercentageDifference(value1, value2);
-    let color = theme.COLORS.ENERGY_POSITIVE;
+    let color = theme.COLORS.POSITIVE;
     if (percentage <= -3) {
-        color = theme.COLORS.ENERGY_NEGATIVE;
+        color = theme.COLORS.NEGATIVE;
     } else if (percentage <= 3) {
-        color = theme.COLORS.ENERGY_NEUTRAL;
+        color = theme.COLORS.NEUTRAL;
     }
     return (
         <PrimaryText style={{color}}>

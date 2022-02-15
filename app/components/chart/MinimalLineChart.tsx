@@ -17,7 +17,7 @@ function MinimalLineChart({data, style}: MinimalLineChartProps) {
             <LineChart
                 style={{flex: 1}}
                 data={data}
-                svg={{strokeWidth: 2, stroke: theme.COLORS.THEME_SECONDARY}}
+                svg={{strokeWidth: 2, stroke: theme.COLORS.ACCENT}}
                 curve={shape.curveNatural}
                 contentInset={{top: 7, bottom: 7}}
             />

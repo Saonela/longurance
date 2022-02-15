@@ -36,11 +36,11 @@ const labelsMap = {
 const getLegendItems = (timeInterval: TimeInterval) => [
     {
         label: `Current ${labelsMap[timeInterval]}`,
-        color: theme.COLORS.THEME_SECONDARY
+        color: theme.COLORS.ACCENT
     },
     {
         label: `Previous ${labelsMap[timeInterval]}`,
-        color: theme.COLORS.THEME_SECONDARY_FADED
+        color: theme.COLORS.ACCENT_FADED
     }
 ];
 

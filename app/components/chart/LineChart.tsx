@@ -22,8 +22,8 @@ const Decorator = ({x, y, data}: any) => {
                 r={5}
                 stroke={
                     datasetIndex === 1
-                        ? theme.COLORS.THEME_SECONDARY
-                        : theme.COLORS.THEME_SECONDARY_FADED
+                        ? theme.COLORS.ACCENT
+                        : theme.COLORS.ACCENT_FADED
                 }
                 fill={theme.COLORS.BACKGROUND_PRIMARY}
             />
@@ -50,11 +50,11 @@ function LineChart({
     const datasets = [
         {
             data: secondaryData,
-            svg: {stroke: theme.COLORS.THEME_SECONDARY_FADED}
+            svg: {stroke: theme.COLORS.ACCENT_FADED}
         },
         {
             data,
-            svg: {stroke: theme.COLORS.THEME_SECONDARY}
+            svg: {stroke: theme.COLORS.ACCENT}
         }
     ];
 
@@ -79,7 +79,7 @@ function LineChart({
                 numberOfTicks={4}
                 gridMax={maxValue}
                 gridMin={minValue}
-                svg={{stroke: theme.COLORS.THEME_SECONDARY}}
+                svg={{stroke: theme.COLORS.ACCENT}}
             >
                 <Decorator />
                 <Grid

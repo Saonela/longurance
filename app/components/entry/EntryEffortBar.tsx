@@ -24,9 +24,9 @@ function EntryEffortBar({effort}: EntryEffortBarProps) {
                 start={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}
                 colors={[
-                    theme.COLORS.ENERGY_POSITIVE,
-                    theme.COLORS.ENERGY_NEUTRAL,
-                    theme.COLORS.ENERGY_NEGATIVE
+                    theme.COLORS.POSITIVE,
+                    theme.COLORS.NEUTRAL,
+                    theme.COLORS.NEGATIVE
                 ]}
             >
                 <View
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         height: 10,
         marginTop: theme.SPACING.S,
         borderRadius: theme.BORDER.RADIUS,
-        backgroundColor: theme.COLORS.THEME_FONT
+        backgroundColor: theme.COLORS.THEME
     },
     indicator: {
         position: 'absolute',

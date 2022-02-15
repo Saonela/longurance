@@ -5,13 +5,12 @@ const COLORS = {
     FONT_PRIMARY: '#f3eded',
     FONT_SECONDARY: '#7e7e7e',
     FONT_DANGER: '#d92525',
-    THEME_FONT: '#f8bb03',
-    THEME_SECONDARY: '#7c31ee',
-    THEME_SECONDARY_FADED: '#281a4d',
-    SUCCESS: '#25800b',
-    ENERGY_POSITIVE: '#4d9b26',
-    ENERGY_NEUTRAL: '#b7b92e',
-    ENERGY_NEGATIVE: '#cb3636'
+    THEME: '#f8bb03',
+    ACCENT: '#7c31ee',
+    ACCENT_FADED: '#281a4d',
+    POSITIVE: '#4d9b26',
+    NEUTRAL: '#b7b92e',
+    NEGATIVE: '#cb3636'
 };
 
 const FONT_FAMILY = {

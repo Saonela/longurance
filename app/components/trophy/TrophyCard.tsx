@@ -37,7 +37,7 @@ const trophySubtypeLabels = {
 
 function TrophyCard({trophy, onPress}: TrophyCardProps) {
     const color = trophy.completed
-        ? theme.COLORS.THEME_FONT
+        ? theme.COLORS.THEME
         : theme.COLORS.BACKGROUND_TERTIARY;
     return (
         <TouchableNativeFeedback onPress={onPress}>
