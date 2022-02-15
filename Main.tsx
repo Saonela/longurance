@@ -5,7 +5,11 @@ import {
     createStackNavigator
 } from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {DarkTheme, NavigationContainer} from '@react-navigation/native';
+import {
+    DarkTheme,
+    NavigationContainer,
+    StackActions
+} from '@react-navigation/native';
 import theme from './app/theme';
 import EntryListScreen from './app/screens/EntryListScreen';
 import EntryFormScreen from './app/screens/EntryFormScreen';
@@ -130,6 +134,11 @@ function SettingsScreenStack() {
 }
 
 const tabScreenOptions = {headerShown: false};
+const resetTabScreenStack = (navigation, route) => {
+    if (route.state.routes.length !== 1) {
+        navigation.dispatch(StackActions.popToTop());
+    }
+};
 
 function Main() {
     useEffect(() => {
@@ -146,11 +155,17 @@ function Main() {
                     options={tabScreenOptions}
                     name={TabScreen.DASHBOARD}
                     component={DashboardScreenStack}
+                    listeners={({navigation, route}) => ({
+                        blur: () => resetTabScreenStack(navigation, route)
+                    })}
                 />
                 <Tab.Screen
                     options={tabScreenOptions}
                     name={TabScreen.TIMELINE}
                     component={TimelineScreenStack}
+                    listeners={({navigation, route}) => ({
+                        blur: () => resetTabScreenStack(navigation, route)
+                    })}
                 />
                 <Tab.Screen
                     options={tabScreenOptions}
