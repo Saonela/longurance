@@ -103,11 +103,11 @@ const styles = StyleSheet.create({
         marginRight: theme.SPACING.XL
     },
     detailsText: {
-        fontFamily: 'LatoBlack',
+        fontFamily: theme.FONT_FAMILY.PRIMARY_ACCENT,
         paddingBottom: theme.SPACING.XS
     },
     activity: {
-        fontFamily: 'LatoBlack',
+        fontFamily: theme.FONT_FAMILY.PRIMARY_ACCENT,
         fontSize: theme.FONT_SIZE.HEADER_PRIMARY,
         color: theme.COLORS.THEME,
         textAlign: 'right'

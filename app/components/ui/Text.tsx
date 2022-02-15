@@ -77,15 +77,15 @@ export function SecondaryText({
 
 const styles = StyleSheet.create({
     primaryHeader: {
-        fontFamily: 'LatoBlack',
+        fontFamily: theme.FONT_FAMILY.PRIMARY_ACCENT,
         fontSize: theme.FONT_SIZE.HEADER_PRIMARY
     },
     secondaryHeader: {
-        fontFamily: 'LatoBlack',
+        fontFamily: theme.FONT_FAMILY.PRIMARY_ACCENT,
         fontSize: theme.FONT_SIZE.HEADER_SECONDARY
     },
     primaryTitle: {
-        fontFamily: 'LatoBlack',
+        fontFamily: theme.FONT_FAMILY.PRIMARY_ACCENT,
         fontSize: theme.FONT_SIZE.PRIMARY
     },
     primaryText: {

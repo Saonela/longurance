@@ -14,7 +14,8 @@ const COLORS = {
 };
 
 const FONT_FAMILY = {
-    PRIMARY: 'Lato'
+    PRIMARY: 'Lato',
+    PRIMARY_ACCENT: 'LatoBlack'
 };
 
 const FONT_SIZE = {

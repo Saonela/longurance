@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         right: -12
     },
     detailsText: {
-        fontFamily: 'LatoBlack',
+        fontFamily: theme.FONT_FAMILY.PRIMARY_ACCENT,
         paddingBottom: theme.SPACING.XS
     }
 });

@@ -79,7 +79,7 @@ function TrophyDetails({trophy}: TrophyDetailsProps) {
 
 const styles = StyleSheet.create({
     detailsText: {
-        fontFamily: 'LatoBlack',
+        fontFamily: theme.FONT_FAMILY.PRIMARY_ACCENT,
         paddingBottom: theme.SPACING.XS
     }
 });

@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     title: {
-        fontFamily: 'LatoBlack'
+        fontFamily: theme.FONT_FAMILY.PRIMARY_ACCENT
     },
     activityImage: {
         position: 'absolute',
