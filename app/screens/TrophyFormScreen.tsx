@@ -50,7 +50,10 @@ function TrophyFormScreen({route, navigation}) {
 
     return (
         <View style={appStyles.screenContainer}>
-            <ScrollView keyboardShouldPersistTaps="handled">
+            <ScrollView
+                keyboardShouldPersistTaps="handled"
+                contentContainerStyle={{paddingBottom: theme.SPACING.M}}
+            >
                 <TrophyForm
                     trophy={trophyToEdit}
                     innerRef={formRef}

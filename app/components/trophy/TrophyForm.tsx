@@ -59,7 +59,7 @@ const options = {
 
 function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
     return (
-        <View style={styles.form}>
+        <View>
             <Panel>
                 <TextFormField
                     label="Title"
@@ -138,10 +138,6 @@ function TrophyForm({values, errors, handleChange, setFieldValue, setErrors}) {
 }
 
 const styles = StyleSheet.create({
-    form: {
-        paddingHorizontal: theme.SPACING.M,
-        paddingBottom: theme.SPACING.M
-    },
     error: {
         paddingTop: theme.SPACING.S
     }
