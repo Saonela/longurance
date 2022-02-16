@@ -17,9 +17,7 @@ import utils from '../styles-utilities';
 
 function TrophyFormScreen({route, navigation}) {
     const isUpdateForm = route.params.id !== undefined;
-    const trophyToEdit = useTrophiesStore((state) =>
-        getTrophy(state, route.params.id)
-    );
+    const trophyToEdit = useTrophiesStore(getTrophy(route.params.id));
     const formRef = useRef<FormikValues>(null);
 
     useLayoutEffect(() => {

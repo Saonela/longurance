@@ -7,14 +7,11 @@ import TrophyDetails from '../components/trophy/TrophyDetails';
 import {deleteTrophy, getTrophy, useTrophiesStore} from '../state/trophies';
 import {getEntriesByIds, useEntriesStore} from '../state/entries';
 import EntryCard from '../components/entry/EntryCard';
-import theme from '../theme';
 import utils from '../styles-utilities';
 import {Screen} from '../enums/Screen';
 
 function TrophyDetailsScreen({route, navigation}) {
-    const trophy = useTrophiesStore((state) =>
-        getTrophy(state, route.params.id)
-    ) as Trophy;
+    const trophy = useTrophiesStore(getTrophy(route.params.id)) as Trophy;
 
     const entries = useEntriesStore(getEntriesByIds(trophy?.entryIds || []));
 

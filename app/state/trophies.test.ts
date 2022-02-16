@@ -527,12 +527,12 @@ describe('Trophies state', () => {
 
     describe('selectors', () => {
         it('should get trophies filtered by activity', () => {
-            expect(getTrophies(initialState, null)).toEqual(trophies);
-            expect(getTrophies(initialState, Activity.RUNNING)).toEqual(
+            expect(getTrophies(null)(initialState)).toEqual(trophies);
+            expect(getTrophies(Activity.RUNNING)(initialState)).toEqual(
                 trophies
             );
-            expect(getTrophies(initialState, Activity.CYCLING)).toEqual([]);
-            expect(getTrophies(initialState, Activity.SWIMMING)).toEqual([]);
+            expect(getTrophies(Activity.CYCLING)(initialState)).toEqual([]);
+            expect(getTrophies(Activity.SWIMMING)(initialState)).toEqual([]);
         });
 
         it('should get trophies by state', () => {

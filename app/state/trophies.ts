@@ -189,24 +189,21 @@ export function updateCompletedTrophies() {
     updateTrophies(toUpdate);
 }
 
-export const getTrophy = (state: TrophiesState, id: string) =>
+export const getTrophy = (id: string) => (state: TrophiesState) =>
     state.trophies.find((trophy) => trophy.id === id);
 
-export const getTrophies = (
-    state: TrophiesState,
-    activity: Activity | null = null
-) => {
-    return state.trophies.filter(
-        (trophy) => !activity || trophy.activity === activity
-    );
-};
+export const getTrophies =
+    (activity: Activity | null) => (state: TrophiesState) =>
+        state.trophies.filter(
+            (trophy) => !activity || trophy.activity === activity
+        );
 
 export const getTrophiesByState =
     (completed: boolean) => (state: TrophiesState) =>
         state.trophies.filter((trophy) => trophy.completed === completed);
 
 export const getEntryTrophies =
-    (entryId: string, type: TrophyType) => (state) =>
+    (entryId: string, type: TrophyType) => (state: TrophiesState) =>
         state.trophies.filter(
             (trophy) =>
                 trophy.completed &&

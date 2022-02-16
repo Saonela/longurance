@@ -23,11 +23,9 @@ function LatestTrophies({
     onAddNew,
     onSeeMore
 }: LatestTrophiesProps) {
-    const trophies = useTrophiesStore((state) =>
-        getTrophies(state)
-            .filter((trophy) => trophy.completed)
-            .slice(0, itemsCount)
-    );
+    const trophies = useTrophiesStore(getTrophies(null))
+        .filter((trophy) => trophy.completed)
+        .slice(0, itemsCount);
     return (
         <View style={style}>
             <SecondaryHeader
