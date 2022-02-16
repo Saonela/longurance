@@ -7,6 +7,7 @@ import EntryCard from '../entry/EntryCard';
 import theme from '../../theme';
 import {OutlinedButton} from '../ui/Button';
 import appStyles from '../../styles';
+import {useActivityFilterStore} from '../../state/activity-filter';
 
 interface LatestEntriesProps {
     itemsCount: number;
@@ -23,7 +24,8 @@ function LatestEntries({
     onAddNew,
     onSeeMore
 }: LatestEntriesProps) {
-    const entries = useEntriesStore(getEntriesByActivity(null)).slice(
+    const {filter} = useActivityFilterStore();
+    const entries = useEntriesStore(getEntriesByActivity(filter)).slice(
         0,
         itemsCount
     );

@@ -7,6 +7,7 @@ import TrophyCard from '../trophy/TrophyCard';
 import theme from '../../theme';
 import {getTrophies, useTrophiesStore} from '../../state/trophies';
 import appStyles from '../../styles';
+import {useActivityFilterStore} from '../../state/activity-filter';
 
 interface LatestTrophiesProps {
     itemsCount: number;
@@ -23,7 +24,8 @@ function LatestTrophies({
     onAddNew,
     onSeeMore
 }: LatestTrophiesProps) {
-    const trophies = useTrophiesStore(getTrophies(null))
+    const {filter} = useActivityFilterStore();
+    const trophies = useTrophiesStore(getTrophies(filter))
         .filter((trophy) => trophy.completed)
         .slice(0, itemsCount);
     return (

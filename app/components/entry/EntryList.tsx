@@ -14,7 +14,7 @@ interface EntryListProps {
 function EntryList({onPress}: EntryListProps) {
     const {filter} = useActivityFilterStore();
     const {settings} = useEntriesSettingsStore();
-    const entries = useEntriesStore(getSortedEntries(settings));
+    const entries = useEntriesStore(getSortedEntries(filter, settings));
 
     if (entries.length === 0) {
         return <EmptyListMessage>No activity found</EmptyListMessage>;

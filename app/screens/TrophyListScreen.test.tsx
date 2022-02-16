@@ -8,6 +8,7 @@ import {useTrophiesSettingsStore} from '../state/trophies-settings';
 import {TrophiesStateFilter} from '../enums/TrophiesStateFilter';
 import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
 import {TrophyType} from '../enums/TrophyType';
+import {useActivityFilterStore} from '../state/activity-filter';
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
@@ -62,6 +63,7 @@ const navigation = {
 
 describe('TrophyListScreen', () => {
     it('should display list', () => {
+        useActivityFilterStore.setState({filter: null});
         useTrophiesStore.setState({trophies});
         const component = <TrophyListScreen navigation={navigation} />;
         const {getByText} = render(component);
@@ -71,6 +73,7 @@ describe('TrophyListScreen', () => {
     });
 
     it('should filter list', () => {
+        useActivityFilterStore.setState({filter: null});
         useTrophiesStore.setState({trophies});
         useTrophiesSettingsStore.setState({
             settings: {

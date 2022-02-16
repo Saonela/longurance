@@ -212,8 +212,9 @@ export const getEntryTrophies =
         );
 
 export const getFilteredTrophies =
-    (settings: TrophiesSettings) => (state: TrophiesState) =>
-        state.trophies
+    (activity: Activity | null, settings: TrophiesSettings) =>
+    (state: TrophiesState) =>
+        getTrophies(activity)(state)
             .filter((trophy) => {
                 if (settings.stateFilter === TrophiesStateFilter.PENDING) {
                     return !trophy.completed;

@@ -638,7 +638,7 @@ describe('Trophies state', () => {
 
             it('should skip filtering', () => {
                 expect(
-                    getFilteredTrophies({
+                    getFilteredTrophies(null, {
                         stateFilter: TrophiesStateFilter.ALL,
                         typeFilter: TrophiesTypeFilter.ALL
                     })(state).map(getIds)
@@ -647,13 +647,13 @@ describe('Trophies state', () => {
 
             it('should filter by state', () => {
                 expect(
-                    getFilteredTrophies({
+                    getFilteredTrophies(null, {
                         stateFilter: TrophiesStateFilter.PENDING,
                         typeFilter: TrophiesTypeFilter.ALL
                     })(state).map(getIds)
                 ).toEqual(['2', '3']);
                 expect(
-                    getFilteredTrophies({
+                    getFilteredTrophies(null, {
                         stateFilter: TrophiesStateFilter.COMPLETED,
                         typeFilter: TrophiesTypeFilter.ALL
                     })(state).map(getIds)
@@ -662,13 +662,13 @@ describe('Trophies state', () => {
 
             it('should filter by type', () => {
                 expect(
-                    getFilteredTrophies({
+                    getFilteredTrophies(null, {
                         stateFilter: TrophiesStateFilter.ALL,
                         typeFilter: TrophiesTypeFilter.TOTAL
                     })(state).map(getIds)
                 ).toEqual(['3', '4']);
                 expect(
-                    getFilteredTrophies({
+                    getFilteredTrophies(null, {
                         stateFilter: TrophiesStateFilter.ALL,
                         typeFilter: TrophiesTypeFilter.INDIVIDUAL
                     })(state).map(getIds)

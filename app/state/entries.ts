@@ -98,8 +98,9 @@ export const getEntriesByIds = (ids: string[]) => (state: EntriesState) =>
     state.entries.filter((entry) => ids.includes(entry.id));
 
 export const getSortedEntries =
-    (settings: EntriesSettings) => (state: EntriesState) =>
-        [...state.entries].sort((entry1, entry2) => {
+    (activity: Activity | null, settings: EntriesSettings) =>
+    (state: EntriesState) =>
+        [...getEntriesByActivity(activity)(state)].sort((entry1, entry2) => {
             let diff = 0;
             if (settings.sortBy === EntriesSortBy.DATE) {
                 diff =

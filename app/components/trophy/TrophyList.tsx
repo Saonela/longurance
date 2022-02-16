@@ -5,14 +5,16 @@ import TrophyCard from './TrophyCard';
 import {getFilteredTrophies, useTrophiesStore} from '../../state/trophies';
 import {useTrophiesSettingsStore} from '../../state/trophies-settings';
 import utils from '../../styles-utilities';
+import {useActivityFilterStore} from '../../state/activity-filter';
 
 interface TrophyListProps {
     onPress: (id: string) => void;
 }
 
 function TrophyList({onPress}: TrophyListProps) {
+    const {filter} = useActivityFilterStore();
     const {settings} = useTrophiesSettingsStore();
-    const trophies = useTrophiesStore(getFilteredTrophies(settings));
+    const trophies = useTrophiesStore(getFilteredTrophies(filter, settings));
 
     if (trophies.length === 0) {
         return <EmptyListMessage>No trophies found</EmptyListMessage>;

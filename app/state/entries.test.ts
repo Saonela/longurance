@@ -199,13 +199,13 @@ describe('Entries state', () => {
 
             it('should sort by date', () => {
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.DATE,
                         sortDirection: SortDirection.ASCENDING
                     })(state).map(getIds)
                 ).toEqual(['1', '2', '3', '4']);
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.DATE,
                         sortDirection: SortDirection.DESCENDING
                     })(state).map(getIds)
@@ -214,13 +214,13 @@ describe('Entries state', () => {
 
             it('should sort by distance', () => {
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.DISTANCE,
                         sortDirection: SortDirection.ASCENDING
                     })(state).map(getIds)
                 ).toEqual(['2', '4', '1', '3']);
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.DISTANCE,
                         sortDirection: SortDirection.DESCENDING
                     })(state).map(getIds)
@@ -229,13 +229,13 @@ describe('Entries state', () => {
 
             it('should sort by duration', () => {
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.DURATION,
                         sortDirection: SortDirection.ASCENDING
                     })(state).map(getIds)
                 ).toEqual(['4', '1', '2', '3']);
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.DURATION,
                         sortDirection: SortDirection.DESCENDING
                     })(state).map(getIds)
@@ -244,13 +244,13 @@ describe('Entries state', () => {
 
             it('should sort by pace', () => {
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.PACE,
                         sortDirection: SortDirection.ASCENDING
                     })(state).map(getIds)
                 ).toEqual(['3', '1', '4', '2']);
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.PACE,
                         sortDirection: SortDirection.DESCENDING
                     })(state).map(getIds)
@@ -259,13 +259,13 @@ describe('Entries state', () => {
 
             it('should sort by effort', () => {
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.EFFORT,
                         sortDirection: SortDirection.ASCENDING
                     })(state).map(getIds)
                 ).toEqual(['2', '1', '4', '3']);
                 expect(
-                    getSortedEntries({
+                    getSortedEntries(null, {
                         sortBy: EntriesSortBy.EFFORT,
                         sortDirection: SortDirection.DESCENDING
                     })(state).map(getIds)
