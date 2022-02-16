@@ -52,49 +52,47 @@ export async function loadEntries() {
     useEntriesStore.setState(() => ({entries: sortEntryList(entries)}));
 }
 
-function filterEntriesByActivity(entries: Entry[], activity: Activity | null) {
-    if (activity === null) {
-        return entries;
-    }
-    return entries.filter((entry) => entry.activity === activity);
-}
-
-function filterEntriesByTimeInterval(
-    entries: Entry[],
-    timeInterval: TimeInterval | null
-) {
-    if (timeInterval === TimeInterval.YEAR) {
-        const year = new Date().getFullYear();
-        return entries.filter(
-            (entry) => new Date(entry.date).getFullYear() === year
-        );
-    }
-    if (timeInterval === TimeInterval.MONTH) {
-        const month = new Date().getMonth();
-        return entries.filter(
-            (entry) => new Date(entry.date).getMonth() === month
-        );
-    }
-    if (timeInterval === TimeInterval.WEEK) {
-        const week = moment().format('W');
-        return entries.filter(
-            (entry) => moment(entry.date).format('W') === week
-        );
-    }
-    return entries;
-}
-
 export const getEntry = (state: EntriesState, id: string) =>
     state.entries.find((entry) => entry.id === id);
 
-export const getEntries = (
-    state,
-    activity: Activity | null = null,
-    timeInterval: TimeInterval | null = null
-) => {
-    const activityEntries = filterEntriesByActivity(state.entries, activity);
-    return filterEntriesByTimeInterval(activityEntries, timeInterval);
-};
+export const getEntriesByActivity =
+    (activity: Activity | null) => (state: EntriesState) =>
+        state.entries.filter(
+            (entry) => !activity || entry.activity === activity
+        );
+
+export const getEntriesByTimeInterval =
+    (timeInterval: TimeInterval | null) => (state: EntriesState) => {
+        if (timeInterval === TimeInterval.YEAR) {
+            const year = new Date().getFullYear();
+            return state.entries.filter(
+                (entry) => new Date(entry.date).getFullYear() === year
+            );
+        }
+        if (timeInterval === TimeInterval.MONTH) {
+            const month = new Date().getMonth();
+            return state.entries.filter(
+                (entry) => new Date(entry.date).getMonth() === month
+            );
+        }
+        if (timeInterval === TimeInterval.WEEK) {
+            const week = moment().format('W');
+            return state.entries.filter(
+                (entry) => moment(entry.date).format('W') === week
+            );
+        }
+        return state.entries;
+    };
+
+export const getEntries =
+    (
+        activity: Activity | null = null,
+        timeInterval: TimeInterval | null = null
+    ) =>
+    (state: EntriesState) =>
+        getEntriesByTimeInterval(timeInterval)({
+            entries: getEntriesByActivity(activity)(state)
+        });
 
 export const getEntriesByIds = (ids: string[]) => (state: EntriesState) =>
     state.entries.filter((entry) => ids.includes(entry.id));

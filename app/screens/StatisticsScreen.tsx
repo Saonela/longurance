@@ -6,7 +6,7 @@ import AverageStatistics from '../components/statistics/AverageStatistics';
 import PeakStatistics from '../components/statistics/PeakStatistics';
 import HeaderActivityFilter from '../components/header/HeaderActivityFilter';
 import {useActivityFilterStore} from '../state/activity-filter';
-import {getEntries, useEntriesStore} from '../state/entries';
+import {getEntriesByActivity, useEntriesStore} from '../state/entries';
 import {getTrophiesByState, useTrophiesStore} from '../state/trophies';
 import {Screen} from '../enums/Screen';
 import utils from '../styles-utilities';
@@ -14,7 +14,7 @@ import utils from '../styles-utilities';
 function StatisticsScreen({navigation}) {
     const {filter} = useActivityFilterStore();
     const entries = [
-        ...useEntriesStore((state) => getEntries(state, filter))
+        ...useEntriesStore(getEntriesByActivity(filter))
     ].reverse();
     const trophies = useTrophiesStore(getTrophiesByState(true));
 

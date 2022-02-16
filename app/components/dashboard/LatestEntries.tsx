@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 import {PrimaryText, SecondaryHeader} from '../ui/Text';
 import utils from '../../styles-utilities';
-import {getEntries, useEntriesStore} from '../../state/entries';
+import {getEntriesByActivity, useEntriesStore} from '../../state/entries';
 import EntryCard from '../entry/EntryCard';
 import theme from '../../theme';
 import {OutlinedButton} from '../ui/Button';
@@ -23,8 +23,9 @@ function LatestEntries({
     onAddNew,
     onSeeMore
 }: LatestEntriesProps) {
-    const entries = useEntriesStore((state) =>
-        getEntries(state).slice(0, itemsCount)
+    const entries = useEntriesStore(getEntriesByActivity(null)).slice(
+        0,
+        itemsCount
     );
     return (
         <View style={style}>

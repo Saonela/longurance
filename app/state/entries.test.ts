@@ -5,7 +5,9 @@ import {
     deleteEntry,
     EntriesState,
     getEntries,
+    getEntriesByActivity,
     getEntriesByIds,
+    getEntriesByTimeInterval,
     getSortedEntries,
     loadEntries,
     updateEntry,
@@ -102,32 +104,46 @@ describe('Entries state', () => {
         };
 
         it('should get entries filtered by activity', () => {
-            expect(getEntries(initialState, null)).toEqual(
+            expect(getEntriesByActivity(null)(initialState)).toEqual(
                 initialState.entries
             );
-            expect(getEntries(initialState, Activity.RUNNING)).toEqual(
-                initialState.entries
-            );
-            expect(getEntries(initialState, Activity.CYCLING)).toEqual([]);
-            expect(getEntries(initialState, Activity.SWIMMING)).toEqual([]);
+            expect(
+                getEntriesByActivity(Activity.RUNNING)(initialState)
+            ).toEqual(initialState.entries);
+            expect(
+                getEntriesByActivity(Activity.CYCLING)(initialState)
+            ).toEqual([]);
+            expect(
+                getEntriesByActivity(Activity.SWIMMING)(initialState)
+            ).toEqual([]);
         });
 
         it('should get entries filtered by time interval', () => {
             setFakeDate('2021-01-19T09:00:00.000');
-            expect(getEntries(initialState, null, TimeInterval.MONTH)).toEqual(
-                initialState.entries
-            );
-            expect(getEntries(initialState, null, TimeInterval.YEAR)).toEqual(
-                initialState.entries
-            );
+            expect(
+                getEntriesByTimeInterval(TimeInterval.MONTH)(initialState)
+            ).toEqual(initialState.entries);
+            expect(
+                getEntriesByTimeInterval(TimeInterval.YEAR)(initialState)
+            ).toEqual(initialState.entries);
 
             setFakeDate('2021-09-19T09:00:00.000');
-            expect(getEntries(initialState, null, TimeInterval.MONTH)).toEqual(
-                []
-            );
-            expect(getEntries(initialState, null, TimeInterval.YEAR)).toEqual(
-                initialState.entries
-            );
+            expect(
+                getEntriesByTimeInterval(TimeInterval.MONTH)(initialState)
+            ).toEqual([]);
+            expect(
+                getEntriesByTimeInterval(TimeInterval.YEAR)(initialState)
+            ).toEqual(initialState.entries);
+        });
+
+        it('should get entries filtered by activity and time interval', () => {
+            setFakeDate('2021-01-19T09:00:00.000');
+            expect(
+                getEntries(Activity.RUNNING, TimeInterval.MONTH)(initialState)
+            ).toEqual(initialState.entries);
+            expect(
+                getEntries(Activity.SWIMMING, TimeInterval.MONTH)(initialState)
+            ).toEqual([]);
         });
 
         it('should get entries by ids', () => {

@@ -60,11 +60,9 @@ const getActivityFilterText = (filter: Activity | null) => {
 };
 
 function Dashboard() {
-    const {dashboardTimeInterval, setDashboardTimeInterval} = useFiltersStore();
     const {filter} = useActivityFilterStore();
-    const entries = useEntriesStore((state) =>
-        getEntries(state, filter, dashboardTimeInterval)
-    );
+    const {dashboardTimeInterval, setDashboardTimeInterval} = useFiltersStore();
+    const entries = useEntriesStore(getEntries(filter, dashboardTimeInterval));
 
     const distance = getTotalDistance(entries);
     const duration = getTotalDuration(entries);
