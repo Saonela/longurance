@@ -52,7 +52,7 @@ export async function loadEntries() {
     useEntriesStore.setState(() => ({entries: sortEntryList(entries)}));
 }
 
-export const getEntry = (state: EntriesState, id: string) =>
+export const getEntry = (id: string) => (state: EntriesState) =>
     state.entries.find((entry) => entry.id === id);
 
 export const getEntriesByActivity =

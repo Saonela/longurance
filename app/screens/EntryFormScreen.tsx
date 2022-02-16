@@ -17,9 +17,7 @@ import utils from '../styles-utilities';
 
 function EntryFormScreen({route, navigation}) {
     const isUpdateForm = route.params.id !== undefined;
-    const entryToEdit = useEntriesStore((state) =>
-        getEntry(state, route.params.id)
-    );
+    const entryToEdit = useEntriesStore(getEntry(route.params.id));
     const formRef = useRef<FormikValues>(null);
 
     useLayoutEffect(() => {

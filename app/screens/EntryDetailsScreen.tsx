@@ -16,9 +16,7 @@ import {Screen} from '../enums/Screen';
 import utils from '../styles-utilities';
 
 function EntryDetailsScreen({route, navigation}) {
-    const entry = useEntriesStore((state) =>
-        getEntry(state, route.params.id)
-    ) as Entry;
+    const entry = useEntriesStore(getEntry(route.params.id)) as Entry;
 
     const trophies = useTrophiesStore(
         getEntryTrophies(entry?.id, TrophyType.INDIVIDUAL)
