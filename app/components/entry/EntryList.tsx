@@ -1,11 +1,11 @@
 import React from 'react';
 import {FlatList} from 'react-native';
 import EntryCard from './EntryCard';
-import theme from '../../theme';
 import {getSortedEntries, useEntriesStore} from '../../state/entries';
 import EmptyListMessage from '../list/EmptyListMessage';
 import {useActivityFilterStore} from '../../state/activity-filter';
 import {useEntriesSettingsStore} from '../../state/entries-settings';
+import utils from '../../styles-utilities';
 
 interface EntryListProps {
     onPress: (id: string) => void;
@@ -37,7 +37,7 @@ function EntryList({onPress}: EntryListProps) {
             })}
             initialNumToRender={6}
             removeClippedSubviews
-            contentContainerStyle={{paddingBottom: theme.SPACING.M}}
+            contentContainerStyle={utils.paddingBottomM}
         />
     );
 }

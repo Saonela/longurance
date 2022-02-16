@@ -13,6 +13,7 @@ import {
     useEntriesStore
 } from '../state/entries';
 import {updateCompletedTrophies} from '../state/trophies';
+import utils from '../styles-utilities';
 
 function EntryFormScreen({route, navigation}) {
     const isUpdateForm = route.params.id !== undefined;
@@ -52,7 +53,7 @@ function EntryFormScreen({route, navigation}) {
         <View style={appStyles.screenContainer}>
             <ScrollView
                 keyboardShouldPersistTaps="handled"
-                contentContainerStyle={{paddingBottom: theme.SPACING.M}}
+                contentContainerStyle={utils.paddingBottomM}
             >
                 <EntryForm
                     entry={entryToEdit}

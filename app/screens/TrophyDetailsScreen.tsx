@@ -62,9 +62,7 @@ function TrophyDetailsScreen({route, navigation}) {
 
     return (
         <View style={appStyles.screenContainer}>
-            <ScrollView
-                contentContainerStyle={{paddingBottom: theme.SPACING.M}}
-            >
+            <ScrollView contentContainerStyle={utils.paddingBottomM}>
                 {trophy && <TrophyDetails trophy={trophy} />}
                 {entries.map((entry) => (
                     <EntryCard

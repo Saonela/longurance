@@ -62,7 +62,7 @@ function TimelineScreen({navigation}) {
                         </PrimaryText>
                     </View>
                 )}
-                <ScrollView>
+                <ScrollView contentContainerStyle={utils.paddingBottomM}>
                     <ButtonGroup<TimeInterval>
                         selected={timeInterval}
                         items={timeIntervalValues}

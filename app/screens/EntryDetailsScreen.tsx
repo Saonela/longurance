@@ -10,10 +10,10 @@ import {
     updateCompletedTrophies,
     useTrophiesStore
 } from '../state/trophies';
-import theme from '../theme';
 import TrophyCardLite from '../components/trophy/TrophyCardLite';
 import {TrophyType} from '../enums/TrophyType';
 import {Screen} from '../enums/Screen';
+import utils from '../styles-utilities';
 
 function EntryDetailsScreen({route, navigation}) {
     const entry = useEntriesStore((state) =>
@@ -69,9 +69,7 @@ function EntryDetailsScreen({route, navigation}) {
 
     return (
         <View style={appStyles.screenContainer}>
-            <ScrollView
-                contentContainerStyle={{paddingBottom: theme.SPACING.M}}
-            >
+            <ScrollView contentContainerStyle={utils.paddingBottomM}>
                 {entry && <EntryDetails entry={entry} />}
                 {trophies.map((trophy) => (
                     <TrophyCardLite key={trophy.id} trophy={trophy} />

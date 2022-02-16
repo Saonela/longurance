@@ -9,6 +9,7 @@ import {useActivityFilterStore} from '../state/activity-filter';
 import {getEntries, useEntriesStore} from '../state/entries';
 import {getTrophiesByState, useTrophiesStore} from '../state/trophies';
 import {Screen} from '../enums/Screen';
+import utils from '../styles-utilities';
 
 function StatisticsScreen({navigation}) {
     const {filter} = useActivityFilterStore();
@@ -24,7 +25,7 @@ function StatisticsScreen({navigation}) {
         <>
             <HeaderActivityFilter />
             <View style={appStyles.screenContainer}>
-                <ScrollView>
+                <ScrollView contentContainerStyle={utils.paddingBottomM}>
                     <TotalStatistics
                         entries={entries}
                         trophiesCount={trophies.length}

@@ -13,6 +13,7 @@ import {
     updateTrophy,
     useTrophiesStore
 } from '../state/trophies';
+import utils from '../styles-utilities';
 
 function TrophyFormScreen({route, navigation}) {
     const isUpdateForm = route.params.id !== undefined;
@@ -52,7 +53,7 @@ function TrophyFormScreen({route, navigation}) {
         <View style={appStyles.screenContainer}>
             <ScrollView
                 keyboardShouldPersistTaps="handled"
-                contentContainerStyle={{paddingBottom: theme.SPACING.M}}
+                contentContainerStyle={utils.paddingBottomM}
             >
                 <TrophyForm
                     trophy={trophyToEdit}

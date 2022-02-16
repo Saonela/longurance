@@ -3,8 +3,8 @@ import {FlatList} from 'react-native';
 import EmptyListMessage from '../list/EmptyListMessage';
 import TrophyCard from './TrophyCard';
 import {getFilteredTrophies, useTrophiesStore} from '../../state/trophies';
-import theme from '../../theme';
 import {useTrophiesSettingsStore} from '../../state/trophies-settings';
+import utils from '../../styles-utilities';
 
 interface TrophyListProps {
     onPress: (id: string) => void;
@@ -35,7 +35,7 @@ function TrophyList({onPress}: TrophyListProps) {
             })}
             initialNumToRender={6}
             removeClippedSubviews
-            contentContainerStyle={{paddingBottom: theme.SPACING.M}}
+            contentContainerStyle={utils.paddingBottomM}
         />
     );
 }
