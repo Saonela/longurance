@@ -135,7 +135,7 @@ function SettingsScreenStack() {
 
 const tabScreenOptions = {headerShown: false};
 const resetTabScreenStack = (navigation, route) => {
-    if (route.state.routes.length !== 1) {
+    if (route?.state?.routes?.length !== 1) {
         navigation.dispatch(StackActions.popToTop());
     }
 };
