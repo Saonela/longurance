@@ -10,6 +10,7 @@ import {
     loadTrophies,
     TrophiesState,
     updateCompletedTrophies,
+    updateTrophies,
     updateTrophy,
     useTrophiesStore
 } from './trophies';
@@ -106,6 +107,15 @@ describe('Trophies state', () => {
                 {...initialState.trophies[0], ...trophy}
             ]);
             expect(saveTrophiesSpy).toHaveBeenCalled();
+        });
+
+        it('should skip trophies update if empty array', () => {
+            useTrophiesStore.setState(initialState);
+            updateTrophies([]);
+            expect(useTrophiesStore.getState().trophies).toEqual(
+                initialState.trophies
+            );
+            expect(saveTrophiesSpy).not.toHaveBeenCalled();
         });
 
         it('should delete trophy', () => {

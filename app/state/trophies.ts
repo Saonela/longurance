@@ -41,6 +41,7 @@ export function updateTrophy(trophy: Trophy) {
 }
 
 export function updateTrophies(trophies: Trophy[]) {
+    if (!trophies.length) return;
     api.saveTrophies(trophies);
 
     const idMap = trophies.reduce((map, trophy) => {
