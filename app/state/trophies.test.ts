@@ -122,34 +122,12 @@ describe('Trophies state', () => {
             useTrophiesStore.setState({
                 trophies: [
                     {
-                        id: '1',
-                        activity: Activity.RUNNING,
-                        type: TrophyType.TOTAL,
-                        entryIds: [],
-                        distance: 0,
-                        duration: 7200,
-                        completedAt: null,
-                        completed: false,
-                        markedAsRead: false
-                    },
-                    {
-                        id: '2',
-                        activity: Activity.RUNNING,
-                        type: TrophyType.TOTAL,
-                        entryIds: [],
-                        distance: 20,
-                        duration: 0,
-                        completedAt: null,
-                        completed: false,
-                        markedAsRead: false
-                    },
-                    {
-                        id: '3',
+                        id: '5',
                         activity: Activity.RUNNING,
                         type: TrophyType.INDIVIDUAL,
                         entryIds: [],
-                        distance: 15,
-                        duration: 0,
+                        distance: 11,
+                        duration: 3600,
                         completedAt: null,
                         completed: false,
                         markedAsRead: false
@@ -166,12 +144,34 @@ describe('Trophies state', () => {
                         markedAsRead: false
                     },
                     {
-                        id: '5',
+                        id: '3',
                         activity: Activity.RUNNING,
                         type: TrophyType.INDIVIDUAL,
                         entryIds: [],
-                        distance: 11,
-                        duration: 3600,
+                        distance: 15,
+                        duration: 0,
+                        completedAt: null,
+                        completed: false,
+                        markedAsRead: false
+                    },
+                    {
+                        id: '2',
+                        activity: Activity.RUNNING,
+                        type: TrophyType.TOTAL,
+                        entryIds: [],
+                        distance: 20,
+                        duration: 0,
+                        completedAt: null,
+                        completed: false,
+                        markedAsRead: false
+                    },
+                    {
+                        id: '1',
+                        activity: Activity.RUNNING,
+                        type: TrophyType.TOTAL,
+                        entryIds: [],
+                        distance: 0,
+                        duration: 7200,
                         completedAt: null,
                         completed: false,
                         markedAsRead: false
@@ -188,17 +188,17 @@ describe('Trophies state', () => {
             useEntriesStore.setState({
                 entries: [
                     {
-                        id: '999',
-                        date: '2022-01-16',
-                        activity: Activity.RUNNING,
-                        distance: 16,
-                        duration: 0
-                    },
-                    {
                         id: '1000',
                         date: '2022-01-17',
                         activity: Activity.SWIMMING,
                         distance: 20,
+                        duration: 0
+                    },
+                    {
+                        id: '999',
+                        date: '2022-01-16',
+                        activity: Activity.RUNNING,
+                        distance: 16,
                         duration: 0
                     }
                 ] as Entry[]
@@ -292,17 +292,17 @@ describe('Trophies state', () => {
             useEntriesStore.setState({
                 entries: [
                     {
-                        id: '999',
-                        date: '2022-01-16',
-                        activity: Activity.RUNNING,
-                        distance: 10,
-                        duration: 0
-                    },
-                    {
                         id: '1000',
                         date: '2022-01-17',
                         activity: Activity.RUNNING,
                         distance: 11,
+                        duration: 0
+                    },
+                    {
+                        id: '999',
+                        date: '2022-01-16',
+                        activity: Activity.RUNNING,
+                        distance: 10,
                         duration: 0
                     }
                 ] as Entry[]
@@ -331,18 +331,11 @@ describe('Trophies state', () => {
             useEntriesStore.setState({
                 entries: [
                     {
-                        id: '997',
-                        date: '2022-01-15',
-                        activity: Activity.RUNNING,
-                        distance: 10,
-                        duration: 4000
-                    },
-                    {
-                        id: '998',
-                        date: '2022-01-16',
-                        activity: Activity.RUNNING,
-                        distance: 0,
-                        duration: 4000
+                        id: '1000',
+                        date: '2022-01-17',
+                        activity: Activity.SWIMMING,
+                        distance: 11,
+                        duration: 0
                     },
                     {
                         id: '999',
@@ -352,11 +345,18 @@ describe('Trophies state', () => {
                         duration: 1000
                     },
                     {
-                        id: '1000',
-                        date: '2022-01-17',
-                        activity: Activity.SWIMMING,
-                        distance: 11,
-                        duration: 0
+                        id: '998',
+                        date: '2022-01-16',
+                        activity: Activity.RUNNING,
+                        distance: 0,
+                        duration: 4000
+                    },
+                    {
+                        id: '997',
+                        date: '2022-01-15',
+                        activity: Activity.RUNNING,
+                        distance: 10,
+                        duration: 4000
                     }
                 ] as Entry[]
             });
@@ -384,17 +384,6 @@ describe('Trophies state', () => {
             useTrophiesStore.setState({
                 trophies: [
                     {
-                        id: '1',
-                        activity: Activity.RUNNING,
-                        type: TrophyType.INDIVIDUAL,
-                        entryIds: ['999'],
-                        distance: 20,
-                        duration: 7200,
-                        completedAt: '2022-01-16',
-                        completed: true,
-                        markedAsRead: true
-                    },
-                    {
                         id: '2',
                         activity: Activity.SWIMMING,
                         type: TrophyType.INDIVIDUAL,
@@ -404,6 +393,17 @@ describe('Trophies state', () => {
                         completedAt: '2022-01-16',
                         completed: true,
                         markedAsRead: false
+                    },
+                    {
+                        id: '1',
+                        activity: Activity.RUNNING,
+                        type: TrophyType.INDIVIDUAL,
+                        entryIds: ['999'],
+                        distance: 20,
+                        duration: 7200,
+                        completedAt: '2022-01-16',
+                        completed: true,
+                        markedAsRead: true
                     }
                 ] as Trophy[]
             });
@@ -421,23 +421,23 @@ describe('Trophies state', () => {
             updateCompletedTrophies();
             expect(useTrophiesStore.getState().trophies).toEqual([
                 {
-                    id: '1',
-                    activity: Activity.RUNNING,
-                    type: TrophyType.INDIVIDUAL,
-                    entryIds: [],
-                    distance: 20,
-                    duration: 7200,
-                    completedAt: null,
-                    completed: false,
-                    markedAsRead: false
-                },
-                {
                     id: '2',
                     activity: Activity.SWIMMING,
                     type: TrophyType.INDIVIDUAL,
                     entryIds: [],
                     distance: 5,
                     duration: 0,
+                    completedAt: null,
+                    completed: false,
+                    markedAsRead: false
+                },
+                {
+                    id: '1',
+                    activity: Activity.RUNNING,
+                    type: TrophyType.INDIVIDUAL,
+                    entryIds: [],
+                    distance: 20,
+                    duration: 7200,
                     completedAt: null,
                     completed: false,
                     markedAsRead: false
@@ -449,17 +449,6 @@ describe('Trophies state', () => {
             useTrophiesStore.setState({
                 trophies: [
                     {
-                        id: '1',
-                        activity: Activity.RUNNING,
-                        type: TrophyType.TOTAL,
-                        entryIds: ['997', '998'],
-                        distance: 0,
-                        duration: 7200,
-                        completedAt: '2022-01-16',
-                        completed: true,
-                        markedAsRead: true
-                    },
-                    {
                         id: '2',
                         activity: Activity.SWIMMING,
                         type: TrophyType.TOTAL,
@@ -469,17 +458,28 @@ describe('Trophies state', () => {
                         completedAt: '2022-01-16',
                         completed: true,
                         markedAsRead: true
+                    },
+                    {
+                        id: '1',
+                        activity: Activity.RUNNING,
+                        type: TrophyType.TOTAL,
+                        entryIds: ['997', '998'],
+                        distance: 0,
+                        duration: 7200,
+                        completedAt: '2022-01-16',
+                        completed: true,
+                        markedAsRead: true
                     }
                 ] as Trophy[]
             });
             useEntriesStore.setState({
                 entries: [
                     {
-                        id: '998',
-                        date: '2022-01-16',
-                        activity: Activity.RUNNING,
-                        distance: 0,
-                        duration: 8000
+                        id: '1000',
+                        date: '2022-01-17',
+                        activity: Activity.SWIMMING,
+                        distance: 2,
+                        duration: 0
                     },
                     {
                         id: '999',
@@ -489,27 +489,16 @@ describe('Trophies state', () => {
                         duration: 1000
                     },
                     {
-                        id: '1000',
-                        date: '2022-01-17',
-                        activity: Activity.SWIMMING,
-                        distance: 2,
-                        duration: 0
+                        id: '998',
+                        date: '2022-01-16',
+                        activity: Activity.RUNNING,
+                        distance: 0,
+                        duration: 8000
                     }
                 ] as Entry[]
             });
             updateCompletedTrophies();
             expect(useTrophiesStore.getState().trophies).toEqual([
-                {
-                    id: '1',
-                    activity: Activity.RUNNING,
-                    type: TrophyType.TOTAL,
-                    entryIds: ['998'],
-                    distance: 0,
-                    duration: 7200,
-                    completedAt: '2022-01-16',
-                    completed: true,
-                    markedAsRead: true
-                },
                 {
                     id: '2',
                     activity: Activity.SWIMMING,
@@ -520,6 +509,17 @@ describe('Trophies state', () => {
                     completedAt: null,
                     completed: false,
                     markedAsRead: false
+                },
+                {
+                    id: '1',
+                    activity: Activity.RUNNING,
+                    type: TrophyType.TOTAL,
+                    entryIds: ['998'],
+                    distance: 0,
+                    duration: 7200,
+                    completedAt: '2022-01-16',
+                    completed: true,
+                    markedAsRead: true
                 }
             ]);
         });
@@ -546,10 +546,10 @@ describe('Trophies state', () => {
             const state: TrophiesState = {
                 trophies: [
                     {
-                        id: '100',
-                        completed: true,
-                        type: TrophyType.TOTAL,
-                        entryIds: ['1', '2']
+                        id: '102',
+                        completed: false,
+                        type: TrophyType.INDIVIDUAL,
+                        entryIds: []
                     },
                     {
                         id: '101',
@@ -558,10 +558,10 @@ describe('Trophies state', () => {
                         entryIds: ['1']
                     },
                     {
-                        id: '102',
-                        completed: false,
-                        type: TrophyType.INDIVIDUAL,
-                        entryIds: []
+                        id: '100',
+                        completed: true,
+                        type: TrophyType.TOTAL,
+                        entryIds: ['1', '2']
                     }
                 ] as Trophy[]
             };
@@ -587,25 +587,14 @@ describe('Trophies state', () => {
                 state = {
                     trophies: [
                         {
-                            id: '1',
+                            id: '4',
                             activity: Activity.RUNNING,
-                            type: TrophyType.INDIVIDUAL,
-                            entryIds: ['20'],
-                            distance: 5,
-                            duration: 0,
-                            completedAt: '2021-09-21',
-                            completed: true,
-                            markedAsRead: true
-                        },
-                        {
-                            id: '2',
-                            activity: Activity.RUNNING,
-                            type: TrophyType.INDIVIDUAL,
-                            entryIds: [],
+                            type: TrophyType.TOTAL,
+                            entryIds: ['20', '21', '22'],
                             distance: 20,
                             duration: 0,
-                            completedAt: null,
-                            completed: false,
+                            completedAt: '2022-01-01',
+                            completed: true,
                             markedAsRead: false
                         },
                         {
@@ -620,15 +609,26 @@ describe('Trophies state', () => {
                             markedAsRead: false
                         },
                         {
-                            id: '4',
+                            id: '2',
                             activity: Activity.RUNNING,
-                            type: TrophyType.TOTAL,
-                            entryIds: ['20', '21', '22'],
+                            type: TrophyType.INDIVIDUAL,
+                            entryIds: [],
                             distance: 20,
                             duration: 0,
-                            completedAt: '2022-01-01',
-                            completed: true,
+                            completedAt: null,
+                            completed: false,
                             markedAsRead: false
+                        },
+                        {
+                            id: '1',
+                            activity: Activity.RUNNING,
+                            type: TrophyType.INDIVIDUAL,
+                            entryIds: ['20'],
+                            distance: 5,
+                            duration: 0,
+                            completedAt: '2021-09-21',
+                            completed: true,
+                            markedAsRead: true
                         }
                     ] as unknown as Trophy[]
                 };
@@ -642,7 +642,7 @@ describe('Trophies state', () => {
                         stateFilter: TrophiesStateFilter.ALL,
                         typeFilter: TrophiesTypeFilter.ALL
                     })(state).map(getIds)
-                ).toEqual(['1', '2', '3', '4']);
+                ).toEqual(['4', '3', '2', '1']);
             });
 
             it('should filter by state', () => {
@@ -651,13 +651,13 @@ describe('Trophies state', () => {
                         stateFilter: TrophiesStateFilter.PENDING,
                         typeFilter: TrophiesTypeFilter.ALL
                     })(state).map(getIds)
-                ).toEqual(['2', '3']);
+                ).toEqual(['3', '2']);
                 expect(
                     getFilteredTrophies(null, {
                         stateFilter: TrophiesStateFilter.COMPLETED,
                         typeFilter: TrophiesTypeFilter.ALL
                     })(state).map(getIds)
-                ).toEqual(['1', '4']);
+                ).toEqual(['4', '1']);
             });
 
             it('should filter by type', () => {
@@ -666,13 +666,13 @@ describe('Trophies state', () => {
                         stateFilter: TrophiesStateFilter.ALL,
                         typeFilter: TrophiesTypeFilter.TOTAL
                     })(state).map(getIds)
-                ).toEqual(['3', '4']);
+                ).toEqual(['4', '3']);
                 expect(
                     getFilteredTrophies(null, {
                         stateFilter: TrophiesStateFilter.ALL,
                         typeFilter: TrophiesTypeFilter.INDIVIDUAL
                     })(state).map(getIds)
-                ).toEqual(['1', '2']);
+                ).toEqual(['2', '1']);
             });
         });
     });

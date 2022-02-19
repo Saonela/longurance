@@ -149,7 +149,8 @@ const hasTrophyChanged = (
     trophy.entryIds.join() !== newTrophy.entryIds.join();
 
 export function updateCompletedTrophies() {
-    const {entries} = useEntriesStore.getState();
+    // reverse entries to check in chronological order
+    const entries = useEntriesStore.getState().entries.slice().reverse();
     const {trophies} = useTrophiesStore.getState();
     const toUpdate: Trophy[] = [];
 
