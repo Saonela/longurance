@@ -171,6 +171,9 @@ function Main() {
                     options={tabScreenOptions}
                     name={TabScreen.STATISTICS}
                     component={StatisticsScreenStack}
+                    listeners={({navigation, route}) => ({
+                        blur: () => resetTabScreenStack(navigation, route)
+                    })}
                 />
                 <Tab.Screen
                     options={tabScreenOptions}
