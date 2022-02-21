@@ -90,8 +90,8 @@ describe('Trophies state', () => {
             const trophy: Trophy = {id: '2'} as Trophy;
             addTrophy(trophy);
             expect(useTrophiesStore.getState().trophies).toEqual([
-                trophy,
-                ...initialState.trophies
+                ...initialState.trophies,
+                trophy
             ]);
             expect(saveTrophiesSpy).toHaveBeenCalled();
         });
@@ -431,23 +431,23 @@ describe('Trophies state', () => {
             updateCompletedTrophies();
             expect(useTrophiesStore.getState().trophies).toEqual([
                 {
-                    id: '2',
-                    activity: Activity.SWIMMING,
-                    type: TrophyType.INDIVIDUAL,
-                    entryIds: [],
-                    distance: 5,
-                    duration: 0,
-                    completedAt: null,
-                    completed: false,
-                    markedAsRead: false
-                },
-                {
                     id: '1',
                     activity: Activity.RUNNING,
                     type: TrophyType.INDIVIDUAL,
                     entryIds: [],
                     distance: 20,
                     duration: 7200,
+                    completedAt: null,
+                    completed: false,
+                    markedAsRead: false
+                },
+                {
+                    id: '2',
+                    activity: Activity.SWIMMING,
+                    type: TrophyType.INDIVIDUAL,
+                    entryIds: [],
+                    distance: 5,
+                    duration: 0,
                     completedAt: null,
                     completed: false,
                     markedAsRead: false
@@ -510,17 +510,6 @@ describe('Trophies state', () => {
             updateCompletedTrophies();
             expect(useTrophiesStore.getState().trophies).toEqual([
                 {
-                    id: '2',
-                    activity: Activity.SWIMMING,
-                    type: TrophyType.TOTAL,
-                    entryIds: [],
-                    distance: 5,
-                    duration: 0,
-                    completedAt: null,
-                    completed: false,
-                    markedAsRead: false
-                },
-                {
                     id: '1',
                     activity: Activity.RUNNING,
                     type: TrophyType.TOTAL,
@@ -530,6 +519,17 @@ describe('Trophies state', () => {
                     completedAt: '2022-01-16',
                     completed: true,
                     markedAsRead: true
+                },
+                {
+                    id: '2',
+                    activity: Activity.SWIMMING,
+                    type: TrophyType.TOTAL,
+                    entryIds: [],
+                    distance: 5,
+                    duration: 0,
+                    completedAt: null,
+                    completed: false,
+                    markedAsRead: false
                 }
             ]);
         });

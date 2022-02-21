@@ -6,7 +6,7 @@ import trophiesJson from '../../assets/data/trophies.json';
 import {Activity} from '../enums/Activity';
 import {generateId} from '../lib/utility';
 import {useEntriesStore} from './entries';
-import {getTrophySubtype} from '../lib/trophy';
+import {getTrophySubtype, sortTrophyList} from '../lib/trophy';
 import {Entry} from '../types/Entry';
 import {TrophiesSettings} from '../types/TrophiesSettings';
 import {TrophiesTypeFilter} from '../enums/TrophiesTypeFilter';
@@ -32,7 +32,7 @@ export function addTrophy(trophy: Trophy) {
     Object.assign(trophy, {id: generateId()});
     api.saveTrophies([trophy]);
     useTrophiesStore.setState((state) => ({
-        trophies: [trophy, ...state.trophies]
+        trophies: sortTrophyList([trophy, ...state.trophies])
     }));
 }
 
@@ -50,12 +50,14 @@ export function updateTrophies(trophies: Trophy[]) {
     }, new Map());
 
     useTrophiesStore.setState((state) => ({
-        trophies: state.trophies.map((stateTrophy) => {
-            if (idMap.has(stateTrophy.id)) {
-                return {...stateTrophy, ...idMap.get(stateTrophy.id)};
-            }
-            return stateTrophy;
-        })
+        trophies: sortTrophyList(
+            state.trophies.map((stateTrophy) => {
+                if (idMap.has(stateTrophy.id)) {
+                    return {...stateTrophy, ...idMap.get(stateTrophy.id)};
+                }
+                return stateTrophy;
+            })
+        )
     }));
 }
 
@@ -72,11 +74,11 @@ export async function loadTrophies() {
         const predefinedTrophies = getPredefinedTrophies();
         api.saveTrophies(predefinedTrophies);
         useTrophiesStore.setState(() => ({
-            trophies: predefinedTrophies
+            trophies: sortTrophyList(predefinedTrophies)
         }));
     } else {
         useTrophiesStore.setState(() => ({
-            trophies
+            trophies: sortTrophyList(trophies)
         }));
     }
 }
