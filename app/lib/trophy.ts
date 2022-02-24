@@ -66,3 +66,17 @@ export const sortTrophyList = (trophies: Trophy[]) =>
         }
         return diff2 - diff1;
     });
+
+export const trophiesCompletedAtComparator = (
+    trophy1: Trophy,
+    trophy2: Trophy
+) => {
+    if (trophy1.completedAt && trophy2.completedAt) {
+        return (
+            new Date(trophy2.completedAt).getTime() -
+            new Date(trophy1.completedAt).getTime()
+        );
+    }
+    if (trophy1.completedAt) return -1;
+    return 0;
+};

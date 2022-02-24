@@ -5,9 +5,15 @@ import utils from '../../styles-utilities';
 import {OutlinedButton} from '../ui/Button';
 import TrophyCard from '../trophy/TrophyCard';
 import theme from '../../theme';
-import {getTrophies, useTrophiesStore} from '../../state/trophies';
+import {
+    getTrophies,
+    TrophiesState,
+    useTrophiesStore
+} from '../../state/trophies';
 import appStyles from '../../styles';
 import {useActivityFilterStore} from '../../state/activity-filter';
+import {Activity} from '../../enums/Activity';
+import {trophiesCompletedAtComparator} from '../../lib/trophy';
 
 interface LatestTrophiesProps {
     itemsCount: number;
@@ -17,6 +23,13 @@ interface LatestTrophiesProps {
     onSeeMore: () => void;
 }
 
+const latestTrophiesSelector =
+    (activity: Activity | null, limit) => (state: TrophiesState) =>
+        getTrophies(activity)(state)
+            .filter((trophy) => trophy.completed)
+            .sort(trophiesCompletedAtComparator)
+            .slice(0, limit);
+
 function LatestTrophies({
     itemsCount,
     style,
@@ -25,9 +38,9 @@ function LatestTrophies({
     onSeeMore
 }: LatestTrophiesProps) {
     const {filter} = useActivityFilterStore();
-    const trophies = useTrophiesStore(getTrophies(filter))
-        .filter((trophy) => trophy.completed)
-        .slice(0, itemsCount);
+    const trophies = useTrophiesStore(
+        latestTrophiesSelector(filter, itemsCount)
+    );
     return (
         <View style={style}>
             <SecondaryHeader

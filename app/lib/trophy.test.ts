@@ -1,6 +1,11 @@
 import {Activity} from '../enums/Activity';
 import {Trophy} from '../types/Trophy';
-import {filterByTrophyType, getTrophySubtype, sortTrophyList} from './trophy';
+import {
+    filterByTrophyType,
+    getTrophySubtype,
+    sortTrophyList,
+    trophiesCompletedAtComparator
+} from './trophy';
 import {TrophyType} from '../enums/TrophyType';
 import {TrophySubtype} from '../enums/TrophySubtype';
 
@@ -233,6 +238,19 @@ describe('Trophy service', () => {
                 distance: 35,
                 duration: 3600
             }
+        ]);
+    });
+
+    it('should sort trophies using completed at comparator', () => {
+        const input = [
+            {id: '2'},
+            {id: '3', completedAt: '2021-01-01T12:11:10.000Z'},
+            {id: '1', completedAt: '2021-12-01T12:11:10.000Z'}
+        ] as Trophy[];
+        expect(input.sort(trophiesCompletedAtComparator)).toEqual([
+            {id: '1', completedAt: '2021-12-01T12:11:10.000Z'},
+            {id: '3', completedAt: '2021-01-01T12:11:10.000Z'},
+            {id: '2'}
         ]);
     });
 });
