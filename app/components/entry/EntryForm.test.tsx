@@ -85,6 +85,21 @@ describe('EntryForm', () => {
             );
         });
 
+        it('should update title on date change', () => {
+            const {getByTestId, getByPlaceholderText} = createComponent(
+                '2022-01-01T22:00:00.000'
+            );
+            fireEvent.press(getByTestId('datepicker-trigger'));
+            fireEvent(
+                getByTestId('datepicker'),
+                'onConfirm',
+                new OriginalDate('2022-01-01T10:00:00.000')
+            );
+            expect(getByPlaceholderText('Title').props.value).toEqual(
+                'Morning Run'
+            );
+        });
+
         it('should change activity in title if not edited yet', () => {
             const {getByTestId, getByPlaceholderText} = createComponent(
                 '2022-01-11T15:00:00.000'

@@ -36,6 +36,9 @@ function getTitlePlaceholder(activity: Activity, date: Date) {
     return `${timeOfTheDay} ${activityName}`;
 }
 
+const isPlaceholderEdited = (activity: Activity, date: string, title: string) =>
+    title !== getTitlePlaceholder(activity, new Date(date));
+
 const getDefaultEntry = (): Entry => {
     const date = new Date();
     const defaultActivity = Activity.RUNNING;
@@ -101,26 +104,29 @@ function EntryForm({
             <Panel>
                 <ActivityFormField
                     value={values.activity}
-                    onChange={(value) => {
-                        const date = new Date();
-                        const oldPlaceholder = getTitlePlaceholder(
-                            values.activity,
-                            date
-                        );
-                        const newPlaceholder = getTitlePlaceholder(value, date);
-                        if (values.title === oldPlaceholder) {
-                            handleChange('title')(newPlaceholder);
+                    onChange={(newActivity) => {
+                        const {activity, date, title} = values;
+                        if (!isPlaceholderEdited(activity, date, title)) {
+                            handleChange('title')(
+                                getTitlePlaceholder(newActivity, new Date(date))
+                            );
                         }
-                        handleChange('activity')(value);
+                        handleChange('activity')(newActivity);
                     }}
                 />
             </Panel>
             <Panel>
                 <DateFormField
                     value={values.date}
-                    onChange={(value) =>
-                        setFieldValue('date', value.toISOString())
-                    }
+                    onChange={(newDate) => {
+                        const {activity, date, title} = values;
+                        if (!isPlaceholderEdited(activity, date, title)) {
+                            handleChange('title')(
+                                getTitlePlaceholder(activity, newDate)
+                            );
+                        }
+                        setFieldValue('date', newDate.toISOString());
+                    }}
                 />
             </Panel>
             <Panel>
