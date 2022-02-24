@@ -11,21 +11,21 @@ import {
 import {EntriesState} from './entries';
 import {TrophyType} from '../enums/TrophyType';
 
+const keyFunc = (date: string, timeInterval) => {
+    if (timeInterval === TimeInterval.YEAR) {
+        return new Date(date).getFullYear().toString();
+    }
+    return moment(date).format('MMMM, YYYY');
+};
+
 export const getTimelineEntries =
     (activity: Activity | null, timeInterval: TimeInterval) =>
     (state: EntriesState): TimelineEntry[] => {
-        const keyFunc = (date: string) => {
-            if (timeInterval === TimeInterval.YEAR) {
-                return new Date(date).getFullYear().toString();
-            }
-            return moment(date).format('MMMM, YYYY');
-        };
-
         const entriesMap = new Map();
         state.entries
             .filter((entry) => activity === null || entry.activity === activity)
             .forEach((entry) => {
-                const key = keyFunc(entry.date);
+                const key = keyFunc(entry.date, timeInterval);
                 if (!entriesMap.has(key)) entriesMap.set(key, []);
                 entriesMap.get(key).push(entry);
             });
