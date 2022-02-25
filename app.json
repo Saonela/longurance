@@ -1,33 +1,45 @@
 {
     "expo": {
         "name": "Longurance",
+        "description": "Endurance training log",
         "slug": "longurance",
+        "owner": "klaudijus",
+        "privacy": "public",
+        "sdkVersion": "44.0.0",
         "version": "1.0.0",
         "platforms": [
             "android"
         ],
+        "githubUrl": "https://github.com/Saonela/longurance",
         "orientation": "portrait",
+        "userInterfaceStyle": "dark",
+        "backgroundColor": "#0e0e0e",
+        "primaryColor": "#0e0e0e",
         "icon": "./assets/icon.png",
-        "splash": {
-            "image": "./assets/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#f4f4f6"
+        "androidStatusBar": {
+            "barStyle": "light-content",
+            "backgroundColor": "#0e0e0e",
+            "hidden": false,
+            "translucent": false
         },
         "updates": {
-            "fallbackToCacheTimeout": 0
+            "enabled": false,
+            "checkAutomatically": "ON_LOAD",
+            "fallbackToCacheTimeout": 30000
         },
         "assetBundlePatterns": [
-            "**/*"
+            "assets/*"
         ],
-        "ios": {
-            "supportsTablet": true
+        "splash": {
+            "image": "assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#f3eded"
         },
+        "jsEngine": "hermes",
         "android": {
             "package": "com.longurance.app",
-            "versionCode": 1
-        },
-        "web": {
-            "favicon": "./assets/favicon.png"
+            "versionCode": 1,
+            "permissions": []
         }
     }
 }
