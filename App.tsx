@@ -1,7 +1,6 @@
 /* eslint-disable global-require */
 import React from 'react';
 import {useFonts} from 'expo-font';
-import {StatusBar} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import Main from './Main';
 
@@ -13,10 +12,5 @@ export default function App() {
     if (!fontsLoaded) {
         return <AppLoading autoHideSplash />;
     }
-    return (
-        <>
-            <StatusBar barStyle="light-content" />
-            <Main />
-        </>
-    );
+    return <Main />;
 }
