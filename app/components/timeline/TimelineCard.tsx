@@ -13,6 +13,7 @@ import theme from '../../theme';
 import utils from '../../styles-utilities';
 import {EffortIcons} from '../../types/Effort';
 import {TimelineEntry} from '../../types/TimelineEntry';
+import appStyles from '../../styles';
 
 interface TimelineCardProps {
     timelineEntry: TimelineEntry;
@@ -26,46 +27,48 @@ function TimelineCard({timelineEntry, onPress}: TimelineCardProps) {
             accessibilityLabel="Timeline card"
             onPress={onPress}
         >
-            <View>
-                <Panel>
-                    <SecondaryHeader color="primary">{title} </SecondaryHeader>
-                    <SecondaryText style={utils.marginTopS} color="secondary">
-                        {entryIds.length} {getWorkoutsLabel(entryIds.length)}
-                    </SecondaryText>
-                    <Separator marginBottom={theme.SPACING.L} />
-                    <View style={[utils.row]}>
-                        <View style={styles.detailsContainer}>
-                            <PrimaryText style={styles.detailsText}>
-                                {getDistanceText(distance)}
-                            </PrimaryText>
-                            <SecondaryText>Distance</SecondaryText>
-                        </View>
-                        <View style={styles.detailsContainer}>
-                            <PrimaryText style={styles.detailsText}>
-                                {getDurationText(duration)}
-                            </PrimaryText>
-                            <SecondaryText>Duration</SecondaryText>
-                        </View>
-                        <View style={styles.detailsContainer}>
-                            <PrimaryText style={styles.detailsText}>
-                                {getPaceText(duration, distance)}
-                            </PrimaryText>
-                            <SecondaryText>Avg. Pace</SecondaryText>
-                        </View>
+            <View style={styles.card}>
+                <SecondaryHeader color="primary">{title} </SecondaryHeader>
+                <SecondaryText style={utils.marginTopS} color="secondary">
+                    {entryIds.length} {getWorkoutsLabel(entryIds.length)}
+                </SecondaryText>
+                <Separator marginBottom={theme.SPACING.L} />
+                <View style={[utils.row]}>
+                    <View style={styles.detailsContainer}>
+                        <PrimaryText style={styles.detailsText}>
+                            {getDistanceText(distance)}
+                        </PrimaryText>
+                        <SecondaryText>Distance</SecondaryText>
                     </View>
-                    <View
-                        style={[
-                            styles.effortIndicator,
-                            {backgroundColor: EffortIcons[effort].color}
-                        ]}
-                    />
-                </Panel>
+                    <View style={styles.detailsContainer}>
+                        <PrimaryText style={styles.detailsText}>
+                            {getDurationText(duration)}
+                        </PrimaryText>
+                        <SecondaryText>Duration</SecondaryText>
+                    </View>
+                    <View style={styles.detailsContainer}>
+                        <PrimaryText style={styles.detailsText}>
+                            {getPaceText(duration, distance)}
+                        </PrimaryText>
+                        <SecondaryText>Avg. Pace</SecondaryText>
+                    </View>
+                </View>
+                <View
+                    style={[
+                        styles.effortIndicator,
+                        {backgroundColor: EffortIcons[effort].color}
+                    ]}
+                />
             </View>
         </TouchableNativeFeedback>
     );
 }
 
 const styles = StyleSheet.create({
+    card: {
+        ...appStyles.panel,
+        overflow: 'hidden'
+    },
     detailsContainer: {
         marginRight: theme.SPACING.XL
     },
