@@ -49,11 +49,7 @@ function LatestEntries({
                 </View>
             )}
             {entries.map((entry) => (
-                <EntryCard
-                    key={entry.id}
-                    entry={entry}
-                    onPress={() => onPress(entry.id)}
-                />
+                <EntryCard key={entry.id} entry={entry} onPress={onPress} />
             ))}
 
             <View style={styles.buttonsRow}>

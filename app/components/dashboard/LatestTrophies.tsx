@@ -61,11 +61,7 @@ function LatestTrophies({
                 </View>
             )}
             {trophies.map((trophy) => (
-                <TrophyCard
-                    key={trophy.id}
-                    trophy={trophy}
-                    onPress={() => onPress(trophy.id)}
-                />
+                <TrophyCard key={trophy.id} trophy={trophy} onPress={onPress} />
             ))}
 
             <View style={styles.buttonsRow}>

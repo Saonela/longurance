@@ -20,6 +20,12 @@ function TrophyFormScreen({route, navigation}) {
     const trophyToEdit = useTrophiesStore(getTrophy(route.params.id));
     const formRef = useRef<FormikValues>(null);
 
+    const submit = () => {
+        if (formRef.current) {
+            formRef.current.handleSubmit();
+        }
+    };
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: isUpdateForm ? 'Edit Trophy' : 'New Trophy',
@@ -27,11 +33,7 @@ function TrophyFormScreen({route, navigation}) {
                 <HeaderButton
                     iconName="check"
                     style={{marginRight: theme.SPACING.S}}
-                    onPress={() => {
-                        if (formRef.current) {
-                            formRef.current.handleSubmit();
-                        }
-                    }}
+                    onPress={submit}
                 />
             )
         });

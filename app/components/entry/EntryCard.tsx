@@ -19,7 +19,7 @@ import Separator from '../ui/Separator';
 
 interface EntryCardProps {
     entry: Entry;
-    onPress: () => void;
+    onPress: (id: string) => void;
 }
 
 const activityIconNames = {
@@ -32,7 +32,7 @@ function EntryCard({entry, onPress}: EntryCardProps) {
     return (
         <TouchableNativeFeedback
             accessibilityLabel="Entry card"
-            onPress={onPress}
+            onPress={() => onPress(entry.id)}
         >
             <View style={styles.card}>
                 <FontAwesome5

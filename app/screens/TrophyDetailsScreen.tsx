@@ -12,9 +12,10 @@ import {Screen} from '../enums/Screen';
 
 function TrophyDetailsScreen({route, navigation}) {
     const trophy = useTrophiesStore(getTrophy(route.params.id)) as Trophy;
-
     const entries = useEntriesStore(getEntriesByIds(trophy?.entryIds || []));
 
+    const navigateToTrophyForm = () =>
+        navigation.navigate(Screen.TROPHY_FORM, {id: trophy.id});
     const navigateToEntryDetails = (id) =>
         navigation.navigate(Screen.ENTRY_DETAILS, {id});
 
@@ -45,11 +46,7 @@ function TrophyDetailsScreen({route, navigation}) {
                 <View style={utils.row}>
                     <HeaderButton
                         iconName="edit"
-                        onPress={() =>
-                            navigation.navigate(Screen.TROPHY_FORM, {
-                                id: trophy.id
-                            })
-                        }
+                        onPress={navigateToTrophyForm}
                     />
                     <HeaderButton iconName="x" onPress={confirmDelete} />
                 </View>
@@ -65,7 +62,7 @@ function TrophyDetailsScreen({route, navigation}) {
                     <EntryCard
                         key={entry.id}
                         entry={entry}
-                        onPress={() => navigateToEntryDetails(entry.id)}
+                        onPress={navigateToEntryDetails}
                     />
                 ))}
             </ScrollView>

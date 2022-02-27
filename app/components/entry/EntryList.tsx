@@ -21,9 +21,7 @@ function EntryList({onPress}: EntryListProps) {
     }
 
     const keyExtractor = (entry) => entry.id;
-    const renderItem = ({item}) => (
-        <EntryCard entry={item} onPress={() => onPress(item.id)} />
-    );
+    const renderItem = ({item}) => <EntryCard entry={item} onPress={onPress} />;
 
     return (
         <FlatList

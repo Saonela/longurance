@@ -22,6 +22,9 @@ function EntryDetailsScreen({route, navigation}) {
         getEntryTrophies(entry?.id, TrophyType.INDIVIDUAL)
     );
 
+    const navigateToEntryForm = () =>
+        navigation.navigate(Screen.ENTRY_FORM, {id: entry.id});
+
     useLayoutEffect(() => {
         const confirmDelete = () => {
             Alert.alert(
@@ -53,11 +56,7 @@ function EntryDetailsScreen({route, navigation}) {
                 <View style={{display: 'flex', flexDirection: 'row'}}>
                     <HeaderButton
                         iconName="edit"
-                        onPress={() =>
-                            navigation.navigate(Screen.ENTRY_FORM, {
-                                id: entry.id
-                            })
-                        }
+                        onPress={navigateToEntryForm}
                     />
                     <HeaderButton iconName="x" onPress={confirmDelete} />
                 </View>

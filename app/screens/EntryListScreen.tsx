@@ -6,6 +6,8 @@ import HeaderButton from '../components/header/HeaderButton';
 import {Screen} from '../enums/Screen';
 
 function EntryListScreen({navigation}) {
+    const navigateToEntriesFilter = () =>
+        navigation.navigate(Screen.ENTRIES_FILTER);
     const navigateToEntryDetails = (id) =>
         navigation.navigate(Screen.ENTRY_DETAILS, {id});
 
@@ -14,7 +16,7 @@ function EntryListScreen({navigation}) {
             headerRight: () => (
                 <HeaderButton
                     iconName="filter"
-                    onPress={() => navigation.navigate(Screen.ENTRIES_FILTER)}
+                    onPress={navigateToEntriesFilter}
                 />
             )
         });

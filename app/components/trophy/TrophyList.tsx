@@ -22,7 +22,7 @@ function TrophyList({onPress}: TrophyListProps) {
 
     const keyExtractor = (trophy) => trophy.id;
     const renderItem = ({item}) => (
-        <TrophyCard trophy={item} onPress={() => onPress(item.id)} />
+        <TrophyCard trophy={item} onPress={onPress} />
     );
 
     return (

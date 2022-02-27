@@ -20,6 +20,12 @@ function EntryFormScreen({route, navigation}) {
     const entryToEdit = useEntriesStore(getEntry(route.params.id));
     const formRef = useRef<FormikValues>(null);
 
+    const submit = () => {
+        if (formRef.current) {
+            formRef.current.handleSubmit();
+        }
+    };
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: isUpdateForm ? 'Edit Entry' : 'New Entry',
@@ -27,11 +33,7 @@ function EntryFormScreen({route, navigation}) {
                 <HeaderButton
                     iconName="check"
                     style={{marginRight: theme.SPACING.S}}
-                    onPress={() => {
-                        if (formRef.current) {
-                            formRef.current.handleSubmit();
-                        }
-                    }}
+                    onPress={submit}
                 />
             )
         });

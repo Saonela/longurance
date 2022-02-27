@@ -8,13 +8,15 @@ import {Screen} from '../enums/Screen';
 function TrophyListScreen({navigation}) {
     const navigateToTrophyDetails = (id: string) =>
         navigation.navigate(Screen.TROPHY_DETAILS, {id});
+    const navigateToTrophiesFilter = () =>
+        navigation.navigate(Screen.TROPHIES_FILTER);
 
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
                 <HeaderButton
                     iconName="filter"
-                    onPress={() => navigation.navigate(Screen.TROPHIES_FILTER)}
+                    onPress={navigateToTrophiesFilter}
                 />
             )
         });

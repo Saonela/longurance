@@ -15,7 +15,7 @@ import {TrophySubtype} from '../../enums/TrophySubtype';
 
 interface TrophyCardProps {
     trophy: Trophy;
-    onPress: () => void;
+    onPress: (id: string) => void;
 }
 
 const activityIconNames = {
@@ -40,7 +40,7 @@ function TrophyCard({trophy, onPress}: TrophyCardProps) {
         ? theme.COLORS.THEME
         : theme.COLORS.BACKGROUND_TERTIARY;
     return (
-        <TouchableNativeFeedback onPress={onPress}>
+        <TouchableNativeFeedback onPress={() => onPress(trophy.id)}>
             <View style={styles.card}>
                 <View style={[utils.row, utils.justifyBetween]}>
                     <SimpleLineIcons name="trophy" size={50} color={color} />
