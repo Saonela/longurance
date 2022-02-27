@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {StyleSheet, TouchableNativeFeedback, View} from 'react-native';
 import {FontAwesome5, SimpleLineIcons} from '@expo/vector-icons';
 import appStyles from '../../styles';
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default TrophyCard;
+export default memo(TrophyCard);
