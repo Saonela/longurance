@@ -33,7 +33,7 @@
         "splash": {
             "image": "assets/splash.png",
             "resizeMode": "contain",
-            "backgroundColor": "#f3eded"
+            "backgroundColor": "#f1f1f1"
         },
         "jsEngine": "hermes",
         "android": {
