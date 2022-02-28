@@ -58,7 +58,7 @@ function EntryFormScreen({route, navigation}) {
                 <EntryForm
                     entry={entryToEdit}
                     innerRef={formRef}
-                    onSubmit={(entry) => handleSubmit(entry)}
+                    onSubmit={handleSubmit}
                 />
             </ScrollView>
         </View>
