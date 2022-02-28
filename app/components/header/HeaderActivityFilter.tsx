@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         borderColor: theme.COLORS.FONT_PRIMARY
     },
     picker: {
-        width: 140,
+        width: 148,
         height: theme.HEADER_HEIGHT - 2 * theme.SPACING.S,
         color: theme.COLORS.FONT_PRIMARY
     }
