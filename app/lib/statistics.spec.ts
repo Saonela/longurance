@@ -57,10 +57,12 @@ describe('Statistics service', () => {
 
         it('should get farthest distance entry', () => {
             expect(getFarthestDistanceEntry(entries)).toEqual(entries[0]);
+            expect(getFarthestDistanceEntry([entries[1]])).toEqual(undefined);
         });
 
         it('should get longest duration entry', () => {
             expect(getLongestDurationEntry(entries)).toEqual(entries[1]);
+            expect(getLongestDurationEntry([entries[2]])).toEqual(undefined);
         });
 
         it('should get fastest pace entry', () => {

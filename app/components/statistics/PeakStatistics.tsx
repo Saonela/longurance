@@ -36,11 +36,11 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
             <View style={[utils.col, utils.justifyBetween]}>
                 <TouchableStatisticsRow
                     disabled={!distanceEntry}
-                    onPress={() => onPress(distanceEntry.id)}
+                    onPress={() => distanceEntry && onPress(distanceEntry.id)}
                 >
                     <View>
                         <SecondaryHeader style={styles.textHeader}>
-                            {getDistanceText(distanceEntry?.distance)}
+                            {getDistanceText(distanceEntry?.distance || 0)}
                         </SecondaryHeader>
                         <SecondaryText>Farthest distance</SecondaryText>
                     </View>
@@ -52,11 +52,11 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
                 </TouchableStatisticsRow>
                 <TouchableStatisticsRow
                     disabled={!durationEntry}
-                    onPress={() => onPress(durationEntry.id)}
+                    onPress={() => durationEntry && onPress(durationEntry.id)}
                 >
                     <View>
                         <SecondaryHeader style={styles.textHeader}>
-                            {getDurationText(durationEntry?.duration)}
+                            {getDurationText(durationEntry?.duration || 0)}
                         </SecondaryHeader>
                         <SecondaryText>Longest duration</SecondaryText>
                     </View>
@@ -68,13 +68,13 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
                 </TouchableStatisticsRow>
                 <TouchableStatisticsRow
                     disabled={!paceEntry}
-                    onPress={() => onPress(paceEntry.id)}
+                    onPress={() => paceEntry && onPress(paceEntry.id)}
                 >
                     <View>
                         <SecondaryHeader style={styles.textHeader}>
                             {getPaceText(
-                                paceEntry?.duration,
-                                paceEntry?.distance
+                                paceEntry?.duration || 0,
+                                paceEntry?.distance || 0
                             )}
                         </SecondaryHeader>
                         <SecondaryText>Fastest Pace</SecondaryText>

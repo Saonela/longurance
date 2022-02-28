@@ -41,25 +41,43 @@ export const getAverageIntensity = (entries: Entry[]) =>
             .reduce((total, value) => total + value, 0) / entries.length
     );
 
-export const getFarthestDistanceEntry = (entries: Entry[]) =>
-    entries.reduce((result: Entry, entry: Entry) => {
-        return entry.distance > result.distance ? entry : result;
-    }, entries[0]);
+export const getFarthestDistanceEntry = (
+    entries: Entry[]
+): Entry | undefined => {
+    let distance = 0;
+    let result;
+    entries.forEach((entry: Entry) => {
+        if (entry.distance > distance) {
+            distance = entry.distance;
+            result = entry;
+        }
+    });
+    return result;
+};
 
-export const getLongestDurationEntry = (entries: Entry[]) =>
-    entries.reduce((result: Entry, entry: Entry) => {
-        return entry.duration > result.duration ? entry : result;
-    }, entries[0]);
+export const getLongestDurationEntry = (
+    entries: Entry[]
+): Entry | undefined => {
+    let duration = 0;
+    let result;
+    entries.forEach((entry: Entry) => {
+        if (entry.duration > duration) {
+            duration = entry.duration;
+            result = entry;
+        }
+    });
+    return result;
+};
 
-export function getFastestPaceEntry(entries: Entry[]) {
+export function getFastestPaceEntry(entries: Entry[]): Entry | undefined {
     let fastestPace = 0;
-    let fastestPaceEntry;
+    let result;
     entries.forEach((entry) => {
         const pace = calculatePace(entry.duration, entry.distance);
         if (pace > fastestPace) {
             fastestPace = pace;
-            fastestPaceEntry = entry;
+            result = entry;
         }
     });
-    return fastestPaceEntry;
+    return result;
 }
