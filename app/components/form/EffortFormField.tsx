@@ -45,6 +45,7 @@ function EffortFormField({value, onChange}: EnergyFormFieldProps) {
                             onPress={() => onChange(option)}
                         >
                             <Animatable.View
+                                style={styles.option}
                                 animation={value === option ? zoomIn : zoomOut}
                                 duration={150}
                             >
@@ -61,7 +62,7 @@ function EffortFormField({value, onChange}: EnergyFormFieldProps) {
             </View>
             <View style={styles.effortLabels}>
                 <Text style={styles.effortLabel}>Light</Text>
-                <Text style={{...styles.effortLabel, marginLeft: 22}}>
+                <Text style={{...styles.effortLabel, marginLeft: 28}}>
                     Moderate
                 </Text>
                 <Text style={styles.effortLabel}>Vigorous</Text>
@@ -74,13 +75,15 @@ const styles = StyleSheet.create({
     list: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: theme.SPACING.S
+        marginTop: theme.SPACING.S,
+        marginLeft: -theme.SPACING.S,
+        marginRight: -theme.SPACING.S
     },
     option: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 54,
-        height: 54,
+        width: 64,
+        height: 64,
         borderRadius: 100
     },
     effortLabels: {
