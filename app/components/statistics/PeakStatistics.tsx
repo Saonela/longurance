@@ -44,7 +44,11 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
                         </SecondaryHeader>
                         <SecondaryText>Farthest distance</SecondaryText>
                     </View>
-                    <SecondaryText>{formatDate(distanceEntry)}</SecondaryText>
+                    {distanceEntry && (
+                        <SecondaryText>
+                            {formatDate(distanceEntry)}
+                        </SecondaryText>
+                    )}
                 </TouchableStatisticsRow>
                 <TouchableStatisticsRow
                     disabled={!durationEntry}
@@ -56,7 +60,11 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
                         </SecondaryHeader>
                         <SecondaryText>Longest duration</SecondaryText>
                     </View>
-                    <SecondaryText>{formatDate(durationEntry)}</SecondaryText>
+                    {durationEntry && (
+                        <SecondaryText>
+                            {formatDate(durationEntry)}
+                        </SecondaryText>
+                    )}
                 </TouchableStatisticsRow>
                 <TouchableStatisticsRow
                     disabled={!paceEntry}
@@ -71,7 +79,9 @@ function PeakStatistics({entries, onPress}: PeakStatisticsProps) {
                         </SecondaryHeader>
                         <SecondaryText>Fastest Pace</SecondaryText>
                     </View>
-                    <SecondaryText>{formatDate(paceEntry)}</SecondaryText>
+                    {paceEntry && (
+                        <SecondaryText>{formatDate(paceEntry)}</SecondaryText>
+                    )}
                 </TouchableStatisticsRow>
             </View>
         </Panel>
