@@ -36,13 +36,13 @@ function HeaderActivityFilter() {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        top: -theme.HEADER_HEIGHT + theme.SPACING.S,
+        top: -theme.HEADER_HEIGHT + theme.SPACING.XS,
         left: theme.SPACING.S,
         zIndex: 1,
         borderColor: theme.COLORS.FONT_PRIMARY
     },
     picker: {
-        width: 148,
+        width: 174,
         height: theme.HEADER_HEIGHT - 2 * theme.SPACING.S,
         color: theme.COLORS.FONT_PRIMARY
     }
