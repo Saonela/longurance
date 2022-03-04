@@ -104,6 +104,7 @@ function TimelineScreenStack() {
             <Stack.Screen
                 name={Screen.TIMELINE_DETAILS}
                 component={TimelineDetailsScreen}
+                options={{title: 'Timeline Details'}}
             />
         </Stack.Navigator>
     );
