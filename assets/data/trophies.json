@@ -378,20 +378,6 @@
     "title": "10 km"
   },
   {
-    "id": "individual-run-distance-5",
-    "type": "INDIVIDUAL",
-    "activity": "RUNNING",
-    "distance": 5,
-    "duration": 0,
-    "createdAt": "",
-    "completedAt": null,
-    "completed": false,
-    "markedAsRead": false,
-    "predefined": true,
-    "entryIds": [],
-    "title": "5 km"
-  },
-  {
     "id": "individual-swim-distance-10",
     "type": "INDIVIDUAL",
     "activity": "SWIMMING",
@@ -432,20 +418,6 @@
     "predefined": true,
     "entryIds": [],
     "title": "2.5 km"
-  },
-  {
-    "id": "individual-swim-distance-1",
-    "type": "INDIVIDUAL",
-    "activity": "SWIMMING",
-    "distance": 1,
-    "duration": 0,
-    "createdAt": "",
-    "completedAt": null,
-    "completed": false,
-    "markedAsRead": false,
-    "predefined": true,
-    "entryIds": [],
-    "title": "1 km"
   },
   {
     "id": "individual-cycle-distance-160",
@@ -546,20 +518,6 @@
     "title": "1 hour"
   },
   {
-    "id": "individual-run-duration-0.5",
-    "type": "INDIVIDUAL",
-    "activity": "RUNNING",
-    "distance": 0,
-    "duration": 1800,
-    "createdAt": "",
-    "completedAt": null,
-    "completed": false,
-    "markedAsRead": false,
-    "predefined": true,
-    "entryIds": [],
-    "title": "30 minutes"
-  },
-  {
     "id": "individual-swim-duration-3",
     "type": "INDIVIDUAL",
     "activity": "SWIMMING",
@@ -600,20 +558,6 @@
     "predefined": true,
     "entryIds": [],
     "title": "1 hour"
-  },
-  {
-    "id": "individual-swim-duration-0.5",
-    "type": "INDIVIDUAL",
-    "activity": "SWIMMING",
-    "distance": 0,
-    "duration": 1800,
-    "createdAt": "",
-    "completedAt": null,
-    "completed": false,
-    "markedAsRead": false,
-    "predefined": true,
-    "entryIds": [],
-    "title": "30 minutes"
   },
   {
     "id": "individual-cycle-duration-8",
