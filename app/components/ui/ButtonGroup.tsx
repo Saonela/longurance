@@ -2,6 +2,7 @@ import React from 'react';
 import {Animated, StyleSheet, View, ViewStyle} from 'react-native';
 import theme from '../../theme';
 import {Button} from './Button';
+import {PrimaryText} from './Text';
 
 interface ButtonGroupProps<T> {
     selected: T;
@@ -30,7 +31,9 @@ function ButtonGroup<T>({
                             ]}
                             onPress={() => !isSelected && onChange(value)}
                         >
-                            {label}
+                            <View>
+                                <PrimaryText>{label}</PrimaryText>
+                            </View>
                         </Button>
                     );
                 })}
