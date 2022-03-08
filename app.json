@@ -14,7 +14,7 @@
         "orientation": "portrait",
         "userInterfaceStyle": "dark",
         "backgroundColor": "#0e0e0e",
-        "primaryColor": "#0e0e0e",
+        "primaryColor": "#ffffff",
         "icon": "./assets/icon.png",
         "androidStatusBar": {
             "barStyle": "light-content",
@@ -33,7 +33,7 @@
         "splash": {
             "image": "assets/splash.png",
             "resizeMode": "contain",
-            "backgroundColor": "#f1f1f1"
+            "backgroundColor": "#ffffff"
         },
         "jsEngine": "hermes",
         "android": {
