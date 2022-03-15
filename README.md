@@ -1,23 +1,24 @@
 # Longurance
 
----
-
 **Personal endurance training manual logging essentials.**
 
-Keep track only of important things. No account, no internet connection and no permissions required.
+Keep track only of important things.
+
+No account, no internet connection and no permissions required.
 
 No unnecessary feeds or 'engaging' glitter.
 
-Leave distractions behind. Determine a goal and grind it out.
+Longurance is an offline, manual and easy to use endurance workouts logger for people who prefer to leave their phone aside.
 
-Do it for you.
+Try it at <a href="https://play.google.com/store/apps/details?id=com.longurance.app" target="_blank">Google Play Store</a>.
 
+<br/>
 
 <p>
-    <img src="./screenshots/dashboard_screen.jpg" width="250" />
-    <img src="./screenshots/statistics_screen.jpg" width="250" />
-    <img src="./screenshots/timeline_details_screen.jpg" width="250" />
-    <img src="./screenshots/trophies_list_screen.jpg" width="250" />
+    <img src="./screenshots/dashboard_screen.jpg" width="225" />
+    <img src="./screenshots/statistics_screen.jpg" width="225" />
+    <img src="./screenshots/timeline_details_screen.jpg" width="225" />
+    <img src="./screenshots/trophies_list_screen.jpg" width="225" />
 </p>
 
 ## Overview
@@ -36,13 +37,7 @@ Do it for you.
 
 [//]: # (![Trophies]&#40;./screenshots/trophies_list_screen.jpg&#41;)
 
-App core consists of customizable entries and trophies system. Collected data is used to generate statistics and
-insights about your progress. Notable achievements are marked with trophies. Every entered piece of data can be modified
-anytime.
-
-Supports 3 different activities: running, swimming and cycling.
-
-Each entry can contain title, date, distance, duration, effort and note.
+App provides easy and quick way to enter your workout activity and get an overview of your overall progress. Currently three main activities are supported: running, swimming and cycling. Context between them can be changed at anytime in order to get only the insights which interests you at the time. Main attributes of workouts are title, date, distance, duration, effort, and notes. Every entered piece of data can be modified anytime. Alongside workout entries overview, filtering and statistics, there is a customizable trophy system to help you track your fitness goals.
 
 Trophies are grouped into 2 types:
 
